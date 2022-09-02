@@ -1,0 +1,211 @@
+method-a,method-b,verdict
+org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;,org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;,spurious-spec
+org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;,org.joda.convert.AnnotationStringConverterFactory.findFromString(Ljava/lang/Class;)Ljava/lang/reflect/Method;,spurious-spec
+org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;,org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;,spurious-spec
+org.joda.convert.AnnotationStringConverterFactory.findAnnotatedConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;,no-break-pass (indirect)
+org.joda.convert.AnnotationStringConverterFactory.findAnnotatedConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;,no-break-pass (direct)
+org.joda.convert.AnnotationStringConverterFactory.findAnnotatedConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.AnnotationStringConverterFactory.findFromString(Ljava/lang/Class;)Ljava/lang/reflect/Method;,no-break-pass (indirect)
+org.joda.convert.AnnotationStringConverterFactory.findAnnotatedConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;,no-break-pass (direct)
+org.joda.convert.AnnotationStringConverterFactory.findAnnotatedConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.AnnotationStringConverterFactory.findToStringMethod(Ljava/lang/Class;)Ljava/lang/reflect/Method;,no-break-pass (direct)
+org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;,org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;,no-break-pass (direct)
+org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;,org.joda.convert.AnnotationStringConverterFactory.findFromString(Ljava/lang/Class;)Ljava/lang/reflect/Method;,no-break-pass (direct)
+org.joda.convert.AnnotationStringConverterFactory.findToStringMethod(Ljava/lang/Class;)Ljava/lang/reflect/Method;,org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;,no-break-pass (direct)
+org.joda.convert.AnnotationStringConverterFactory.findToStringMethod(Ljava/lang/Class;)Ljava/lang/reflect/Method;,org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;,spurious-spec
+org.joda.convert.AnnotationStringConverterFactory.findToStringMethod(Ljava/lang/Class;)Ljava/lang/reflect/Method;,org.joda.convert.AnnotationStringConverterFactory.findFromString(Ljava/lang/Class;)Ljava/lang/reflect/Method;,spurious-spec
+org.joda.convert.AnnotationStringConverterFactory.findToStringMethod(Ljava/lang/Class;)Ljava/lang/reflect/Method;,org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;,spurious-spec
+org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertToString(Ljava/lang/Enum;)Ljava/lang/String;,org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;,spurious-spec
+org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertToString(Ljava/lang/Enum;)Ljava/lang/String;,org.joda.convert.TypedStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,spurious-spec
+org.joda.convert.RenameHandler.loadFromClasspath()V,org.joda.convert.RenameHandler.loadRenameFile(Ljava/net/URL;)Ljava/util/List;,no-break-pass (direct)
+org.joda.convert.RenameHandler.loadFromClasspath()V,org.joda.convert.RenameHandler.parseRenameFile(Ljava/util/List;Ljava/net/URL;)V,no-break-pass (direct)
+org.joda.convert.RenameHandler.lookupEnum(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;,org.joda.convert.RenameHandler.getEnumRenames(Ljava/lang/Class;)Ljava/util/Map;,no-break-pass (direct)
+org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,no-break-pass (direct)
+org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z,no-break-pass (indirect)
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,no-break-pass (direct)
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;,spurious-spec
+org.joda.convert.StringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,org.joda.convert.StringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;,spurious-spec
+org.joda.convert.StringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertToString(Ljava/lang/Enum;)Ljava/lang/String;,spurious-spec
+org.joda.convert.StringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,spurious-spec
+org.joda.convert.StringConverterFactory.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;,no-break-pass (indirect)
+org.joda.convert.StringConverterFactory.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.AnnotationStringConverterFactory.findAnnotatedConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,no-break-pass (direct)
+org.joda.convert.StringConverterFactory.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConverterFactory.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.AnnotationStringConverterFactory.findFromString(Ljava/lang/Class;)Ljava/lang/reflect/Method;,no-break-pass (indirect)
+org.joda.convert.StringConverterFactory.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConverterFactory.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.AnnotationStringConverterFactory.findToStringMethod(Ljava/lang/Class;)Ljava/lang/reflect/Method;,no-break-pass (direct)
+org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,spurious-spec
+org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,spurious-spec
+org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,spurious-spec
+org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,spurious-spec
+org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z,spurious-spec
+org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (direct)
+org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z,spurious-spec
+org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,spurious-spec
+org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (direct)
+org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (direct)
+org.joda.convert.StringConvert.findFromStringConstructorByType(Ljava/lang/Class;)Ljava/lang/reflect/Constructor;,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,spurious-spec
+org.joda.convert.StringConvert.findFromStringConstructorByType(Ljava/lang/Class;)Ljava/lang/reflect/Constructor;,org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,spurious-spec
+org.joda.convert.StringConvert.findFromStringConstructorByType(Ljava/lang/Class;)Ljava/lang/reflect/Constructor;,org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,spurious-spec
+org.joda.convert.StringConvert.findFromStringConstructorByType(Ljava/lang/Class;)Ljava/lang/reflect/Constructor;,org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,spurious-spec
+org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (direct)
+org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z,spurious-spec
+org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,spurious-spec
+org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (indirect)
+org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (direct)
+org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,no-break-pass (direct)
+org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/StringConverter;)V,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,sometimes-true-spec
+org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/ToStringConverter;Lorg/joda/convert/FromStringConverter;)V,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,sometimes-true-spec
+org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/ToStringConverter;Lorg/joda/convert/FromStringConverter;)V,org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/StringConverter;)V,no-break-pass (direct)
+org.joda.convert.StringConvert.registerMethodConstructor(Ljava/lang/Class;Ljava/lang/String;)V,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,sometimes-true-spec
+org.joda.convert.StringConvert.registerMethodConstructor(Ljava/lang/Class;Ljava/lang/String;)V,org.joda.convert.StringConvert.findFromStringConstructorByType(Ljava/lang/Class;)Ljava/lang/reflect/Constructor;,no-break-pass (direct)
+org.joda.convert.TypedStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;,spurious-spec
+org.joda.convert.TypedStringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;,spurious-spec
+org.joda.convert.TypedStringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertToString(Ljava/lang/Enum;)Ljava/lang/String;,spurious-spec
+org.joda.convert.TypedStringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.TypedStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,spurious-spec
+org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;,org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;,spurious-spec
+org.joda.convert.RenameHandler.loadFromClasspath()V,org.joda.convert.RenameHandler.getEnumRenames(Ljava/lang/Class;)Ljava/util/Map;,sometimes-true-spec
+org.joda.convert.RenameHandler.loadRenameFile(Ljava/net/URL;)Ljava/util/List;,org.joda.convert.RenameHandler.getEnumRenames(Ljava/lang/Class;)Ljava/util/Map;,sometimes-true-spec
+org.joda.convert.RenameHandler.parseRenameFile(Ljava/util/List;Ljava/net/URL;)V,org.joda.convert.RenameHandler.getEnumRenames(Ljava/lang/Class;)Ljava/util/Map;,sometimes-true-spec
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,spurious-spec
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,spurious-spec
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,spurious-spec
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,spurious-spec
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,spurious-spec
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,spurious-spec
+org.joda.convert.StringConvert.registerFactory(Lorg/joda/convert/StringConverterFactory;)V,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.registerFactory(Lorg/joda/convert/StringConverterFactory;)V,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.registerFactory(Lorg/joda/convert/StringConverterFactory;)V,org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,spurious-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z,spurious-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.tryRegisterJava8()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.tryRegisterTimeZone()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.tryRegisterJava8()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.tryRegisterTimeZone()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,spurious-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,spurious-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,spurious-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.tryRegisterJava8()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,spurious-spec
+org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;,org.joda.convert.AnnotationStringConverterFactory.findFromString(Ljava/lang/Class;)Ljava/lang/reflect/Method;,true-spec
+org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;,org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;,true-spec
+org.joda.convert.RenameHandler.loadFromClasspath()V,org.joda.convert.RenameHandler.lookupEnum(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;,sometimes-true-spec
+org.joda.convert.RenameHandler.loadRenameFile(Ljava/net/URL;)Ljava/util/List;,org.joda.convert.RenameHandler.lookupEnum(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;,sometimes-true-spec
+org.joda.convert.RenameHandler.parseRenameFile(Ljava/util/List;Ljava/net/URL;)V,org.joda.convert.RenameHandler.lookupEnum(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.RenameHandler.loadFromClasspath()V,org.joda.convert.RenameHandler.lookupType(Ljava/lang/String;)Ljava/lang/Class;,sometimes-true-spec
+org.joda.convert.RenameHandler.loadRenameFile(Ljava/net/URL;)Ljava/util/List;,org.joda.convert.RenameHandler.lookupType(Ljava/lang/String;)Ljava/lang/Class;,sometimes-true-spec
+org.joda.convert.RenameHandler.loadRenameFile(Ljava/net/URL;)Ljava/util/List;,org.joda.convert.RenameHandler.parseRenameFile(Ljava/util/List;Ljava/net/URL;)V,spurious-spec
+org.joda.convert.RenameHandler.parseRenameFile(Ljava/util/List;Ljava/net/URL;)V,org.joda.convert.RenameHandler.lookupType(Ljava/lang/String;)Ljava/lang/Class;,sometimes-true-spec
+org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/StringConverter;)V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/StringConverter;)V,org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/StringConverter;)V,org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/ToStringConverter;Lorg/joda/convert/FromStringConverter;)V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/ToStringConverter;Lorg/joda/convert/FromStringConverter;)V,org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/ToStringConverter;Lorg/joda/convert/FromStringConverter;)V,org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.registerMethodConstructor(Ljava/lang/Class;Ljava/lang/String;)V,org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,sometimes-true-spec
+org.joda.convert.StringConvert.registerMethodConstructor(Ljava/lang/Class;Ljava/lang/String;)V,org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.registerMethodConstructor(Ljava/lang/Class;Ljava/lang/String;)V,org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,sometimes-true-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.registerFactory(Lorg/joda/convert/StringConverterFactory;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/StringConverter;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/ToStringConverter;Lorg/joda/convert/FromStringConverter;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterGuava()V,org.joda.convert.StringConvert.registerMethodConstructor(Ljava/lang/Class;Ljava/lang/String;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.registerFactory(Lorg/joda/convert/StringConverterFactory;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/StringConverter;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/ToStringConverter;Lorg/joda/convert/FromStringConverter;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8Optionals()V,org.joda.convert.StringConvert.registerMethodConstructor(Ljava/lang/Class;Ljava/lang/String;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.registerFactory(Lorg/joda/convert/StringConverterFactory;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/StringConverter;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/ToStringConverter;Lorg/joda/convert/FromStringConverter;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterJava8()V,org.joda.convert.StringConvert.registerMethodConstructor(Ljava/lang/Class;Ljava/lang/String;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.registerFactory(Lorg/joda/convert/StringConverterFactory;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/StringConverter;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/ToStringConverter;Lorg/joda/convert/FromStringConverter;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V,org.joda.convert.StringConvert.registerMethodConstructor(Ljava/lang/Class;Ljava/lang/String;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.registerFactory(Lorg/joda/convert/StringConverterFactory;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/StringConverter;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/ToStringConverter;Lorg/joda/convert/FromStringConverter;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterThreeTenOld()V,org.joda.convert.StringConvert.registerMethodConstructor(Ljava/lang/Class;Ljava/lang/String;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.registerFactory(Lorg/joda/convert/StringConverterFactory;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/StringConverter;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/ToStringConverter;Lorg/joda/convert/FromStringConverter;)V,spurious-spec
+org.joda.convert.StringConvert.tryRegisterTimeZone()V,org.joda.convert.StringConvert.registerMethodConstructor(Ljava/lang/Class;Ljava/lang/String;)V,spurious-spec
+org.joda.convert.JDKStringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.JDKStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,spurious-spec
+org.joda.convert.JDKStringConverter.getType()Ljava/lang/Class;,org.joda.convert.JDKStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,spurious-spec
+org.joda.convert.JDKStringConverter.getType()Ljava/lang/Class;,org.joda.convert.JDKStringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;,spurious-spec
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;,spurious-spec
+org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;,org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;,spurious-spec

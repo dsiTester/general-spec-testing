@@ -1,0 +1,7 @@
+transition-id,method-sig
+ValidatorResourcesgetParent,org.apache.commons.validator.ValidatorResources.getParent(Lorg/apache/commons/validator/FormSet;)Lorg/apache/commons/validator/FormSet;
+FormSetgetType,org.apache.commons.validator.FormSet.getType()I
+FormSetmerge,org.apache.commons.validator.FormSet.merge(Lorg/apache/commons/validator/FormSet;)V
+Formmerge,org.apache.commons.validator.Form.merge(Lorg/apache/commons/validator/Form;)V
+FormgetFields,org.apache.commons.validator.Form.getFields()Ljava/util/List;
+FormSetgetForms,org.apache.commons.validator.FormSet.getForms()Ljava/util/Map;

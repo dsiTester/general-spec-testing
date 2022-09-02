@@ -1,0 +1,1820 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-10-17-13",
+        "project": "commons-codec",
+        "spec-id": "00033",
+        "method-a": "org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B",
+        "method-b": "org.apache.commons.codec.binary.Base16.decodeOctet(B)I",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00033.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testCodec68",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16.java:173",
+                        "method-b-site": "Base16.java:190",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: manually replacing the return value of method-a with null did not change the outcome of the test, and neither did replacing with an empty byte array.",
+                "notes": "The EXPECTED_EXCEPTION was thrown, so the test did not fail. In manual experimentation, the stack trace between when method-a was called before method-b and not were the same."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16Test#testCodec68 with experimental changes in snippet",
+        "notes": "WEAK_ORACLE The stage was stage-1-f2-precond because the expected exception (IllegalArgumentException on Base16.java:210) was thrown during the execution of method-b, regardless of whether method-a was delayed or not. So, the spec is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-10-17-35",
+        "inspection-time-in-minutes": 23
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-10-18-14",
+        "project": "commons-codec",
+        "spec-id": "00035",
+        "method-a": "org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B",
+        "method-b": "org.apache.commons.codec.binary.Base16.validateTrailingCharacter()V",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00035.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testStrictDecoding",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16.java:173",
+                        "method-b-site": "Base16.java:155",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Not sure what the replacement value is (couldn't find an immediate variables that had type byte[]), but it's clear that the replacement value is not null nor an empty byte[] from experimentation (the execution crashes before the assertion is even reached due to a NullPointerException or an ArrayOutOfBoundsException).",
+                "notes": "The experiment result is stage-1-f2-precond because the EXPECTED_EXCEPTION is thrown during the call to method-b."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "INSPECTION_TODO.snippet",
+        "notes": "method-a checks some properties of, and modifies, the Context argument, and returns its buffer field variable. Upon observing the definitions of method-a and method-b, it is clear that while both methods impact state, method-a does not impact method-b, and vice versa. While method-b simply throws an exception after checking the field variable Base16.decodingPolicy, that field variable is only set in the constructor of Base16 (which means that no computation done by method-a can affect that field variable).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-10-18-23",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-10-22-24",
+        "project": "commons-codec",
+        "spec-id": "00052",
+        "method-a": "org.apache.commons.codec.binary.Base16InputStream.read()I",
+        "method-b": "org.apache.commons.codec.binary.Base16InputStream.close()V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00052.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16InputStreamTest#testSkipNone",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16InputStreamTest.java:390",
+                        "method-b-site": "Base16InputStreamTest.java:391",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. Expected output was -1, but the default replacement value was 0.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "NA",
+        "validating-test-file": "snippet and reasoning below",
+        "notes": "In the use cases in this test, method-b is a do-nothing close because Base16InputStream doesn't implement its own close() method; instead it uses FileInputStream's close() method, which simply closes the input stream that is in the field variable FileInputStream.in, and the test passes in ByteArrayInputStream, which has a do-nothing close method. In general, this is a SOMETIMES_TRUE_SPEC, in the case that the input stream used internally by Base16InputStream has a do-something close() method.",
+        "findings" : "If we can get JavaMOP to know whether the close() method called on FileItemStream.in made any changes in state, then I think we can encode this in such a way that calling method-a after method-b is OK as long as the close() method called on FileItemStream.in does not make any differences. Alternatively, we can keep a list of \"do-nothing close classes\", where if FileItemStream.in was one of the classes that were in the list, we would permit calling method-a after method-b. This will require a bit more creativity to actually create a JavaMOP spec. POTENTIAL_BIGGER_SPEC: method-a --> (NBP) Base16InputStream.read([BII)I ==> method-b. Alternatively, since Base16InputStream.read([BII)I is public, we can have a branched bigger spec ERE: ( method-a | Base16InputStream.read([BII)I )* method-b",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-10-22-48",
+        "inspection-time-in-minutes": 24
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-11-12-47",
+        "project": "commons-codec",
+        "spec-id": "00064",
+        "method-a": "org.apache.commons.codec.binary.Base16OutputStream.write([BII)V",
+        "method-b": "org.apache.commons.codec.binary.Base16OutputStream.close()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00064.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16OutputStreamTest#testWriteToNullCoverage",
+                "stage": "stage-2-f1-postcond",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16OutputStreamTest.java:281",
+                        "method-b-site": "Base16OutputStreamTest.java:283",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN. method-a should have thrown an exception, but since method-a is delayed, the exception was not thrown."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "postcondition",
+        "validating-test-file": "DSIValidationTest#testDSI00064",
+        "notes": "In the use cases in this test, method-b is a do-nothing close because Base16InputStream doesn't implement its own close() method; instead it uses FileInputStream's close() method, which simply closes the input stream that is in the field variable FileInputStream.in, and the test passes in ByteArrayInputStream, which has a do-nothing close method. In general, this is a SOMETIMES_TRUE_SPEC, in the case that the input stream used internally by Base16InputStream has a do-something close() method.",
+        "findings" : "If we can get JavaMOP to know whether the close() method called on FileItemStream.in made any changes in state, then I think we can encode this in such a way that calling method-a after method-b is OK as long as the close() method called on FileItemStream.in does not make any differences. Alternatively, we can keep a list of \"do-nothing close classes\", where if FileItemStream.in was one of the classes that were in the list, we would permit calling method-a after method-b. This will require a bit more creativity to actually create a JavaMOP spec.",
+        "findings": "POTENTIAL_BIGGER_SPEC with 00065 and 00066. Not sure if we have spec relationships between the method-bs in these three specs, but one can certainly connect this method-a to the three method-bs to form a bigger spec. ",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-11-13-08",
+        "inspection-time-in-minutes": 21
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-01-11-13-09",
+        "project": "commons-codec",
+        "spec-id": "00065",
+        "method-a": "org.apache.commons.codec.binary.Base16OutputStream.write([BII)V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodecOutputStream.eof()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00065.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16OutputStreamTest#testWriteToNullCoverage",
+                "stage": "stage-2-f1-postcond",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16OutputStreamTest.java:281",
+                        "method-b-site": "BaseNCodecOutputStream.java:77",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN. method-a should have thrown an exception, but since method-a is delayed, the exception was not thrown."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "postcondition",
+        "validating-test-file": "DSIValidationTest#testDSI00065",
+        "notes": "method-a encodes or decodes the bytes in the byte[] argument, and redirects the output to the output stream. method-b writes the encoded/decoded version of the EOF character to the output stream. From the definition, it seems as though calling method-b before calling method-a would truncate in the output stream any data that came after the EOF written by method-b. So, this seems like a true spec?",
+        "findings": "POTENTIAL_BIGGER_SPEC with 00064 and 00066. Not sure if we have spec relationships between the method-bs in these three specs, but one can certainly connect this method-a to the three method-bs to form a bigger spec. Type-b: method-b is never followed by method-a",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-11-13-18",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2022-01-11-13-18",
+        "project": "commons-codec",
+        "spec-id": "00066",
+        "method-a": "org.apache.commons.codec.binary.Base16OutputStream.write([BII)V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodecOutputStream.flush()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00066.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16OutputStreamTest#testWriteToNullCoverage",
+                "stage": "stage-2-f1-postcond",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16OutputStreamTest.java:281",
+                        "method-b-site": "BaseNCodecOutputStream.java:78",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN. method-a should have thrown an exception, but since method-a is delayed, the exception was not thrown."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00065",
+        "notes": "method-a either encodes or decodes a specified section of its byte[] argument, and then calls BaseNCodecOutputStream.flush(bool) in order to write the outcome to disk. method-b is a wrapper method around BaseNCodecOutputStream.flush(bool). So, this seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case. Note that method-a and method-b are both defined in BaseNCodecOutputStream, and method-a is labeled as a different class due to DYNAMIC_DISPATCH.",
+        "findings": "POTENTIAL_BIGGER_SPEC with 00064 and 00065. Not sure if we have spec relationships between the method-bs in these three specs, but one can certainly connect this method-a to the three method-bs to form a bigger spec.",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-11-13-23",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2022-01-11-13-23",
+        "project": "commons-codec",
+        "spec-id": "00067",
+        "method-a": "org.apache.commons.codec.binary.Base16OutputStream.write([BII)V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodecOutputStream.flush(Z)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00067.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16OutputStreamTest#testWriteToNullCoverage",
+                "stage": "stage-2-f1-postcond",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16OutputStreamTest.java:281",
+                        "method-b-site": "BaseNCodecOutputStream.java:106",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN. method-a should have thrown an exception, but since method-a is delayed, the exception was not thrown."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16OutputStreamTest#testWriteToNullCoverage",
+        "notes": "This case is actually a NBP because method-a is only defined in BaseNCodecOutputStream (DYNAMIC_DISPATCH), and its definition contains a call to method-b. The reasons why DSI evaluation of this spec did not turn out to be stage-0-failure is that the execution of method-a in this test didn't reach the point where method-b would have been called. GOOD_EXAMPLE for why we'd want to have static pruning of NBP?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-13-26",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2022-01-11-14-00",
+        "project": "commons-codec",
+        "spec-id": "00071",
+        "method-a": "org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.Base32.validateTrailingCharacters()V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00071.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32Test#testBase32ImpossibleChunked",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:332",
+                        "method-b-site": "Base32.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - in the execution, method-a returns false, which is the default value that DSI replaces the return value of method-a with.",
+                "notes": "The test passed because the EXPECTED_EXCEPTION was thrown."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "REVISIT: one cannot write a manual test to validate that this spec is not a true spec because method-b is private, but one indication is that org.apache.commons.codec.binary.Base32Test#testBase32ImpossibleChunked threw an exception as expected.",
+        "notes": "method-a returns whether the input byte[] object contains any characters within the alphabet (using the field variable Base64.decodeTable) or equal to the field variable BaseNCodec.pad, and method-b checks whether the field variable Base32Codec/BaseNCodec.decodingPolicy is equal to CodecPolicy.STRICT, and throws an exception accordingly. method-b does not use/modify/affect the field variables used by method-a, so this seems like a case of UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-14-15",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2022-01-11-17-15",
+        "project": "commons-codec",
+        "spec-id": "00082",
+        "method-a": "org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z",
+        "method-b": "org.apache.commons.codec.binary.Base32.validateTrailingCharacters()V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00082.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32Test#testBase32ImpossibleChunked",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:344",
+                        "method-b-site": "Base32.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN + REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - the default value that replaced method-a (false) was also the return value of method-a.",
+                "notes": "The DSI experiment resulted in stage-1-f2-precond even though the test passed because method-b throws the EXPECTED_EXCEPTION."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32Test#testBase32ImpossibleChunked",
+        "notes": "method-a checks whether its argument byte value is within the Base32 alphabet using the field variable Base32.decodeTable. method-b checks whether the field variable Base32Codec/BaseNCodec.decodingPolicy is equal to CodecPolicy.STRICT, and throws an exception accordingly. method-b does not use/modify/affect the field variables used by method-a, so this seems like a case of UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-17-28",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2022-01-11-20-38",
+        "project": "commons-codec",
+        "spec-id": "00092",
+        "method-a": "org.apache.commons.codec.binary.Base32InputStream.read()I",
+        "method-b": "org.apache.commons.codec.binary.Base32InputStream.close()V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00092.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testSkipNone",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32InputStreamTest.java:490",
+                        "method-b-site": "Base32InputStreamTest.java:491",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. The expected output from calling method-a was -1, but the DSI replaced the call to method-a with the default value 0.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00092",
+        "notes": "The validating-test-file (an adaption of org.apache.commons.codec.binary.Base32InputStreamTest#testSkipNone) shows that swapping method-a and method-b does not make the test fail (the DSI experiment failed because DSI's replacement value did not equal the expected output). In the use cases in these tests, method-b is a do-nothing close because Base32InputStream doesn't implement its own close() method; instead it uses FileInputStream's close() method, which simply closes the input stream that is in the field variable FileInputStream.in, and the test passes in ByteArrayInputStream, which has a do-nothing close method. In general, this is a SOMETIMES_TRUE_SPEC, in the case that the input stream used internally by Base32InputStream has a do-something close() method.",
+        "findings" : "If we can get JavaMOP to know whether the close() method called on FileItemStream.in made any changes in state, then I think we can encode this in such a way that calling method-a after method-b is OK as long as the close() method called on FileItemStream.in does not make any differences. Alternatively, we can keep a list of \"do-nothing close classes\", where if FileItemStream.in was one of the classes that were in the list, we would permit calling method-a after method-b. This will require a bit more creativity to actually create a JavaMOP spec.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-11-20-47",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2022-01-11-23-49",
+        "project": "commons-codec",
+        "spec-id": "00105",
+        "method-a": "org.apache.commons.codec.binary.Base32OutputStream.write([B)V",
+        "method-b": "org.apache.commons.codec.binary.Base32OutputStream.close()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00105.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testCodec130",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32InputStreamTest.java:51",
+                        "method-b-site": "Base32InputStreamTest.java:52",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test fails because calling method-b before method-a prevented method-a from making the state changes that it would otherwise (writing)."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testCodec130",
+        "notes": "method-a either encodes or decodes a specified section of its byte[] argument, and then calls BaseNCodecOutputStream.flush(bool) in order to write the outcome to disk. method-b is a wrapper method around BaseNCodecOutputStream.flush(bool). So, this seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case. Note that method-a and method-b are both defined in BaseNCodecOutputStream, but this test associates the two methods with the Base32OutputStream class due to DYNAMIC_DISPATCH.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-23-59",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2022-01-12-00-00",
+        "project": "commons-codec",
+        "spec-id": "00106",
+        "method-a": "org.apache.commons.codec.binary.Base32OutputStream.write([B)V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodecOutputStream.eof()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00106.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testCodec130",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32InputStreamTest.java:51",
+                        "method-b-site": "BaseNCodecOutputStream.java:77",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test fails because calling method-b before method-a prevented method-a from making the state changes that it would otherwise by setting the end of file marker before content was written."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "postcondition",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testCodec130",
+        "notes": "Straightforward case showing that method-a **needs** to be called before method-b to be effective. However, method-a is defined in a third-party class that Base32OutputStream transitively extends, so I'm not sure to what extent this is a commons-codec-specific spec. method-b writes the encoding/decoding of the EOF character to the output stream, so further writes to the output stream will not be read.",
+        "findings": "Type-b: method-b is never followed by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-12-00-02",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-01-12-00-13",
+        "project": "commons-codec",
+        "spec-id": "00107",
+        "method-a": "org.apache.commons.codec.binary.Base32OutputStream.write([B)V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodecOutputStream.flush()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00107.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testCodec130",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32InputStreamTest.java:51",
+                        "method-b-site": "BaseNCodecOutputStream.java:78",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test fails because calling method-b before method-a prevented method-a from making the state changes that it would otherwise by setting the end of file marker before content was written."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "postcondition",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testCodec130",
+        "notes": "method-a is actually implemented in FilterOutputStream, a third party class; it writes to the subject output stream. method-b flushes the buffer and forces buffered output bytes to be written out to the stream. Straightforward case showing that method-a **needs** to be called before method-b to be effective. However, method-a is defined in a third-party class that Base32OutputStream transitively extends (DYNAMIC_DISPATCH), so I'm not sure to what extent this is a commons-codec-specific spec.",
+        "findings": "POTENTIAL_BIGGER_SPEC with 00108 and 00109. Not sure if we have spec relationships between the method-bs in these three specs, but one can certainly connect this method-a to the three method-bs to form a bigger spec. Type-a: method-a is always followed by method-b",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-12-00-16",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-01-12-00-16",
+        "project": "commons-codec",
+        "spec-id": "00108",
+        "method-a": "org.apache.commons.codec.binary.Base32OutputStream.write([BII)V",
+        "method-b": "org.apache.commons.codec.binary.Base32OutputStream.close()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00108.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testWriteToNullCoverage",
+                "stage": "stage-2-f1-postcond",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32OutputStreamTest.java:331",
+                        "method-b-site": "Base32OutputStreamTest.java:333",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN - method-a was supposed to call an exception, but didn't because it was delayed via DSI. method-b most likely happened before the fail() statement on Base32OutputStreamTest.java:332."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00108",
+        "notes": "method-a either encodes or decodes the data in the argument byte[] and writes it to the output stream BaseNCodecOutputStream.out, and method-b writes an encoded/decoded EOF character, flushes the output stream BaseNCodecOutputStream.out, writes out all of the buffered output bytes that were not yet written, and then calls close() on the field variable BaseNCodecOutputStream.out. It seems bizarre that one can call method-a after method-b like the validating-test-file does for two reasons: (1) the OutputStream object BaseNCodecOutputStream.out has a do-nothing close() method, and (2) since method-a throws a NullPointerException if its byte[] input is null before anything else, the delayed call to method-a will throw a NullPointerException no matter what the state of program is at that point. Overall, this is a SOMETIMES_TRUE_SPEC based on whether FilterOutputStream.out has a do-nothing close.",
+        "findings" : "If we can get JavaMOP to know whether the close() method called on FilterOutputStream.out made any changes in state, then I think we can encode this in such a way that calling method-a after method-b is OK as long as the close() method called on FilterOutputStream.out does not make any differences. Alternatively, we can keep a list of \"do-nothing close classes\", where if FilterOutputStream.out was one of the classes that were in the list, we would permit calling method-a after method-b. This will require a bit more creativity to actually create a JavaMOP spec. POTENTIAL_BIGGER_SPEC with 00107 and 00109. Not sure if we have spec relationships between the method-bs in these three specs, but one can certainly connect this method-a to the three method-bs to form a bigger spec.",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-12-00-37",
+        "inspection-time-in-minutes": 21
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2022-01-12-00-38",
+        "project": "commons-codec",
+        "spec-id": "00109",
+        "method-a": "org.apache.commons.codec.binary.Base32OutputStream.write([BII)V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodecOutputStream.eof()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00109.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testWriteToNullCoverage",
+                "stage": "stage-2-f1-postcond",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32OutputStreamTest.java:331",
+                        "method-b-site": "BaseNCodecOutputStream.java:77",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN - method-a was supposed to call an exception, but didn't because it was delayed via DSI. method-b most likely happened before the fail() statement on Base32OutputStreamTest.java:332."
+            }
+        ],
+        "verdict": "unknown",
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00108 transitively calls method-a after method-b.",
+        "notes": "method-a either encodes or decodes the data in the argument byte[] and writes it to the output stream, and method-b flushes the output stream BaseNCodecOutputStream.out, and writes out all of the buffered output bytes that were not yet written. It seems bizarre that one can call method-a after method-b like the validating-test-file does. However, the test may be passing simply because the test is expecting method-a to throw a NullPointerException, so we might want to look into this one again later: REVISIT. INSPECTION_TODO the validating-test-file does not mention method-b",
+        "findings": "POTENTIAL_BIGGER_SPEC with 00107 and 00108. Not sure if we have spec relationships between the method-bs in these three specs, but one can certainly connect this method-a to the three method-bs to form a bigger spec. ",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-12-00-41",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 16,
+        "inspection-start-time": "2022-01-12-00-41",
+        "project": "commons-codec",
+        "spec-id": "00110",
+        "method-a": "org.apache.commons.codec.binary.Base32OutputStream.write([BII)V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodecOutputStream.flush()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00110.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testWriteToNullCoverage",
+                "stage": "stage-2-f1-postcond",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32OutputStreamTest.java:331",
+                        "method-b-site": "BaseNCodecOutputStream.java:78",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN - method-a was supposed to call an exception, but didn't because it was delayed via DSI. method-b most likely happened before the fail() statement on Base32OutputStreamTest.java:332."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32OutputStreamTest#testWriteToNullCoverage",
+        "notes": "method-a either encodes or decodes a specified section of its byte[] argument, and then calls BaseNCodecOutputStream.flush(bool) in order to write the outcome to disk. method-b is a wrapper method around BaseNCodecOutputStream.flush(bool). So, this seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case. Note that method-a and method-b are both defined in BaseNCodecOutputStream, and method-a is labeled as a different class due to DYNAMIC_DISPATCH.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-00-44",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 17,
+        "inspection-start-time": "2022-01-12-00-44",
+        "project": "commons-codec",
+        "spec-id": "00111",
+        "method-a": "org.apache.commons.codec.binary.Base32OutputStream.write([BII)V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodecOutputStream.flush(Z)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00111.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testWriteToNullCoverage",
+                "stage": "stage-2-f1-postcond",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32OutputStreamTest.java:331",
+                        "method-b-site": "BaseNCodecOutputStream.java:106",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN - method-a was supposed to call an exception, but didn't because it was delayed via DSI. method-b most likely happened before the fail() statement on Base32OutputStreamTest.java:332."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32OutputStreamTest#testWriteToNullCoverage",
+        "notes": "This case is actually a NBP because method-a is only defined in BaseNCodecOutputStream (DYNAMIC_DISPATCH), and its definition contains a call to method-b. The reasons why DSI evaluation of this spec did not turn out to be stage-0-failure is that the execution of method-a in this test didn't reach the point where method-b would have been called. GOOD_EXAMPLE for why we'd want to have static pruning of NBP?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-00-46",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 18,
+        "inspection-start-time": "2022-01-12-11-57",
+        "project": "commons-codec",
+        "spec-id": "00118",
+        "method-a": "org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.decode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00118.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesStrict",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:593",
+                        "method-b-site": "BaseNCodec.java:434",
+                        "invocation-count": 5
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. method-a returns false during the normal test execution, and DSI replaced the return value of method-a with the default value false.",
+                "notes": "The DSI experiment resulted in stage-1-f2-precond because method-b throws the EXPECTED_EXCEPTION."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesStrict - the test passes.",
+        "notes": "method-a returns whether the input byte[] object contains any characters within the alphabet (using the field variable Base64.decodeTable) or equal to the field variable BaseNCodec.pad, and method-b performs a decoding on the provided data. method-b does not use/modify/affect the field variables used by method-a, so this seems like a case of UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-12-08",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 19,
+        "inspection-start-time": "2022-01-12-15-12",
+        "project": "commons-codec",
+        "spec-id": "00142",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.decode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-b": "org.apache.commons.codec.binary.Base16.decodeOctet(B)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00142.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testCodec68",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:434",
+                        "method-b-site": "Base16.java:190",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN. Expected RuntimeException that should be thrown by method-b."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "REVISIT: Not really sure what is happening here, considering that method-b does not get called from the test if method-a is not called (manually verified). However, from the definition of method-a, it seems pretty clear that method-b is called from method-a, so this spec is most likely a nbp. SPECIAL_NBP",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-15-37",
+        "inspection-time-in-minutes": 25
+    },
+    {
+        "iid": 20,
+        "inspection-start-time": "2022-01-12-18-06",
+        "project": "commons-codec",
+        "spec-id": "00143",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.decode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-b": "org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B",
+        "method-a-return-type": "void",
+        "method-b-return-type": "byte[]",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00143.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testCodec68",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:434",
+                        "method-b-site": "Base16.java:190",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN. Expected RuntimeException that should be thrown by method-a."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "REVISIT: Similar to 00142 - not really sure what is happening here, considering that method-b does not get called from the test if method-a is not called (manually verified). However, from the definition of method-a, it seems pretty clear that method-b is called from method-a, so this spec is most likely a nbp. SPECIAL_NBP",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-18-14",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 21,
+        "inspection-start-time": "2022-01-12-18-15",
+        "project": "commons-codec",
+        "spec-id": "00144",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.decode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-b": "org.apache.commons.codec.binary.Base64.isStrictDecoding()Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00144.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesStrict",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:434",
+                        "method-b-site": "Base64.java:827",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN. Expected that DecoderException should be thrown by method-a."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "REVISIT: Similar to 00142 - not really sure what is happening here, considering that method-b does not get called from the test if method-a is not called (manually verified). However, from the definition of method-a, it seems pretty clear that method-b is called from method-a, so this spec is most likely a nbp. SPECIAL_NBP",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-18-26",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 22,
+        "inspection-start-time": "2022-01-12-19-40",
+        "project": "commons-codec",
+        "spec-id": "00146",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.decode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00146.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testCodec68",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:434",
+                        "method-b-site": "BaseNCodec.java:572",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN. Expected that RuntimeException should be thrown by method-a."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "snippet",
+        "notes": "REVISIT: It's bizarre that the test was able to call method-b after method-a because manual analysis and the code snippet show that the used implementation of method-a **calls** method-b. SPECIAL_NBP",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-19-48",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 23,
+        "inspection-start-time": "2022-01-12-22-42",
+        "project": "commons-codec",
+        "spec-id": "00156",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-b": "org.apache.commons.codec.binary.Base16.decodeOctet(B)I",
+        "method-a-return-type": "int",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00156.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testCodec68",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "Base16.java:190",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with the default value 0 - the result of the test doesn't change even if the call to method-a was manually replaced with 0.",
+                "notes": "The test passed even though the DSI experiment resulted in a stage-1-f2-precond because method-b threw the EXPECTED_EXCEPTION."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16Test#testCodec68 - the expected exception is thrown where it is expected to be thrown (within the execution of method-b)",
+        "notes": "WEAK_ORACLE method-a is a 1-line naive getter to the field variable BaseNCodec.DEFAULT_BUFFER_SIZE (ONE_STATELESS_METHOD), and the value that method-a returns is not impacted by method-b. (method-b performs a decoding of the input byte)",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-22-58",
+        "inspection-time-in-minutes": 16
+    },
+    {
+        "iid": 24,
+        "inspection-start-time": "2022-01-14-01-15",
+        "project": "commons-codec",
+        "spec-id": "00226",
+        "method-a": "org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendPrimary(C)V",
+        "method-b": "org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.getPrimary()Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00226.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.DoubleMetaphoneTest#testNTilde",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DoubleMetaphone.java:949",
+                        "method-b-site": "DoubleMetaphone.java:188",
+                        "invocation-count": 4
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.language.DoubleMetaphoneTest#testNTilde",
+        "notes": "method-a modifies the field variable primary, and method-b retrieves it in a String form. (Note that method-a is not a pure setter, and method-b is not a stateless method as it creates a new String)",
+        "findings": "GOOD_EXAMPLE: interesting contrast from 00219 (the method-a from 00219 calls method-a from this spec, so by extension it is a true spec as well). 00219's method-a had two perturbations due to different calling contexts, but the call site of this spec's method-a was 00219's call site, so there was only one perturbation. Hence, the same test invalidated 00219 and validated this spec. REVISIT: maybe this is a spurious spec because method-b is a getter... or, it is a Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-14-01-27",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 25,
+        "inspection-start-time": "2022-01-15-00-14",
+        "project": "commons-codec",
+        "spec-id": "00262",
+        "method-a": "org.apache.commons.codec.language.Metaphone.isNextChar(Ljava/lang/StringBuilder;IC)Z",
+        "method-b": "org.apache.commons.codec.language.Metaphone.regionMatch(Ljava/lang/StringBuilder;ILjava/lang/String;)Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00262.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MetaphoneTest#testPHTOF",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Metaphone.java:271",
+                        "method-b-site": "Metaphone.java:282",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a was supposed to return true, but the DSI replacement value was false, causing a corruption of the state (causing a different control flow than what the test was expecting).",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00262",
+        "notes": "method-a returns whether a specific index of the StringBuilder argument equals the char argument. method-b returns whether a specific substring of the StringBuilder argument equals the String argument test. The DSI experiment resulted in true spec only because the DSI replacement value corrupted the state. If run with DSI, the validating-test-file would most likely show that the spec is spurious, because the method-a is only necessary to convert PH into F. The snippets also show that both method-a and method-b perform checks on the input String, but don't affect each other (UNRELATED_STATELESS_METHODS). Therefore, this spec is spurious. Note that this spec is the reversal of 00266 (below) - GOOD_EXAMPLE. DELAY_CAUSES_OUTPUT_CORRUPTION",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-00-28",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 26,
+        "inspection-start-time": "2022-01-15-00-40",
+        "project": "commons-codec",
+        "spec-id": "00266",
+        "method-a": "org.apache.commons.codec.language.Metaphone.regionMatch(Ljava/lang/StringBuilder;ILjava/lang/String;)Z",
+        "method-b": "org.apache.commons.codec.language.Metaphone.isNextChar(Ljava/lang/StringBuilder;IC)Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00266.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MetaphoneTest#testWordsWithCIA",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Metaphone.java:177",
+                        "method-b-site": "Metaphone.java:271",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a was supposed to return true, but the DSI replacement value was false, causing a corruption of the state (causing a different control flow than what the test was expecting). This caused the test to fail.",
+                "notes": "."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "snippet?",
+        "notes": "method-a returns whether a specific substring of the StringBuilder argument equals the String argument test. method-b returns whether a specific index of the StringBuilder argument equals the char argument. This could be either a UNRELATED_STATEFUL_METHODS or a CONNECTION_DOES_NOT_NECESSITATE_ORDERING? method-a and method-b accomplish very similar things on different types of input. DELAY_CAUSES_OUTPUT_CORRUPTION",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-00-51",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 27,
+        "inspection-start-time": "2022-01-15-00-51",
+        "project": "commons-codec",
+        "spec-id": "00267",
+        "method-a": "org.apache.commons.codec.language.Metaphone.setMaxCodeLen(I)V",
+        "method-b": "org.apache.commons.codec.language.Metaphone.metaphone(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00267.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MetaphoneTest#testSetMaxLengthWithTruncation",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MetaphoneTest.java:467",
+                        "method-b-site": "MetaphoneTest.java:468",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "",
+        "notes": "ONE_PURE_SETTER: method-a is a pure setter to the field variable Metaphone.maxCodeLen, and method-b produces a metaphone value of the argument String. SOMETIMES_TRUE_SPEC based on whether you want to set a limit via method-a? The test fails in the DSI experiment because the maxCodeLen was not set to 6, making the result string from method-b shorter than was required via a call to method-a. (the default value is 4) DELAY_CAUSES_OUTPUT_CORRUPTION",
+        "findings": "I think this is next to impossible to deduce the programmer intent for calling method-a before method-b. So, in order to reduce the amount of JavaMOP false alarms we could potentially write the spec as (ab|b) or (a*b), but I don't know if this spec will be useful (potential UNINTERESTING_SPEC).",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-15-00-59",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 28,
+        "inspection-start-time": "2022-01-15-01-19",
+        "project": "commons-codec",
+        "spec-id": "00272",
+        "method-a": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.setConcat(Z)V",
+        "method-b": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.isConcat()Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00272.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetConcat",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoderTest.java:159",
+                        "method-b-site": "BeiderMorseEncoderTest.java:160",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetConcat shows connection between method-a and method-b.",
+        "notes": "method-a sets the field variable BeiderMorseEncoder.engine to a new PhoneticEngine object where BeiderMorseEncoder.engine.concat is set to the argument concat (all other fields carry over from the existing BeiderMorseEncoder.engine). ONE_STATELESS_METHOD: method-b retrieves the value BeiderMorseEncoder.engine.concat, so this seems like a classic setter-getter relationship. The test failed because it expected that this.engine.concat would be false (via the call to method-a), but since method-a was not called before method-b, which retrieves the value of this.engine.concat, the test failed. (Manually checked that method-a is the only place in the code where this.engine.concat is set to false) DECISION: The declaration of BeiderMorseEncoder.engine sets BeiderMorseEncoder.engine.concat to true, so one can call method-b at any time (plus, both methods are public). So, this seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-01-24",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 29,
+        "inspection-start-time": "2022-01-15-11-30",
+        "project": "commons-codec",
+        "spec-id": "00273",
+        "method-a": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.setMaxPhonemes(I)V",
+        "method-b": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.encode(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00273.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testOOM",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoderTest.java:147",
+                        "method-b-site": "BeiderMorseEncoderTest.java:149",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test fails because the state that was supposed to be set via calling method-a (setting maxPhonemes to 10) was not set before method-b, causing method-b to output a different value than what was expected."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testOOM shows connection between method-a and method-b",
+        "notes": "method-a sets the field variable BeiderMorseEncoder.engine to a new PhoneticEngine object where BeiderMorseEncoder.engine.ruleType is set to the argument RuleType (all other fields carry over from the existing BeiderMorseEncoder.engine). method-b calls BeiderMorseEncoder.engine.encode in order to encode the input String object. DECISION: This is a spurious spec because the constructor being invoked when BeiderMorseEncoder.engine is initialized sets BeiderMorseEncoder.engine.encode to the default value 20. So, both method-a and method-b can be called at any point (they are also both public). However, one ought to call method-a before method-b if one wants to set maxPhonemes different from the default value of 20 before retrieving the value.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-15-11-41",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 30,
+        "inspection-start-time": "2022-01-15-11-59",
+        "project": "commons-codec",
+        "spec-id": "00275",
+        "method-a": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.setNameType(Lorg/apache/commons/codec/language/bm/NameType;)V",
+        "method-b": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.getNameType()Lorg/apache/commons/codec/language/bm/NameType;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.codec.language.bm.NameType",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00275.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetNameTypeAsh",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoderTest.java:166",
+                        "method-b-site": "BeiderMorseEncoderTest.java:167",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetNameTypeAsh",
+        "notes": "method-a sets the field variable BeiderMorseEncoder.engine to a new PhoneticEngine object where PhoneticEngine.engine.nameType is set to the argument NameType (all other fields carry over from the existing BeiderMorseEncoder.engine). ONE_STATELESS_METHOD: method-b retrieves the value BeiderMorseEncoder.engine.nameType, so this seems like a classic setter-getter relationship. The test failed because method-a should have set the nameType field to NameType.ASHKENAZI, and method-b would have retrieved that nameType field. However, since method-a wasn't called before method-b, method-b returned the default (NameType.GENERIC), and hence the test failed. In general, I think this is a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case because technically method-a and method-b can be called in any order, especially because the declaration of BeiderMorseEncoder.engine calls the PhoneticEngine constructor, which sets BeiderMorseEncoder.engine.nameType.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-15-12-08",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 31,
+        "inspection-start-time": "2022-01-15-18-58",
+        "project": "commons-codec",
+        "spec-id": "00279",
+        "method-a": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.setRuleType(Lorg/apache/commons/codec/language/bm/RuleType;)V",
+        "method-b": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.getRuleType()Lorg/apache/commons/codec/language/bm/RuleType;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.codec.language.bm.RuleType",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00279.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetRuleTypeExact",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoderTest.java:173",
+                        "method-b-site": "BeiderMorseEncoderTest.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetRuleTypeExact",
+        "notes": "method-a sets the field variable BeiderMorseEncoder.engine to a new PhoneticEngine object where PhoneticEngine.engine.ruleType is set to the argument RuleType (all other fields carry over from the existing BeiderMorseEncoder.engine). ONE_STATELESS_METHOD: method-b retrieves the value BeiderMorseEncoder.engine.ruleType, so this seems like a classic setter-getter relationship. The test failed because method-a was supposed to be called to set the field variable this.engine.ruleType to EXACT, but since method-a was not called, the default value (APPROX) was set. DECISION: This seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, since the two methods are public and can be called in any order, especially given that the declaration of BeiderMorseEncoder.engine calls the PhoneticEngine constructor, which sets BeiderMorseEncoder.engine.ruleType to a non-null value.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-15-19-02",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 32,
+        "inspection-start-time": "2022-01-15-19-03",
+        "project": "commons-codec",
+        "spec-id": "00318",
+        "method-a": "org.apache.commons.codec.net.BCodec.getCharset()Ljava/nio/charset/Charset;",
+        "method-b": "org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;",
+        "method-a-return-type": "java.nio.charset.Charset",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00318.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testEncodeObjects",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BCodec.java:206",
+                        "method-b-site": "BCodec.java:206",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at RFC1522Codec.java:79",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testEncodeObjects",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line getter that doesn't change state, which fetches a Charset value. method-b returns an encoded version of the input String variable strSource, using the Charset argument to interpret strSource. While there exists the precondition relationship between this method-a and this method-b in which the return value of method-a is an argument to method-b, I think there would be other ways to supply the input value. However, method-a returns the charset that is used by the class, so it seems to be more correct to use the return value of method-a. DECISION: either method can be called independently and in any order",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-19-11",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 33,
+        "inspection-start-time": "2022-01-15-19-12",
+        "project": "commons-codec",
+        "spec-id": "00319",
+        "method-a": "org.apache.commons.codec.net.BCodec.getCharset()Ljava/nio/charset/Charset;",
+        "method-b": "org.apache.commons.codec.net.BCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;",
+        "method-a-return-type": "java.nio.charset.Charset",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00319.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testEncodeObjects",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BCodec.java:206",
+                        "method-b-site": "BCodec.java:167",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at RFC1522Codec.java:79",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testEncodeObjects",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line getter that doesn't change state, which fetches a Charset value. method-b returns an encoded version of the argument String, while using the argument Charset to interpret the original string. While the use case in this test is one where the return value of method-a is an argument to method-b, I think there would be other ways to supply the input value. However, method-a returns the charset that is used by the class, so it seems to be more correct to use the return value of method-a. DECISION: either method can be called independently and in any order",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-19-16",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 34,
+        "inspection-start-time": "2022-01-15-21-18",
+        "project": "commons-codec",
+        "spec-id": "00322",
+        "method-a": "org.apache.commons.codec.net.BCodec.getCharset()Ljava/nio/charset/Charset;",
+        "method-b": "org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;",
+        "method-a-return-type": "java.nio.charset.Charset",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00322.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testEncodeObjects",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BCodec.java:206",
+                        "method-b-site": "RFC1522Codec.java:77",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at RFC1522Codec.java:79",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "snippet",
+        "notes": "UNRELATED_STATELESS_METHODS - method-a is a 1-line getter to the field variable BCodec.charset, and method-b returns the String literal \"B\" (for BCodec).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-21-25",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 35,
+        "inspection-start-time": "2022-01-17-12-42",
+        "project": "commons-codec",
+        "spec-id": "00347",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.doEncode([BIZ)[B",
+        "method-a-return-type": "int",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00347.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:125",
+                        "method-b-site": "PercentCodec.java:128",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with the DSI default value 0, which caused an allocation of 0 bytes, which caused a BufferOverflowException when the execution tried to write contents to the buffer.",
+                "notes": ""
+            }
+        ],
+        "verdict": "unknown",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+        "notes": "This is only a spec when the return value of method-a is passed into method-b. method-b will allocate as many bytes as the return value of method-a dictates, so not calling method-a would lead to an inconsistent amount of bytes allocated (and cause a BufferOverflowException if the bytes allocated are not enough for the encoding to be written to). One can potentially argue that instead of calling method-a, one can simply pass an arbitrarily large integer to method-b so that this BufferOverflowException does not happen, but replacing method-a with a large number (ex. 10000) causes the test to fail because the buffer is much larger than what the test expects. DECISION we'd need to see evidence that not causing these methods in this order is always a problem",
+        "findings": "I think this is either an UNINTERESTING_SPEC or simply a spurious spec. Both methods are private and are only used as helper methods for PercentCodec.encode(). So no user of commons-codec can manage to break the spec... It could be a spurious spec because one can interpret this use case as indicating CONNECTION_DOES_NOT_NECESSITATE_ORDERING, and one can technically replace the replacement value of method-a with some large enough value instead.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-17-13-01",
+        "inspection-time-in-minutes": 19
+    },
+    {
+        "iid": 36,
+        "inspection-start-time": "2022-01-18-00-20",
+        "project": "commons-codec",
+        "spec-id": "00393",
+        "method-a": "org.apache.commons.codec.net.QCodec.getCharset()Ljava/nio/charset/Charset;",
+        "method-b": "org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;",
+        "method-a-return-type": "java.nio.charset.Charset",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00393.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QCodecTest#testBasicEncodeDecode",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QCodec.java:250",
+                        "method-b-site": "QCodec.java:250",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at RFC1522Codec.java:79. (The return value of method-a was passed into RFC1522Codec.encodeText(), in which a call to String.getBytes() was called with the return value of method-a as an argument. However, this caused a NullPointerException)",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.net.QCodecTest#testBasicEncodeDecode",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line getter to the field variable QCodec.charset. method-b returns an encoding of the String argument sourceStr, using the Charset argument sourceCharset to accurately interpret the sourceStr. This is tricky... It seems that method-a supplies an argument to method-b, and replacing method-a with null would cause an error down the line when encoding. One *could* potentially replace a call to method-a with a CharSet object; however, calling method-a ensures that the encoding would be done with the correct CharSet (maybe CONNECTION_DOES_NOT_NECESSITATE_ORDERING). That being said, there is nothing wrong with calling method-a after method-b because method-a is a 1-line stateless getter. DECISION see last sentence",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-18-00-35",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 37,
+        "inspection-start-time": "2022-01-18-00-36",
+        "project": "commons-codec",
+        "spec-id": "00394",
+        "method-a": "org.apache.commons.codec.net.QCodec.getCharset()Ljava/nio/charset/Charset;",
+        "method-b": "org.apache.commons.codec.net.QCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;",
+        "method-a-return-type": "java.nio.charset.Charset",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00394.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QCodecTest#testBasicEncodeDecode",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QCodec.java:250",
+                        "method-b-site": "QCodec.java:211",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at RFC1522Codec.java:79. (The return value of method-a was passed into RFC1522Codec.encodeText(), in which a call to String.getBytes() was called with the return value of method-a as an argument. However, this caused a NullPointerException)",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.net.QCodecTest#testBasicEncodeDecode",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line naive getter to the field variable QCodec.charset. method-b takes in a String argument to be encoded, and returns the encoded string accordingly. This is tricky... It seems that method-a supplies an argument to the caller of method-b (and subsequently method-b), and replacing method-a with null caused a NullPointerException to be thrown during method-b's execution. One *could* potentially replce a call to method-a with a CharSet object; however, calling method-a ensures that the encoding would be done with the correct CharSet (maybe CONNECTION_DOES_NOT_NECESSITATE_ORDERING). That being said, there is nothing wrong with calling method-a after method-b because method-a is a 1-line stateless getter. DECISION see last sentence",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-00-39",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 38,
+        "inspection-start-time": "2022-01-18-00-39",
+        "project": "commons-codec",
+        "spec-id": "00397",
+        "method-a": "org.apache.commons.codec.net.QCodec.getCharset()Ljava/nio/charset/Charset;",
+        "method-b": "org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;",
+        "method-a-return-type": "java.nio.charset.Charset",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00397.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QCodecTest#testEncodeObjects",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QCodec.java:250",
+                        "method-b-site": "RFC1522Codec.java:77",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at RFC1522Codec.java:79. (The return value of method-a was passed into RFC1522Codec.encodeText(), in which a call to String.getBytes() was called with the return value of method-a as an argument. However, this caused a NullPointerException)",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "snippet",
+        "notes": "UNRELATED_STATELESS_METHODS - method-a is a 1-line naive getter to the field variable QCodec.charset, and method-b simply returns the String value \"Q\".",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-00-47",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 39,
+        "inspection-start-time": "2022-01-18-14-07",
+        "project": "commons-codec",
+        "spec-id": "00415",
+        "method-a": "org.apache.commons.codec.net.QuotedPrintableCodec.getCharset()Ljava/nio/charset/Charset;",
+        "method-b": "org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;",
+        "method-a-return-type": "java.nio.charset.Charset",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00415.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testDecodeObjects",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodec.java:493",
+                        "method-b-site": "QuotedPrintableCodec.java:493",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at QuotedPrintableCodec.java:455.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testDecodeObjects",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line getter to the field variable QuotedPrintableCodecTest.charset. In the use case defined by the test, the return value of method-a is passed in as an argument to method-b, and method-b tries to form a string using the CharSet specificied by the return value of method-a. While one might think that one can replace the call to method-a by a hardcoding of a CharSet value, in some cases this can be extemely detrimental, causing the test to fail (ex. by replacing the return value of method-a with StandardCharsets.UTF_16LE). The reason why method-a is necessary is because method-a will always return the CharSet specified by the constructor of QuotedPrintableCodec. DECISION there seems to be enough signal for us to want to monitor this one",
+        "findings": "POTENTIAL_BIGGER_SPEC with 00417 of the form: \"method-a (00415-method-b | 00417-method-b)\". Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-18-14-20",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 40,
+        "inspection-start-time": "2022-01-18-14-20",
+        "project": "commons-codec",
+        "spec-id": "00416",
+        "method-a": "org.apache.commons.codec.net.QuotedPrintableCodec.getCharset()Ljava/nio/charset/Charset;",
+        "method-b": "org.apache.commons.codec.net.QuotedPrintableCodec.decode([B)[B",
+        "method-a-return-type": "java.nio.charset.Charset",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00416.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testEncodeUrlWithNullBitSet",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodec.java:493",
+                        "method-b-site": "QuotedPrintableCodec.java:455",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at QuotedPrintableCodec.java:455",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00416",
+        "notes": "Inspection showed that the return value of method-a is not used in method-b (not passed as an argument, and method-a isn't called in method-b), and that method-a itself is a stateless 1-line getter (ONE_STATELESS_METHOD). The validating-test-file shows that method-a can be called after method-b as well.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-14-32",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 41,
+        "inspection-start-time": "2022-01-18-14-32",
+        "project": "commons-codec",
+        "spec-id": "00417",
+        "method-a": "org.apache.commons.codec.net.QuotedPrintableCodec.getCharset()Ljava/nio/charset/Charset;",
+        "method-b": "org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;",
+        "method-a-return-type": "java.nio.charset.Charset",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00417.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testEncodeObjects",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodec.java:435",
+                        "method-b-site": "QuotedPrintableCodec.java:435",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at QuotedPrintableCodec.java:586.",
+                "notes": "Technically EXPECTED_EXCEPTION, but not related to DSI experiment."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testEncodeObjects",
+        "notes": "The return value of method-a is passed in as an argument to method-b, and method-b tries to form a string using the CharSet specificied by the return value of method-a. While one might think that one can replace the call to method-a by a hardcoding of a CharSet value, in some cases this can be extemely detrimental, causing the test to fail (ex. by replacing the return value of method-a with StandardCharsets.UTF_16LE). The reason why method-a is necessary is because method-a will always return the CharSet specified by the constructor of QuotedPrintableCodec. DECISION there seems to be enough signal for us to want to monitor this one",
+        "findings": "POTENTIAL_BIGGER_SPEC with 00415 of the form: \"method-a (00415-method-b | 00417-method-b)\". Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-18-14-41",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 42,
+        "inspection-start-time": "2022-01-18-18-25",
+        "project": "commons-codec",
+        "spec-id": "00425",
+        "method-a": "org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00425.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QCodecTest#testEncodeObjects",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "RFC1522Codec.java:77",
+                        "method-b-site": "RFC1522Codec.java:79",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI most likely replaced the return value of method-a with String value plain from the test, which propagated to QCodec.encode()'s output, causing the assertion to fail.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "snippet and notes below",
+        "notes": "Upon inspection of the snippet, it is evident that method-a is a stateless 1-line method that returns a hardcoded value (\"Q\" - ONE_STATELESS_METHOD). method-b returns an Object which is the encoded version of the Object argument. Given that method-b does not take in, use, or change that value, this should be a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-18-35",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 43,
+        "inspection-start-time": "2022-01-18-20-06",
+        "project": "commons-codec",
+        "spec-id": "00443",
+        "method-a": "org.apache.commons.codec.net.URLCodec.getDefaultCharset()Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00443.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testDecodeObjects",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodec.java:299",
+                        "method-b-site": "URLCodec.java:299",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DSI replaced the return value of method-a with the String value plain (from the test), which is not a string value specifying a CharSet value. Hence, the exception was thrown when method-b was called.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.net.URLCodecTest#testDecodeObjects, also refer to TODO in snippet to see another way one can test that method-a ought to be called before method-b.",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line getter to the field variable URLCodec.charset, a string specifying a CharSet value necessary to convert a byte[] pbject to a String. The DSI replacement value replaced this string with a bogus string (at least, for CharSet purposes). While one *could* potentially replace the return value of method-a with a hardcoded string, it would be best practice not to do so, given that method-a will retrieve that charset value in accordance to the URLCodec class (the only place where URLCodec.charset is modified is the constructor of URLCodec). An example of a failing test that replaces method-a with a different value is specified in the snippet.",
+        "findings": "POTENTIAL_BIGGER_SPEC with 00445 of the form: \"method-a (00443-method-b | 00445-method-b)\". Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-18-20-18",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 44,
+        "inspection-start-time": "2022-01-18-20-18",
+        "project": "commons-codec",
+        "spec-id": "00444",
+        "method-a": "org.apache.commons.codec.net.URLCodec.getDefaultCharset()Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.URLCodec.decode([B)[B",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00444.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testEncodeUrlWithNullBitSet",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodec.java:299",
+                        "method-b-site": "URLCodec.java:279",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DSI replaced the return value of method-a with the String value encoded (from the test), which is not a string value specifying a CharSet value. Hence, the exception was thrown when method-b was called.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00444",
+        "notes": "Inspection showed that the return value of method-a is not used in method-b (the return value of method-a is not passed as an argument to method-b, and method-a isn't called in method-b), and that method-a itself is a 1-line getter (ONE_STATELESS_METHOD). The validating-test-file shows that method-a can be called after method-b as well.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-20-26",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 45,
+        "inspection-start-time": "2022-01-18-20-26",
+        "project": "commons-codec",
+        "spec-id": "00445",
+        "method-a": "org.apache.commons.codec.net.URLCodec.getDefaultCharset()Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00445.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testEncodeObjects",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodec.java:253",
+                        "method-b-site": "URLCodec.java:253",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DSI replaced the return value of method-a with the String value encoded (from the test), which is not a string value specifying a CharSet value. Hence, the exception was thrown when method-b was called.",
+                "notes": "Technically EXPECTED_EXCEPTION, but not related to DSI experiment."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.net.URLCodecTest#testEncodeObjects",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line getter to the field variable URLCodec.charset, a string specifying a CharSet value necessary to convert a byte[] pbject to a String. The DSI replacement value replaced this string with a bogus string (at least, for CharSet purposes). While one *could* potentially replace the return value of method-a with a hardcoded string, it would be best practice not to do so, given that method-a will retrieve that charset value in accordance to the URLCodec class (the only place where URLCodec.charset is modified is the constructor of URLCodec). An example of a failing test that replaces method-a with a different value is specified in the snippet.",
+        "findings": "Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-18-20-32",
+        "inspection-time-in-minutes": 6
+    }
+
+]

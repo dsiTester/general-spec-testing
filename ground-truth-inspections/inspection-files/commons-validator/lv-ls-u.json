@@ -1,0 +1,467 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-26-17-00",
+        "project": "commons-validator",
+        "spec-id": "00204",
+        "method-a": "org.apache.commons.validator.Validator.getClassLoader()Ljava/lang/ClassLoader;",
+        "method-b": "org.apache.commons.validator.Validator.getOnlyReturnErrors()Z",
+        "method-a-return-type": "java.lang.ClassLoader",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 36,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 4,
+        "U-verdict-count": 30,
+        "code-snippets-file": "snippets/lv-ls-u/00204.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExtensionTest#testRequiredFirstName",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:758",
+                        "method-b-site": "ValidatorAction.java:767",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "SWALLOWED_EXCEPTION + NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at ValidatorAction.java:626, but got swallowed by the catch block in ValidatorAction.executeValidationMethod().",
+                "notes": "I'm not sure how the call to method-b happened in the DSI experiment - commenting out method-a lead to two NullPointerExceptions, and method-b wasn't called at all in the test in that case?"
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExtensionTest#testRequiredLastName",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:758",
+                        "method-b-site": "ValidatorAction.java:767",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "SWALLOWED_EXCEPTION + NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at ValidatorAction.java:626, but got swallowed by the catch block in ValidatorAction.executeValidationMethod().",
+                "notes": "I'm not sure how the call to method-b happened in the DSI experiment - commenting out method-a lead to two NullPointerExceptions, and method-b wasn't called at all in the test in that case?"
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.DateTest#testValidDate",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:758",
+                        "method-b-site": "ValidatorAction.java:767",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at ValidatorAction.java:626, but got swallowed by the catch block in ValidatorAction.executeValidationMethod().",
+                "notes": "Here, the DSI experiment result is stage-0-failure because method-b is never called (presumably because replacing method-a caused a NullPointerException)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ExtensionTest#testRequiredLastName",
+        "notes": "There's no real relationship between method-a and method-b, as method-b is a naive getter for the field variable Validator.onlyReturnErrors (ONE_STATELESS_METHOD), and method-a does not access or modify that field variable... However, what baffles me the different stages at which the three experiments resulted in (hence the verdict is unknown). Attempted to manually reproduce the DSI run, but was unsuccessful as I couldn't get method-b to get called. Note that the NullPointerException that was thrown because of DSI's replacement of method-a with null was swallowed via a catch block. Inspection timed out after an hour... REVISIT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-26-18-04",
+        "inspection-time-in-minutes": 64
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-27-21-36",
+        "project": "commons-validator",
+        "spec-id": "00247",
+        "method-a": "org.apache.commons.validator.ValidatorAction.getClassLoader(Ljava/util/Map;)Ljava/lang/ClassLoader;",
+        "method-b": "org.apache.commons.validator.ValidatorAction.loadParameterClasses(Ljava/lang/ClassLoader;)V",
+        "method-a-return-type": "java.lang.ClassLoader",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 19,
+        "test-methods-mine-count": 100,
+        "LV-verdict-count": 16,
+        "LS-verdict-count": 31,
+        "U-verdict-count": 73,
+        "code-snippets-file": "snippets/lv-ls-u/00247.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExtensionTest#testRequiredFirstName",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:534",
+                        "method-b-site": "ValidatorAction.java:536",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Technically NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at ValidatorAction.java:626, but the exception got swallowed by the catch block on ValidatorAction.java:579.",
+                "notes": "The assertion failed because the ValidatorResult object was never populated because validation didn't happen (due to the NullPointerException). In this test, ValidatorAction.executeValidationMethod() (the caller of method-a and method-b) is called twice because there are two validations that need to be done (specified via the xml file). Follow the explanation in invalidated-inspected-cases[notes] to see how method-b was called and method-a was delayed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyReturnErrors",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:534",
+                        "method-b-site": "ValidatorAction.java:536",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Technically NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at ValidatorAction.java:626, but the exception got swallowed by the catch block on ValidatorAction.java:579, so the test still passed. SWALLOWED_EXCEPTION",
+                "notes": "The reason why this is stage-3-complete instead of stage-0-failure is because there are two calls to Validator.validate() on the same object, which means that ValidatorAction.executeValidationMethod() (the caller of method-a and method-b) gets called twice with the same object. On the first call to executeValidationMethod(), method-a gets delayed and a NullPointerException is thrown and got swallowed, which means that method-b was not called. On the second call to executeValidationMethod(), since the NullPointerException caused the field variable ValidatorAction.validationMethod to not get set, the block from ValidatorAction.java:535-538 gets executed. (Note that in the non-DSI-experiment execution, this block will not be executed a second time). Hence, method-b was called, and the delayed call to method-a happened, leading to a stage-3-complete. What is interesting here is that method-a was actually called before method-b in the second call to executeValidationMethod() (otherwise there would be a second swallowed NullPointerException). So weirdly enough, in our DSI experiment scenario, we would end up with a specialized trace that looks like \"aba\"."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:534",
+                        "method-b-site": "ValidatorAction.java:536",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Technically NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at ValidatorAction.java:626, but the exception got swallowed by the catch block on ValidatorAction.java:579, so the test still passed. SWALLOWED_EXCEPTION",
+                "notes": "Since executeValidationMethod() was only called once in the test, the DSI experiment resulted in stage-0-failure."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.validator.ExtensionTest#testRequiredFirstName",
+        "notes": "This is a true spec because method-b takes as argument the return value of method-a, and will most likely throw an exception on an invalid ClassLoader argument. Overall I think this is a super interesting case, and note that the initial delay of method-a resulted in a very interesting trace (\"aba\") - GOOD_EXAMPLE. Flagging this as a weak oracle situation because the invalidated and unknown cases passed, even though some validation that needed to be done was missing due to the initial delay of method-a.",
+        "findings": "Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-27-22-29",
+        "inspection-time-in-minutes": 53
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-27-22-49",
+        "project": "commons-validator",
+        "spec-id": "00249",
+        "method-a": "org.apache.commons.validator.ValidatorAction.getClassLoader(Ljava/util/Map;)Ljava/lang/ClassLoader;",
+        "method-b": "org.apache.commons.validator.ValidatorAction.loadValidationMethod()V",
+        "method-a-return-type": "java.lang.ClassLoader",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 19,
+        "test-methods-mine-count": 100,
+        "LV-verdict-count": 16,
+        "LS-verdict-count": 31,
+        "U-verdict-count": 73,
+        "code-snippets-file": "snippets/lv-ls-u/00249.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExtensionTest#testRequiredFirstName",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:534",
+                        "method-b-site": "ValidatorAction.java:537",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Technically NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at ValidatorAction.java:626, but the exception got swallowed by the catch block on ValidatorAction.java:579. SWALLOWED_EXCEPTION",
+                "notes": "The assertion failed because the ValidatorResult object was never populated because validation didn't happen (due to the NullPointerException). In this test, ValidatorAction.executeValidationMethod() (the caller of method-a and method-b) is called twice because there are two validations that need to be done (specified via the xml file). Follow the explanation in invalidated-inspected-cases[notes] to see how method-b was called and method-a was delayed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyReturnErrors",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:534",
+                        "method-b-site": "ValidatorAction.java:537",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Technically NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at ValidatorAction.java:626, but the exception got swallowed by the catch block on ValidatorAction.java:579, so the test still passed. SWALLOWED_EXCEPTION",
+                "notes": "The reason why this is stage-3-complete instead of stage-0-failure is because there are two calls to Validator.validate() on the same object, which means that ValidatorAction.executeValidationMethod() (the caller of method-a and method-b) gets called twice with the same object. On the first call to executeValidationMethod(), method-a gets delayed and a NullPointerException is thrown and got swallowed, which means that method-b was not called. On the second call to executeValidationMethod(), since the NullPointerException caused the field variable ValidatorAction.validationMethod to not get set, the block from ValidatorAction.java:535-538 gets executed. (Note that in the non-DSI-experiment execution, this block will not be executed a second time). Hence, method-b was called, and the delayed call to method-a happened, leading to a stage-3-complete. What is interesting here is that method-a was actually called before method-b in the second call to executeValidationMethod() (otherwise there would be a second swallowed NullPointerException). So weirdly enough, in our DSI experiment scenario, we would end up with a specialized trace that looks like \"aba\"."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:534",
+                        "method-b-site": "ValidatorAction.java:537",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Technically NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at ValidatorAction.java:626, but the exception got swallowed by the catch block on ValidatorAction.java:579, so the test still passed. SWALLOWED_EXCEPTION",
+                "notes": "Since executeValidationMethod() was only called once in the test, the DSI experiment resulted in stage-0-failure."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.validator.ExtensionTest#testRequiredFirstName",
+        "notes": "This is a true spec because method-b takes as argument the return value of method-a, and will most likely throw an exception on an invalid ClassLoader argument. Also, this method-b is dependent on 00248's method-b (because of the accessing of ValidatorAction.validationClass, which is set up in 00248's method-b), which is dependent on method-a. Refer to invalidated-inspected-cases[notes] on explanation about how method-b was even called in this execution after the swallowed NullPointerException caused via DSI's replacement of method-a. Overall I think this is a super interesting case, and note that the initial delay of method-a resulted in a very interesting trace (\"aba\"). Flagging this as a weak oracle situation because the invalidated and unknown cases passed, even though some validation that needed to be done was missing due to the initial delay of method-a.",
+        "findings": "Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-27-22-59",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-27-22-59",
+        "project": "commons-validator",
+        "spec-id": "00250",
+        "method-a": "org.apache.commons.validator.ValidatorAction.getClassLoader(Ljava/util/Map;)Ljava/lang/ClassLoader;",
+        "method-b": "org.apache.commons.validator.ValidatorAction.onlyReturnErrors(Ljava/util/Map;)Z",
+        "method-a-return-type": "java.lang.ClassLoader",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 41,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 6,
+        "U-verdict-count": 34,
+        "code-snippets-file": "snippets/lv-ls-u/00250.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExtensionTest#testRequiredFirstName",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:534",
+                        "method-b-site": "ValidatorAction.java:568",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Technically NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at ValidatorAction.java:626, but the exception got swallowed by the catch block on ValidatorAction.java:579. SWALLOWED_EXCEPTION",
+                "notes": "The assertion failed because the ValidatorResult object was never populated because validation didn't happen (due to the NullPointerException). In this test, ValidatorAction.executeValidationMethod() (the caller of method-a and method-b) is called twice because there are two validations that need to be done (specified via the xml file). Follow the explanation in invalidated-inspected-cases[notes] to see how method-b was called and method-a was delayed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyReturnErrors",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:534",
+                        "method-b-site": "ValidatorAction.java:537",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Technically NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at ValidatorAction.java:626, but the exception got swallowed by the catch block on ValidatorAction.java:579, so the test still passed. SWALLOWED_EXCEPTION",
+                "notes": "The reason why this is stage-3-complete instead of stage-0-failure is because there are two calls to Validator.validate() on the same object, which means that ValidatorAction.executeValidationMethod() (the caller of method-a and method-b) gets called twice with the same object. On the first call to executeValidationMethod(), method-a gets delayed and a NullPointerException is thrown and got swallowed, which means that method-b was not called. On the second call to executeValidationMethod(), since the NullPointerException caused the field variable ValidatorAction.validationMethod to not get set, the block from ValidatorAction.java:535-538 gets executed. (Note that in the non-DSI-experiment execution, this block will not be executed a second time). Hence, method-b was called, and the delayed call to method-a happened, leading to a stage-3-complete. What is interesting here is that method-a was actually called before method-b in the second call to executeValidationMethod() (otherwise there would be a second swallowed NullPointerException). So weirdly enough, in our DSI experiment scenario, we would end up with a specialized trace that looks like \"aba\"."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:534",
+                        "method-b-site": "ValidatorAction.java:568",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Technically NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at ValidatorAction.java:626, but the exception got swallowed by the catch block on ValidatorAction.java:579, so the test still passed. SWALLOWED_EXCEPTION",
+                "notes": "Since executeValidationMethod() was only called once in the test, the DSI experiment resulted in stage-0-failure."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ExtensionTest#testRequiredFirstName with modifications proposed in snippet; would call method-b before method-a.",
+        "notes": "This is likely a spurious spec because one can call method-b before method-a as the modifications proposed, and the return value of method-a does not impact method-b. Also, this method-b is dependent on 00248's method-b (because of the accessing of ValidatorAction.validationClass, which is set up in 00248's method-b), which is dependent on method-a. Overall I think this is a super interesting case, and note that the initial delay of method-a resulted in a very interesting trace (\"aba\") - GOOD_EXAMPLE. Flagging this as a weak oracle situation because the invalidated and unknown cases passed, even though some validation that needed to be done was missing due to the initial delay of method-a. CONNECTION_DOES_NOT_NECESSITATE_ORDERING",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-27-23-20",
+        "inspection-time-in-minutes": 21
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-01-29-02-31",
+        "project": "commons-validator",
+        "spec-id": "00331",
+        "method-a": "org.apache.commons.validator.ValidatorAction.loadValidationClass(Ljava/lang/ClassLoader;)V",
+        "method-b": "org.apache.commons.validator.ValidatorAction.onlyReturnErrors(Ljava/util/Map;)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 41,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 6,
+        "U-verdict-count": 34,
+        "code-snippets-file": "snippets/lv-ls-u/00331.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExtensionTest#testRequiredFirstName",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:535",
+                        "method-b-site": "ValidatorAction.java:568",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Not calling method-a means that the call to ValidatorAction.loadValidatonMethod() resulted in a NullPointerException, because the field variable ValidatorAction.validationClass was never set; however, this NullPointerException was swallowed (SWALLOWED_EXCEPTION). The assertion failed because the ValidatorResult object for the first call to ValidatorAction.executeValidationMethod() was never populated because validation didn't happen (due to the NullPointerException). In this test, ValidatorAction.executeValidationMethod() (the caller of method-a and method-b) is called twice because there are two validations that need to be done (specified via the xml file)."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyReturnErrors",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:535",
+                        "method-b-site": "ValidatorAction.java:568",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Not calling method-a means that the call to ValidatorAction.loadValidatonMethod() resulted in a NullPointerException, because the field variable ValidatorAction.validationClass was never set; however, this NullPointerException was swallowed (SWALLOWED_EXCEPTION). The reason why this is stage-3-complete instead of stage-0-failure is because there are two calls to Validator.validate() on the same object, which means that ValidatorAction.executeValidationMethod() (the caller of method-a and method-b) gets called twice with the same object. On the first call to executeValidationMethod(), method-a gets delayed and a NullPointerException is thrown and got swallowed, which means that method-b was not called. On the second call to executeValidationMethod(), since the NullPointerException caused the field variable ValidatorAction.validationMethod to not get set, the block from ValidatorAction.java:535-538 gets executed. (Note that in the non-DSI-experiment execution, this block will not be executed a second time). Hence, method-b was called, and the delayed call to method-a happened, leading to a stage-3-complete. What is interesting here is that method-a was actually called before method-b in the second call to executeValidationMethod() (otherwise there would be a second swallowed NullPointerException). So weirdly enough, in our DSI experiment scenario, we would end up with a specialized trace that looks like \"aba\"."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:535",
+                        "method-b-site": "ValidatorAction.java:568",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Not calling method-a means that the call to ValidatorAction.loadValidatonMethod() resulted in a NullPointerException, because the field variable ValidatorAction.validationClass was never set; however, this NullPointerException was swallowed (SWALLOWED_EXCEPTION). Since executeValidationMethod() was only called once in the test, the DSI experiment resulted in stage-0-failure."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ExtensionTest#testRequiredFirstName with modifications proposed in snippet; would call method-b before method-a.",
+        "notes": "method-a accesses the field variables ValidatorAction.validationClass and ValidatorAction.classname, and modifies the field variable ValidatorAction.validationClass (or throws an exception). method-b retrieves the onlyReturnErrors value from a particular input in its Map argument. This is likely a spurious spec because one can call method-b before method-a as the modifications proposed, and the return value of method-a does not impact method-b. Also, this method-b is dependent on 00248's method-b (because of the accessing of ValidatorAction.validationClass, which is set up in 00248's method-b), which is dependent on method-a. Overall I think this is a super interesting case, and note that the initial delay of method-a resulted in a very interesting trace (\"aba\") - GOOD_EXAMPLE. Flagging this as a weak oracle situation because the invalidated and unknown cases passed, even though some validation that needed to be done was missing due to the initial delay of method-a. UNRELATED_STATEFUL_METHODS?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-02-48",
+        "inspection-time-in-minutes": 17
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2022-01-29-03-10",
+        "project": "commons-validator",
+        "spec-id": "00335",
+        "method-a": "org.apache.commons.validator.ValidatorAction.loadValidationMethod()V",
+        "method-b": "org.apache.commons.validator.ValidatorAction.onlyReturnErrors(Ljava/util/Map;)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 41,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 6,
+        "U-verdict-count": 34,
+        "code-snippets-file": "snippets/lv-ls-u/00335.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExtensionTest#testRequiredFirstName",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:537",
+                        "method-b-site": "ValidatorAction.java:568",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Not calling method-a means that the call to ValidatorAction.loadValidatonMethod() resulted in a NullPointerException, because the field variable ValidatorAction.validationClass was never set; however, this NullPointerException was swallowed (SWALLOWED_EXCEPTION). The assertion failed because the ValidatorResult object for the first call to ValidatorAction.executeValidationMethod() was never populated because validation didn't happen (due to the NullPointerException). In this test, ValidatorAction.executeValidationMethod() (the caller of method-a and method-b) is called twice because there are two validations that need to be done (specified via the xml file). Follow the explanation in invalidated-inspected-cases[notes] to see how method-b was called and method-a was delayed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyReturnErrors",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:537",
+                        "method-b-site": "ValidatorAction.java:568",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Not calling method-a means that the call to ValidatorAction.loadValidatonMethod() resulted in a NullPointerException, because the field variable ValidatorAction.validationClass was never set; however, this NullPointerException was swallowed (SWALLOWED_EXCEPTION). The reason why this is stage-3-complete instead of stage-0-failure is because there are two calls to Validator.validate() on the same object, which means that ValidatorAction.executeValidationMethod() (the caller of method-a and method-b) gets called twice with the same object. On the first call to executeValidationMethod(), method-a gets delayed and a NullPointerException is thrown and got swallowed, which means that method-b was not called. On the second call to executeValidationMethod(), since the NullPointerException caused the field variable ValidatorAction.validationMethod to not get set, the block from ValidatorAction.java:535-538 gets executed. (Note that in the non-DSI-experiment execution, this block will not be executed a second time). Hence, method-b was called, and the delayed call to method-a happened, leading to a stage-3-complete. What is interesting here is that method-a was actually called before method-b in the second call to executeValidationMethod() (otherwise there would be a second swallowed NullPointerException). So weirdly enough, in our DSI experiment scenario, we would end up with a specialized trace that looks like \"aba\"."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:537",
+                        "method-b-site": "ValidatorAction.java:568",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Not calling method-a means that the call to ValidatorAction.loadValidatonMethod() resulted in a NullPointerException, because the field variable ValidatorAction.validationClass was never set; however, this NullPointerException was swallowed (SWALLOWED_EXCEPTION). Since executeValidationMethod() was only called once in the test, the DSI experiment resulted in stage-0-failure."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ExtensionTest#testRequiredFirstName with modifications proposed in snippet; would call method-b before method-a.",
+        "notes": "method-a accesses the field variables ValidatorAction.validationMethod, ValidatorAction.validationClass, ValidatorAction.method, and ValidatorAction.parameterClasses, and modifies the field variable ValidatorAction.validationMethod (or throws an exception). method-b retrieves the onlyReturnErrors value from a particular input in its Map argument. This is likely a spurious spec because one can call method-b before method-a as the modifications proposed, and the return value of method-a does not impact method-b. Also, this method-b is dependent on 00248's method-b (because of the accessing of ValidatorAction.validationClass, which is set up in 00248's method-b), which is dependent on method-a. Overall I think this is a super interesting case, and note that the initial delay of method-a resulted in a very interesting trace (\"aba\") - GOOD_EXAMPLE. Flagging this as a weak oracle situation because the invalidated and unknown cases passed, even though some validation that needed to be done was missing due to the initial delay of method-a. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-03-16",
+        "inspection-time-in-minutes": 6
+    }
+
+]

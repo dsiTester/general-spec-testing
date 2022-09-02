@@ -1,0 +1,16 @@
+ORIGINAL,REPLACE,RATIONALE
+java.util.Locale,MODE(!java.util.Locale java.util.Locale.*),Many of its fields are of the same type; so AspectJ may have gotten confused?
+java.lang.Class,,
+java.lang.Object,,
+java.lang.String,,immutable class
+java.lang.Byte,,immutable class
+java.lang.Short,,immutable class
+java.lang.Integer,,immutable class
+java.lang.Long,,immutable class
+java.lang.Float,,immutable class
+java.lang.Double,,immutable class
+java.lang.Character,,immutable class
+java.lang.Boolean,,immutable class
+java.util.Hashtable,,TODO
+java.util.Vector,,TODO
+java.io.File,MODE(* java.io.File.fs) || MODE(* java.io.File.path) || MODE(* java.io.File.status) || MODE(* java.io.File.prefixLength) || MODE(* java.io.File.separatorChar) || MODE(* java.io.File.separator) || MODE(* java.io.File.pathSeparatorChar) || MODE(* java.io.File.PATH_OFFSET) || MODE(* java.io.File.PREFIX_LENGTH_OFFSET) || MODE(* java.io.File.UNSAFE) || MODE(* java.io.File.serialVersionUID) || MODE(* java.io.File.filePath) || MODE(* java.io.File.$assertionsDisabled),File.pathSeparator somehow causes a NullPointerException in setup

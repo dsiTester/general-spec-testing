@@ -1,0 +1,11 @@
+id,share-state(tool),original-dsi,updated-dsi,verdict,manual-tags,a-set-b-set,a-set-b-get,a-get-b-set,a-get-b-get,used-jdk?
+00001,no,u,ls,spurious-spec,ASM_ERROR;UNRELATED_STATELESS_METHODS,0,0,0,0,no
+00002,no,u,ls,spurious-spec,METHOD_A_RETURNS_VOID;ONE_STATELESS_METHOD;ASM_ERROR,0,0,0,0,no
+00003,no,lv-ls,ls,sometimes-true-spec,METHOD_A_RETURNS_VOID;NO_COVERAGE;WEAK_ORACLE;SOMETIMES_TRUE_SPEC,0,0,0,0,yes
+00004,yes,lv-ls,lv-ls,sometimes-true-spec,METHOD_A_RETURNS_VOID;WEAK_ORACLE;SOMETIMES_TRUE_SPEC,0,15,0,0,no
+00005,no,u,ls,spurious-spec,ONE_STATELESS_METHOD;ASM_ERROR,0,0,0,0,no
+00006,no,ls,ls,spurious-spec,REPLACE_RETURN_WITH_EXPECTED_OUTPUT,0,0,0,0,yes
+00007,yes,lv,lv,sometimes-true-spec,METHOD_A_RETURNS_VOID;SOMETIMES_TRUE_SPEC,0,2,0,0,no
+00008,yes,ls,ls,sometimes-true-spec,METHOD_A_RETURNS_VOID;STATE_RESTORED;SOMETIMES_TRUE_SPEC,0,2,0,0,no
+00010,no,lv-ls,ls,spurious-spec,METHOD_A_RETURNS_VOID;WEAK_ORACLE,0,0,0,0,no
+00011,no,ls,ls,spurious-spec,METHOD_A_RETURNS_VOID;WEAK_ORACLE,0,0,0,0,no

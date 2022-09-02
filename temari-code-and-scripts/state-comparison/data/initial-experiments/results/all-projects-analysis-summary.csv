@@ -1,0 +1,24 @@
+id,description,0
+0,Number of total specs (non-nbp),1470
+1,Number of verdict-accurate specs (DSI),579
+2,Number of verdict-accurate specs (DSI + state),1160
+3,Number of newly verdict-accurate specs ((2) - (1)),596
+4,Number of newly verdict-inaccurate specs ((1) - (2)),15
+5,% accuracy (DSI),39.39
+6,% accuracy (DSI + state),78.91
+7,Number of tag-accurate state comparisons,727
+8,Number of tag-inaccurate state comparisons,128
+9,Number of tag-unsure state comparisons,615
+10,Number of errored state comparisons,0
+11,Number of specs for which additional DSI would be run (yes or err),302
+12,Number of specs for which JDK analysis was done,126
+13,Number of specs for which JDK and DSI were run,70
+14,Number of total specs (with NBP),1987
+15,Number of verdict-accurate specs (DSI + state + ideal NBP checker),1677
+16,% accuracy (DSI + state + ideal NBP checker / total specs with NBP),84.40
+17,Number of accurate LV specs in original DSI,52
+18,Number of accurate LS specs in original DSI,527
+19,% hit on True Specs/STS for original DSI,23.42
+20,% hit on Spurious Specs for original DSI,42.19
+21,% hit on True Specs/STS for DSI + state,-
+22,% hit on Spurious Specs for DSI + state,-

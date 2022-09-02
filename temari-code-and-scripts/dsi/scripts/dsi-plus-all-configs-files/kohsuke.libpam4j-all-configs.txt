@@ -1,0 +1,5 @@
+all-tests
+org.jvnet.libpam.UnixUserTest
+org.jvnet.libpam.UnixUserTest#testGetUserName
+org.jvnet.libpam.UnixUserTest#testGetDir
+org.jvnet.libpam.UnixUserTest#testGetUID

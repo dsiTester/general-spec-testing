@@ -1,0 +1,11 @@
+spec-id,method-a,method-b,tst,dsi-verdict,manual-verdict,tags
+00001,org.kamranzafar.jtar.TarEntry.computeCheckSum([B)J,org.kamranzafar.jtar.TarEntry.isDirectory()Z,org.kamranzafar.jtar.JTarAppendTest#testSingleOperation,u,spurious-spec,ASM_ERROR;UNRELATED_STATELESS_METHODS
+00002,org.kamranzafar.jtar.TarEntry.extractTarHeader(Ljava/lang/String;)V,org.kamranzafar.jtar.TarEntry.computeCheckSum([B)J,org.kamranzafar.jtar.JTarAppendTest#testAppend,u,spurious-spec,METHOD_A_RETURNS_VOID;ONE_STATELESS_METHOD;ASM_ERROR
+00005,org.kamranzafar.jtar.TarEntry.getName()Ljava/lang/String;,org.kamranzafar.jtar.TarEntry.computeCheckSum([B)J,org.kamranzafar.jtar.JTarTest#fileEntry,u,spurious-spec,ONE_STATELESS_METHOD;ASM_ERROR
+00006,org.kamranzafar.jtar.TarEntry.getName()Ljava/lang/String;,org.kamranzafar.jtar.TarEntry.writeEntryHeader([B)V,org.kamranzafar.jtar.JTarTest#fileEntry,ls,spurious-spec,REPLACE_RETURN_WITH_EXPECTED_OUTPUT
+00008,org.kamranzafar.jtar.TarEntry.parseTarHeader([B)V,org.kamranzafar.jtar.TarEntry.isDirectory()Z,org.kamranzafar.jtar.JtarTest#untarTarFile,ls,sometimes-true-spec,METHOD_A_RETURNS_VOID;STATE_RESTORED;SOMETIMES_TRUE_SPEC
+00011,org.kamranzafar.jtar.TarInputStream.setDefaultSkip(Z)V,org.kamranzafar.jtar.TarInputStream.close()V,org.kamranzafar.jtar.JTarTest#untarTarFileDefaultSkip,ls,spurious-spec,METHOD_A_RETURNS_VOID;WEAK_ORACLE
+00003,org.kamranzafar.jtar.TarEntry.extractTarHeader(Ljava/lang/String;)V,org.kamranzafar.jtar.TarEntry.isDirectory()Z,org.kamranzafar.jtar.JTarAppendTest#testAppend,lv-ls,sometimes-true-spec,METHOD_A_RETURNS_VOID;NO_COVERAGE;WEAK_ORACLE;SOMETIMES_TRUE_SPEC
+00004,org.kamranzafar.jtar.TarEntry.extractTarHeader(Ljava/lang/String;)V,org.kamranzafar.jtar.TarEntry.writeEntryHeader([B)V,org.kamranzafar.jtar.JTarAppendTest#testAppend,lv-ls,sometimes-true-spec,METHOD_A_RETURNS_VOID;WEAK_ORACLE;SOMETIMES_TRUE_SPEC
+00010,org.kamranzafar.jtar.TarEntry.writeEntryHeader([B)V,org.kamranzafar.jtar.TarEntry.isDirectory()Z,org.kamranzafar.jtar.JTarAppendTest#testAppend,lv-ls,spurious-spec,METHOD_A_RETURNS_VOID;WEAK_ORACLE
+00007,org.kamranzafar.jtar.TarEntry.parseTarHeader([B)V,org.kamranzafar.jtar.TarEntry.getName()Ljava/lang/String;,org.kamranzafar.jtar.JTarAppendTest#testAppend,lv,sometimes-true-spec,METHOD_A_RETURNS_VOID;SOMETIMES_TRUE_SPEC

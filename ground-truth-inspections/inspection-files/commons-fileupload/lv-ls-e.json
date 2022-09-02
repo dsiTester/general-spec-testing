@@ -1,0 +1,314 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2021-12-10-14-35",
+        "project": "commons-fileupload",
+        "spec-id": "00003",
+        "method-a": "org.apache.commons.fileupload2.DefaultFileItemFactory.getSizeThreshold()I",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItemFactory.getRepository()Ljava/io/File;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.io.File",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 6,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 6,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls-e/00003.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemFactory.java:102",
+                        "method-b-site": "DefaultFileItemFactory.java:102",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The test fails if the return value of method-a is replaced with an integer that is less than 10. This is most likely because the textFieldValue consists of 10 characters, and that textFieldValue is being written (if it can't fully fit into the threshold, then item.isInMemory() returns false).",
+                "notes": "LOSSY_REPLACEMENT: The replacement value (default value 0) simply happened to be in the range that made the test subsequently fail (refer to comment-on-return-values). So, the test failed regardless of the relationship between method-a and method-b."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemFactory.java:102",
+                        "method-b-site": "DefaultFileItemFactory.java:102",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Return value of method-a is an int, therefore default value would be 0. Replacing the call to method-a and the call to method-b with default values did not change the outcome of the test.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "NA",
+                "notes": "This test results in an error verdict 83/84 times due to parallel instances deleting the same file."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository would invalidate the spec.",
+        "notes": "Refer to comment-on-return-values for validated-cases for note about why there was a single validating test when the spec was clearly spurious. However, interestingly all-tests was spurious, even though there was a validating test (maybe for this case, DSI was able to find a value to replace the call to a with that was >= 10. The class DefaultFileItemFactory is deprecated (both method-a and method-b are deprecated). UNRELATED_STATELESS_METHODS - method-a is a 1-line naive getter to the field variable DefaultFileItemFactory.sizeThreshold, and method-b is a 1-line naive getter to the field variable DefaultFileItemFactory.repository.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-10-15-00",
+        "inspection-time-in-minutes": 25
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-05-21-30",
+        "project": "commons-fileupload",
+        "spec-id": "00237",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.setLowerCaseNames(Z)V",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.parse(Ljava/lang/String;C)Ljava/util/Map;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 5,
+        "test-methods-mine-count": 16,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 18,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls-e/00237.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.ParameterParserTest#testContentTypeParsing",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ParameterParserTest.java:73",
+                        "method-b-site": "ParameterParserTest.java:74",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Assertion was helpful to finding this true spec! Because method-a was delayed, the keys in the return value of method-b were not in all lower case, which meant that there was no \"charset\" key in the return value of method-b. This caused the return value of DiskFileItem.getString() to change, causing an assertion failure."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:236",
+                        "method-b-site": "DiskFileItem.java:238",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test is weak because it's set up in a way that method-b will return null regardless of whether method-a is called or not, because the DiskFileItem.contentType field variable that it reads has no field specifying the charset. So, maybe if the test was set up in such a way that DiskFileItem.contentType actually contained the field specifying the charset, method-a may make an impact to the result of the test. Also, technically EXPECTED_EXCEPTION but not related to this DSI experiment."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.ParameterParserTest#testContentTypeParsing",
+        "notes": "GOOD_EXAMPLE! method-b is a wrapper (of a wrapper) around org.apache.commons.fileupload2.ParameterParser.parse([CIIC)Ljava/util/Map; which return value is sometimes dependent on whether method-a was called or not. If method-a was not called, then paramName will not come out as lowercase even if the user intended it; hence it can lead to bugs. That being said, a user may not want paramName to come out as all lowercase, so in that case, one does not have to follow the spec. Thus, SOMETIMES_TRUE_SPEC. This is also a case that shows the value of assertions in validating specs; there was a SINGLE test that checked via assertions that the relationship between method-a and method-b was held, while there were 18 tests that invalidated the spec because of weak oracles. Comment: One thing that occurs to me also is that the validating test and the invalidated one in your snippet file are different usage scenarios! That is the calling context of method-a and method-b in those two tests!!",
+        "findings": "In order to encode this in RV, one would have to consider how the user will want to retrieve the values from the return value of method-b; are the keys that they are using to retrieve values from the return value of method-b in all lower case? In some sense the condition to check for surfaces *after* both method-a and method-b. One way we can tackle this is to make the spec: \"issue a violation if the user does NOT call method-a, calls method-b, and tries to retrieve a value using a key that is in all lower case, where the mixed-case version of the key is in the return value of method-b. This seems rather complicated...",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-05-22-50",
+        "inspection-time-in-minutes": 70
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-05-22-50",
+        "project": "commons-fileupload",
+        "spec-id": "00239",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.setLowerCaseNames(Z)V",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.parse([CC)Ljava/util/Map;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 5,
+        "test-methods-mine-count": 16,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 18,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls-e/00239.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.ParameterParserTest#testContentTypeParsing",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ParameterParserTest.java:73",
+                        "method-b-site": "ParameterParser.java:260",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Assertion was helpful to finding this true spec! Because method-a was delayed, the keys in the return value of method-b were not in all lower case, which meant that there was no \"charset\" key in the return value of method-b. This caused the return value of DiskFileItem.getString() to change, causing an assertion failure."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:236",
+                        "method-b-site": "ParameterParser.java:260",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test is weak because it's set up in a way that method-b will return null regardless of whether method-a is called or not, because the DiskFileItem.contentType field variable that it reads has no field specifying the charset. So, maybe if the test was set up in such a way that DiskFileItem.contentType actually contained the field specifying the charset, method-a may make an impact to the result of the test. Also, technically EXPECTED_EXCEPTION but not related to this DSI experiment."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.ParameterParserTest#testContentTypeParsing",
+        "notes": "method-b is a wrapper around org.apache.commons.fileupload2.ParameterParser.parse([CIIC)Ljava/util/Map; which return value is sometimes dependent on whether method-a was called or not. If method-a was not called, then paramName will not come out as lowercase even if the user intended it; hence it can lead to bugs. That being said, a user may not want paramName to come out as all lowercase, so in that case, one does not have to follow the spec. Thus, SOMETIMES_TRUE_SPEC. This is also a case that shows the value of assertions in validating specs; there was a SINGLE test that checked via assertions that the relationship between method-a and method-b was held, while there were 18 tests that invalidated the spec because of weak oracles.",
+        "findings": "In order to encode this in RV, one would have to consider how the user will want to retrieve the values from the return value of method-b; are the keys that they are using to retrieve values from the return value of method-b in all lower case? In some sense the condition to check for surfaces *after* both method-a and method-b. One way we can tackle this is to make the spec: \"issue a violation if the user does NOT call method-a, calls method-b, and tries to retrieve a value using a key that is in all lower case, where the mixed-case version of the key is in the return value of method-b. This seems rather complicated...",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-05-22-57",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-05-22-57",
+        "project": "commons-fileupload",
+        "spec-id": "00240",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.setLowerCaseNames(Z)V",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.parse([CIIC)Ljava/util/Map;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 5,
+        "test-methods-mine-count": 16,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 18,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls-e/00240.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.ParameterParserTest#testContentTypeParsing",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ParameterParserTest.java:73",
+                        "method-b-site": "ParameterParser.java:277",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Assertion was helpful to finding this true spec! Because method-a was delayed, the keys in the return value of method-b were not in all lower case, which meant that there was no \"charset\" key in the return value of method-b. This caused the return value of DiskFileItem.getString() to change, causing an assertion failure."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:236",
+                        "method-b-site": "ParameterParser.java:277",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test is weak because it's set up in a way that method-b will return null regardless of whether method-a is called or not, because the DiskFileItem.contentType field variable that it reads has no field specifying the charset. So, maybe if the test was set up in such a way that DiskFileItem.contentType actually contained the field specifying the charset, method-a may make an impact to the result of the test. Also, technically EXPECTED_EXCEPTION but not related to this DSI experiment."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.ParameterParserTest#testContentTypeParsing",
+        "notes": "The return value of method-b is sometimes dependent on whether method-a was called or not. If method-a was not called, then paramName will not come out as lowercase even if the user intended it; hence it can lead to bugs. That being said, a user may not want paramName to come out as all lowercase, so in that case, one does not have to follow the spec. Thus, SOMETIMES_TRUE_SPEC. This is also a case that shows the value of assertions in validating specs; there was a SINGLE test that checked via assertions that the relationship between method-a and method-b was held, while there were 18 tests that invalidated the spec because of weak oracles.",
+        "findings": "SOMETIMES_TRUE_SPEC; also shows a subtle true spec being validated in via an assertion in a single test while 18 tests invalidated the spec due to weak oracles. In order to encode this in RV, one would have to consider how the user will want to retrieve the values from the return value of method-b; are the keys that they are using to retrieve values from the return value of method-b in all lower case? In some sense the condition to check for surfaces *after* both method-a and method-b. One way we can tackle this is to make the spec: \"issue a violation if the user does NOT call method-a, calls method-b, and tries to retrieve a value using a key that is in all lower case, where the mixed-case version of the key is in the return value of method-b. This seems rather complicated...",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-05-23-00",
+        "inspection-time-in-minutes": 3
+    }
+
+]

@@ -1,0 +1,11 @@
+all-tests
+org.kamranzafar.jtar.JTarAppendTest
+org.kamranzafar.jtar.JTarTest
+org.kamranzafar.jtar.JTarAppendTest#testSingleOperation
+org.kamranzafar.jtar.JTarAppendTest#testAppend
+org.kamranzafar.jtar.JTarTest#untarTarFile
+org.kamranzafar.jtar.JTarTest#fileEntry
+org.kamranzafar.jtar.JTarTest#tar
+org.kamranzafar.jtar.JTarTest#testOffset
+org.kamranzafar.jtar.JTarTest#untarTarFileDefaultSkip
+org.kamranzafar.jtar.JTarTest#untarTGzFile

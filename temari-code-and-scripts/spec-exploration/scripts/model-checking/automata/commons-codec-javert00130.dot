@@ -1,0 +1,20 @@
+digraph Automaton {
+  rankdir = LR;
+  0 [shape=circle,label="s1"];
+  1 [shape=circle,label="s5_s4"];
+  2 [shape=doublecircle,label="s0"];
+  initial [shape=plaintext,label=""];
+  initial -> 2
+  3 [shape=circle,label="s3"];
+  4 [shape=circle,label="s2"];
+  2 -> 0 [label="org.apache.commons.codec.language.DoubleMetaphone.isSlavoGermanic(Ljava/lang/String;)Z"];
+  4 -> 4 [label="org.apache.commons.codec.language.DoubleMetaphone.getMaxCodeLen()I"];
+  1 -> 1 [label="org.apache.commons.codec.language.DoubleMetaphone.handleAEIOUY(Lorg/apache/commons/codec/language/DoubleMetaphone$DoubleMetaphoneResult;I)I"];
+  4 -> 3 [label="org.apache.commons.codec.language.DoubleMetaphone.handleC(Ljava/lang/String;Lorg/apache/commons/codec/language/DoubleMetaphone$DoubleMetaphoneResult;I)I"];
+  1 -> 1 [label="org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendPrimary(C)V"];
+  1 -> 1 [label="org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendAlternate(C)V"];
+  3 -> 1 [label="org.apache.commons.codec.language.DoubleMetaphone.conditionC0(Ljava/lang/String;I)Z"];
+  1 -> 2 [label="org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.getPrimary()Ljava/lang/String;"];
+  0 -> 4 [label="org.apache.commons.codec.language.DoubleMetaphone.isSilentStart(Ljava/lang/String;)Z"];
+  1 -> 1 [label="org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.append(C)V"];
+}

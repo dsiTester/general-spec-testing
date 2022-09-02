@@ -1,0 +1,2 @@
+LogOutputStreamTest # fails tests
+Exec65Test # requires a password input, which we can't pass in via automation.

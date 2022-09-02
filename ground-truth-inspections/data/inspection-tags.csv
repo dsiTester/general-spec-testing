@@ -1,0 +1,56 @@
+Tag,Meaning
+REPLACEMENT_VALUE_UNCLEAR,Cases where we should go back to DSI and figure out what DSI used as the replacement value and why
+REPLACE_RETURN_WITH_EXPECTED_OUTPUT,The return value of method-a was checked via an assertion (usually in the form of assertEquals()). However since the value method-a is supposed to be checked against was the "closest defined variable of the same type" DSI replaced the return value with that comparison value, making the assertion vacuously pass.
+REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT,The return value of method-a was checked via an assertion (usually in the form of assertEquals()). However, DSI replaced the return value of method-a with some other value, causing the assertion to immediately fail.
+LOSSY_REPLACEMENT,The default value **happened** to be in a small range that caused the test to fail.
+RETURN_VALUE_DISCARDED,when method-a returns a value but the user of method-a does not use that value
+REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION,DSI's replacement value was equal to what method-a would have returned. Use REPLACE_RETURN_WITH_EXPECTED_OUTPUT when the call to method-a is directly checked via assertion; but this tag for all other cases.
+EXPECTED_EXCEPTION,the test expects an exception.
+EXPECTED_EXCEPTION_NOT_THROWN,the test fails because the expected exception was not thrown.
+IMPLICITLY_EXPECTED_EXCEPTION,the test expects an exception but doesn't fail when the exception isn't thrown.
+SWALLOWED_EXCEPTION,an exception was thrown but the test didn't crash because the exception was swallowed
+DELAY_OF_A_CAUSES_UNEXPECTED_EXCEPTION,the state infected by not calling method-a where it should have been called causes an exception
+DSI_GOT_LUCKY_CASES,the circumstances of the specific test/perturbation that DSI was dealing with made the test pass even with the perturbation
+STATE_POLLUTION_BY_DSI,DSI's experiment manipulations for a previous spec in the same test caused a state changed such that all subsequent runs of the test failed.
+DEFAULT_VALUE_SAME_AS_RETURN,Denoting cases in which the default value that DSI replaced the return value of method-a ended up being the same value as the return value of method-a
+NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION,DSI replaced the return value of method-a with null; this immediately resulted in a NullPointerException
+NULL_REPLACEMENT_PASSED,DSI replaced the return value of method-a with null; but the test passed because the test oracle was weak/the program didn't crash
+REPLACEMENT_TRIGGERS_CHECK_THAT_PREVENTS_B, DSI replaced the return value of method-a such that it causes a check in between method-a and method-b that prevents method-b from being called
+STATE_RESTORED,Calling method-a after method-b restores the "lossy state" we were in.
+DYNAMIC_DISPATCH,Dynamic Dispatch caused the two methods to be classified as different Object types even though they act on the same object
+DYNAMIC_DISPATCH_SAME_METHOD,Where the two methods are actually the same in an inheritance situation (the subclass didn't have a definition for the method, so it used the superclass's definition) but was classified as a spec from two different Object types
+ASM_ERROR,sanity-check-failure with "DETECTED ASM ERROR!" on the log file
+SOMETIMES_TRUE_SPEC,there is a true-spec relationship between method-a and method-b but either 1) one can circumvent the relationship by calling some other method-a'/method-b' or 2) there are specific scenarios in which one may not want to follow the spec
+ONE_STATELESS_METHOD, one (but not both) of method-a and method-b do not alter state
+ONE_PURE_SETTER,one (but not both) of method-a and method-b is a pure setter
+UNRELATED_STATELESS_METHODS,the two methods do not change state and do not affect each other
+UNRELATED_PURE_SETTERS,the two methods respectively simply set field variables that do not affect each other
+UNRELATED_STATEFUL_METHODS,the two methods are stateful but they are completely unrelated
+NO_COVERAGE, a relevant set of instructions to the spec was not covered in the test suite
+INSPECTION_TODO,to note cases that we should go back to
+MORE_COMPLEX_THAN_AB,the relationship between method-a and method-b is more complex than the spec "ab"
+GOOD_EXAMPLE,a tag for example specs that we may want to highlight in the paper
+MODIFIED_STATE_DOES_NOT_INTERSECT,tag for future innovation that checks whether two methods do not intersect on the state that they (possibly) modify
+SUPPLEMENTARY_EVIDENCE_BY_JAVADOC,the inspection outcome is strengthened by/dependent on the JavaDOC comments provided by the developers
+METHODS_FROM_TEST_CLASS,at least one of the methods in the spec was defined by a test class
+REVISIT,a case noted in the PR to revisit
+CONCURRENCY,concurrency caused a property-not-satisfied/method-a and method-b come from two different threads
+LIKELY_TRUE_SPEC,tag to help triage for unknown cases
+REVERSE_NBP,method-b calls method-a
+CONNECTION_DOES_NOT_NECESSITATE_ORDERING,method-a and method-b is related in some way but that doesn't necessitate method-a being called before method-b
+INSIGHT,an insight that we may be able to leverage in improving DSI
+SPECIAL_NBP,a no-break-pass that goes beyond method-call chains
+FALSE_POSITIVE,an assertion failure or exception accidentally caused DSI to mark a spurious spec as a likely valid one
+CHECKS_MISDIRECTED_OUTPUT,not calling method-a makes an output-dependent assertion to fail because the output is written to some other place
+DELAY_CAUSES_TIMEOUT,not calling method-a causes a timeout value to be exceeded
+DELAY_CAUSES_OUTPUT_CORRUPTION,not calling method-a will cause corruption in the data that method-b works on
+UNINTERESTING_SPEC,true specs that do not seem intersting for RV such as getter/setter specs
+TRUE_SPEC_WITH_CALLER,method-a/b has a true spec relationship with the caller of method-b/a but not with method-b/a itself.
+FUTURE_WORK_TODO,some challenges to tackle in future work
+RQ,useful inspections for brainstorming/answering some RQs
+CONFIGURATION,a configuration file impacted the outcome of the test/DSI experiment
+WEAK_ORACLE,the oracle was weak (use for inspection files where is-oracle-weak is not a field)
+METHOD_A_RETURNS_VOID,method-a returns void so DSI does not need to derive a replacement value
+METHOD_B_AFTER_CRITICAL_POINT,the call to method-b was after the critical point where the call to method-a matters
+ORDER_OF_ASSERTIONS,The order of assertions influenced the result of the DSI experiment
+MULTIPLE_PERTURBATIONS,Multiple perturbations are carried out bc there are multiple context sets of method-a and method-b within the same test

@@ -1,0 +1,12 @@
+id,description,sum
+0,Number of total specs (non-nbp),1485
+1,Number of verdict-accurate specs (DSI),579
+2,Number of verdict-accurate specs (DSI + state),1162
+3,Number of newly verdict-accurate specs ((2) - (1)),610
+4,Number of newly verdict-inaccurate specs ((1) - (2)),27
+5,% accuracy (DSI),38.99
+6,% accuracy (DSI + state),78.25
+7,Number of tag-accurate state comparisons,736
+8,Number of tag-inaccurate state comparisons,121
+9,Number of tag-unsure state comparisons,627
+10,Number of errored state comparisons,1

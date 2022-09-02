@@ -1,0 +1,22 @@
+HangupTest # not run during mvn test (seems like a part of integration tests?)
+TestAsyncAgi  # not run during mvn test (seems like a part of integration tests?)
+TestConcurrentUseOfDefaultManagerConnection  # not run during mvn test (seems like a part of integration tests?)
+AbstractManagerTestCase  # not run during mvn test (seems like a part of integration tests?)
+TestDefaultManagerConnection  # not run during mvn test (seems like a part of integration tests?)
+TestVoid  # not run during mvn test (seems like a part of integration tests?)
+TestVoicemailUsersListAction # not run during mvn test (seems like a part of integration tests?)
+TestLiveReconnect # not run during mvn test (seems like a part of integration tests?)
+OriginateCauseTest # not run during mvn test (seems like a part of integration tests?)
+MiscTest # not run during mvn test (seems like a part of integration tests?)
+TestDefaultAsteriskServer # not run during mvn test (seems like a part of integration tests?)
+OriginateCauseAsyncTest # not run during mvn test (seems like a part of integration tests?)
+OriginateTest # not run during mvn test (seems like a part of integration tests?)
+SofthangupTest # not run during mvn test (seems like a part of integration tests?)
+TestExtensionHistory # not run during mvn test (seems like a part of integration tests?)
+AsteriskServerTestCase # not run during mvn test (seems like a part of integration tests?)
+MeetMeTest # not run during mvn test (seems like a part of integration tests?)
+AstUtilTest # METHODTRACER: traces not collected bc it only calls static and 3rd party. 9/253 test methods skipped
+AsteriskVersionTest # METHODTRACER: traces not collected bc it only calls static and 3rd party. 4/253 test methods skipped
+CallerIdTest # METHODTRACER: traces not collected bc it only calls static and 3rd party. 7/253 test methods skipped
+DateUtilTest # METHODTRACER: traces not collected bc it only calls static and 3rd party. 2/253 test methods skipped
+HangupCauseTest # METHODTRACER: traces not collected bc it only calls static and 3rd party. 1/253 test methods skipped

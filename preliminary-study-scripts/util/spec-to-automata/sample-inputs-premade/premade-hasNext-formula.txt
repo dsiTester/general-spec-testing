@@ -1,0 +1,16 @@
+# initial state comes first
+s0_s1[
+  default s0_s1
+  next -> violation
+  hasnexttrue -> s2
+#  hasnextfalse -> s0_s1
+]
+s2[
+  default s0_s1
+  next -> s0_s1
+  hasnexttrue -> s2
+#  hasnextfalse -> s0_s1
+]
+violation[
+  hasnexttrue -> s2
+]

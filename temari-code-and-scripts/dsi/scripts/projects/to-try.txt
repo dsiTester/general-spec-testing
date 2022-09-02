@@ -1,0 +1,13 @@
+https://github.com/jbossas/jboss-dmr.git c7d7c1f1f116eb4107c13b98985eaffff5ecf99b jbossas.jboss-dmr
+https://github.com/ptgoetz/storm-jms.git d152d72f3726f3ff40ba74dee0392f8764b43fd0 ptgoetz.storm-jms
+https://github.com/jnr/jnr-posix.git b2cc7b52a82b266c12db6f472ceb4c2360cda134 jnr.jnr-posix
+https://github.com/bpsm/edn-java.git c1d891d6437f89af3a9c2cbc3c4e002556aa71b4 bpsm.edn-java
+https://github.com/junit-team/junit.git 1d63100e6d69f448a3afb4571e9915cb9439fe1d junit
+https://github.com/JodaOrg/joda-time.git cc35fb2e6e106031fdbf1d1c2be5da6a9eb67c38 joda-time
+https://github.com/Thomas-S-B/visualee.git 410a80f0f4774b093c3689d0e0c75bc46c78688e Thomas-S-B.visualee
+https://github.com/wildfly/jandex.git 8b3847bf0d731cccea49ea8fa2a2f5d11780a997 wildfly.jandex
+https://github.com/apache/commons-bcel.git 24014e5eabb321adf276f90599bddedb018e88aa bcel
+https://github.com/FasterXML/jackson-dataformat-yaml.git d2752c9606c339df7cfcbd6e8547f9b6e53119f9 FasterXML.jackson-dataformat-yaml
+https://github.com/FasterXML/jackson-datatype-json-org.git 14e0dd2f031c7c1788b995f3da142095ab328fb2 FasterXML.jackson-datatype-json-org
+https://github.com/jscep/jscep.git a224cc25369831c26231b47767485af1abfbe270 jscep.jscep
+https://github.com/JSQLParser/JSqlParser.git 001d665d32c6df5a136b1955f4413e6648064811 JSqlParser

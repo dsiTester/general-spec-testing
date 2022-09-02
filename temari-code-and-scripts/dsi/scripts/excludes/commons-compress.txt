@@ -1,0 +1,11 @@
+CpioArchiveInputStreamTest # testClasses take unreasonably long
+Deflate64CompressorInputStreamTest # testMethods take unreasonably long
+IOMethodsTest # testClasses take unreasonably long
+TarArchiveEntryTest # testMethods take unreasonably long
+TarArchiveInputStreamTest # testMethods take unreasonably long
+TarArchiveOutputStreamTest # testClasses take unreasonably long
+TarTestCase # testClasses take unreasonably long
+TarFileTest # testMethods take unreasonably long
+ZipFileTest # testMethods take unreasonably long
+OsgiITest # interefere with allTests
+CompressorStreamFactoryRoundtripTest # TODO: All Tests fail

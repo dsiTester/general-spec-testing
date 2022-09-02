@@ -1,0 +1,25 @@
+1
+s0_s3
+5
+null
+s4
+s1_s12_s13_s8_s5_s6_s10_s7
+s0_s3
+s11_s9_s2
+16
+s11_s9_s2 s11_s9_s2 s
+s1_s12_s13_s8_s5_s6_s10_s7 s1_s12_s13_s8_s5_s6_s10_s7 s
+s0_s3 s11_s9_s2 s
+s1_s12_s13_s8_s5_s6_s10_s7 s1_s12_s13_s8_s5_s6_s10_s7 r
+s0_s3 s0_s3 t
+s11_s9_s2 s1_s12_s13_s8_s5_s6_s10_s7 r
+s11_s9_s2 s1_s12_s13_s8_s5_s6_s10_s7 t
+s1_s12_s13_s8_s5_s6_s10_s7 s1_s12_s13_s8_s5_s6_s10_s7 t
+s0_s3 s4 p
+s4 s4 s
+s11_s9_s2 s4 p
+s4 violation r
+s0_s3 s1_s12_s13_s8_s5_s6_s10_s7 r
+s1_s12_s13_s8_s5_s6_s10_s7 s1_s12_s13_s8_s5_s6_s10_s7 p
+s4 s4 t
+s4 s4 p

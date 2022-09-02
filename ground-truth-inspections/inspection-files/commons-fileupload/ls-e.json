@@ -1,0 +1,1140 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2021-12-11-15-08",
+        "project": "commons-fileupload",
+        "spec-id": "00029",
+        "method-a": "org.apache.commons.fileupload2.FileItem.get()[B",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LS-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-e/00029.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:190",
+                        "method-b-site": "DefaultFileItemTest.java:195",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. The return type of method-a is byte[]. DSI replaced the return value of method-a with testFieldValueBytes, which is the value that the assertion was checking to be equal.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "Refer to 00002 (u-e.json) for explanation on error case. DSI's replacement of return values with a nearby value caused the assertion to pass (refer to comment-on-return-values in invalidated-inspected-cases). However, commenting out the assertion (DefaultFileItemTest:190) itself caused the test to pass, and there is no relation between method-a and method-b. A number of ways that the oracle can be improved: 1) does the written file exist? 2) is the file size before writing different than it's size after writing? 3) is the difference in the file size before and after writing equal to the size of the bytes that were written?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-15-23",
+        "inspection-time-in-minutes": 16
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2021-12-11-15-30",
+        "project": "commons-fileupload",
+        "spec-id": "00030",
+        "method-a": "org.apache.commons.fileupload2.FileItem.get()[B",
+        "method-b": "org.apache.commons.fileupload2.FileItem.delete()V",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 6,
+        "LS-verdict-count": 6,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-e/00030.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:190",
+                        "method-b-site": "DefaultFileItemTest.java:204",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. The return type of method-a is byte[]. DSI replaced the return value of method-a with testFieldValueBytes, which is the value that the assertion was checking to be equal.",
+                "notes": ""
+            },
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testValidRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItemSerializeTest.java:85",
+                        "method-b-site": "DiskFileItemSerializeTest.java:86",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. Similarly to the other case, there was a byte[] in the method (testFieldValueBytes) to which the return value of method-a was going to be compared against; DSI used that value to replace the method call to method-a.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI. Refer to 00002 (u-e.json)."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "a-until-b",
+        "validating-test-file": "ModifiedDefaultFileItemTest.doTestAboveThreshold() in the snippet.",
+        "notes": "While the developers have implemented method-a in such a way that calling method-a after method-b would NOT result in an exception, calling method-a after method-b will change the return value of method-a to null. Hence, I think this is a true spec.",
+        "findings": "Type-b: method-a is never followed by method-b",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-15-58",
+        "inspection-time-in-minutes": 28
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2021-12-11-16-22",
+        "project": "commons-fileupload",
+        "spec-id": "00031",
+        "method-a": "org.apache.commons.fileupload2.FileItem.get()[B",
+        "method-b": "org.apache.commons.fileupload2.FileItem.getString()Ljava/lang/String;",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "LS-verdict-count": 2,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/ls-e/00031.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:190",
+                        "method-b-site": "DefaultFileItemTest.java:191",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. The return type of method-a is byte[]. DSI replaced the return value of method-a with testFieldValueBytes, which is the value that the assertion was checking to be equal.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI. Refer to 00002 (u-e.json)."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "There is no real need to call method-a before method-b. However, interestingly, the opposite of this spec would be a no-break-pass, since method-b calls method-a in the very first line.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-16-45",
+        "inspection-time-in-minutes": 23
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2021-12-14-11-15",
+        "project": "commons-fileupload",
+        "spec-id": "00032",
+        "method-a": "org.apache.commons.fileupload2.FileItem.get()[B",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.get()[B",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "byte[]",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "LS-verdict-count": 2,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/ls-e/00032.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:190",
+                        "method-b-site": "DiskFileItem.java:352",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. Return value replaced with the value it was being compared against to in an assertEquals(). (Refer to 00029)",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "DYNAMIC_DISPATCH. This method-a is a method in the interface level, and this method-b is its implementation. (method-b is the only implementation of method-a in the project) So in a sense, they are the same method... How can we detect cases like this?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-14-11-27",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2021-12-14-11-30",
+        "project": "commons-fileupload",
+        "spec-id": "00033",
+        "method-a": "org.apache.commons.fileupload2.FileItem.get()[B",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getCharSet()Ljava/lang/String;",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "LS-verdict-count": 2,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/ls-e/00033.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:190",
+                        "method-b-site": "DiskFileItem.java:353",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. The return type of method-a is byte[]. DSI replaced the return value of method-a with testFieldValueBytes, which is the value that the assertion was checking to be equal.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "DYNAMIC_DISPATCH. There's no relationship between method-a and method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-14-11-45",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2021-12-14-12-27",
+        "project": "commons-fileupload",
+        "spec-id": "00034",
+        "method-a": "org.apache.commons.fileupload2.FileItem.get()[B",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getContentType()Ljava/lang/String;",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "LS-verdict-count": 2,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/ls-e/00034.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:132",
+                        "method-b-site": "DiskFileItem.java:238",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. The return type of method-a is byte[]. DSI replaced the return value of method-a with testFieldValueBytes, which is the value that the assertion was checking to be equal.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest@testBelowThreshold",
+        "notes": "No real relationship between the two methods, as any state that method-a interacts with does not impact the value that method-b returns. ONE_STATELESS_METHOD: method-b is a 1-line naive getter to the field variable DiskFileItem.contentType.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-14-12-38",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2021-12-14-13-45",
+        "project": "commons-fileupload",
+        "spec-id": "00036",
+        "method-a": "org.apache.commons.fileupload2.FileItem.get()[B",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 6,
+        "LS-verdict-count": 6,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-e/00036.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testAboveThreshold",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItemSerializeTest.java:131",
+                        "method-b-site": "DiskFileItem.java:433",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. The return type of method-a is byte[]. DSI replaced the return value of method-a with testFieldValueBytes, which is the value that the assertion was checking to be equal.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testAboveThreshold",
+        "notes": "method-b is called by FileItem.delete(), which would potentially change the state to something unsafe for method-a (but not really, since method-a will return null in the case that delete() was called first). Besides that, there is no relationship between the two methods.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-14-13-59",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2021-12-16-18-06",
+        "project": "commons-fileupload",
+        "spec-id": "00070",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getString()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LS-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-e/00070.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:191",
+                        "method-b-site": "DefaultFileItemTest.java:195",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI used the closest declared String value, which is the value that the return value of method-a was compared against. Hence the test passed.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "This spec is spurious because neither method-a nor method-b change state. That being said, the oracle is weak because it simply checks the return values of method-a and method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-18-21",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2021-12-16-20-50",
+        "project": "commons-fileupload",
+        "spec-id": "00075",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getString()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LS-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-e/00075.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:191",
+                        "method-b-site": "DiskFileItem.java:433",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI used the closest declared String value, which is the value that the return value of method-a was compared against. Hence the test passed.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository - refer to snippet.",
+        "notes": "DYNAMIC_DISPATCH. Manually placed method-a to be after the method-b invocation, but the perturbations did not result in any test failures or crashes. Plus, upon inspection of the definitions of both method-a and method-b, it seems that the two methods are unrelated.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-20-56",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2021-12-17-02-30",
+        "project": "commons-fileupload",
+        "spec-id": "00077",
+        "method-a": "org.apache.commons.fileupload2.FileItem.isInMemory()Z",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LS-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-e/00077.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:188",
+                        "method-b-site": "DefaultFileItemTest.java:195",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN + REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI couldn't find a declared value that would be a substitute for the return value of method-a, so it used the default value false. Here, it just so happened that the return value of method-a was an argument to assertFalse() - so the test passed with no problem.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "The methods themselves are two getters, so there doesn't seem to be a connection between the two. There may be a no-break-pass spec between method-b and the implementation of method-a though.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-17-02-45",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2022-01-05-21-12",
+        "project": "commons-fileupload",
+        "spec-id": "00235",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.parseToken([C)Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.getToken(Z)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "LS-verdict-count": 3,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/ls-e/00235.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ParameterParser.java:309",
+                        "method-b-site": "ParameterParser.java:160",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_PASSED. Most likely replaced with null, since there was a String object variable assignment to null right before method-a was called. Note that the test itself doesn't check whether the return value of ParameterParser.parse() contains a key \"text/plain\", which is what the return value of method-a would be set to (the return value of method-a gets included in the Map for the return value of ParameterParser.parse().",
+                "notes": "The test seems to go in an infinite while loop if method-a is never called (the loop condition is ParameterParser.hasChar()), which will be false by the time that method-a returns (method-a contains a while loop with the same loop condition)."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "This is actually a no-break-pass. POSSIBLE_DSI_BUG: I can't figure out how the test didn't end up in an infinite while loop when method-a wasn't called (refer to invalidated-inspected-cases[0][notes]). Note that the trace file for the invalidated-inspected-case's only call to method-b was through a call to method-a, but there are alternative call sites of method-b in the project (ex. ParameterParser.java:192).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-05-21-22",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2022-01-05-21-23",
+        "project": "commons-fileupload",
+        "spec-id": "00236",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.setLowerCaseNames(Z)V",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.getToken(Z)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "LS-verdict-count": 3,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/ls-e/00236.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:236",
+                        "method-b-site": "ParameterParser.java:160",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Oracle is weak here because running the test without calling method-a at all makes the test pass. This is because the caller of method-a (DiskFileItem.getCharSet()) returns null regardless of whether method-a was called or not in this test, because the DiskFileItem.contentType field variable that it reads has no field specifying the charset. So, maybe if the test was set up in such a way that DiskFileItem.contentType actually contained the field specifying the charset, method-a may make an impact to the result of the test."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+        "notes": "method-a is a pure setter to the field variable ParameterParser.lowerCaseNames. method-b does not access/modify/affect this field variable, so this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-05-21-28",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-01-06-10-36",
+        "project": "commons-fileupload",
+        "spec-id": "00242",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.setLowerCaseNames(Z)V",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.parseToken([C)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "LS-verdict-count": 3,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/ls-e/00242.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:236",
+                        "method-b-site": "ParameterParser.java:160",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Oracle is weak here because running the test without calling method-a at all makes the test pass."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+        "notes": "ONE_PURE_SETTER: method-a is a pure setter to the field variable ParameterParser.lowerCaseNames. method-b uses the field variables ParameterParser.i1, ParameterParser.i2, ParameterParser.pos in order to parse a token until the argument terminators were reached. Since method-b does not use ParameterParser.lowerCaseNames, I think it is safe to call this a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-06-10-41",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-01-06-14-11",
+        "project": "commons-fileupload",
+        "spec-id": "00258",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.getCharSet()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LS-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-e/00258.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:353",
+                        "method-b-site": "DefaultFileItemTest.java:195",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN + REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: Most likely replaced with null, but the catch here is that null was the original return value of method-a. So the replacement made no difference.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "DYNAMIC_DISPATCH - DefaultFileItem extends DiskFileItem, but it doesn't implement method-b. method-a creates a new ParameterParser object, sets Parser.lowerCaseNames to true, parses the field variable DiskFileItem.contentType, and retrieves the value of the key \"charset\". method-b either returns null, or the File associated with the field variable DiskFileItem.dfos. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-06-14-19",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2022-01-06-14-20",
+        "project": "commons-fileupload",
+        "spec-id": "00259",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.getCharSet()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileItem.delete()V",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LS-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-e/00259.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:353",
+                        "method-b-site": "DefaultFileItemTest.java:204",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN + REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: Most likely replaced with null, but the catch here is that null was the original return value of method-a. So the replacement made no difference.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "The state changes caused by method-b most likely do not affect method-a and its computations, because the method-a computations are not dependent on the content deleted by method-b. method-a creates a new ParameterParser object, sets Parser.lowerCaseNames to true, parses the field variable DiskFileItem.contentType, and retrieves the value of the key \"charset\". The used implementation of method-b sets DiskFileItem.cachedContent to null, and deletes the File associated with the field variable DiskFileItem.dfos. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-06-14-26",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 16,
+        "inspection-start-time": "2022-01-06-14-39",
+        "project": "commons-fileupload",
+        "spec-id": "00261",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.getCharSet()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.io.File",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LS-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-e/00261.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:353",
+                        "method-b-site": "DiskFileItem.java:433",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN + REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: Most likely replaced with null, but the catch here is that null was the original return value of method-a. So the replacement made no difference.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository with proposal in snippet",
+        "notes": "One can safely call method-b before calling method-a, so there is no relationship between the two methods. method-a creates a new ParameterParser object, sets Parser.lowerCaseNames to true, parses the field variable DiskFileItem.contentType, and retrieves the value of the key \"charset\". method-b either returns null or the file associated with DiskFileItem.dfos. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-06-14-44",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 17,
+        "inspection-start-time": "2022-01-06-14-45",
+        "project": "commons-fileupload",
+        "spec-id": "00262",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.getContentType()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LS-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-e/00262.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:238",
+                        "method-b-site": "DefaultFileItemTest.java:195",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN + REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: Replaced with null, which didn't make a difference because the return value of getCharSet() was going to be null (because the \"charset\" key didn't exist in the map that parameter.parse() was going to return anyways).",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository with snippet changes",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line getter that doesn't affect the values of method-b. method-b either returns null or the File object associated with the field variable DiskFileItem.dfos. FUTURE_WORK_TODO: In some sense, this test/execution is weak for evaluating the effects of calling method-a because method-a in the normal test execution returns null, so DSI's replacement with null doesn't affect the test outcome. I wonder how we can be more robust to situations like this? Also, DYNAMIC_DISPATCH caused this spec and 00264 to be different specs, even though the method-b are defined to be the same method.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-01-06-15-00",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 18,
+        "inspection-start-time": "2022-01-06-15-13",
+        "project": "commons-fileupload",
+        "spec-id": "00263",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.getContentType()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileItem.delete()V",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LS-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-e/00263.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:238",
+                        "method-b-site": "DefaultFileItemTest.java:204",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN + REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: Replaced with null, which didn't make a difference because the return value of getCharSet() was going to be null (because the \"charset\" key didn't exist in the map that parameter.parse() was going to return anyways).",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository with changes in snippet",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line naive getter to the field variable DiskFileItem.contentType. The used implementation of method-b sets the field variable DiskFileItem.cachedContent to null, and deletes the File associated with the field variable DiskFileItem.dfos. FUTURE_WORK_TODO: In some sense, this test/execution is weak for evaluating the effects of calling method-a because method-a in the normal test execution returns null, so DSI's replacement with null doesn't affect the test outcome. I wonder how we can be more robust to situations like this?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-06-15-20",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 19,
+        "inspection-start-time": "2022-01-06-15-22",
+        "project": "commons-fileupload",
+        "spec-id": "00264",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.getContentType()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.io.File",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LS-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-e/00264.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:238",
+                        "method-b-site": "DiskFileItem.java:433",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN + REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: Replaced with null, which didn't make a difference because the return value of getCharSet() was going to be null (because the \"charset\" key didn't exist in the map that parameter.parse() was going to return anyways).",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line getter to the field variable DiskFileItem.contentType, that doesn't affect the values of method-b. method-b either returns null or the File associated with the field variable DiskFileItem.dfos. FUTURE_WORK_TODO: In some sense, this test/execution is weak for evaluating the effects of calling method-a because method-a in the normal test execution returns null, so DSI's replacement with null doesn't affect the test outcome. I wonder how we can be more robust to situations like this? Also, DYNAMIC_DISPATCH caused this spec and 00262 to be different specs, even though the method-b are defined to be the same method.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-06-15-30",
+        "inspection-time-in-minutes": 8
+    }
+
+]

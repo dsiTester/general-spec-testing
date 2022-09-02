@@ -1,0 +1,621 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-02-02-19-08",
+        "project": "commons-exec",
+        "spec-id": "00002",
+        "method-a": "org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "java.lang.String[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 8,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 3,
+        "U-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls-u/00002.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithArg",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:145",
+                        "method-b-site": "CommandLine.java:299",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": "The test failed because it checked for the output of the script, which was supposed to include its first argument; however, since method-a was delayed, the output differed from what was expected."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithComplexArguments",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:635",
+                        "method-b-site": "CommandLine.java:299",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED - refer to snippet.",
+                "notes": "The test passes because the test simply checks that the execution of the script didn't fail. Moreover, the script didn't fail despite lacking an argument because all the  script itself does is that it simply prints its arguments."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec57Test.java:73",
+                        "method-b-site": "CommandLine.java:299",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION - NullPointerException at Exec57Test.java:73",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithArg",
+        "notes": "GOOD_EXAMPLE: method-a adds an argument to the field variable CommandLine.arguments, and method-b retrieves the list of arguments using the field variable CommandLine.arguments. Hence, if method-a wasn't called before method-b, an argument would be missing from the script.",
+        "findings": "Might be sts. Type-c: method-b is *sometimes* preceded by method-a?",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-02-19-30",
+        "inspection-time-in-minutes": 22
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-02-02-19-53",
+        "project": "commons-exec",
+        "spec-id": "00003",
+        "method-a": "org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 8,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 3,
+        "U-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls-u/00003.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithArg",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:145",
+                        "method-b-site": "CommandLine.java:298",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED - refer to snippet.",
+                "notes": "The test failed because it checked for the output of the script, which was supposed to include its first argument; however, since method-a was delayed, the output differed from what was expected."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithComplexArguments",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:635",
+                        "method-b-site": "CommandLine.java:298",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED - refer to snippet.",
+                "notes": "The test passes because the test simply checks that the execution of the script didn't fail. Moreover, the script didn't fail despite lacking an argument because all script itself does is that it simply prints its arguments."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec57Test.java:73",
+                        "method-b-site": "CommandLine.java:298",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION - NullPointerException at Exec57Test.java:73",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithComplexArguments",
+        "notes": "GOOD_EXAMPLE: The critical point for method-a to be called by is CommandLine.java:297, and method-b happened to be after that specific point. In general, method-a adds a new String to the field variable CommandLine.arguments, and method-b retrieves the executable (which is not related to the arguments). Comment: It is interesting that this IID 2 is so similar to the IID 1. Yet, the outcome is different! We can use this to claim that one cannot merely rely on heurstics.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-02-20-04",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-02-02-20-09",
+        "project": "commons-exec",
+        "spec-id": "00005",
+        "method-a": "org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "java.lang.String[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 8,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 3,
+        "U-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls-u/00005.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithArg",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:145",
+                        "method-b-site": "Java13CommandLauncher.java:60",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED - refer to snippet.",
+                "notes": "The test failed because it checked for the output of the script, which was supposed to include its first argument; however, since method-a was delayed, the output differed from what was expected."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithComplexArguments",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:635",
+                        "method-b-site": "Java13CommandLauncher.java:60",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED - refer to snippet.",
+                "notes": "The test passes because the test simply checks that the execution of the script didn't fail. Moreover, the script didn't fail despite lacking an argument because all script itself does is that it simply prints its arguments."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec57Test.java:73",
+                        "method-b-site": "Java13CommandLauncher.java:60",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION - NullPointerException at Exec57Test.java:73",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithArg",
+        "notes": "GOOD_EXAMPLE: method-a adds an argument to the field variable CommandLine.arguments, and method-b prints the list of arguments, including those that are stored in the field variable CommandLine.arguments (this is how the script being run gets its arguments). Hence, if method-a wasn't called before method-b, an argument would be missing from the run of the script.",
+        "findings": "Might be sts. Type-c: method-b is *sometimes* preceded by method-a?",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-02-20-17",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-02-04-19-48",
+        "project": "commons-exec",
+        "spec-id": "00079",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I",
+        "method-b": "org.apache.commons.exec.Executor.isFailure(I)Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 13,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 3,
+        "U-verdict-count": 8,
+        "code-snippets-file": "snippets/lv-ls-u/00079.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec36Test#testExec36_2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:175",
+                        "method-b-site": "Exec36Test.java:151",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - method-a wasn't directly used for an assertion, so using this tag. method-a returns 0 on a normal execution (makes sense given that 0 is the exit code for success), and DSI most likely replaced the return value with the default int value 0.",
+                "notes": "The assertion failed because the test tried to check the OutputStream for an expected output from the script, however the script itself wasn't run because method-a didn't run by the point that the comparison value was retrieved (Exec36Test.java:150)."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsync",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:183",
+                        "method-b-site": "DefaultExecutor.java:47",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NA",
+                "notes": "The property was not satisfied, most likely because of the concurrency issue; the Specialized Trace shows\na @ Thd[1]Obj[0]:0(DefaultExecutorTest.java:183)\nb @ Thd[27]Obj[0]:0(DefaultExecutor.java:47)\n, so I think \"ab\" was not satisfied specifically because the Thd values were different. Should we expand our definition of \"satisfying the property\" to allow cases like this? Note that the specified call site of method-b here is actually the declaration (indicated in snippet) of the DefaultExecutor class."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:175",
+                        "method-b-site": "DefaultExecutorTest.java:106",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - method-a wasn't directly used for an assertion, so using this tag. method-a returns 0 on a normal execution (makes sense given that 0 is the exit code for success), and DSI most likely replaced the return value with the default int value 0.",
+                "notes": "The assertion failed because not calling method-a means that the script it self was never run, so there was no output from the script (which is what the assertion on DefaultExecutorTest.java:105 is checking). ORDER_OF_ASSERTIONS."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.issues.Exec36Test#testExec36_2",
+        "notes": "CONCURRENCY + GOOD_EXAMPLE: method-a runs the intended process/script, and method-b performs some checks on the field variable DefaultExecutor.exitValues (or the provided exit value). In the validating test, the return value of method-a is passed into method-b. In general, I think it is good practice to call method-a before method-b because method-b is intended to evaluate the results of running the script; if you don't call the script in the first place, there's no results to check. ORDER_OF_ASSERTIONS influenced this disagreement; the unknown test would not have been an unknown result if the assertion on DefaultExecutorTest.java:105 was moved after method-b. DECISION: This is a spurious spec because both method-a and method-b are public methods, and method-b can be called safely at any point, and is not dependent on method-a. Given the use case, this is most likely a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-20-12",
+        "inspection-time-in-minutes": 24
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-02-04-20-50",
+        "project": "commons-exec",
+        "spec-id": "00092",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-b": "org.apache.commons.exec.Executor.isFailure(I)Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 7,
+        "code-snippets-file": "snippets/lv-ls-u/00092.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec36Test#testExec36_1",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:161",
+                        "method-b-site": "Exec36Test.java:99",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - method-a wasn't directly used for an assertion, so using this tag. method-a returns 0 on a normal execution (makes sense given that 0 is the exit code for success), and DSI most likely replaced the return value with the default int value 0. This causes method-b to return false, which is the expected output (checked by assertFalse()).",
+                "notes": "The test failed because method-a was not called, which means that there was no output from the output stream from the script (because the script itself was never run). ORDER_OF_ASSERTIONS: "
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.LogOutputStreamTest#testStdout",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:161",
+                        "method-b-site": "LogOutputStreamTest.java:74",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - method-a wasn't directly used for an assertion, so using this tag. method-a returns 0 on a normal execution (makes sense given that 0 is the exit code for success), and DSI most likely replaced the return value with the default int value 0. This causes method-b to return false, which is the expected output (checked by assertFalse()).",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:161",
+                        "method-b-site": "DefaultExecutorTest.java:106",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - method-a wasn't directly used for an assertion, so using this tag. method-a returns 0 on a normal execution (makes sense given that 0 is the exit code for success), and DSI most likely replaced the return value with the default int value 0. This causes method-b to return false, which is the expected output (checked by assertFalse()).",
+                "notes": "The assertion failed because method-a was not called, which means that there was no output from the output stream from the script (because the script itself was never run). Since this assertion was before the call to method-b, the DSI experiment resulted in stage-0. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.issues.Exec36Test#testExec36_1",
+        "notes": "method-a runs the intended process/script, and method-b performs some checks on the field variable DefaultExecutor.exitValues (or the provided exit value, which is often the return value of method-a). In the validating test, the return value of method-a is passed into method-b. In general, I think it is good practice to call method-a before method-b because method-b is intended to evaluate the results of running the script; if you don't call the script in the first place, there's no results to check. DECISION: This is a spurious spec because both method-a and method-b are public methods, and method-b can be called safely at any point, and is not dependent on method-a. Given the use case, this is most likely a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case. Note that ORDER_OF_ASSERTIONS influenced the disagreement; the unknown test is stage-0-failure only due to the ordering of assertions.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-21-04",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2022-02-04-23-10",
+        "project": "commons-exec",
+        "spec-id": "00190",
+        "method-a": "org.apache.commons.exec.ExecuteStreamHandler.start()V",
+        "method-b": "org.apache.commons.exec.ExecuteStreamHandler.stop()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 10,
+        "test-methods-mine-count": 38,
+        "LV-verdict-count": 6,
+        "LS-verdict-count": 31,
+        "U-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-ls-u/00190.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:372",
+                        "method-b-site": "DefaultExecutor.java:406",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test failed because it was expecting output from the OutputStream variable baos (from the test). However, since the ExecuteStreamHandler object didn't start, none of the output from the subprocess was propagated to baos, causing the test to fail."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithNullOutErr",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:372",
+                        "method-b-site": "DefaultExecutor.java:406",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test passed because it had a weak oracle; the only thing it checked for was the exit value (so it didn't check for any output from the output/error stream)."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testStdInHandling",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:372",
+                        "method-b-site": "DefaultExecutor.java:406",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test failed because the subprocess did not return a result after the 2000ms wait time was over. method-a is supposed to initiate the various threads that communicate with the input/output/error streams of the process, but since method-a was delayed, the script couldn't read from its input stream, and the subprocess/script hung because it couldn't read an input. Since the process didn't finish, method-b was never called."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+        "notes": "This looks like a simple start-stop scenario in some ways - the threads that read the input/output/error streams from the subprocess need to be started before they are stopped. This seems like a part of a large spec with PumpStreamHandler.setProcessInputStream(), PumpStreamHandler.setProcessOutputStream(), and PumpStreamHandler.setProcessErrorStream().",
+        "findings": "Type-a/c: method-a is always followed by method-b, and method-b is always preceded by method-a",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-02-05-23-36",
+        "inspection-time-in-minutes": 26
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2022-02-06-16-39",
+        "project": "commons-exec",
+        "spec-id": "00269",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.Executor.isFailure(I)Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 7,
+        "code-snippets-file": "snippets/lv-ls-u/00269.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec36Test#testExec36_1",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec36Test.java:97",
+                        "method-b-site": "Exec36Test.java:99",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a most likely got replaced with the default value 0, which is the value that method-a is expected to return. (not setting to expected value because the return value of method-a itself isn't checked via an assertion, but the return value of method-b, which performs a check on the return value of method-a, is checked via an assertion.",
+                "notes": "The test captured the contents of the output stream between method-a and method-b in a local variable result, and then it checked for the value of the variable result after the call to method-b. Because DSI delayed the call to method-a, there was no output from the subprocess at the point at which result was captured. Hence, the test failed. The test isn't failing because of an interaction between method-a and method-b, but moreso because method-a was not called when it was supposed to be (unrelated test failure?) METHOD_B_AFTER_CRITICAL_POINT"
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.LogOutputStreamTest#testStdout",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "LogOutputStreamTest.java:73",
+                        "method-b-site": "LogOutputStreamTest.java:74",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a most likely got replaced with the default value 0, which is the value that method-a is expected to return. (not setting to expected value because the return value of method-a itself isn't checked via an assertion, but the return value of method-b, which performs a check on the return value of method-a, is checked via an assertion.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:104",
+                        "method-b-site": "DefaultExecutorTest.java:106",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a most likely got replaced with the default value 0, which is the value that method-a is expected to return. (not setting to expected value because the return value of method-a itself isn't checked via an assertion, but the return value of method-b, which performs a check on the return value of method-a, is checked via an assertion.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "use cases in all 3 tests; there's no scenario in which method-b can be called before method-a because method-b is intended to operate on the return value of method-a.",
+        "notes": "method-a performs a synchronous execution of a subprocess running the intended script, and method-b checks the exit value of the subprocess to check whether it failed, and that exit value is the return value of method-a. DECISION: this is a spurious-spec because both method-a and method-b are public methods, and one can safely call method-b without calling method-a beforehand. I'd say this is a case of CONNECTION_DOES_NOT_NECESSITATE_ORDERING, given the use case. Also, note that the only implementation of method-a calls the only implementation of method-b, so this could also be a NBP. ORDER_OF_ASSERTIONS influences the disagreement; the unknown test would have not resulted in stage-0-failure if DefaultExecutorTest.java:105 was moved past the call to method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-16-54",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2022-02-07-12-53",
+        "project": "commons-exec",
+        "spec-id": "00323",
+        "method-a": "org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V",
+        "method-b": "org.apache.commons.exec.Executor.isFailure(I)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 18,
+        "LV-verdict-count": 5,
+        "LS-verdict-count": 8,
+        "U-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls-u/00323.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsync",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:81",
+                        "method-b-site": "DefaultExecutorTest.java:183",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test fails because it expected some output via the OutputStream object baos, but the output from the subprocess didn't get propagated because method-a wasn't called before DefaultExecutor.executeInternal(). DSI interprets this as a stage-3-complete likely valid spec because the assertion that checks the content of baos is *after* method-b and it fails. That assertion failure would have happened as long as method-a was not called. METHOD_B_AFTER_CRITICAL_POINT"
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithError",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:81",
+                        "method-b-site": "DefaultExecutorTest.java:138",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "This test is weak for checking specs containing method-a because it doesn't check for the output from the subprocess."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:81",
+                        "method-b-site": "DefaultExecutorTest.java:106",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test fails because it expected some output via the OutputStream object baos, but the output from the subprocess didn't get propagated because method-a wasn't called before DefaultExecutor.executeInternal(). DSI interprets this as a stage-3-complete likely valid spec because the assertion that checks the content of baos is *before* and it fails. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithError",
+        "notes": "The only implementation of method-a is a pure setter to the field variable DefaultExecutor.streamHandler. The only implementation of method-b checks whether the given exit value indicates that the corresponding process has failed by using DefaultExecutor.exitValues. Since these two field variables are not directly related, this is a spurious spec. GOOD_EXAMPLE FALSE_POSITIVE ORDER_OF_ASSERTIONS influences the disagreement here; if DefaultExecutorTest.java:105 was moved past DefaultExecutorTest.java:106, then the unknown test would not have resulted in stage-0-failure.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-07-13-04",
+        "inspection-time-in-minutes": 11
+      }
+]

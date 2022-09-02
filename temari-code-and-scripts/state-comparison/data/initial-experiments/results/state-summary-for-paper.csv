@@ -1,0 +1,8 @@
+project,DSI-#accurate,DSI+state-#accurate,total,DSI-%accuracy,DSI+state-%accuracy
+commons-codec,83,209,263,31.56,79.47
+commons-exec,94,168,251,37.45,66.93
+commons-fileupload,80,176,231,34.63,76.19
+commons-validator,278,512,553,50.27,92.59
+joda-convert,41,88,162,25.31,54.32
+kamranzafar.jtar,3,7,10,30.0,70.0
+TOTAL,579,1160,1470,39.39,78.91

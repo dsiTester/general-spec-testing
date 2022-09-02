@@ -1,0 +1,15 @@
+1
+s0
+1
+s0
+10
+s0 s1 org.apache.commons.codec.language.DoubleMetaphone.isSlavoGermanic(Ljava/lang/String;)Z
+s2 s2 org.apache.commons.codec.language.DoubleMetaphone.getMaxCodeLen()I
+s5_s4 s5_s4 org.apache.commons.codec.language.DoubleMetaphone.handleAEIOUY(Lorg/apache/commons/codec/language/DoubleMetaphone$DoubleMetaphoneResult;I)I
+s2 s3 org.apache.commons.codec.language.DoubleMetaphone.handleC(Ljava/lang/String;Lorg/apache/commons/codec/language/DoubleMetaphone$DoubleMetaphoneResult;I)I
+s5_s4 s5_s4 org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendPrimary(C)V
+s5_s4 s5_s4 org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendAlternate(C)V
+s3 s5_s4 org.apache.commons.codec.language.DoubleMetaphone.conditionC0(Ljava/lang/String;I)Z
+s5_s4 s0 org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.getPrimary()Ljava/lang/String;
+s1 s2 org.apache.commons.codec.language.DoubleMetaphone.isSilentStart(Ljava/lang/String;)Z
+s5_s4 s5_s4 org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.append(C)V

@@ -1,0 +1,218 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/product.schema.json",
+    "title": "Spec Inspection Details",
+    "description": "Details about a spec that we inspected.",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "inspection-start-time": {
+                "description": "Time that the inspector started looking",
+                "type": "string",
+                "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}"
+            },
+            "project": {
+                "description": "The name of the project from which the spec being inspected was mined",
+                "type": "string"
+            },
+            "spec-id": {
+                "description": "The unique identifier for the spec within the project",
+                "type": "string"
+            },
+            "method-a": {
+                "description": "The first method in the spec",
+                "type": "string"
+            },
+            "method-b": {
+                "description": "The second method in the spec",
+                "type": "string"
+            },
+            "method-a-return-type": {
+                "description": "The return type of the first method in the spec",
+                "type": "string"
+            },
+            "method-b-return-type": {
+                "description": "The return type of the second method in the spec",
+                "type": "string"
+            },
+            "same-class": {
+                "description": "Are 'a' and 'b' from the same class?",
+                "enum": [
+                    "yes",
+                    "no",
+                    "inheritance"
+                ]
+            },
+            "all-tests-mined": {
+                "description": "Did all-tests mine the spec?",
+                "type": "boolean"
+            },
+            "test-classes-mine-count": {
+                "description": "The number of unique test classes that mined the spec",
+                "type": "integer",
+                "minimum": 0
+            },
+            "test-methods-mine-count": {
+                "description": "The number of unique test classes that mined the spec",
+                "type": "integer",
+                "minimum": 0
+            },
+            "is-DSI+-true-spec": {
+                "description": "Did DSI+ categorize as a likely valid spec?",
+                "type": "boolean"
+            },
+            "code-snippets-file": {
+                "description": "Relative path to the .java file with relevant inspected code",
+                "type": "string",
+                "pattern": ".[.]java$"
+            },
+            "inspected-cases": {
+                "description": "Records of tests that we considered during inspection",
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "test": {
+                            "description": "Fully-qualified name of test, or 'all-tests'",
+                            "type": "string"
+                        },
+                        "stage": {
+                            "description": "DSI stage that the test assigned to the spec",
+                            "enum": [
+                                "stage-1-f2-precond",
+                                "stage-2-f1-postcond",
+                                "stage-3-complete"
+                            ]
+                        },
+                        "exception-or-assertion": {
+                            "description": "Did DSI throw an exception or a test assertion fail?",
+                            "enum": [
+                                "assertion",
+                                "exception",
+                                "NA"
+                            ]
+                        },
+                        "invocation-info": {
+                            "description": "Info about 'a' and 'b' invocations while running this test",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "method-a-site": {
+                                        "description": "Call site of 'a'",
+                                        "type": "string",
+                                        "pattern": ".[.]java:[0-9]+"
+                                    },
+                                    "method-b-site": {
+                                        "description": "Call site of 'b'",
+                                        "type": "string",
+                                        "pattern": ".[.]java:[0-9]+"
+                                    },
+                                    "invocation-count": {
+                                        "description": "Number of times the combination of 'a' and 'b' sites were called",
+                                        "type": "integer",
+                                        "minimum": 1
+                                    }
+                                },
+                                "required": [
+                                    "method-a-site",
+                                    "method-b-site",
+                                    "invocation-count"
+                                ]
+                            }
+                        },
+                        "perturbation-count": {
+                            "description": "Number of DSI perturbations",
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "comment-on-return-values": {
+                            "description": "Observations about how DSI handled any return values and the implications.",
+                            "type": "string"
+                        },
+                        "notes": {
+                            "description": "Miscellaneous comments.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "test",
+                        "stage",
+                        "exception-or-assertion",
+                        "invocation-info",
+                        "perturbation-count",
+                        "comment-on-return-values"
+                    ]
+                }
+            },
+            "verdict": {
+                "description": "Inspector's conclusion on whether the spec is true or spurious.",
+                "enum": [
+                    "true-spec",
+                    "spurious-spec",
+                    "unknown",
+                    "no-break-pass (direct)",
+                    "no-break-pass (indirect)",
+                    "sometimes-true-spec"
+                ]
+            },
+            "spec-type": {
+                "description": "The relationship between 'a' and 'b'.",
+                "enum": [
+                    "precondition",
+                    "postcondition",
+                    "both",
+                    "NA",
+                    "a-until-b"
+                ]
+            },
+            "validating-test-file": {
+                "description": "A test that can be manually run to validate the manual findings about this spec.",
+                "type": "string"
+            },
+            "notes": {
+                "description": "Miscellaneous observations about the spec.",
+                "type": "string"
+            },
+            "part-of-bigger-spec": {
+                "description": "Is this spec part of a bigger spec?",
+                "enum": [
+                    "yes",
+                    "no",
+                    "tbd"
+                ]
+            },
+            "inspection-end-time": {
+                "description": "When the inspector finished looking at the spec.",
+                "type": "string",
+                "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}"
+            },
+            "inspection-time-in-minutes": {
+                "description": "Difference between inspection start and end times",
+                "type": "integer",
+                "minimum": 1
+            }
+        },
+        "required": [
+            "inspection-start-time",
+            "project",
+            "spec-id",
+            "method-a",
+            "method-b",
+            "method-a-return-type",
+            "method-b-return-type",
+            "same-class",
+            "all-tests-mined",
+            "test-classes-mine-count",
+            "test-methods-mine-count",
+            "inspected-cases",
+            "verdict",
+            "spec-type",
+            "validating-test-file",
+            "part-of-bigger-spec",
+            "inspection-end-time",
+            "inspection-time-in-minutes"
+        ]
+    }
+}

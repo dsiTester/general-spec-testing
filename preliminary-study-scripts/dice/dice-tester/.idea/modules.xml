@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/plugins/build-support-test/build-support-test.iml" filepath="$PROJECT_DIR$/plugins/build-support-test/build-support-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../evosuite.iml" filepath="$PROJECT_DIR$/../evosuite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client/evosuite-client.iml" filepath="$PROJECT_DIR$/client/evosuite-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generated/evosuite-generated.iml" filepath="$PROJECT_DIR$/generated/evosuite-generated.iml" />
+      <module fileurl="file://$PROJECT_DIR$/master/evosuite-master.iml" filepath="$PROJECT_DIR$/master/evosuite-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/maven/evosuite-maven-plugin.iml" filepath="$PROJECT_DIR$/plugins/maven/evosuite-maven-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/maven-test/evosuite-maven-plugin-test.iml" filepath="$PROJECT_DIR$/plugins/maven-test/evosuite-maven-plugin-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/evosuite-plugins.iml" filepath="$PROJECT_DIR$/plugins/evosuite-plugins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/runtime/evosuite-runtime.iml" filepath="$PROJECT_DIR$/runtime/evosuite-runtime.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shaded/evosuite-shaded.iml" filepath="$PROJECT_DIR$/shaded/evosuite-shaded.iml" />
+      <module fileurl="file://$PROJECT_DIR$/standalone_runtime/evosuite-standalone-runtime.iml" filepath="$PROJECT_DIR$/standalone_runtime/evosuite-standalone-runtime.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,688 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-02-02-21-54",
+        "project": "commons-exec",
+        "spec-id": "00014",
+        "method-a": "org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "java.lang.String[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00014.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.CommandLineTest#testComplexAddArguments1",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLineTest.java:328",
+                        "method-b-site": "CommandLine.java:299",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": "The test failed because the caller of method-b (CommandLine.toString()) returned an incorrect value due to method-a not being called at that point. Specifically speaking, the critical point at which method-a *needs* to be called is CommandLine.java:297, because the String[] result will be allocated with an incorrect size if method-a is not called by then. But since method-b uses the field variable CommandLine.arguments to populate its return value, there is a precondition relationship between method-a and method-b. METHOD_B_AFTER_CRITICAL_POINT"
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.CommandLineTest#testComplexAddArguments1",
+        "notes": "method-a adds a list of arguments to the field variable CommandLine.arguments, and method-b retrieves the list of arguments using the field variable CommandLine.arguments. Hence, if method-a wasn't called before method-b, an argument would be missing from the script.",
+        "findings": "maybe sts? Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-02-02-22-03",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-02-02-22-03",
+        "project": "commons-exec",
+        "spec-id": "00015",
+        "method-a": "org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "java.lang.String[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00015.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.CommandLineTest#testComplexAddArguments2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLineTest.java:341",
+                        "method-b-site": "CommandLine.java:299",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED",
+                "notes": "The test failed because the caller of method-b (CommandLine.toString()) returned an incorrect value due to method-a not being called at that point. Specifically speaking, the critical point at which method-a *needs* to be called is CommandLine.java:297, because the String[] result will be allocated with an incorrect size if method-a is not called by then. But since method-b uses the field variable CommandLine.arguments to populate its return value, there is a precondition relationship between method-a and method-b. METHOD_B_AFTER_CRITICAL_POINT"
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.CommandLineTest#testComplexAddArguments2",
+        "notes": "method-a adds a list of arguments to the field variable CommandLine.arguments, and method-b retrieves the list of arguments using the field variable CommandLine.arguments. Hence, if method-a wasn't called before method-b, an argument would be missing from the script.",
+        "findings": "maybe sts? Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-02-02-22-09",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-02-02-22-09",
+        "project": "commons-exec",
+        "spec-id": "00016",
+        "method-a": "org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00016.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.CommandLineTest#testComplexAddArguments2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLine.java:212",
+                        "method-b-site": "CommandLine.java:298",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": "The test failed because the caller of method-b (CommandLine.toStrings()) returned an incorrect value due to method-a not being called at that point. Specifically speaking, the critical point at which method-a *needs* to be called is CommandLine.java:297, because the String[] result will be allocated with an incorrect size if method-a is not called by then. METHOD_B_AFTER_CRITICAL_POINT"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.CommandLineTest#testComplexAddArguments2 with modification proposed in snippet",
+        "notes": "method-a adds a list of arguments to the field variable CommandLine.arguments, and method-b retrieves the executable (which is not related to the arguments). The test failed because the caller of method-b (CommandLine.toStrings()) returned an incorrect value due to method-a not being called at the critical point (CommandLine.java:287); it is not because of a possible relationship between method-a and method-b.",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-02-02-22-16",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-02-02-22-16",
+        "project": "commons-exec",
+        "spec-id": "00017",
+        "method-a": "org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00017.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.CommandLineTest#testComplexAddArguments2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLineTest.java:341",
+                        "method-b-site": "CommandLine.java:298",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": "The test failed because the caller of method-b (CommandLine.toStrings()) returned an incorrect value due to method-a not being called at that point. Specifically speaking, the critical point at which method-a *needs* to be called is CommandLine.java:297, because the String[] result will be allocated with an incorrect size if method-a is not called by then. METHOD_B_AFTER_CRITICAL_POINT"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.CommandLineTest#testComplexAddArguments2 with modification proposed in snippet",
+        "notes": "method-a adds a list of arguments to the field variable CommandLine.arguments, and method-b retrieves the executable (which is not related to the arguments). The test failed because the caller of method-b (CommandLine.toStrings()) returned an incorrect value due to method-a not being called at the critical point (CommandLine.java:287); it is not because of a possible relationship between method-a and method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-02-22-18",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-02-02-22-18",
+        "project": "commons-exec",
+        "spec-id": "00018",
+        "method-a": "org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "java.lang.String[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00018.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.CommandLineTest#testComplexAddArguments2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLineTest.java:342",
+                        "method-b-site": "CommandLineTest.java:342",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": "The test failed because method-b (CommandLine.toStrings()) returned an incorrect value due to method-a not being called at that point. Specifically speaking, the critical point at which method-a *needs* to be called is CommandLine.java:297, because the String[] result will be allocated with an incorrect size if method-a is not called by then."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.CommandLineTest#testComplexAddArguments2",
+        "notes": "method-a adds a list of arguments to the field variable CommandLine.arguments, and method-b returns the string representation of the command, and retrieves the list of arguments using the field variable CommandLine.arguments in the process. Therefore, method-a needs to be called before method-b is called.",
+        "findings": "maybe sts? Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-02-02-22-22",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2022-02-02-22-22",
+        "project": "commons-exec",
+        "spec-id": "00019",
+        "method-a": "org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "java.lang.String[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00019.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.CommandLineTest#testComplexAddArguments2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLineTest.java:341",
+                        "method-b-site": "CommandLineTest.java:342",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": "The test failed because method-b (CommandLine.toStrings()) returned an incorrect value due to method-a not being called at that point. Specifically speaking, the critical point at which method-a *needs* to be called is CommandLine.java:297, because the String[] result will be allocated with an incorrect size if method-a is not called by then."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.CommandLineTest#testComplexAddArguments2",
+        "notes": "method-a adds a list of arguments to the field variable CommandLine.arguments, and method-b returns the string representation of the command, and retrieves the list of arguments using the field variable CommandLine.arguments in the process. Therefore, method-a needs to be called before method-b is called.",
+        "findings": "maybe sts? Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-02-02-22-25",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2022-02-02-12-08",
+        "project": "commons-exec",
+        "spec-id": "00068",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;",
+        "method-a-return-type": "java.lang.Thread",
+        "method-b-return-type": "java.lang.Thread",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 13,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00068.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsync",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:222",
+                        "method-b-site": "DefaultExecutor.java:223",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION - NullPointerException at DefaultExecutor.java:223",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsync",
+        "notes": "method-a creates a new Thread object with the specified Runnable, and its return value (in DefaultExecutor.java:222) gets set to the field variable DefaultExecutor.executorThread. method-b is a 1-line naive getter that retrieves the field variable DefaultExecutor.executorThread (ONE_STATELESS_METHOD). Hence, this is a true spec.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-04-12-16",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2022-02-05-04-18",
+        "project": "commons-exec",
+        "spec-id": "00127",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.setExitValues([I)V",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00127.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithCustomExitValue1",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:229",
+                        "method-b-site": "DefaultExecutor.java:175",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "DefaultExecutor.isFailure(), which is called from method-b, is serving as a guard to the ExecuteException that was thrown in the DSI experiment; if DefaultExecutor.isFailure() returns true, then the Exception is thrown. In the DSI experiment, DefaultExecutor.isFailure() returns true because the valid exit value (that the process exited with) that was supposed to be set by method-a as valid was not set. Hence, the ExecuteException was thrown."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithCustomExitValue1 shows the relationship between method-a and method-b",
+        "notes": "method-a modifies the field variable DefaultExecutor.exitValues to be the list that the user passed in; any value in the DefaultExecutor.exitValues array is an exit code that suggests that the process/script ran successfully. method-b actually runs the process and checks that the exit code of the process indicated that the process ran succesfully or not, and then throws an exception if it seems that the process did not exit successfully. DECISION: This seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, given that the user may not want/need to set exit values other than zero to be valid in the general case (method-a is simply an extra option for the user). Moreover, setting an exit value other than the default to be valid may actually lead to faults, given that using only the default as the only valid exit value is a well-established convention.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-05-04-30",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2022-02-05-04-30",
+        "project": "commons-exec",
+        "spec-id": "00128",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.setExitValues([I)V",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00128.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithCustomExitValue1",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:229",
+                        "method-b-site": "DefaultExecutor.java:161",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "DefaultExecutor.isFailure(), which is indirectly called from method-b, is serving as a guard to the ExecuteException that was thrown in the DSI experiment; if DefaultExecutor.isFailure() returns true, then the Exception is thrown. In the DSI experiment, DefaultExecutor.isFailure() returns true because the valid exit value (that the process exited with) that was supposed to be set by method-a as valid was not set. Hence, the ExecuteException was thrown."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithCustomExitValue1 shows the connection between method-a and method-b",
+        "notes": "method-a modifies the field variable DefaultExecutor.exitValues to be the list that the user passed in; any value in the DefaultExecutor.exitValues array is an exit code that suggests that the process/script ran successfully. method-b actually runs the process and checks that the exit code of the process indicated that the process ran succesfully or not, and then throws an exception if it seems that the process did not exit successfully. DECISION: This seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, given that the user may not want/need to set exit values other than zero to be valid in the general case (method-a is simply an extra option for the user). Moreover, setting an exit value other than the default to be valid may actually lead to faults, given that using only the default as the only valid exit value is a well-established convention.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-05-04-32",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2022-02-05-13-11",
+        "project": "commons-exec",
+        "spec-id": "00132",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.setExitValues([I)V",
+        "method-b": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00132.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithCustomExitValue1",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:229",
+                        "method-b-site": "DefaultExecutorTest.java:442",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "DefaultExecutor.isFailure(), which is indirectly called from method-b, is serving as a guard to the ExecuteException that was thrown in the DSI experiment; if DefaultExecutor.isFailure() returns true, then the Exception is thrown. In the DSI experiment, DefaultExecutor.isFailure() returns true because the valid exit value (that the process exited with) that was supposed to be set by method-a as valid was not set. Hence, the ExecuteException was thrown."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithCustomExitValue1 shows the connection between method-a and method-b",
+        "notes": "method-a modifies the field variable DefaultExecutor.exitValues to be the list that the user passed in (not a pure setter); any value in the DefaultExecutor.exitValues array is an exit code that suggests that the process/script ran successfully. method-b actually runs the process and checks that the exit code of the process indicated that the process ran succesfully or not, and then throws an exception if it seems that the process did not exit successfully. DECISION: This seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, given that the user may not want/need to set exit values other than zero to be valid in the general case (method-a is simply an extra option for the user). Moreover, setting an exit value other than the default to be valid may actually lead to faults, given that using only the default as the only valid exit value is a well-established convention. Both method-a and method-b are public, and one can safely call method-a after method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-05-13-17",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2022-02-06-01-42",
+        "project": "commons-exec",
+        "spec-id": "00207",
+        "method-a": "org.apache.commons.exec.ExecuteWatchdog.destroyProcess()V",
+        "method-b": "org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 5,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00207.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:518",
+                        "method-b-site": "DefaultExecutorTest.java:519",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The assertion fails because method-b's return value was supposed to reflect the state changes brought by method-a, but since method-a was not called at that point, the return value of method-b was false, instead of true (which the assertion was expecting)."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+        "notes": "In its computations, method-a can set the field variable ExecuteWatchdog.killedProcess to true (method-a sets this feild variable to true after killing the process), and method-b is a 1-line getter to that field variable (ONE_STATELESS_METHOD). It seems like the test uses method-b to check via an assertion whether the call to method-a actually killed the process, or whether the process completed before the timeout. It seems reasonable to check via method-b once the process is terminated via method-a, but the process and the watchdog can terminate without method-a having been called, so I'm not entirely sure if this is a true spec. DECISION: `b` is public and one can call it at anytime",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-01-52",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2022-02-06-16-09",
+        "project": "commons-exec",
+        "spec-id": "00260",
+        "method-a": "org.apache.commons.exec.ExecuteWatchdog.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V",
+        "method-b": "org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 5,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00260.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ExecuteWatchdog.java:153",
+                        "method-b-site": "DefaultExecutorTest.java:519",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "method-b was supposed to return true (checked by an assertTrue()), but it didn't because method-a wasn't called."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+        "notes": "ONE_STATELESS_METHOD: method-b is a 1-line naive getter for the field variable ExecuteWatchdog.killedProcess. method-a does some postprocessing after the timeout of the watchdog is met; it can set ExecuteWatchdog.killedProcess to true. So, it seems fair that one ought to call method-b only after method-a. However, note that method-a may not always be called; the process can exit normally before the timeout is reached, in which case ExecuteWatchdog.stop() is called. DECISION: `b` is public and one can call it at anytime CONNECTION_DOES_NOT_NECESSITATE_ORDERING",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-16-14",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-02-06-20-55",
+        "project": "commons-exec",
+        "spec-id": "00288",
+        "method-a": "org.apache.commons.exec.Executor.setExitValue(I)V",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00288.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithCustomExitValue1",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:440",
+                        "method-b-site": "DefaultExecutor.java:175",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test crashes because method-a was supposed to set what it expects the process's exit value to be as valid, but since method-a was delayed and not called by the time that method-b was called, method-b took the exit value as invalid and threw an exception instead."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithCustomExitValue1 shows the relationship between method-a and method-b",
+        "notes": "The only implementation of method-a modifies the field variable DefaultExecutor.exitValues (the list of exit values signalling a valid run) to include the argument int value (it is not a pure setter). method-b executes the subprocess and throws an exception if the subprocess's exit value was not in the list DefaultExecutor.exitValues. DECISION: This seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, given that the user may not want/need to set exit values other than zero to be valid in the general case (method-a is simply an extra option for the user). Moreover, setting an exit value other than the default to be valid may actually lead to faults, given that using only the default as the only valid exit value is a well-established convention.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-21-06",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-02-06-21-06",
+        "project": "commons-exec",
+        "spec-id": "00289",
+        "method-a": "org.apache.commons.exec.Executor.setExitValue(I)V",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00289.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithCustomExitValue1",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:440",
+                        "method-b-site": "DefaultExecutor.java:161",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test crashes because method-a was supposed to set what it expects the process's exit value to be as valid, but since method-a was delayed and not called by the time that method-b was called, method-b took the exit value as invalid and threw an exception instead."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithCustomExitValue1 shows the connection between method-a and method-b",
+        "notes": "The only implementation of method-a modifies the field variable DefaultExecutor.exitValues (the list of exit values signalling a valid run) to include the argument int value (it is not a pure setter). method-b executes the subprocess and throws an exception if the subprocess's exit value was not in the list DefaultExecutor.exitValues. DECISION: This seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, given that the user may not want/need to set exit values other than zero to be valid in the general case (method-a is simply an extra option for the user). Moreover, setting an exit value other than the default to be valid may actually lead to faults, given that using only the default as the only valid exit value is a well-established convention.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-21-09",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2022-02-06-21-41",
+        "project": "commons-exec",
+        "spec-id": "00294",
+        "method-a": "org.apache.commons.exec.Executor.setExitValue(I)V",
+        "method-b": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00294.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithCustomExitValue1",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:440",
+                        "method-b-site": "DefaultExecutorTest.java:442",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test crashes because method-a was supposed to set what it expects the process's exit value to be as valid, but since method-a was delayed and not called by the time that method-b was called, method-b took the exit value as invalid and threw an exception instead."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithCustomExitValue1 shows the connection between method-a and method-b",
+        "notes": "The only implementation of method-a modifies the field variable DefaultExecutor.exitValues (the list of exit values signalling a valid run) to include the argument int value (it is not a pure setter). The only implementation of method-b executes the subprocess and throws an exception if the subprocess's exit value was not in the list DefaultExecutor.exitValues. DECISION: This seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, given that the user may not want/need to set exit values other than zero to be valid in the general case (method-a is simply an extra option for the user). Moreover, setting an exit value other than the default to be valid may actually lead to faults, given that using only the default as the only valid exit value is a well-established convention.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-21-44",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 16,
+        "inspection-start-time": "2022-02-06-12-28",
+        "project": "commons-exec",
+        "spec-id": "00320",
+        "method-a": "org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V",
+        "method-b": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00320.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:81",
+                        "method-b-site": "DefaultExecutorTest.java:692",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test fails because it expected some output via the OutputStream object baos, but the output from the subprocess didn't get propagated because method-a wasn't called before DefaultExecutor.executeInternal(), which is called from method-b."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+        "notes": "ONE_PURE_SETTER: The only implementation of method-a is a pure setter for the field variable DefaultExecutor.streamHandler. The only implementation of method-b passes into DefaultExecutor.executeInternal() as a final argument streams DefaultExecutor.streamHandler, and uses streams to connect the intended input/output/error streams between the parent and child processes. Hence, one *needs* to call method-a before method-b if it wanted to set a different ExecuteStreamHandler object rather than the preset one (new PumpStreamHandler(), which redirects the subprocess output to StdOut), so this is a SOMETIMES_TRUE_SPEC. CHECKS_MISDIRECTED_OUTPUT. Also SUPPLEMENTARY_EVIDENCE_BY_JAVADOC: \"If you don't provide a proper stream handler the executed process might block when writing to stdout and/or stderr (see {@link java.lang.Process Process}).\"  DECISION `a` is public and can be called at anytime. If `a` is not called, a default streamhandler is used that is based on System.err and System.out; so calling `a` before `b` is not necessary CHECKS_MISDIRECTED_OUTPUT",
+        "findings": "One could *potentially* encode this as a JavaMOP spec where - if an ExecuteStreamHandler object is initialized in somewhere that is not the constructor of DefaultExecutor, then method-a ought to be called before method-b. However, I'm not sure whether this is too specific that JavaMOP would work without resulting in too many FPs.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-07-12-35",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 17,
+        "inspection-start-time": "2022-02-07-16-28",
+        "project": "commons-exec",
+        "spec-id": "00348",
+        "method-a": "org.apache.commons.exec.Executor.setWorkingDirectory(Ljava/io/File;)V",
+        "method-b": "org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.io.File",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00348.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithWorkingDirectory",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:114",
+                        "method-b-site": "DefaultExecutorTest.java:118",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test failed because method-a was supposed to set DefaultExecutor.workingDirectory to \"./target\", which was supposed to be method-b's return value, but since method-a wasn't called by that point, method-b returned the default value of DefaultExecutor.workingDirectory set by the constructor instead."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithWorkingDirectory shows the connection between method-a and method-b.",
+        "notes": "ONE_PURE_SETTER/ONE_STATELESS_METHOD: Pretty classic setter-getter relationship for the field variable DefaultExecutor.workingDirectory. The constructor of DefaultExecutor sets the field variable DefaultExecutor.workingDirectory to the current directory, so method-a would only be called if the user wanted the process to run on a different directory. Since method-b can be called at any point without inducing errors due to the constructor, this is a spurious spec. This is a CONNECTION_DOES_NOT_NECESSITATE_ORDER case given the setter-getter relationship.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-07-16-34",
+        "inspection-time-in-minutes": 6
+    }
+
+]

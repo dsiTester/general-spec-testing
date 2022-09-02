@@ -1,0 +1,18 @@
+00030 org.apache.commons.exec.CommandLine.setSubstitutionMap(Ljava/util/Map;)V org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;
+00385 org.apache.commons.exec.TimeoutObserver.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V org.apache.commons.exec.ExecuteWatchdog.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V == TP
+00170 org.apache.commons.exec.ExecuteResultHandler.onProcessFailed(Lorg/apache/commons/exec/ExecuteException;)V org.apache.commons.exec.DefaultExecuteResultHandler.onProcessFailed(Lorg/apache/commons/exec/ExecuteException;)V == TP
+00007 org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine; org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;
+00079 org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I org.apache.commons.exec.Executor.isFailure(I)Z == TP
+00269 org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I org.apache.commons.exec.Executor.isFailure(I)Z == TP
+00119 org.apache.commons.exec.DefaultExecutor.isFailure(I)Z org.apache.commons.exec.Executor.isFailure(I)Z == TP
+00105 org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread; == TP
+00192 org.apache.commons.exec.ExecuteStreamHandler.stop()V org.apache.commons.exec.PumpStreamHandler.stopThread(Ljava/lang/Thread;J)V  == TP
+00104 org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V == TP
+00075 org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I org.apache.commons.exec.DefaultExecutor.getProcessDestroyer()Lorg/apache/commons/exec/ProcessDestroyer; == TP
+00208 org.apache.commons.exec.ExecuteWatchdog.destroyProcess()V org.apache.commons.exec.ExecuteWatchdog.stop()V == TP
+00016 org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine; org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;
+00017 org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine; org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;
+00102 org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread; == TP
+00092 org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I org.apache.commons.exec.Executor.isFailure(I)Z == TP
+00275 org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I org.apache.commons.exec.Executor.isFailure(I)Z == TP
+00003 org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine; org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;

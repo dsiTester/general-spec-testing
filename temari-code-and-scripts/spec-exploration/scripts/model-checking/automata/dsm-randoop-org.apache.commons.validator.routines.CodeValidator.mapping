@@ -1,0 +1,7 @@
+transition-id,method-sig
+getMinLength,org.apache.commons.validator.routines.CodeValidator.getMinLength()I
+getMaxLength,org.apache.commons.validator.routines.CodeValidator.getMaxLength()I
+isValid,org.apache.commons.validator.routines.CodeValidator.isValid(Ljava/lang/String;)Z
+getRegexValidator,org.apache.commons.validator.routines.CodeValidator.getRegexValidator()Lorg/apache/commons/validator/routines/RegexValidator;
+validate,org.apache.commons.validator.routines.CodeValidator.validate(Ljava/lang/String;)Ljava/lang/Object;
+getCheckDigit,org.apache.commons.validator.routines.CodeValidator.getCheckDigit()Lorg/apache/commons/validator/routines/checkdigit/CheckDigit;

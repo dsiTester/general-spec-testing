@@ -1,0 +1,122 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-17-20-07",
+        "project": "kamranzafar.jtar",
+        "spec-id": "00006",
+        "method-a": "org.kamranzafar.jtar.TarEntry.getName()Ljava/lang/String;",
+        "method-b": "org.kamranzafar.jtar.TarEntry.writeEntryHeader([B)V",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00006.java",
+        "inspected-cases": [
+            {
+                "test": "org.kamranzafar.jtar.JTarTest#fileEntry",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "JTarTest.java:260",
+                        "method-b-site": "JTarTest.java:264",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT, assertion included a declared value against which the return of method-a was compared",
+                "notes": "method-a was called to make an assertion, and its return value is not used again in the rest of the test"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.kamranzafar.jtar.JTarTest#fileEntry",
+        "notes": "method-a is a getter that returns a TarEntry's name, and method-b is a method that is used to write an TarEntry's header to a buffer, there is no reason one would need to get the name of the TarEntry beforehand to do this.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-20-16",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-12-18-37",
+        "project": "kamranzafar.jtar",
+        "spec-id": "00008",
+        "method-a": "org.kamranzafar.jtar.TarEntry.parseTarHeader([B)V",
+        "method-b": "org.kamranzafar.jtar.TarEntry.isDirectory()Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00008.java",
+        "inspected-cases": [
+            {
+                "test": "org.kamranzafar.jtar.JtarTest#untarTarFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TarEntry.java:44",
+                        "method-b-site": "JTarTest.java:171",
+                        "invocation-count": 6
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "STATE_RESTORED The call to isDirectory() did erroneously return false, since the delay of method-a made absent the information in the TarEntry's header that isDirectory() depends on. However, after the header was restored by the call to method-a, the procedure to deal with the case where the TarEntry did not represent a directory worked correctly since it took a substring based on the last occurence of '/' path, and the directory's path ends with a '/'."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "org.kamranzafar.jtar.DSIValidationTest#testDSI00008",
+        "notes": "SOMETIMES_TRUE_SPEC, there are ways to give the TarEntry a valid header that do not involve method-a (e.g the constructor that calls extractTarHeader), but calling isDirectory before a valid header is made is dangerous as it will always return false.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-17-19-05",
+        "inspection-time-in-minutes": 38
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-18-15-03",
+        "project": "kamranzafar.jtar",
+        "spec-id": "00011",
+        "method-a": "org.kamranzafar.jtar.TarInputStream.setDefaultSkip(Z)V",
+        "method-b": "org.kamranzafar.jtar.TarInputStream.close()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00011.java",
+        "inspected-cases": [
+            {
+                "test": "org.kamranzafar.jtar.JTarTest#untarTarFileDefaultSkip",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "JTarTest.java:109",
+                        "method-b-site": "JTarTest.java:112",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "Changing the default value of defaultSkip does not effect the ability of the test to pass, because the default skip behaviour from java.io.InputStream behaved correctly."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.kamranzafar.jtar.DSIValidationTest#testDSI00011",
+        "notes": "The overridden implementation of skip() appears to do the same thing as the description of the implementation from the Java API for InputStream.skip(), the tests that change the default value pass when the value is unchanged, although there may be efficiency benifits for changing the default value.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-15-16",
+        "inspection-time-in-minutes": 13
+    }
+]

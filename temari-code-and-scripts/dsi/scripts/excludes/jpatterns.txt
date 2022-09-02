@@ -1,0 +1,4 @@
+SingletonTest # METHODTRACER: only calls static and third party. Contains 1 test but 0/33 tests skipped.
+FlyweightTest # METHODTRACER: only calls static and third party. Contains 1 test but 0/33 tests skipped.
+SingletonEagerTest # METHODTRACER: only calls static and third party. Contains 1 test but 0/33 tests skipped.
+SingletonLazyTest # METHODTRACER: only calls static and third party. Contains 1 test but 0/33 tests skipped.

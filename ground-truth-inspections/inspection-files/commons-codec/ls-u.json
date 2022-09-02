@@ -1,0 +1,1066 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-15-22-26",
+        "project": "commons-codec",
+        "spec-id": "00324",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.decode([B)[B",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-u/00324.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:127",
+                        "method-b-site": "PercentCodec.java:259",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. Method-a will return false in the location it was called in during this execution, and DSI replaced method-a with the default value false.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:127",
+                        "method-b-site": "PercentCodecTest.java:123",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT method-a returns true, and the subsequent computation is based on a conditional checking for the return value of method-a. By replacing the return value of method-a with false, DSI corrupted the state and subsequently made the test fail before method-b was even called.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+        "notes": "method-a simply checks whether the input byte[] contains a space character, and method-b decodes the input byte[] object - ONE_STATELESS_METHOD. The assertion failed in the unknown case because DSI corrupted the state (control flow) by replacing method-a with the wrong value. However, that doesn't necessitate that there is a relationship between method-a and method-b. Moreover, observation of the code snippets show that method-a is a stateless method that simply checks whether the input contains a space, and method-b isn't dependent on that operation.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-22-43",
+        "inspection-time-in-minutes": 17
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-15-22-56",
+        "project": "commons-codec",
+        "spec-id": "00326",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LS-verdict-count": 2,
+        "U-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-u/00326.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:127",
+                        "method-b-site": "PercentCodec.java:196",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. Method-a will return false in the location it was called in this execution, and DSI replaced method-a with the default value false.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:127",
+                        "method-b-site": "PercentCodec.java:196",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT method-a returns true, and the subsequent computation is based on a conditional checking for the return value of method-a. By replacing the return value of method-a with false, DSI corrupted the state and subsequently made the assertion fail before method-b was even called.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+        "notes": "method-a checks whether its input byte[] object contains a byte representing a space character, and method-b counts the expected amount of bytes needed to store the decoding - ONE_STATELESS_METHOD. The assertion failed in the unknown case because DSI corrupted the state (control flow) by replacing method-a with the wrong value. However, that doesn't necessitate that there is a relationship between method-a and method-b. Moreover, observation of the code snippets show that method-a is a stateless method that simply checks whether the input contains a space, and method-b isn't dependent on that operation.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-23-04",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-16-03-48",
+        "project": "commons-codec",
+        "spec-id": "00344",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 2,
+        "code-snippets-file": "snippets/ls-u/00344.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithNullOrEmptyInput",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:125",
+                        "method-b-site": "PercentCodec.java:127",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. DSI most likely replaced the return value of method-a with the default int value 0. In that particular part of the test, the call to method-a would have returned 0 as well, so DSI replaced with the correct value.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:125",
+                        "method-b-site": "PercentCodec.java:127",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT DSI most likley replaced the return value of method-a with the default int value 0. BufferOverflowException was thrown because this experimentation corrupted the state so that the encoder only allocated 0 bytes, and was trying to write to a buffer of 0 bytes, causing an overflow.",
+                "notes": "GOOD_EXAMPLE? method-b was not called in this case because the boolean variable willEncode became true because of DSI's replacement value of method-a, and a call to method-b was in a short-circuit OR expression with willEncode. So, now that willEncode was true, the conditional was true even though method-b was never evaluated."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithNullOrEmptyInput",
+        "notes": "ONE_STATELESS_METHOD. Both method-a and method-b check for different properties on an input byte[] object (method-a counts the number of bytes that are necessary to store the encoding, and method-b checks whether the input byte[] object contains a space character), but other than that similarity they are unrelated.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-16-04-01",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-17-13-30",
+        "project": "commons-codec",
+        "spec-id": "00348",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I",
+        "method-a-return-type": "int",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 7,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 8,
+        "code-snippets-file": "snippets/ls-u/00348.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithNullOrEmptyInput",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:125",
+                        "method-b-site": "PercentCodec.java:196",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with the DSI default value 0? REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. No exception was thrown in this test because the encoded/decoded input was empty, so a buffer size of 0 was correct.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:125",
+                        "method-b-site": "PercentCodec.java:196",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT Most likely replaced with the DSI default value 0, which caused an allocation of 0 bytes, which caused a BufferOverflowException when the execution tried to write contents to the buffer.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithNullOrEmptyInput",
+        "notes": "UNRELATED_STATEFUL_METHODS: method-a checks the expected amount of bytes it takes to store the encoding of the input byte[] object, and method-b checks the expected amount of bytes it takes to store the decoding of the input byte[] object. It's almost like these methods are duals of each other, but that has no bearing on the order at which they are called. CONNECTION_DOES_NOT_NECESSITATE_ORDERING",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-13-44",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-01-17-16-50",
+        "project": "commons-codec",
+        "spec-id": "00359",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.decode([B)[B",
+        "method-a-return-type": "void",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LS-verdict-count": 2,
+        "U-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-u/00359.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:82",
+                        "method-b-site": "PercentCodec.java:259",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testConfigurablePercentEncoder",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:82",
+                        "method-b-site": "PercentCodecTest.java:65",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test failed because method-a was delayed past its critical point, which is the call to PercentCodec.encode(); since PercentCodec.encode() was called before method-b, the DSI experiment resulted in a stage-0-failure. METHOD_B_AFTER_CRITICAL_POINT. Also ORDER_OF_ASSERTIONS given that an assertion between method-a and method-b failed."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testConfigurablePercentEncoder",
+        "notes": "method-a accesses the field variables PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax, and modifies the field variable PercentCodec.alwaysEncodeChars, PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax (depending on the conditional). method-b returns a decoded version of the input byte[] array. From the definitions, this seems like a UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-16-56",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2022-01-17-19-36",
+        "project": "commons-codec",
+        "spec-id": "00363",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LS-verdict-count": 3,
+        "U-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-u/00363.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:82",
+                        "method-b-site": "PercentCodec.java:196",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testConfigurablePercentEncoder",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:82",
+                        "method-b-site": "PercentCodec.java:196",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test failed because method-a was delayed past its critical point, which is the call to PercentCodec.encode(); since PercentCodec.encode() was called before method-b, the DSI experiment resulted in a stage-0-failure. METHOD_B_AFTER_CRITICAL_POINT + ORDER_OF_ASSERTIONS, given that the assertEquals() between method-a and method-b failed."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testConfigurablePercentEncoder",
+        "notes": "method-a accesses the field variables PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax, and modifies the field variable PercentCodec.alwaysEncodeChars, PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax (depending on the conditional). method-b computes the expected number of bytes necessary to store the decoding of the input byte[]. From the definitions, this seems like an UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-19-42",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2022-01-18-12-22",
+        "project": "commons-codec",
+        "spec-id": "00402",
+        "method-a": "org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 3,
+        "code-snippets-file": "snippets/ls-u/00402.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testSafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodecTest.java:88",
+                        "method-b-site": "QuotedPrintableCodecTest.java:92",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI replaced the return value of method-a with the String value plain, which was the original string. While the test was checking for the encoded version of plain, the intent of the test was that the encoded version would be the same as the original; hence, the test passed.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testBasicEncodeDecode",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodecTest.java:77",
+                        "method-b-site": "QuotedPrintableCodecTest.java:81",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with the String value plain, which was the original string, but the test was trying to check whether method-a would return the encoded version of the string. Hence, the test failed.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00402",
+        "notes": "Refer to comment-on-return-values for how each test passed/failed. method-a encodes the input String into its quoted-printable form, and method-b decodes a quoted-printable string into its original form. The use cases in the tests are to ensure that the result of decoding an encoded String has the same value as the original String itself. However, since one does not necessarily need to always decode the encoded string, and one can also call method-b before method-a (as illustrated in the validating test), this is a spurious spec. CONNECTION_DOES_NOT_NECESSITATE_ORDERING?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-12-35",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2022-01-18-12-44",
+        "project": "commons-codec",
+        "spec-id": "00403",
+        "method-a": "org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 3,
+        "code-snippets-file": "snippets/ls-u/00403.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testSafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodecTest.java:88",
+                        "method-b-site": "QuotedPrintableCodec.java:493",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI replaced the return value of method-a with the String value plain, which was the original string. While the test was checking for the encoded version of plain, the intent of the test was that the encoded version would be the same as the original; hence, the test passed.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testBasicEncodeDecode",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodecTest.java:77",
+                        "method-b-site": "QuotedPrintableCodec.java:493",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with the String value plain, which was the original string, but the test was trying to check whether method-a would return the encoded version of the string. Hence, the test failed.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00402 indirectly calls method-b before method-a is called.",
+        "notes": "method-a encodes the input String into its quoted-printable form, and method-b decodes a quoted-printable string into its original form using the argument Charset. The use cases in the tests are to ensure that the result of decoding an encoded String has the same value as the original String itself. However, since one does not necessarily need to always decode the encoded string, and one can also call method-b before method-a (as illustrated in the validating test), this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-12-48",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2022-01-18-12-48",
+        "project": "commons-codec",
+        "spec-id": "00404",
+        "method-a": "org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.QuotedPrintableCodec.decode([B)[B",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 2,
+        "code-snippets-file": "snippets/ls-u/00404.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testSafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodecTest.java:88",
+                        "method-b-site": "QuotedPrintableCodec.java:455",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI replaced the return value of method-a with the String value plain, which was the original string. While the test was checking for the encoded version of plain, the intent of the test was that the encoded version would be the same as the original; hence, the test passed.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testBasicEncodeDecode",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodecTest.java:77",
+                        "method-b-site": "QuotedPrintableCodec.java:455",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with the String value plain, which was the original string, but the test was trying to check whether method-a would return the encoded version of the string. Hence, the test failed.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00402 indirectly calls method-b before method-a is called.",
+        "notes": "method-a encodes the input String into its quoted-printable form, and method-b decodes the argument byte[]. The use cases in the tests are to ensure that the result of decoding an encoded String has the same value as the original String itself. However, since one does not necessarily need to always decode the encoded string, and one can also call method-b before method-a (as illustrated in the validating-test-file), this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-12-52",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2022-01-18-13-06",
+        "project": "commons-codec",
+        "spec-id": "00408",
+        "method-a": "org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 3,
+        "code-snippets-file": "snippets/ls-u/00408.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testSafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodec.java:435",
+                        "method-b-site": "QuotedPrintableCodecTest.java:92",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI replaced the return value of method-a with the String value plain/sourceStr, which was the original string. While the test was checking for the encoded version of plain, the intent of the test was that the encoded version would be the same as the original; hence, the test passed.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testBasicEncodeDecode",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodec.java:435",
+                        "method-b-site": "QuotedPrintableCodecTest.java:81",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with String variable plain/sourceStr, which is not equal to the value that method-a was supposed to return, because method-a's return value is expected to be the encoded version of that string.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00402 calls method-b before indirectly calling method-a.",
+        "notes": "method-a encodes the input String into its quoted-printable form using the input Charset, and method-b decodes a quoted-printable string into its original form. The use cases in the tests are to ensure that the result of decoding an encoded String has the same value as the original String itself. However, since one does not necessarily need to always decode the encoded string, and one can also call method-b before method-a (as illustrated in the validating-test-file), this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-13-20",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2022-01-18-13-21",
+        "project": "commons-codec",
+        "spec-id": "00409",
+        "method-a": "org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 3,
+        "code-snippets-file": "snippets/ls-u/00409.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testSafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodec.java:435",
+                        "method-b-site": "QuotedPrintableCodec.java:493",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI replaced the return value of method-a with the String value plain/sourceStr, which was the original string. While the test was checking for the encoded version of plain, the intent of the test was that the encoded version would be the same as the original; hence, the test passed.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testBasicEncodeDecode",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodec.java:435",
+                        "method-b-site": "QuotedPrintableCodec.java:493",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with String variable plain/sourceStr, which is not equal to the value that method-a was supposed to return, because method-a's return value is expected to be the encoded version of that string.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00402 indirectly calls method-b before indirectly calling method-a.",
+        "notes": "method-a encodes the input String into its quoted-printable form using the input Charset, and method-b decodes a quoted-printable string into its original form using the input Charset. The use cases in the tests are to ensure that the result of decoding an encoded String has the same value as the original String itself. However, since one does not necessarily need to always decode the encoded string, and one can also call method-b before method-a (as illustrated in the validating-test-file), this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-13-24",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2022-01-18-13-24",
+        "project": "commons-codec",
+        "spec-id": "00410",
+        "method-a": "org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.QuotedPrintableCodec.decode([B)[B",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 2,
+        "code-snippets-file": "snippets/ls-u/00410.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testSafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodec.java:435",
+                        "method-b-site": "QuotedPrintableCodec.java:455",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI replaced the return value of method-a with the String value plain/sourceStr, which was the original string. While the test was checking for the encoded version of plain, the intent of the test was that the encoded version would be the same as the original; hence, the test passed.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QuotedPrintableCodecTest#testBasicEncodeDecode",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QuotedPrintableCodec.java:435",
+                        "method-b-site": "QuotedPrintableCodec.java:455",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with String variable plain/sourceStr, which is not equal to the value that method-a was supposed to return, because method-a's return value is expected to be the encoded version of that string.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00402 indirectly calls method-b before indirectly calling method-a.",
+        "notes": "method-a encodes the input String into its quoted-printable form using the input Charset, and method-b decodes the argument byte[] of quoted-printable characters. The use cases in the tests are to ensure that the result of decoding an encoded String has the same value as the original String itself. However, since one does not necessarily need to always decode the encoded string, and one can also call method-b before method-a (as illustrated in the validating-test-file), this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-13-27",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-01-18-18-47",
+        "project": "commons-codec",
+        "spec-id": "00430",
+        "method-a": "org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 5,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 4,
+        "code-snippets-file": "snippets/ls-u/00430.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testSafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodecTest.java:98",
+                        "method-b-site": "URLCodecTest.java:102",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI replaced the return value of method-a with the String variable plain, which was also the argument to method-a. While method-a should return the encoded version of method-a, this test checks whether the encoding is equal to the original string (because the original value didn't have any characters that need to be encoded). So, the test passed.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testBasicEncodeDecode",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodecTest.java:85",
+                        "method-b-site": "URLCodecTest.java:89",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with the String variable plain, which was also the argument to method-a. However, method-a was expected to return the encoded version of that string variable, and hence the test failed.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00430",
+        "notes": "method-a encodes the input String into its URL safe form, and method-b decodes the argument URL safe string into its original form. The use cases in the tests are to ensure that the result of decoding an encoded String has the same value as the original String itself. However, since one does not necessarily need to always decode the encoded string, and one can also call method-b before method-a (as illustrated in the validating-test-file), this is a spurious spec. CONNECTION_DOES_NOT_NECESSITATE_ORDERING GOOD_EXAMPLE this whole encode-decode sequence can be a good example of how seemingly related specs just mirror the use cases in the tests; a heuristics based on popularity would pick these as likely true specs",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-19-05",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-01-18-19-06",
+        "project": "commons-codec",
+        "spec-id": "00431",
+        "method-a": "org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 3,
+        "code-snippets-file": "snippets/ls-u/00431.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testSafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodecTest.java:98",
+                        "method-b-site": "URLCodec.java:299",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI replaced the return value of method-a with the String variable plain, which was also the argument to method-a. While method-a should return the encoded version of method-a, this test checks whether the encoding is equal to the original string (because the original value didn't have any characters that need to be encoded). So, the test passed.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testBasicEncodeDecode",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodecTest.java:85",
+                        "method-b-site": "URLCodec.java:299",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with the String variable plain, which was also the argument to method-a. However, method-a was expected to return the encoded version of that string variable, and hence the test failed.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00430 indirectly calls method-b before calling method-a.",
+        "notes": "method-a encodes the input String into its URL safe form, and method-b decodes the argument URL safe string into its original form using the argument CharSet. The use cases in the tests are to ensure that the result of decoding an encoded String has the same value as the original String itself. However, since one does not necessarily need to always decode the encoded string, and one can also call method-b before method-a (as illustrated in the validating-test-file), this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-19-10",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2022-01-18-19-10",
+        "project": "commons-codec",
+        "spec-id": "00432",
+        "method-a": "org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.URLCodec.decode([B)[B",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 3,
+        "code-snippets-file": "snippets/ls-u/00432.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testSafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodecTest.java:98",
+                        "method-b-site": "URLCodec.java:279",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI replaced the return value of method-a with the String variable plain, which was also the argument to method-a. While method-a should return the encoded version of method-a, this test checks whether the encoding is equal to the original string (because the original value didn't have any characters that need to be encoded). So, the test passed.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testBasicEncodeDecode",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodecTest.java:85",
+                        "method-b-site": "URLCodec.java:279",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with the String variable plain, which was also the argument to method-a. However, method-a was expected to return the encoded version of that string variable, and hence the test failed.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00430 indirectly calls method-b before calling method-a.",
+        "notes": "method-a encodes the input String into its URL safe form, and method-b decodes the argument byte[] of URL safe characters into its original form. The use cases in the tests are to ensure that the result of decoding an encoded String has the same value as the original String itself. However, since one does not necessarily need to always decode the encoded string, and one can also call method-b before method-a (as illustrated in the validating-test-file), this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-19-16",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 16,
+        "inspection-start-time": "2022-01-18-19-37",
+        "project": "commons-codec",
+        "spec-id": "00436",
+        "method-a": "org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 3,
+        "code-snippets-file": "snippets/ls-u/00436.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testSafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodec.java:253",
+                        "method-b-site": "URLCodecTest.java:102",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI replaced the return value of method-a with the String variable plain, which was also the argument to method-a. While method-a should return the encoded version of method-a, this test checks whether the encoding is equal to the original string (because the original value didn't have any characters that need to be encoded). So, the test passed.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testBasicEncodeDecode",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodec.java:253",
+                        "method-b-site": "URLCodecTest.java:89",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with the String variable plain, which was also the argument to method-a. However, method-a was expected to return the encoded version of that string variable, and hence the test failed.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00430 calls method-b before indirectly calling method-a.",
+        "notes": "method-a encodes the input String into its URL safe form using the input Charset, and method-b decodes the argument URL safe String into its original form. The use cases in the tests are to ensure that the result of decoding an encoded String has the same value as the original String itself. However, since one does not necessarily need to always decode the encoded string, and one can also call method-b before method-a (as illustrated in the validating-test-file), this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-19-43",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 17,
+        "inspection-start-time": "2022-01-18-19-44",
+        "project": "commons-codec",
+        "spec-id": "00437",
+        "method-a": "org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 3,
+        "code-snippets-file": "snippets/ls-u/00437.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testSafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodec.java:253",
+                        "method-b-site": "URLCodec.java:299",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI replaced the return value of method-a with the String variable plain, which was also the argument to method-a. While method-a should return the encoded version of method-a, this test checks whether the encoding is equal to the original string (because the original value didn't have any characters that need to be encoded). So, the test passed.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testBasicEncodeDecode",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodec.java:253",
+                        "method-b-site": "URLCodec.java:299",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with the String variable plain, which was also the argument to method-a. However, method-a was expected to return the encoded version of that string variable, and hence the test failed.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00430 indirectly calls method-b before indirectly calling method-a.",
+        "notes": "method-a encodes the input String into its URL safe form using the input Charset, and method-b decodes the argument URL safe String into its original form using the argument Charset. The use cases in the tests are to ensure that the result of decoding an encoded String has the same value as the original String itself. However, since one does not necessarily need to always decode the encoded string, and one can also call method-b before method-a (as illustrated in the validating-test-file), this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-19-47",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 18,
+        "inspection-start-time": "2022-01-18-19-47",
+        "project": "commons-codec",
+        "spec-id": "00438",
+        "method-a": "org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.URLCodec.decode([B)[B",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 3,
+        "code-snippets-file": "snippets/ls-u/00438.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testSafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodec.java:253",
+                        "method-b-site": "URLCodec.java:279",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI replaced the return value of method-a with the String variable plain, which was also the argument to method-a. While method-a should return the encoded version of method-a, this test checks whether the encoding is equal to the original string (because the original value didn't have any characters that need to be encoded). So, the test passed.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.URLCodecTest#testBasicEncodeDecode",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "URLCodec.java:253",
+                        "method-b-site": "URLCodec.java:279",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with the String variable plain, which was also the argument to method-a. However, method-a was expected to return the encoded version of that string variable, and hence the test failed.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00430 indirectly calls method-b before indirectly calling method-a.",
+        "notes": "method-a encodes the input String into its URL safe form using the input Charset, and method-b decodes the argument byte[] of URL safe characters into its original form. The use cases in the tests are to ensure that the result of decoding an encoded String has the same value as the original String itself. However, since one does not necessarily need to always decode the encoded string, and one can also call method-b before method-a (as illustrated in the validating-test-file), this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-19-50",
+        "inspection-time-in-minutes": 3
+    }
+
+
+]

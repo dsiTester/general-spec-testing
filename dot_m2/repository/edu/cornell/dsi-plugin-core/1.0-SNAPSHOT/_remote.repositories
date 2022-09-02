@@ -1,0 +1,5 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Wed Sep 08 02:24:37 GMT 2021
+dsi-plugin-core-1.0-SNAPSHOT.jar>=
+dsi-plugin-core-1.0-SNAPSHOT.pom>=
+dsi-plugin-core-1.0-SNAPSHOT-jar-with-dependencies.jar>=

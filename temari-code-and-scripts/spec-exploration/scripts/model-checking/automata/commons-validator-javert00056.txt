@@ -1,0 +1,11 @@
+1
+s0
+1
+s0
+6
+s0 s1 org.apache.commons.validator.ValidatorResources.getParent(Lorg/apache/commons/validator/FormSet;)Lorg/apache/commons/validator/FormSet;
+s1 s1 org.apache.commons.validator.FormSet.getType()I
+s1 s2 org.apache.commons.validator.FormSet.merge(Lorg/apache/commons/validator/FormSet;)V
+s2 s3 org.apache.commons.validator.Form.merge(Lorg/apache/commons/validator/Form;)V
+s3 s0 org.apache.commons.validator.Form.getFields()Ljava/util/List;
+s2 s2 org.apache.commons.validator.FormSet.getForms()Ljava/util/Map;

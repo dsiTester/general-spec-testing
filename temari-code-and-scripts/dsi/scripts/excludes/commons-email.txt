@@ -1,0 +1,2 @@
+DataSourceCompositeResolverTest # testResolvingFilesNonLenient interfered with allTests
+DataSourceUrlResolverTest # testResolvingHttpLenient and testResolvingHttpNonLenient interefered with allTests

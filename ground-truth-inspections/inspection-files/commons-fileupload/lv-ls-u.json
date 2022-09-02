@@ -1,0 +1,79 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2021-12-21-20-38",
+        "project": "commons-fileupload",
+        "spec-id": "00104",
+        "method-a": "org.apache.commons.fileupload2.FileItemStream.getFieldName()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase$FileItemIteratorImpl$FileItemStreamImpl.close()V",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 6,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 3,
+        "U-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-ls-u/00104.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFileUpload",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info" : [
+                    {
+                        "method-a-site" : "FileUploadBase.java:343",
+                        "method-b-site" : "FileUploadBase.java:1032",
+                        "invocation-count" : 699
+                    }
+                ],
+                "perturbation-count" : 1,
+                "comment-on-return-values" : "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. Not quite sure where the replacement value came from, but the replacement value itself is an empty string. However, it is clear that the assertion failed because the replacement value was not the value that the assertion was looking for.",
+                "notes" : ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info" : [
+                    {
+                        "method-a-site" : "FileUploadBase.java:343",
+                        "method-b-site" : "FileUploadBase.java:1032",
+                        "invocation-count" : 1
+                    }
+                ],
+                "perturbation-count" : 1,
+                "comment-on-return-values" : "REPLACEMENT_VALUE_UNCLEAR. Not quite sure what the exact replacement value was, but the test does not check for the value that is influenced upon the call to method-a.",
+                "notes" : ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimitUnknownContentLength",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info" : [
+                    {
+                        "method-a-site" : "SizesTest.java:262",
+                        "method-b-site" : "FileUploadBase.java:1032",
+                        "invocation-count" : 1
+                    }
+                ],
+                "perturbation-count" : 1,
+                "comment-on-return-values" : "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. The replacement value was request (defined in the first line of the test), and that was not equal to the value that the return value of method-a was compared against.",
+                "notes" : ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimitUnknownContentLength with modifications as proposed in snippet",
+        "notes": "DYNAMIC_DISPATCH - the method-a's class is the supertype. While method-b changes state by closing an InputStream, the field variable one can retrieve by calling method-a (fieldName - ONE_STATELESS_METHOD) is not affected by this state change.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-21-21-12",
+        "inspection-time-in-minutes": 34
+    }
+]

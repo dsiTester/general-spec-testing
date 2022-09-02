@@ -1,0 +1,8 @@
+transition-id,method-sig
+getName,org.apache.commons.validator.ValidatorAction.getName()Ljava/lang/String;
+ValidatorActioninit,org.apache.commons.validator.ValidatorAction.init()V
+readJavascriptFile,org.apache.commons.validator.ValidatorAction.readJavascriptFile(Ljava/lang/String;)Ljava/lang/String;
+generateJsFunction,org.apache.commons.validator.ValidatorAction.generateJsFunction()Ljava/lang/String;
+loadJavascriptFunction,org.apache.commons.validator.ValidatorAction.loadJavascriptFunction()V
+javascriptAlreadyLoaded,org.apache.commons.validator.ValidatorAction.javascriptAlreadyLoaded()Z
+formatJavascriptFileName,org.apache.commons.validator.ValidatorAction.formatJavascriptFileName()Ljava/lang/String;

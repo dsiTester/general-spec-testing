@@ -1,0 +1,1703 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-10-12-19",
+        "project": "commons-codec",
+        "spec-id": "00010",
+        "method-a": "org.apache.commons.codec.StringEncoderAbstractTest.createStringEncoder()Lorg/apache/commons/codec/StringEncoder;",
+        "method-b": "org.apache.commons.codec.StringEncoderAbstractTest.getStringEncoder()Lorg/apache/commons/codec/StringEncoder;",
+        "method-a-return-type": "org.apache.commons.codec.StringEncoder",
+        "method-b-return-type": "org.apache.commons.codec.StringEncoder",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 44,
+        "LV-verdict-count": 33,
+        "LS-verdict-count": 11,
+        "code-snippets-file": "snippets/lv-ls/00010.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testEncodeNull",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringEncoderAbstractTest.java:29",
+                        "method-b-site": "StringEncoderAbstractTest.java:63",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at StringEncoderAbstractTest.java:65.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testEncodeWithInvalidObject",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringEncoderAbstractTest.java:29",
+                        "method-b-site": "StringEncoderAbstractTest.java:75",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "EXPECTED_EXCEPTION - the test expects an Exception thrown, but NullPointerException is also an Exception object.",
+                "notes": "The way that this test expects an exception is very weak (and very unorthodox). The test is most likely trying to be flexible to what Exception is actually being thrown, but it ends up also allowing NullPointerException."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testEncodeNull",
+        "notes": "The calling of method-a and handling of its return value at StringEncoderAbstractTest.java:29 is necessary for method-b to not return null. Note that the caller (the declaration of StringEncoderAbstractTest.stringEncoder) of method-a is the only place where the field variable StringEncoderAbstractTest.stringEncoder can be set. NOTE THAT BOTH METHODS IN THE SPEC ARE ACTUALLY DEFINED FROM A TEST CLASS. It's most likely that our filtering mechanism missed StringEncoderAbstractTest is an abstract class, so no actual tests are from StringEncoderAbstractTest. How can we make our DSI pipeline more robust to specs like these? (POSSIBLE_DSI_BUG) Note that we want to filter out these kinds of cases even when they show correct usage patterns, because they will not be useful for clients who want to check that they are correctly using the API (clients will presumably not be using methods that are defined in test classes).",
+        "findings": "Type-f: method-b is always immediately preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-10-12-44",
+        "inspection-time-in-minutes": 25
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-10-17-38",
+        "project": "commons-codec",
+        "spec-id": "00034",
+        "method-a": "org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B",
+        "method-b": "org.apache.commons.codec.binary.Base16.isStrictDecoding()Z",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-ls/00034.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testLenientDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16.java:173",
+                        "method-b-site": "Base16.java:263",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Not sure what the replacement value is (couldn't find an immediate variables that had type byte[]), but it's clear that the replacement value is neither null (results in an NullPointerException before reaching the point of the assertion) nor an empty byte[] (results in an ArrayOutOfBoundsException before reaching the point of the assertion) from manual experimentation.",
+                "notes": "The assertion failed in the DSI experiment because the return value of Base16.decode() was an array of size 0, even though an array of size 4 was expected."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testStrictDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16.java:173",
+                        "method-b-site": "Base16.java:263",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Not sure what the replacement value is (couldn't find an immediate variables that had type byte[]), but it's clear that the replacement value is not null nor an empty byte[] from experimentation (the execution crashes much earlier due to a NullPointerException or an ArrayOutOfBoundsException.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16Test#testStrictDecoding",
+        "notes": "Interesting test because due to conditionals, method-a is called in the first invocation of Base16.decode(), and method-b is called in the second invocation of Base16.decode(). Not 100% sure about the experiment results in the validated case, but it's most likely that the test failed because of the replacement value of method-a's return value. Moreover, this spec is spurious because after manually calling method-b before method-a, the test result stayed the same.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-10-18-13",
+        "inspection-time-in-minutes": 35
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-10-23-44",
+        "project": "commons-codec",
+        "spec-id": "00054",
+        "method-a": "org.apache.commons.codec.binary.Base16InputStream.read([BII)I",
+        "method-b": "org.apache.commons.codec.binary.Base16InputStream.close()V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-ls/00054.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16InputStreamTest#testReadNull",
+                "stage": "stage-2-f1-postcond",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16InputStreamTest.java:311",
+                        "method-b-site": "Base16InputStreamTest.java:313",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED. Maybe replaced with 0?",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN."
+            },
+            {
+                "test": "org.apache.commons.codec.binary.Base16InputStreamTest#testSkipNone",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16InputStreamTest.java:387",
+                        "method-b-site": "Base16InputStreamTest.java:391",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED. Maybe replaced with 0?",
+                "notes": "Assertion failure happens because method-a was not called before the assertion, and hence the variable actualBytes was simply an array of six 0s, instead of the array values that were expected. This is a stage-3-complete because method-b in this case is effectively a do-nothing close (FilterInputStream's close() method closes FilterInputStream.in, which in this case is ByteArrayInputStream, which has a do-nothing close method)."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16InputStreamTest#testRead0",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16InputStreamTest.java:296",
+                        "method-b-site": "Base16InputStreamTest.java:298",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. The assertion checks that method-a returns 0, and DSI's default replacement value is 0.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16InputStreamTest#testSkipNone",
+        "notes": "In the use cases in these tests, method-b is a do-nothing close because Base16InputStream doesn't implement its own close() method; instead it uses FileInputStream's close() method, which simply closes the input stream that is in the field variable FileInputStream.in, and the test passes in ByteArrayInputStream, which has a do-nothing close method. In general, this is a SOMETIMES_TRUE_SPEC, in the case that the input stream used internally by Base16InputStream has a do-something close() method.",
+        "findings" : "If we can get JavaMOP to know whether the close() method called on FileItemStream.in made any changes in state, then I think we can encode this in such a way that calling method-a after method-b is OK as long as the close() method called on FileItemStream.in does not make any differences. Alternatively, we can keep a list of \"do-nothing close classes\", where if FileItemStream.in was one of the classes that were in the list, we would permit calling method-a after method-b. This will require a bit more creativity to actually create a JavaMOP spec. POTENTIAL_BIGGER_SPEC with 00054: Base16InputStream.read()I --> (NBP) method-a ==> method-b. Alternatively, since method-a is public, we can have a branched bigger spec ERE: ( Base16InputStream.read()I | method-a )* method-b",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-10-23-59",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-11-20-55",
+        "project": "commons-codec",
+        "spec-id": "00094",
+        "method-a": "org.apache.commons.codec.binary.Base32InputStream.read([BII)I",
+        "method-b": "org.apache.commons.codec.binary.Base32InputStream.close()V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-ls/00094.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testSkipNone",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32InputStreamTest.java:487",
+                        "method-b-site": "Base32InputStreamTest.java:491",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. The return value of method-a was expected to be equal to -1, but DSI replaced the return value with its default value, 0.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testRead0",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32InputStreamTest.java:409",
+                        "method-b-site": "Base32InputStreamTest.java:411",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. The return value of method-a was expected to be 0 (in an assertion), and DSI replaced the call to method-a with the default value 0.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testRead0",
+        "notes": "In the use cases in these tests, method-b is a do-nothing close because Base32InputStream doesn't implement its own close() method; instead it uses FileInputStream's close() method, which simply closes the input stream that is in the field variable FileInputStream.in, and the test passes in ByteArrayInputStream, which has a do-nothing close method. In general, this is a SOMETIMES_TRUE_SPEC, in the case that the input stream used internally by Base16InputStream has a do-something close() method. This spec is actually identical to 00054, just that the classes are different (even though method-a and method-b are defined at the same locations) via DYNAMIC_DISPATCH. DECISION: we should be able to write the spec to check the kind of input stream that is being used.",
+        "findings" : "If we can get JavaMOP to know whether the close() method called on FileItemStream.in made any changes in state, then I think we can encode this in such a way that calling method-a after method-b is OK as long as the close() method called on FileItemStream.in does not make any differences. Alternatively, we can keep a list of \"do-nothing close classes\", where if FileItemStream.in was one of the classes that were in the list, we would permit calling method-a after method-b. This will require a bit more creativity to actually create a JavaMOP spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-21-04",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-01-12-00-47",
+        "project": "commons-codec",
+        "spec-id": "00112",
+        "method-a": "org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.Base64.decode([B)[B",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 5,
+        "code-snippets-file": "snippets/lv-ls/00112.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesStrict",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:593",
+                        "method-b-site": "BCodec.java:148",
+                        "invocation-count": 5
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Somewhat like REPLACE_RETURN_WITH_EXPECTED_OUTPUT - method-a returned false in all invocations during this test; DSI replaced the return value of method-a with the default value false.",
+                "notes": "The DSI experiment resulted in a stage-1-f2-precond because the EXPECTED_EXCEPTION was thrown during the execution of method-b."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testDecodeObjects",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:593",
+                        "method-b-site": "BCodec.java:148",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Somewhat like REPLACE_RETURN_WITH_EXPECTED_OUTPUT - method-a returned false in all invocations during this test; DSI replaced the return value of method-a with the default value false.",
+                "notes": "EXPECTED_EXCEPTION, but not related to the spec."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testDecodeObjects",
+        "notes": "method-a checks whether the byte[] argument contains any characters from the alphabet, and method-b returns a decoded version of the byte[] argument. From the definitions of these two methods, this seems like a UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-01-11",
+        "inspection-time-in-minutes": 24
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2022-01-12-11-28",
+        "project": "commons-codec",
+        "spec-id": "00116",
+        "method-a": "org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.Base64.validateCharacter(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 3,
+        "code-snippets-file": "snippets/lv-ls/00116.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesStrict",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:593",
+                        "method-b-site": "Base64.java:683",
+                        "invocation-count": 3
+                    },
+                    {
+                        "method-a-site": "Base64.java:593",
+                        "method-b-site": "Base64.java:688",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. method-a returns false during the normal test execution, and DSI eplaced the return value of method-a with the default value false.",
+                "notes": "The DSI experiment resulted in stage-1-f2-precond because method-b throws the EXPECTED_EXCEPTION."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:593",
+                        "method-b-site": "Base64.java:683",
+                        "invocation-count": 3
+                    },
+                    {
+                        "method-a-site": "Base64.java:593",
+                        "method-b-site": "Base64.java:688",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. method-a returns false during the normal test execution, and DSI eplaced the return value of method-a with the default value false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+        "notes": "method-a checks whether the byte[] argument contains any characters from the alphabet. method-b performs a check on the field variable Base64.decodingPolicy and its arguments, and then throws an exception if necessary. From the definitions of these two methods, this seems like a UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-11-49",
+        "inspection-time-in-minutes": 21
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2022-01-12-23-18",
+        "project": "commons-codec",
+        "spec-id": "00158",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-b": "org.apache.commons.codec.binary.Base16.validateTrailingCharacter()V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-ls/00158.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testStrictDecoding",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "Base16.java:155",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with the default value 0 - manually checked that replacing the call to method-a with 0 had no effect on the outcome of the test.",
+                "notes": "The DSI experiment resulted in stage-1-f2-precond, but the test passed because method-b threw the EXPECTED_EXCEPTION as expected."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testLenientDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "Base16.java:155",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with the default value 0 - manually checked that replacing the call to method-a with 0 had no effect on the outcome of the test.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16Test#testLenientDecoding",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line naive getter to the field variable BaseNCodec.DEFAULT_BUFFER_SIZE. method-b performs a check on the field variable Base64.decodingPolicy and its arguments, and then throws an exception if necessary. Since the field variables that method-a and method-b use/modify are not temporally related.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-23-30",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2022-01-12-23-48",
+        "project": "commons-codec",
+        "spec-id": "00162",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-b": "org.apache.commons.codec.binary.Base64.validateCharacter(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 3,
+        "code-snippets-file": "snippets/lv-ls/00162.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesStrict",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "Base64.java:683",
+                        "invocation-count": 3
+                    },
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "Base64.java:688",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with the default value 0 - manually checked that replacing the call to method-a with 0 does not have any bearing on the outcome of the test.",
+                "notes": "The DSI experiment resulted in stage-1-f2-precond, but the test passed because method-b threw the EXPECTED_EXCEPTION as expected."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "Base64.java:683",
+                        "invocation-count": 3
+                    },
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "Base64.java:688",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with the default value 0 - manually checked that replacing the call to method-a with 0 does not have any bearing on the outcome of the test.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line naive getter to the field variable BaseNCodec.DEFAULT_BUFFER_SIZE. method-b performs a check on the field variable Base64.decodingPolicy and its arguments, and then throws an exception if necessary. Since the field variables that method-a and method-b use/modify are not temporally related.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-13-00-00",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2022-01-13-11-40",
+        "project": "commons-codec",
+        "spec-id": "00171",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodecOutputStream.eof()V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodecOutputStream.flush()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 11,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 9,
+        "code-snippets-file": "snippets/lv-ls/00171.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testBase32OutputStreamByChunk",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodecOutputStream.java:77",
+                        "method-b-site": "BaseNCodecOutputStream.java:78",
+                        "invocation-count": 3344
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16OutputStreamTest#testWriteOutOfBounds",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodecOutputStream.java:77",
+                        "method-b-site": "BaseNCodecOutputStream.java:78",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION, but not related to method-a and method-b. The test is weak against checking this spec because the code that it is testing is exceptions thrown by write()."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "postcondition",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32OutputStreamTest#testBase32OutputStreamByChunk",
+        "notes": "method-a encodes or decodes the EOF character. method-b flushes the output stream so that buffered output bytes would be written out to the stream. In order for the value added to the buffer by calling method-a to be properly output, you must call method-b after method-a.",
+        "findings": "MORE_COMPLEX_THAN_AB - this seems to me like a b*ab+ spec, rather than ab, given that method-b is a public method that can be called at any point; it's just that method-b ought to be called after method-a in order to output to disk the value encoded/decoded by method-a. POTENTIAL_BIGGER_SPEC with 00172: method-a ==> 00172-method-b --> (nbp) 00171-method-b, method-a ==> 00171-method-b. Type-a - method-a is always followed by method-b",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-13-12-14",
+        "inspection-time-in-minutes": 34
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2022-01-14-00-00",
+        "project": "commons-codec",
+        "spec-id": "00219",
+        "method-a": "org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.append(C)V",
+        "method-b": "org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.getPrimary()Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls/00219.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.DoubleMetaphoneTest#testLocaleIndependence",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DoubleMetaphone.java:269",
+                        "method-b-site": "DoubleMetaphone.java:188",
+                        "invocation-count": 6
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test failed because the state changes that should have occured by calling method-a before method-b did not happen, causing the overall output to differ from what the test expected."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.DoubleMetaphoneTest#testNTilde",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DoubleMetaphone.java:150",
+                        "method-b-site": "DoubleMetaphone.java:188",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "DoubleMetaphone.java:145",
+                        "method-b-site": "DoubleMetaphone.java:188",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Refer to findings field for why the test passed."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.language.DoubleMetaphoneTest#testLocaleIndependence",
+        "notes": "GOOD_EXAMPLE method-a calls appendPrimary() (included in snippet), which alters the state of the primary field. method-b fetches the primary field and converts it into a string, so the return value of method-b is dependent? affected by? method-a. Refer to findings field for a more interesting observation of how DSI interacted with this spec.",
+        "findings": "Very interesting case of multiple perturbations! The invalidated test was invalidated because the test was trying to check whether two conversions/encodings? will end up equal to each other. The problem is that encoding both values meant that method-a was called in two different locations (as indicated in the invocation-info and the snippet). So, DSI delayed both method-as, causing the same lack of state changes (because method-a really ought to be called before method-b), which meant that the two encodings were, in fact, equal to each other (they were most likely both \"\"/empty string). So, the test passed. IF only one perturbation happened, then the test would fail (manually checked). REVISIT: this may be a spurious spec given that method-b is a getter...",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-14-00-28",
+        "inspection-time-in-minutes": 28
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2022-01-14-11-26",
+        "project": "commons-codec",
+        "spec-id": "00237",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.cleanName(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.getFirst3Last3(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls/00237.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:132",
+                        "method-b-site": "MatchRatingApproachEncoder.java:142",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with its argument? but the argument to method-a was the argument to encode(), and not declared as a variable elsewhere. This may make sense because arguments are variables by default.",
+                "notes": "The test failed because the vowel \"I\" was not removed via removeDoubleConsonants(), but that is somewhat unrelated to this particular spec."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMYTH_to_SMYTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:132",
+                        "method-b-site": "MatchRatingApproachEncoder.java:142",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with the variable name, which is the argument to both encode() and method-a.",
+                "notes": "This test didn't fail because there were no vowels to be removed via removeDoubleConsonants(), but that is unrelated to this particular spec. In general, it seems like this test is a happy-path test, or one that simply tests that \"Y\" isn't treated as a consonant."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMYTH_to_SMYTH",
+        "notes": "method-a takes in a String argument and preprocesses it by converting all characters to upper case, replacing accented characters with their non-accented counterparts, and replacing spaces with the empty string. method-b either returns the input, or the concatenation of the first and last 3 letters of the input if the input is longer than 6 characters. The caller of both methods (encode()) passes in as argument the same variable. In terms of these two tests, method-b is simply a no-op because the input string (\"Smith\"/\"Smyth\") is less than 6 characters long. If they implicitly work on the same variable, these two specs do most likely have a temporal ordering relationship, but I don't think they do in the general case (because in some sense, they don't change state). Note that org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_HARPER_HRPR passed because the original argument was in uppercase. DECISION: either method can be called independently and in any order",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-12-05",
+        "inspection-time-in-minutes": 39
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2022-01-14-12-07",
+        "project": "commons-codec",
+        "spec-id": "00238",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.cleanName(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.isVowel(Ljava/lang/String;)Z",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls/00238.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:132",
+                        "method-b-site": "MatchRatingApproachEncoder.java:420",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with its argument? but the argument to method-a was the argument to encode(), and not declared as a variable elsewhere. This may make sense because arguments are variables by default.",
+                "notes": "The test failed because the vowel \"I\" was not removed via the caller of method-b, because 1) that part of the operation occurred before method-b, and 2) method-a isn't actually stateful.."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMYTH_to_SMYTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:132",
+                        "method-b-site": "MatchRatingApproachEncoder.java:420",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with the variable name, which is the argument to both encode() and method-a.",
+                "notes": "This test didn't fail because there were no vowels to be removed via removeDoubleConsonants() (the caller of b), but that is unrelated to this particular spec. In general, it seems like this test is a happy-path test, or one that simply tests that \"Y\" isn't treated as a consonant."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMYTH_to_SMYTH",
+        "notes": "method-a takes in a String argument and preprocesses it by converting all characters to upper case, replacing accented characters with their non-accented counterparts, and replacing spaces with the empty string. method-b returns whether the argument String is a 1-character vowel string. While method-a and the caller of method-b may possibly have an pseudo-ordering relationship, and I don't think there is a relationship between these particular two methods. ONE_STATELESS_METHOD",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-12-16",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-01-14-12-26",
+        "project": "commons-codec",
+        "spec-id": "00240",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.cleanName(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.removeDoubleConsonants(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls/00240.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:132",
+                        "method-b-site": "MatchRatingApproachEncoder.java:139",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with its argument? but the argument to method-a was the argument to encode(), and not declared as a variable elsewhere. This may make sense because arguments are variables by default.",
+                "notes": "The test failed because the vowel \"I\" was not removed via removeDoubleConsonants(), but that is somewhat unrelated to this particular spec."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMYTH_to_SMYTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:132",
+                        "method-b-site": "MatchRatingApproachEncoder.java:139",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with the variable name, which is the argument to both encode() and method-a.",
+                "notes": "This test didn't fail because there were no vowels to be removed via removeDoubleConsonants() (the caller of b), but that is unrelated to this particular spec. In general, it seems like this test is a happy-path test, or one that simply tests that \"Y\" isn't treated as a consonant."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH with MatchRatingApproachEncoder.java:139 moved before MatchRatingApproachEncoder.java:132",
+        "notes": "method-a takes in a String argument and preprocesses it by converting all characters to upper case, replacing accented characters with their non-accented counterparts, and replacing spaces with the empty string. method-b replaces all occurences of double consonant pairs in the argument String and replaces it with the single letter equivalent. Manually experimented via calling method-b before method-a and all tests passed - therefore, this is most likely a spurious spec even if both methods implicitly work on the same variable.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-12-33",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-01-14-15-15",
+        "project": "commons-codec",
+        "spec-id": "00241",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.cleanName(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.removeVowels(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls/00241.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:132",
+                        "method-b-site": "MatchRatingApproachEncoder.java:136",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with the which is the argument to both encode() and method-a. INSPECTION_TODO: clarify the previous sentence, which is broken",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_HARPER_HRPR",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:132",
+                        "method-b-site": "MatchRatingApproachEncoder.java:136",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with the which is the argument to both encode() and method-a.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+        "notes": "There is somewhat a precondition relationship between method-a and method-b, becuse method-b requires an all-uppercase input, and method-a makes the output all uppercase as part of a preprocessing step. This is why the validating test failed when DSI made the perturbation - since the input wasn't all uppercase, the vowels that should have been taken out via method-b were still kept in. On the contrary, the invalidated test passed when DSI made the perturbation because the input was already in all uppercase. However, this spec is not categorized as a true-spec for now because neither method-a nor method-b actually change state; this precondition relationship only exists when they are acting on the same input (i.e. the output of method-a is method-b). So, we'd have to think about whether this would actually be a true spec. DECISION: either method can be called in any order",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-14-15-39",
+        "inspection-time-in-minutes": 24
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2022-01-14-15-58",
+        "project": "commons-codec",
+        "spec-id": "00248",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.getMinRating(I)I",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.leftToRightThenRightToLeftProcessing(Ljava/lang/String;Ljava/lang/String;)I",
+        "method-a-return-type": "int",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 36,
+        "LV-verdict-count": 26,
+        "LS-verdict-count": 5,
+        "code-snippets-file": "snippets/lv-ls/00248.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testCompare_BRIAN_BRYAN_SuccessfullyMatched",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:253",
+                        "method-b-site": "MatchRatingApproachEncoder.java:257",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "LOSSY_REPLACEMENT - The test has an assertTrue around the caller of method-a and method-b. The caller of method-a returns a comparison between the return value of method-a and the return value of method-b. DSI replaced the return value of method-a with the variable sumLength, which **happened** in this test to be a value that would make the comparison false.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testCompare_SAM_SAMUEL_SuccessfullyMatched",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:253",
+                        "method-b-site": "MatchRatingApproachEncoder.java:257",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The test has an assertTrue around the caller of method-a and method-b. The caller of method-a returns a comparison between the return value of method-a and the return value of method-b. DSI replaced the return value of method-a with the variable sumLength, which **happened** to be a value that would make the comparison true. Hence, the test didn't fail.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testCompare_BRIAN_BRYAN_SuccessfullyMatched with MatchRatingApproachEncoder.java:253 to be called after MatchRatingApproachEncoder.java:257.",
+        "notes": "method-a and method-b are both part of the algorithm for determining whether two Strings would have the same encoding. method-a uses the field variables MatchRatingApproachEncoder.ONE ... MatchRatingApproachEncoder.TWELVE to obtain the minimum rating of the length sum between the processed versions of the Strings. method-b processes the two strings using the field variable MatchRatingApproachEncoder.EMPTY, to remove identical letters in the same positions. Interesting replacement case (refer to comment-on-return-values). Manually switched the calling locations of method-a and method-b on the validating test, and the test passed. Part of the problem is that the variable minRating's value was not restored via the delayed call to method-a. Also, this is most likely a UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-16-16",
+        "inspection-time-in-minutes": 18
+    },
+    {
+        "iid": 16,
+        "inspection-start-time": "2022-01-14-20-13",
+        "project": "commons-codec",
+        "spec-id": "00258",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.removeVowels(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.getFirst3Last3(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-ls/00258.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_HARPER_HRPR",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:136",
+                        "method-b-site": "MatchRatingApproachEncoder.java:142",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with the field name which is the argument to both encode() and method-a.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMYTH_to_SMYTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:136",
+                        "method-b-site": "MatchRatingApproachEncoder.java:142",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with the field name which is the argument to both encode() and method-a.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_HARPER_HRPR",
+        "notes": "There is somewhat a precondition relationship between method-a and method-b, because method-a removes all vowels from the input, and method-b fetches the encoded input. The reason why the validating test failed when DSI made the perturbation is because method-a was not called, meaning that the vowels that should have been removed were still there (the delayed call does not help here). On the contrary, the invalidated test passed when DSI made the perturbation because the input did not contain any vowels (\"Y\" is not considered a vowel). However, this spec is not categorized as a true-spec for now because neither method-a nor method-b actually change state; this precondition relationship only exists when they are acting on the same input (i.e. the output of method-a is method-b). So, we'd have to think about whether this would actually be a true spec. DECISION: either method can be called independently and in any order",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-14-20-22",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 17,
+        "inspection-start-time": "2022-01-14-23-47",
+        "project": "commons-codec",
+        "spec-id": "00260",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.removeVowels(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.removeDoubleConsonants(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-ls/00260.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:136",
+                        "method-b-site": "MatchRatingApproachEncoder.java:139",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with the variable name, which is the argument to method-a.",
+                "notes": "The test failed because the replacement value was not equal to the value that method-a was supposed to return."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMYTH_to_SMYTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:136",
+                        "method-b-site": "MatchRatingApproachEncoder.java:139",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with the variable name, which is the argument to method-a.",
+                "notes": "For this particular test, method-a is a no-op (it seems like possibly that's the point of the test)."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH with MatchRatingApproachEncoderTest.java:136 called immediately after MatchRatingApproachEncoderTest.java:139",
+        "notes": "method-a removes all instances of vowels in the String argument using the field variable MatchRatingApproachEncoder.EMPTY, and method-b replaces any double consonant pair in the String argument with a single letter equivalent using the field variables MatchRatingApproachEncoder.DOUBLE_CONSONANT. These two methods are UNRELATED_STATEFUL_METHODS as method-a deals with vowels and method-b deals with double consonants.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-00-02",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 18,
+        "inspection-start-time": "2022-01-14-12-18",
+        "project": "commons-codec",
+        "spec-id": "00278",
+        "method-a": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.setRuleType(Lorg/apache/commons/codec/language/bm/RuleType;)V",
+        "method-b": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.encode(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls/00278.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testOOM",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoderTest.java:146",
+                        "method-b-site": "BeiderMorseEncoderTest.java:149",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testLongestEnglishSurname",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoderTest.java:45",
+                        "method-b-site": "BeiderMorseEncoderTest.java:129",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Note that there's an expected timeout on this test."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testOOM",
+        "notes": "Method-a sets the this.engine.ruleType field for the BeiderMorseEncoder, such that method-b has a different execution based on what method-a set. However, the invalidated tests called method-a to set the field to the default value (RuleType.APPROX), meaning that method-a was a no-op for those tests. In the validating test, method-a was used to set the field to a different value (RuleType.EXACT), hence the test failed when method-a was delayed after method-b. Overall, I'd say this is a sometimes true spec based on whether you want to set the field to a value that is not the default. DECISION: either method can be called independently and in any order; also, there is a default engine that is used if `a` is not called so this spec is not necessary for correctness",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-12-30",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 19,
+        "inspection-start-time": "2022-01-17-14-35",
+        "project": "commons-codec",
+        "spec-id": "00350",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.decode(Ljava/lang/Object;)Ljava/lang/Object;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls/00350.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testDecodeUnsupportedObject",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:69",
+                        "method-b-site": "PercentCodecTest.java:91",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION - the DSI experiment results in stage-1 because method-b throws the expected exception itself. Thus, the test passes even though the DSI experiment was not able to successfully perform the delayed call to method-a after method-b."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:96",
+                        "method-b-site": "PercentCodecTest.java:133",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test is somewhat weak because the encoded value does not contain ESCAPE_CHAR, which is included in this.alwaysEncodeChars via a call to method-a."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+        "notes": "method-a adds the byte argument to the field variable PercentCodec.alwaysEncodeChars, and modifies the field variable PercentCodec.alwaysEncodeCharsMin/PercentCodec.alwaysEncodeCharsMax after checking them. method-b returns the decoded version of the input Object. The reason why the DSI experiment in the validated test resulted in stage-1 was becuse of the expected exception (the stack trace of the thrown exception was the same between when method-a was called and not called); the test actually passed. The snippet shows that method-a would affect encoding but not decoding, and method-b does not impact the outcome of method-a as well. So, this is an UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-14-52",
+        "inspection-time-in-minutes": 17
+    },
+    {
+        "iid": 20,
+        "inspection-start-time": "2022-01-17-15-33",
+        "project": "commons-codec",
+        "spec-id": "00351",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.decode([B)[B",
+        "method-a-return-type": "void",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 5,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 3,
+        "code-snippets-file": "snippets/lv-ls/00351.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testDecodeInvalidEncodedResultDecoding",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:69",
+                        "method-b-site": "PercentCodecTest.java:75",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION - the DSI experiment results in stage-1 because method-b throws the expected exception itself. Thus, the test passes even though the DSI experiment was not able to successfully perform the delayed call to method-a after method-b."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:96",
+                        "method-b-site": "PercentCodec.java:259",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test is somewhat weak because the encoded value does not contain ESCAPE_CHAR, which is included in this.alwaysEncodeChars via a call to method-a."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+        "notes": "method-a adds the byte argument to the field variable PercentCodec.alwaysEncodeChars, and modifies the field variable PercentCodec.alwaysEncodeCharsMin/PercentCodec.alwaysEncodeCharsMax after checking them. method-b returns the decoded version of the input Object. The reason why the DSI experiment in the validated test resulted in stage-1 was becuse of the expected exception (the stack trace of the thrown exception was the same between when method-a was called and not called); the test actually passed. The snippet shows that method-a would affect encoding but not decoding, and method-b does not impact the outcome of method-a as well. So, this is an UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-15-37",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 21,
+        "inspection-start-time": "2022-01-17-15-37",
+        "project": "commons-codec",
+        "spec-id": "00352",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.doEncode([BIZ)[B",
+        "method-a-return-type": "void",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls/00352.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testUnsafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:69",
+                        "method-b-site": "PercentCodec.java:128",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:96",
+                        "method-b-site": "PercentCodec.java:128",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testUnsafeCharEncodeDecode",
+        "notes": "In some sense, the oracle in the invalidated test is weak because the string to be encoded does not include the ESCAPE_CHAR (%) that is included in the this.alwaysEncodeChars via a call to method-a. If one does not call method-a before calling method-b, then method-b's return value (the encoding) will differ and a decoder can fail when it encounters a character that should have been accounted for via a call to method-a, which is why the validated test failed. (Note that the constructor of PercentCodec always calls method-a, so in practice one cannot avoid a call to method-a before method-b; however, one can think of a scenario where one must call method-a on a different input to avoid an exception thrown by method-b.).",
+        "findings": "This either could be a Type-c spec (method-b is always preceded by method-a), or an sts. REVISIT",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-17-15-49",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 22,
+        "inspection-start-time": "2022-01-17-15-53",
+        "project": "commons-codec",
+        "spec-id": "00353",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.encode(Ljava/lang/Object;)Ljava/lang/Object;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls/00353.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testEncodeUnsupportedObject",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:69",
+                        "method-b-site": "PercentCodecTest.java:103",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "stage-1 because method-b throws the EXPECTED_EXCEPTION."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:96",
+                        "method-b-site": "PercentCodecTest.java:131",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "DSIValidationTest#testDSI00353 with PercentCodec.java:69 commented out.",
+        "notes": "The validating test file shows that not calling method-a before method-b would lead to an exception, much in the same nature as 00352. Both validated and invalidated tests are weak for checking method-a's relationship with method-b because the strings that are being checked do not include the ESCAPE_CHAR (%) which is being set as a part of alwaysEncodeChars via the call to method-a. In some sense, the oracle in the invalidated test is weak because the string to be encoded does not include the ESCAPE_CHAR (%) that is included in the this.alwaysEncodeChars via a call to method-a. If one does not call method-a before calling method-b, then method-b's return value (the encoding) will differ and a decoder can fail when it encounters a character that should have been accounted for via a call to method-a, which is why the validated test failed. (Note that the constructor of PercentCodec always calls method-a, so in practice one cannot avoid a call to method-a before method-b; however, one can think of a scenario where one must call method-a on a different input to avoid an exception thrown by method-b.)",
+        "findings": "This either could be a Type-c spec (method-b is always preceded by method-a), or an sts. REVISIT",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-17-16-02",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 23,
+        "inspection-start-time": "2022-01-17-16-03",
+        "project": "commons-codec",
+        "spec-id": "00354",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.encode([B)[B",
+        "method-a-return-type": "void",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 5,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 4,
+        "code-snippets-file": "snippets/lv-ls/00354.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testUnsafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:69",
+                        "method-b-site": "PercentCodecTest.java:143",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:96",
+                        "method-b-site": "PercentCodecTest.java:120",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testUnsafeCharEncodeDecode",
+        "notes": "In some sense, the oracle in the invalidated test is weak because the string to be encoded does not include the ESCAPE_CHAR (%) that is included in the this.alwaysEncodeChars via a call to method-a. If one does not call method-a before calling method-b, then method-b can fail when it encounters a character that should have been accounted for via a call to method-a, which is why the validated test failed. (Note that the constructor of PercentCodec always calls method-a, so in practice one cannot avoid a call to method-a before method-b; however, one can think of a scenario where one must call method-a on a different input to avoid an exception thrown by method-b.).",
+        "findings": "This either could be a Type-c spec (method-b is always preceded by method-a), or an sts. REVISIT",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-17-16-06",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 24,
+        "inspection-start-time": "2022-01-17-16-07",
+        "project": "commons-codec",
+        "spec-id": "00355",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 5,
+        "code-snippets-file": "snippets/lv-ls/00355.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testUnsafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:69",
+                        "method-b-site": "PercentCodec.java:196",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "INSPECTION_TODO add some description of why the failure occured, and annotate the snippet with the failure location"
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:96",
+                        "method-b-site": "PercentCodec.java:196",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test is somewhat weak because the encoded value does not contain ESCAPE_CHAR, which is included in this.alwaysEncodeChars via a call to method-a."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "snippet/org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+        "notes": "method-a adds the byte argument to the field variable PercentCodec.alwaysEncodeChars, and checks/modifies the field variables PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax. method-b returns the expected number of bytes needed to store the decoding of the byte[] argument, using the field variable PercentCodec.ESCAPE_CHAR. The field variables accessed/modified are not impacted by method-b, so this is a spurious spec. The validated test fails because the lack of the call to method-a caused a corrupted output from PercentCodec.encode(), not because method-b was called after method-a. DELAY_CAUSES_OUTPUT_CORRUPTION",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-16-26",
+        "inspection-time-in-minutes": 19
+    },
+    {
+        "iid": 25,
+        "inspection-start-time": "2022-01-17-16-33",
+        "project": "commons-codec",
+        "spec-id": "00356",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 5,
+        "code-snippets-file": "snippets/lv-ls/00356.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testUnsafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:69",
+                        "method-b-site": "PercentCodec.java:125",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:96",
+                        "method-b-site": "PercentCodec.java:125",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test is somewhat weak because the encoded value does not contain ESCAPE_CHAR, which is included in this.alwaysEncodeChars via a call to method-a."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "snippet/org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+        "notes": "method-a adds the byte argument to the field variable PercentCodec.alwaysEncodeChars, and checks/modifies the field variables PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax. method-b returns the expected number of bytes needed to store the encoding of the byte[] argument. The snippet shows that method-b's values are not impacted by method-a. Moreover, the validated test fails because the lack of the call to method-a caused a corrupted output from PercentCodec.encode(), not because method-b was called after method-a. DELAY_CAUSES_OUTPUT_CORRUPTION",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-16-36",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 26,
+        "inspection-start-time": "2022-01-17-16-57",
+        "project": "commons-codec",
+        "spec-id": "00360",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.doEncode([BIZ)[B",
+        "method-a-return-type": "void",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-ls/00360.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testConfigurablePercentEncoder",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:82",
+                        "method-b-site": "PercentCodec.java:128",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:82",
+                        "method-b-site": "PercentCodec.java:128",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testConfigurablePercentEncoder",
+        "notes": "method-a adds the byte argument to the field variable PercentCodec.alwaysEncodeChars, and checks/modifies the field variables PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax. method-b returns the encoding of the byte[] argument. The invalidated test is weak because the string to be encoded does not contain any characters that are in this.alwaysEncodeChars. The validated test shows that if method-a is not called, the output of method-b will differ from what is expected. DECISION: This is most likely a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, given that method-b can be called without a call to method-a (by calling the zero-argument constructor of PercentCodec(), and then calling method-b).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-17-05",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 27,
+        "inspection-start-time": "2022-01-17-19-32",
+        "project": "commons-codec",
+        "spec-id": "00362",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.encode([B)[B",
+        "method-a-return-type": "void",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls/00362.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testConfigurablePercentEncoder",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:82",
+                        "method-b-site": "PercentCodecTest.java:62",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:82",
+                        "method-b-site": "PercentCodecTest.java:120",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testConfigurablePercentEncoder shows the connection between method-a and method-b",
+        "notes": "method-a adds the byte argument to the field variable PercentCodec.alwaysEncodeChars, and checks/modifies the field variables PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax. method-b returns the encoding of the byte[] argument. The invalidated test is weak because the string to be encoded does not contain any characters that are in this.alwaysEncodeChars. The validated test shows that if method-a is not called, the output of method-b will differ from what is expected. DECISION: This is most likely a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, given that method-b can be called without a call to method-a (by calling the zero-argument constructor of PercentCodec(), and then calling method-b).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-19-35",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 28,
+        "inspection-start-time": "2022-01-17-19-43",
+        "project": "commons-codec",
+        "spec-id": "00364",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 3,
+        "code-snippets-file": "snippets/lv-ls/00364.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testConfigurablePercentEncoder",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:82",
+                        "method-b-site": "PercentCodec.java:125",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "BufferOverflowException at PercentCodec.java:143 because method-b allocates the number of bytes differently based on whether bytes are supposed to be encoded; hence, doEncode() throws a BufferOverflowException because not enough bytes were allocated."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:82",
+                        "method-b-site": "PercentCodecTest.java:120",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testConfigurablePercentEncoder shows the connection between method-a and method-b",
+        "notes": "method-a adds the byte argument to the field variable PercentCodec.alwaysEncodeChars, and checks/modifies the field variables PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax. method-b returns the amount of bytes needed to store the encoding of the byte[] argument. The invalidated test is weak because the input to encode() does not contain any of the values in this.alwaysEncodeBytes. DECISION: This is most likely a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, given that method-b can be called without a call to method-a (by calling the zero-argument constructor of PercentCodec(), and then calling method-b).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-19-53",
+        "inspection-time-in-minutes": 10
+    }
+
+]

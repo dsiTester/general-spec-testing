@@ -1,0 +1,15 @@
+digraph Automaton {
+  rankdir = LR;
+  0 [shape=doublecircle,label="s0"];
+  initial [shape=plaintext,label=""];
+  initial -> 0
+  1 [shape=circle,label="s3"];
+  2 [shape=circle,label="s1"];
+  3 [shape=circle,label="s2"];
+  0 -> 2 [label="org.apache.commons.validator.ValidatorResources.getParent(Lorg/apache/commons/validator/FormSet;)Lorg/apache/commons/validator/FormSet;"];
+  2 -> 2 [label="org.apache.commons.validator.FormSet.getType()I"];
+  2 -> 3 [label="org.apache.commons.validator.FormSet.merge(Lorg/apache/commons/validator/FormSet;)V"];
+  3 -> 1 [label="org.apache.commons.validator.Form.merge(Lorg/apache/commons/validator/Form;)V"];
+  1 -> 0 [label="org.apache.commons.validator.Form.getFields()Ljava/util/List;"];
+  3 -> 3 [label="org.apache.commons.validator.FormSet.getForms()Ljava/util/Map;"];
+}

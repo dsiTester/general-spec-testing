@@ -1,0 +1,3014 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-02-02-19-00",
+        "project": "commons-exec",
+        "spec-id": "00001",
+        "method-a": "org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "org.apache.commons.exec.CommandLine",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 11,
+        "code-snippets-file": "snippets/u/00001.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.CommandLineTest#testCopyConstructor",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLineTest.java:513",
+                        "method-b-site": "CommandLine.java:226",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-02-19-06",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-02-02-21-41",
+        "project": "commons-exec",
+        "spec-id": "00010",
+        "method-a": "org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "org.apache.commons.exec.CommandLine",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00010.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.CommandLineTest#testAddArgumentsArray",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLineTest.java:175",
+                        "method-b-site": "CommandLine.java:168",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-02-21-45",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-02-02-21-45",
+        "project": "commons-exec",
+        "spec-id": "00011",
+        "method-a": "org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "org.apache.commons.exec.CommandLine",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00011.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.CommandLineTest#testAddArgumentsWithQuotesAndSpaces",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLineTest.java:166",
+                        "method-b-site": "CommandLine.java:212",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-02-21-47",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-02-02-21-47",
+        "project": "commons-exec",
+        "spec-id": "00012",
+        "method-a": "org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "org.apache.commons.exec.CommandLine",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00012.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.CommandLineTest#testAddArgumentsWithQuotesAndSpaces",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLineTest.java:166",
+                        "method-b-site": "CommandLine.java:197",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-02-21-49",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-02-02-21-49",
+        "project": "commons-exec",
+        "spec-id": "00013",
+        "method-a": "org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;",
+        "method-b": "org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;",
+        "method-a-return-type": "org.apache.commons.exec.CommandLine",
+        "method-b-return-type": "org.apache.commons.exec.CommandLine",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/u/00013.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.CommandLineTest#testAddArgumentsWithQuotesAndSpaces",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLine.java:197",
+                        "method-b-site": "CommandLine.java:212",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-02-21-51",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2022-02-03-00-34",
+        "project": "commons-exec",
+        "spec-id": "00022",
+        "method-a": "org.apache.commons.exec.CommandLine.expandArgument(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.exec.CommandLine.getSubstitutionMap()Ljava/util/Map;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 29,
+        "code-snippets-file": "snippets/u/00022.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLine.java:149",
+                        "method-b-site": "CommandLine.java:324",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR - the error message shows that the return value of method-a was replaced by \"\" (the empty string), but I don't see the empty string in scope?",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-00-38",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2022-02-03-00-38",
+        "project": "commons-exec",
+        "spec-id": "00023",
+        "method-a": "org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;",
+        "method-b": "org.apache.commons.exec.CommandLine.expandArgument(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 29,
+        "code-snippets-file": "snippets/u/00023.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLine.java:298",
+                        "method-b-site": "CommandLine.java:149",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR - the error message shows that the return value of method-a was replaced by \"\" (the empty string), but I don't see the empty string in scope?",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-00-42",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2022-02-03-00-47",
+        "project": "commons-exec",
+        "spec-id": "00025",
+        "method-a": "org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;",
+        "method-b": "org.apache.commons.exec.CommandLine.getSubstitutionMap()Ljava/util/Map;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 29,
+        "code-snippets-file": "snippets/u/00025.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "CommandLine.java:298",
+                        "method-b-site": "CommandLine.java:324",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR - the error message shows that the return value of method-a was replaced by \"\" (the empty string), but I don't see the empty string in scope?",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-00-49",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2022-02-03-16-10",
+        "project": "commons-exec",
+        "spec-id": "00044",
+        "method-a": "org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;",
+        "method-b": "org.apache.commons.exec.CommandLine.expandArgument(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String[]",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 25,
+        "code-snippets-file": "snippets/u/00044.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Java13CommandLauncher.java:60",
+                        "method-b-site": "CommandLine.java:149",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT - method-a was supposed to return the command line call to script and argument, but instead it outputted the PATH string, which is the 0th string in the String[] variable envs in Java13CommandLauncher.exec()... Not sure how DSI got the value, because I don't see a String variable explicitly being set to that value?",
+                "notes": "GOOD_EXAMPLE: The test failed because the replacement to method-a was not an actual command but the PATH environment setup. So, exec couldn't run the program."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "INSPECTION_TODO/REPLACEMENT_VALUE_UNCLEAR: DSI may be getting its replacement values from array variables as well?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-16-22",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2022-02-03-16-22",
+        "project": "commons-exec",
+        "spec-id": "00045",
+        "method-a": "org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;",
+        "method-b": "org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String[]",
+        "method-b-return-type": "java.lang.String[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 44,
+        "code-snippets-file": "snippets/u/00045.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Java13CommandLauncher.java:60",
+                        "method-b-site": "CommandLine.java:299",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT - method-a was supposed to return the command line call to script and argument, but instead it outputted the PATH string, which is the 0th string in the String[] variable envs in Java13CommandLauncher.exec()... Not sure how DSI got the value, because I don't see a String variable explicitly being set to that value?",
+                "notes": "The test failed because the replacement to method-a was not an actual command but the PATH environment setup. So, exec couldn't run the program."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "INSPECTION_TODO/REPLACEMENT_VALUE_UNCLEAR: DSI may be getting its replacement values from array variables as well?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-16-25",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2022-02-03-16-25",
+        "project": "commons-exec",
+        "spec-id": "00046",
+        "method-a": "org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;",
+        "method-b": "org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String[]",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 46,
+        "code-snippets-file": "snippets/u/00046.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Java13CommandLauncher.java:60",
+                        "method-b-site": "CommandLine.java:298",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT - method-a was supposed to return the command line call to script and argument, but instead it outputted the PATH string, which is the 0th string in the String[] variable envs in Java13CommandLauncher.exec()... Not sure how DSI got the value, because I don't see a String variable explicitly being set to that value?",
+                "notes": "The test failed because the replacement to method-a was not an actual command but the PATH environment setup. So, exec couldn't run the program."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "INSPECTION_TODO/REPLACEMENT_VALUE_UNCLEAR: DSI may be getting its replacement values from array variables as well?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-16-27",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2022-02-03-16-27",
+        "project": "commons-exec",
+        "spec-id": "00047",
+        "method-a": "org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;",
+        "method-b": "org.apache.commons.exec.CommandLine.getSubstitutionMap()Ljava/util/Map;",
+        "method-a-return-type": "java.lang.String[]",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 27,
+        "code-snippets-file": "snippets/u/00047.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Java13CommandLauncher.java:60",
+                        "method-b-site": "CommandLine.java:324",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT - method-a was supposed to return the command line call to script and argument, but instead it outputted the PATH string, which is the 0th string in the String[] variable envs in Java13CommandLauncher.exec()... Not sure how DSI got the value, because I don't see a String variable explicitly being set to that value?",
+                "notes": "The test failed because the replacement to method-a was not an actual command but the PATH environment setup. So, exec couldn't run the program."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "INSPECTION_TODO/REPLACEMENT_VALUE_UNCLEAR: DSI may be getting its replacement values from array variables as well?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-16-29",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-02-03-16-34",
+        "project": "commons-exec",
+        "spec-id": "00049",
+        "method-a": "org.apache.commons.exec.DefaultExecuteResultHandler.getExitValue()I",
+        "method-b": "org.apache.commons.exec.DefaultExecuteResultHandler.getException()Lorg/apache/commons/exec/ExecuteException;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "org.apache.commons.exec.ExecuteException",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00049.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithError",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:200",
+                        "method-b-site": "DefaultExecutorTest.java:201",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT - method-a was supposed to return true, and its return value was checked via an assertTrue(), but DSI replaced the return value of method-a with the default value false.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithError with DefaultExecutorTest.java:398 and DefaultExecutorTest.java:399 swapped.",
+        "notes": "While method-a and method-b are stateful because they can both throw exceptions, method-a simply returns the field variable DefaultExecuteResultHandler.exitValue, and method-b simply returns the field variable DefaultExecuteResultHandler.exception. Since these two field variables are not related, this is a spurious spec. UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-16-38",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-02-03-18-32",
+        "project": "commons-exec",
+        "spec-id": "00053",
+        "method-a": "org.apache.commons.exec.DefaultExecuteResultHandler.waitFor(J)V",
+        "method-b": "org.apache.commons.exec.DefaultExecuteResultHandler.getException()Lorg/apache/commons/exec/ExecuteException;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.exec.ExecuteException",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 5,
+        "code-snippets-file": "snippets/u/00053.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithTimelyUserTermination",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:224",
+                        "method-b-site": "DefaultExecutorTest.java:228",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "ORDER_OF_ASSERTIONS - if DefaultExecutorTest.java:227 was moved past DefaultExecutorTest.java:228, then this would have resulted in a stage-1 instead of a stage-0."
+            }
+        ],
+        "verdict": "unknown",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithTimelyUserTermination with DefaultExecutorTest.java:228 manually moved to before DefaultExecutorTest.java:224 will show the connection between method-a and method-b.",
+        "notes": "method-b throws an exception if DefaultExecuteResultHandler.hasResult (a variable signaling that the process is finished and has results) was false; method-a waits on the process until it has a result. One might not always need to call method-a before method-b (in the cases that you didn't need to wait for the process to finish), but in the general case it seems like one ought to call method-a before method-b. DECISION: I'm leaning towards this being a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, given that method-b will only throw an exception if DefaultExecuteResultHandler.hasResult is not set to true. method-a by itself does not set this field variable, but it waits until the thread running the process has set DefaultExecuteResultHandler.hasResult. Given that the real true spec here is between the asychronous setting of DefaultExecuteResultHandler.hasResult and method-b, with method-a a device to make the parent process wait until the asychronous setting of DefaultExecuteResultHandler.hasResult happens, I don't think there's a true spec relationship between method-a and method-b.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-03-18-44",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2022-02-03-21-20",
+        "project": "commons-exec",
+        "spec-id": "00054",
+        "method-a": "org.apache.commons.exec.DefaultExecuteResultHandler.waitFor(J)V",
+        "method-b": "org.apache.commons.exec.DefaultExecuteResultHandler.getExitValue()I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 5,
+        "code-snippets-file": "snippets/u/00054.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithError",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:198",
+                        "method-b-site": "DefaultExecutorTest.java:200",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The assertion fails because DefaultExecuteResultHandler.hasResult() returns false, because method-a was not called (the test didn't wait until the process finished), before method-b was even called. ORDER_OF_ASSERTIONS - if DefaultExecutorTest.java:199 was moved past DefaultExecutorTest.java:200, then the DSI experiment would have resulted in stage-1 instead of stage-0."
+            }
+        ],
+        "verdict": "unknown",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithError with DefaultExecutorTest.java:200 manually moved to before DefaultExecutorTest.java:198",
+        "notes": "method-b throws an exception if DefaultExecuteResultHandler.hasResult (a variable signaling that the process is finished and has results) was false; method-a waits on the process until it has a result. One might not always need to call method-a before method-b (in the cases that you didn't need to wait for the process to finish), but in the general case it seems like one ought to call method-a before method-b. REVISIT: need to construct test/case where not calling method-a before method-b is problematic.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-03-21-25",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 16,
+        "inspection-start-time": "2022-02-04-11-31",
+        "project": "commons-exec",
+        "spec-id": "00057",
+        "method-a": "org.apache.commons.exec.DefaultExecuteResultHandler.waitFor()V",
+        "method-b": "org.apache.commons.exec.DefaultExecuteResultHandler.getException()Lorg/apache/commons/exec/ExecuteException;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.exec.ExecuteException",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00057.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec34Test#testExec34_2",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec34Test.java:84",
+                        "method-b-site": "Exec34Test.java:86",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test failed because it checked for DefaultExecuteResultHandler.hasResult() after the delay of method-a, which returns false (even though the test expects true) because method-a wasn't called, so the process wasn't actually finished by that point. ORDER_OF_ASSERTIONS - if Exec34Test.java:85 was moved past Exec34Test.java:86, then the DSI experiment would have resulted in stage-1 instead of stage-0."
+            }
+        ],
+        "verdict": "unknown",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithError with Exec34Test.java:86 manually moved to before Exec34Test.java:84",
+        "notes": "method-b throws an exception if DefaultExecuteResultHandler.hasResult (a variable signaling that the process is finished and has results) was false; method-a waits on the process until it has a result. One might not always need to call method-a before method-b (in the cases that you didn't need to wait for the process to finish), but in the general case it seems like one ought to call method-a before method-b. REVISIT: need to construct a case where not calling method-a before method-b is problematic.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-04-11-39",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 17,
+        "inspection-start-time": "2022-02-04-12-27",
+        "project": "commons-exec",
+        "spec-id": "00072",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;",
+        "method-b": "org.apache.commons.exec.Executor.isFailure(I)Z",
+        "method-a-return-type": "java.lang.Thread",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00072.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithError",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:222",
+                        "method-b-site": "DefaultExecutorTest.java:200",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION - NullPointerException at DefaultExecutor.java:223.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "One can call method-b at any point; for example, one can include a call to method-b at around DefaultExecutorTest.java:196 with some int value as the argument, which is before the call to method-a",
+        "notes": "method-a creates a new thread that runs an internal process, and the return value of method-a is set to the field variable DefaultExecutor.executorThread. method-b performs some checks on the field variable DefaultExecutor.exitValues, which only get populated after method-a is called and the process finishes (if it fails/isn't populated, method-b would return false). So it doesn't really make sense to call method-b before method-a, but I'm not sure to what extent this is a true spec? (This could be \"a*b\".) DECISION: This spec is most likely a spurious spec because method-b is a public method that can be called at any point, and while method-a is protected, it can also be called at any point. Since neither of the methods by themselves affect the other, this is most likely a UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-12-44",
+        "inspection-time-in-minutes": 17
+    },
+    {
+        "iid": 18,
+        "inspection-start-time": "2022-02-04-12-51",
+        "project": "commons-exec",
+        "spec-id": "00073",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 8,
+        "test-methods-mine-count": 34,
+        "code-snippets-file": "snippets/u/00073.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:175",
+                        "method-b-site": "DefaultExecutor.java:412",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The test failed because the script was not executed (because method-a calls the script), and thus the String variable environment was most likely empty.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-12-58",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 19,
+        "inspection-start-time": "2022-02-04-12-59",
+        "project": "commons-exec",
+        "spec-id": "00074",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.io.IOException",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 37,
+        "code-snippets-file": "snippets/u/00074.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:175",
+                        "method-b-site": "DefaultExecutor.java:414",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The test failed because the script was not executed (because method-a calls the script), and thus the String variable environment was most likely empty.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-13-01",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 20,
+        "inspection-start-time": "2022-02-04-13-01",
+        "project": "commons-exec",
+        "spec-id": "00076",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.isFailure(I)Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 8,
+        "test-methods-mine-count": 39,
+        "code-snippets-file": "snippets/u/00076.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:175",
+                        "method-b-site": "DefaultExecutor.java:431",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The test failed because the script was not executed (because method-a calls the script), and thus the String variable environment was most likely empty.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-13-03",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 21,
+        "inspection-start-time": "2022-02-04-14-28",
+        "project": "commons-exec",
+        "spec-id": "00077",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.lang.Process",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 8,
+        "test-methods-mine-count": 40,
+        "code-snippets-file": "snippets/u/00077.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:175",
+                        "method-b-site": "DefaultExecutor.java:351",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The test failed because the script was not executed (because method-a calls the script), and thus the String variable environment was most likely empty.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-14-30",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 22,
+        "inspection-start-time": "2022-02-04-14-31",
+        "project": "commons-exec",
+        "spec-id": "00078",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I",
+        "method-b": "org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00078.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:175",
+                        "method-b-site": "DefaultExecutorTest.java:107",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - method-a wasn't directly used for an assertion, so using this tag. method-a returns 0 on a normal execution (makes sense given that 0 is the exit code for success), and DSI most likely replaced the return value with the default int value 0.",
+                "notes": "The assertion failed because not calling method-a means that the script it self was never run, so there was no output from the script (which is what the assertion on DefaultExecutorTest.java:105 is checking). ORDER_OF_ASSERTIONS - one could have modified the test by moving DefaultExecutorTest.java:105 past DefaultExecutorTest.java:107, and that most likely would have made the DSI experiment result in stage-3 instead of stage-0."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecute with DefaultExecutorTest.java:107 moved before DefaultExecutorTest.java:104 - this will call method-b before method-a.",
+        "notes": "ONE_STATELESS_METHOD - method-b is a 1-line naive getter for the field variable DefaultExecutor.workingDirectory, and method-a does not modify that field variable. Hence, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-14-49",
+        "inspection-time-in-minutes": 19
+    },
+    {
+        "iid": 23,
+        "inspection-start-time": "2022-02-04-20-13",
+        "project": "commons-exec",
+        "spec-id": "00080",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 4,
+        "test-methods-mine-count": 11,
+        "code-snippets-file": "snippets/u/00080.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec57Test.java:79",
+                        "method-b-site": "DefaultExecutor.java:412",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-20-18",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 24,
+        "inspection-start-time": "2022-02-04-20-18",
+        "project": "commons-exec",
+        "spec-id": "00081",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I",
+        "method-a-return-type": "int",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 4,
+        "test-methods-mine-count": 13,
+        "code-snippets-file": "snippets/u/00081.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec57Test.java:79",
+                        "method-b-site": "DefaultExecutor.java:175",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-20-20",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 25,
+        "inspection-start-time": "2022-02-04-20-20",
+        "project": "commons-exec",
+        "spec-id": "00082",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-a-return-type": "int",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 4,
+        "test-methods-mine-count": 13,
+        "code-snippets-file": "snippets/u/00082.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec57Test.java:79",
+                        "method-b-site": "DefaultExecutor.java:161",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-20-22",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 26,
+        "inspection-start-time": "2022-02-04-20-22",
+        "project": "commons-exec",
+        "spec-id": "00083",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.io.IOException",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 4,
+        "test-methods-mine-count": 11,
+        "code-snippets-file": "snippets/u/00083.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec57Test.java:79",
+                        "method-b-site": "DefaultExecutor.java:414",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-20-25",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 27,
+        "inspection-start-time": "2022-02-04-20-25",
+        "project": "commons-exec",
+        "spec-id": "00084",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.isFailure(I)Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 4,
+        "test-methods-mine-count": 11,
+        "code-snippets-file": "snippets/u/00084.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec57Test.java:79",
+                        "method-b-site": "DefaultExecutor.java:431",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-20-27",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 28,
+        "inspection-start-time": "2022-02-04-20-27",
+        "project": "commons-exec",
+        "spec-id": "00085",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.lang.Process",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 4,
+        "test-methods-mine-count": 13,
+        "code-snippets-file": "snippets/u/00085.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec57Test.java:79",
+                        "method-b-site": "DefaultExecutor.java:351",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-20-29",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 29,
+        "inspection-start-time": "2022-02-04-20-29",
+        "project": "commons-exec",
+        "spec-id": "00086",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 7,
+        "test-methods-mine-count": 25,
+        "code-snippets-file": "snippets/u/00086.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:161",
+                        "method-b-site": "DefaultExecutor.java:412",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+       "inspection-end-time": "2022-02-04-20-31",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 30,
+        "inspection-start-time": "2022-02-04-20-31",
+        "project": "commons-exec",
+        "spec-id": "00087",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I",
+        "method-a-return-type": "int",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 7,
+        "test-methods-mine-count": 27,
+        "code-snippets-file": "snippets/u/00087.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:161",
+                        "method-b-site": "DefaultExecutor.java:175",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-20-33",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 31,
+        "inspection-start-time": "2022-02-04-20-33",
+        "project": "commons-exec",
+        "spec-id": "00088",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.io.IOException",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 7,
+        "test-methods-mine-count": 25,
+        "code-snippets-file": "snippets/u/00088.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:161",
+                        "method-b-site": "DefaultExecutor.java:414",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-20-37",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 32,
+        "inspection-start-time": "2022-02-04-20-37",
+        "project": "commons-exec",
+        "spec-id": "00089",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.isFailure(I)Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 7,
+        "test-methods-mine-count": 25,
+        "code-snippets-file": "snippets/u/00089.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:161",
+                        "method-b-site": "DefaultExecutor.java:431",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-20-38",
+        "inspection-time-in-minutes": 1
+    },
+    {
+        "iid": 33,
+        "inspection-start-time": "2022-02-04-20-38",
+        "project": "commons-exec",
+        "spec-id": "00090",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.lang.Process",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 7,
+        "test-methods-mine-count": 27,
+        "code-snippets-file": "snippets/u/00090.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec57Test#testExecutionOfDetachedProcess",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec57Test.java:79",
+                        "method-b-site": "DefaultExecutor.java:351",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-20-40",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 34,
+        "inspection-start-time": "2022-02-04-20-40",
+        "project": "commons-exec",
+        "spec-id": "00091",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-b": "org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00091.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:161",
+                        "method-b-site": "DefaultExecutorTest.java:107",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT - method-a in a normal execution returns 0, and DSI most likely replaced the return value of method-a with the default value 0.",
+                "notes": "The DSI experiment resulted in stage-0 because the assertion on DefaultExecutorTest.java:105 failed (the assertion checks the output stream for the output of the script, but the script was never called in the first place because method-a was not executed). So, the test failed before getting to method-b. ORDER_OF_ASSERTIONS - moving DefaultExecutorTest.java:105-106 past DefaultExecutorTest.java:107 would have caused the DSI experiment to reach stage-3 instead of making the DSI experiment fail at stage-0."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecute with DefaultExecutorTest.java:107 moved before DefaultExecutorTest.java:104",
+        "notes": "ONE_STATELESS_METHOD - method-b is a 1-line naive getter for the field variable DefaultExecutor.workingDirectory, and method-a accesses the field variable but does not modify it/do any computation that affects that field variable.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-20-50",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 35,
+        "inspection-start-time": "2022-02-04-22-59",
+        "project": "commons-exec",
+        "spec-id": "00094",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Thread",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 7,
+        "code-snippets-file": "snippets/u/00094.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:186",
+                        "method-b-site": "DefaultExecutor.java:222",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test fails because method-a should bootstrap the process destroyer for its process given the field variable DefaultExecutor.processDestroyer, but since method-a was never called, the size of the variable processDestroyer was never set to anything else but 0 (the test expects size 1)."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-23-06",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 36,
+        "inspection-start-time": "2022-02-04-23-15",
+        "project": "commons-exec",
+        "spec-id": "00097",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Thread",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 10,
+        "code-snippets-file": "snippets/u/00097.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:186",
+                        "method-b-site": "DefaultExecutor.java:222",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test fails because method-a should bootstrap the process destroyer for its process given the field variable DefaultExecutor.processDestroyer, but since method-a was never called, the size of the variable processDestroyer was never set to anything else but 0 (the test expects size 1)."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-23-20",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 37,
+        "inspection-start-time": "2022-02-04-23-30",
+        "project": "commons-exec",
+        "spec-id": "00101",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V",
+        "method-b": "org.apache.commons.exec.Executor.isFailure(I)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00101.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsync",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:186",
+                        "method-b-site": "DefaultExecutorTest.java:183",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test fails because resultHandler.hasResult() returns false (it's checked with an assertTrue()), because there's no result from the process that should have been run; method-a runs the process, but since method-a was delayed, the process was never called. ORDER_OF_ASSERTIONS - it seems that moving DefaultExecutorTest.java:181-182 may have prevented the DSI experiment from failing at stage-0-failure."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "snippet/reasoning below...",
+        "notes": "method-a creates and runs a new thread that runs the specified internal process. method-b performs some checks on the field variable DefaultExecutor.exitValues, which only get populated after method-a is called and the process finishes (if it fails/isn't populated, method-b would read from its argument, which can only be provided after the process has finished). So it seems like method-a needs to terminate before method-b can be called.. DECISION: This is a spurious-spec because method-b is a public method that can be called at any point. I think the use case makes this a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-23-44",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 38,
+        "inspection-start-time": "2022-02-04-02-42",
+        "project": "commons-exec",
+        "spec-id": "00117",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;",
+        "method-b": "org.apache.commons.exec.Executor.isFailure(I)Z",
+        "method-a-return-type": "java.lang.Thread",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00117.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsync",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:223",
+                        "method-b-site": "DefaultExecutorTest.java:183",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION - NullPointerException at DefaultExecutor.java:223",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "Technically method-b can be called at any point; for example, one can call method-b immediately after DefaultExecutorTest.java:178 with some int argument, before method-a is called.",
+        "notes": "ONE_STATELESS_METHOD. The use case is such that DefaultExecutor.java:222 creates a new Thread that runs the process and assigns it to the field variable DefaultExecutor.executorThread, and method-a is called to retrieve the field variable DefaultExecutor.executhorThread. After the thread has executed and terminated, method-b is called to check whether the process failed or not by either referring to the field variable DefaultExecutor.exitValues or its argument (which is the exit code from the process after DefaultExecutor.executeInternal() runs the process and retrieves the value). So in some very loose sense, you do have to call method-a before method-b, but I don't think the relationship is strictly between these two methods, and strong enough, such that there is a true spec relationship between the two methods. DECISION: This spec is most likely a spurious spec because method-b is a public method that can be called at any point, and while method-a is protected, it can also be called at any point. Since neither of the methods by themselves affect the other, this is most likely a UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-05-02-51",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 39,
+        "inspection-start-time": "2022-02-05-03-11",
+        "project": "commons-exec",
+        "spec-id": "00120",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V",
+        "method-a-return-type": "java.lang.Process",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 37,
+        "code-snippets-file": "snippets/u/00120.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:351",
+                        "method-b-site": "DefaultExecutor.java:412",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION - NullPointerException at DefaultExecutor.java:361.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecute (the reason why this spec's result is stage-0 is because there's a lot of operations from the return value of method-a; but they're also necessary in order for the correctness of the program)",
+        "notes": "method-a creates and returns a new Process that runs a specified command, and method-b closes all of the streams for the provided Process. The use case in this test/code is that the return value of method-a is being passed into method-b as an argument; hence, one would have to call method-a to call method-b in the first place. Of course, one can pass in an arbitrary Process object to method-b as well, but that would defeat the point of calling method-b. This could be a larger spec with some other operations that potentially depend on method-a?",
+        "findings": "Type-f: method-b is always immediately preceded by method-a?",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-05-03-24",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 40,
+        "inspection-start-time": "2022-02-05-03-25",
+        "project": "commons-exec",
+        "spec-id": "00121",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;",
+        "method-a-return-type": "java.lang.Process",
+        "method-b-return-type": "java.io.IOException",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 37,
+        "code-snippets-file": "snippets/u/00121.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:351",
+                        "method-b-site": "DefaultExecutor.java:414",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION - NullPointerException at DefaultExecutor.java:361.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecute (the reason why this spec's result is stage-0 is because there's a lot of operations from the return value of method-a; but they're also necessary in order for the correctness of the program)",
+        "notes": "ONE_STATELESS_METHOD: method-b is a 1-line naive getter for the field variable DefaultExecutor.exceptionCaught. method-a creates, runs, and returns a new Process that runs a specified command. The field variable DefaultExecutor.exceptionCaught could be modified during the execution of the caller of method-a and method-b, but only if method-a was called first (otherwise, there would be a NullPointerException like the DSI experiment). So, it seems like method-b's return value is dependent on the fact that method-a is executed and returns a valid Process object. This could be a larger spec with some other operations that potentially depend on method-a?",
+        "findings": "Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-05-03-30",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 41,
+        "inspection-start-time": "2022-02-05-03-30",
+        "project": "commons-exec",
+        "spec-id": "00123",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.isFailure(I)Z",
+        "method-a-return-type": "java.lang.Process",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 39,
+        "code-snippets-file": "snippets/u/00123.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:351",
+                        "method-b-site": "DefaultExecutor.java:431",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION - NullPointerException at DefaultExecutor.java:361.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecute (the reason why this spec's result is stage-0 is because there's a lot of operations from the return value of method-a; but they're also necessary in order for the correctness of the program)",
+        "notes": "method-a creates, runs, and returns a new Process that runs a specified command. method-b performs a check on the field variable DefaultExecutorTest.exitValues, or its argument exitValue if the field variable is not property populated. Either variable that is used depends on the fact that the process to terminate/be killed. So, it seems like method-b's return value is dependent on the fact that method-a is executed and returns a valid Process object. This could be a larger spec with some other operations that potentially depend on method-a?",
+        "findings": "Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-05-03-36",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 42,
+        "inspection-start-time": "2022-02-05-03-36",
+        "project": "commons-exec",
+        "spec-id": "00124",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;",
+        "method-b": "org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;",
+        "method-a-return-type": "java.lang.Process",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00124.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:351",
+                        "method-b-site": "DefaultExecutorTest.java:107",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION - NullPointerException at DefaultExecutor.java:361.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecute with DefaultExecutorTest.java manually moved to before DefaultExecutorTest.java:104. This makes the test call method-b before calling method-a.",
+        "notes": "method-a creates, runs, and returns a new Process that runs a specified command. ONE_STATELESS_METHOD: the only implementation of method-b is a 1-line naive getter for the field variable DefaultExecutor.workingDirectory, which is not dependent at all on the Process value that method-a returns, or any of method-a's computations. Hence, this is a spurious spec.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-05-03-40",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 43,
+        "inspection-start-time": "2022-02-05-18-03",
+        "project": "commons-exec",
+        "spec-id": "00164",
+        "method-a": "org.apache.commons.exec.environment.DefaultProcessingEnvironment.getProcEnvironment()Ljava/util/Map;",
+        "method-b": "org.apache.commons.exec.environment.DefaultProcessingEnvironment.createProcEnvironment()Ljava/util/Map;",
+        "method-a-return-type": "java.util.Map",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 5,
+        "code-snippets-file": "snippets/u/00164.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "EnvironmentUtils.java:83",
+                        "method-b-site": "DefaultProcessingEnvironment.java:55",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION - NullPointerException at DefaultExecutorTest.java:690",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-05-18-07",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 44,
+        "inspection-start-time": "2022-02-05-21-59",
+        "project": "commons-exec",
+        "spec-id": "00174",
+        "method-a": "org.apache.commons.exec.ExecuteStreamHandler.setProcessErrorStream(Ljava/io/InputStream;)V",
+        "method-b": "org.apache.commons.exec.PumpStreamHandler.createProcessErrorPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 37,
+        "code-snippets-file": "snippets/u/00174.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:363",
+                        "method-b-site": "PumpStreamHandler.java:129",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-05-22-02",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 45,
+        "inspection-start-time": "2022-02-05-22-42",
+        "project": "commons-exec",
+        "spec-id": "00182",
+        "method-a": "org.apache.commons.exec.ExecuteStreamHandler.setProcessInputStream(Ljava/io/OutputStream;)V",
+        "method-b": "org.apache.commons.exec.PumpStreamHandler.createSystemInPump(Ljava/io/InputStream;Ljava/io/OutputStream;)Ljava/lang/Thread;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Thread",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00182.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec33Test#testExec33",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:361",
+                        "method-b-site": "PumpStreamHandler.java:143",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-05-22-45",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 46,
+        "inspection-start-time": "2022-02-05-23-07",
+        "project": "commons-exec",
+        "spec-id": "00188",
+        "method-a": "org.apache.commons.exec.ExecuteStreamHandler.setProcessOutputStream(Ljava/io/InputStream;)V",
+        "method-b": "org.apache.commons.exec.PumpStreamHandler.createProcessOutputPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 37,
+        "code-snippets-file": "snippets/u/00188.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:362",
+                        "method-b-site": "PumpStreamHandler.java:116",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-05-23-09",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 47,
+        "inspection-start-time": "2022-02-06-01-26",
+        "project": "commons-exec",
+        "spec-id": "00204",
+        "method-a": "org.apache.commons.exec.ExecuteWatchdog.destroyProcess()V",
+        "method-b": "org.apache.commons.exec.ExecuteWatchdog.cleanUp()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 5,
+        "code-snippets-file": "snippets/u/00204.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:518",
+                        "method-b-site": "ExecuteWatchdog.java:181",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test failed because the field variable ExecuteWatchdog.killedProcess was not set to true because method-a was not called."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-01-35",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 48,
+        "inspection-start-time": "2022-02-06-01-37",
+        "project": "commons-exec",
+        "spec-id": "00205",
+        "method-a": "org.apache.commons.exec.ExecuteWatchdog.destroyProcess()V",
+        "method-b": "org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00205.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:518",
+                        "method-b-site": "ExecuteWatchdog.java:152",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test failed because the field variable ExecuteWatchdog.killedProcess was not set to true because method-a was not called."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-01-41",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 49,
+        "inspection-start-time": "2022-02-06-01-53",
+        "project": "commons-exec",
+        "spec-id": "00209",
+        "method-a": "org.apache.commons.exec.ExecuteWatchdog.destroyProcess()V",
+        "method-b": "org.apache.commons.exec.ExecuteWatchdog.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 6,
+        "code-snippets-file": "snippets/u/00209.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:518",
+                        "method-b-site": "ExecuteWatchdog.java:153",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test failed because the field variable ExecuteWatchdog.killedProcess was not set to true because method-a was not called."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-01-55",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 50,
+        "inspection-start-time": "2022-02-06-02-15",
+        "project": "commons-exec",
+        "spec-id": "00222",
+        "method-a": "org.apache.commons.exec.ExecuteWatchdog.isWatching()Z",
+        "method-b": "org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00222.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec34Test#testExec34_2",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec34Test.java:88",
+                        "method-b-site": "ExecuteWatchdog.java:209",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT: method-a was expected to return false (checked by an assertFalse()), and DSI replaced it with the default value false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-02-19",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 51,
+        "inspection-start-time": "2022-02-06-02-25",
+        "project": "commons-exec",
+        "spec-id": "00229",
+        "method-a": "org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z",
+        "method-b": "org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00229.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec34Test#testExec34_2",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec34Test.java:87",
+                        "method-b-site": "ExecuteWatchdog.java:209",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT: method-a was supposed to return true (and checked via an assertTrue()). However, DSI replaced the return value of method-a with the default value false.",
+                "notes": "method-b was not able to execute because of the above. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.issues.Exec34Test#testExec34_2 with Exec34Test.java:87 moved after Exec34Test.java:88 (this will call method-a after method-b)",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line naive getter to the field variable Exec34Test.killedProcess. method-b checks the field variables ExecuteWatchdog.processStarted and ExecuteWatchdog.caught (and potentially throws an exception). Since these field variables are not directly related, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-02-31",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 52,
+        "inspection-start-time": "2022-02-06-02-31",
+        "project": "commons-exec",
+        "spec-id": "00230",
+        "method-a": "org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z",
+        "method-b": "org.apache.commons.exec.ExecuteWatchdog.isWatching()Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00230.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec34Test#testExec34_2",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Exec34Test.java:87",
+                        "method-b-site": "Exec34Test.java:88",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT: method-a was supposed to return true (and checked via an assertTrue()). However, DSI replaced the return value of method-a with the default value false.",
+                "notes": "method-b was not able to execute because of the above. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.issues.Exec34Test#testExec34_2 with Exec34Test.java:87 moved after Exec34Test.java:88 (this will call method-a after method-b)",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line naive getter to the field variable Exec34Test.killedProcess. method-b checks the field variables ExecuteWatchdog.processStarted and ExecuteWatchdog.caught (and potentially throws an exception), and returns the field variable ExecuteWatchdog.watch. Since these field variables are not directly related, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-02-34",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 53,
+        "inspection-start-time": "2022-02-06-16-04",
+        "project": "commons-exec",
+        "spec-id": "00258",
+        "method-a": "org.apache.commons.exec.ExecuteWatchdog.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V",
+        "method-b": "org.apache.commons.exec.ExecuteWatchdog.cleanUp()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 5,
+        "code-snippets-file": "snippets/u/00258.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ExecuteWatchdog.java:153",
+                        "method-b-site": "ExecuteWatchdog.java:181",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The assertion on DefaultExecutorTest.java:519 fails because it checks that the field variable ExecuteWatchdog.killedProcess is true (assertTrue()). However, method-a sets that field variable to true, so not calling method-a made the test fail."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-16-08",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 54,
+        "inspection-start-time": "2022-02-06-16-14",
+        "project": "commons-exec",
+        "spec-id": "00262",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/u/00262.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithArg",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:146",
+                        "method-b-site": "DefaultExecutor.java:412",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a most likely got replaced with the default value 0, which is the value that method-a is expected to return. However, the test failed before the call to Executor.isFailure() that checks the return value of method-a.",
+                "notes": "The test failed because it expected some output from the process; however, since the process itself was never called (because method-a was never called), the assertion on DefaultExecutorTest.java:148 failed. CHECKS_MISDIRECTED_OUTPUT"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-16-21",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 55,
+        "inspection-start-time": "2022-02-06-16-21",
+        "project": "commons-exec",
+        "spec-id": "00263",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I",
+        "method-a-return-type": "int",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/u/00263.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithArg",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:146",
+                        "method-b-site": "DefaultExecutor.java:175",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a most likely got replaced with the default value 0, which is the value that method-a is expected to return. However, the test failed before the call to Executor.isFailure() that checks the return value of method-a.",
+                "notes": "The test failed because it expected some output from the process; however, since the process itself was never called (because method-a was never called), the assertion on DefaultExecutorTest.java:148 failed. CHECKS_MISDIRECTED_OUTPUT"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-16-23",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 56,
+        "inspection-start-time": "2022-02-06-16-23",
+        "project": "commons-exec",
+        "spec-id": "00264",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-a-return-type": "int",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/u/00265.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithArg",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:146",
+                        "method-b-site": "DefaultExecutor.java:414",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a most likely got replaced with the default value 0, which is the value that method-a is expected to return. However, the test failed before the call to Executor.isFailure() that checks the return value of method-a.",
+                "notes": "The test failed because it expected some output from the process; however, since the process itself was never called (because method-a was never called), the assertion on DefaultExecutorTest.java:148 failed."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "ONE_STATELESS_METHOD. CHECKS_MISDIRECTED_OUTPUT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-16-27",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 57,
+        "inspection-start-time": "2022-02-07-01-35",
+        "project": "commons-exec",
+        "spec-id": "00265",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.io.IOException",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/u/00265.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithArg",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:146",
+                        "method-b-site": "DefaultExecutor.java:414",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a most likely got replaced with the default value 0, which is the value that method-a is expected to return. However, the test failed before the call to Executor.isFailure() that checks the return value of method-a.",
+                "notes": "The test failed because it expected some output from the process; however, since the process itself was never called (because method-a was never called), the assertion on DefaultExecutorTest.java:148 failed."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "CHECKS_MISDIRECTED_OUTPUT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-07-01-37",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 58,
+        "inspection-start-time": "2022-02-06-16-27",
+        "project": "commons-exec",
+        "spec-id": "00266",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.isFailure(I)Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/u/00266.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithArg",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:146",
+                        "method-b-site": "DefaultExecutor.java:431",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a most likely got replaced with the default value 0, which is the value that method-a is expected to return. However, the test failed before the call to Executor.isFailure() that checks the return value of method-a.",
+                "notes": "The test failed because it expected some output from the process; however, since the process itself was never called (because method-a was never called), the assertion on DefaultExecutorTest.java:148 failed."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "CHECKS_MISDIRECTED_OUTPUT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-16-29",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 59,
+        "inspection-start-time": "2022-02-06-16-29",
+        "project": "commons-exec",
+        "spec-id": "00267",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.lang.Process",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/u/00267.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithArg",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:146",
+                        "method-b-site": "DefaultExecutor.java:351",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a most likely got replaced with the default value 0, which is the value that method-a is expected to return. However, the test failed before the call to Executor.isFailure() that checks the return value of method-a.",
+                "notes": "The test failed because it expected some output from the process; however, since the process itself was never called (because method-a was never called), the assertion on DefaultExecutorTest.java:148 failed."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "CHECKS_MISDIRECTED_OUTPUT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-16-31",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 60,
+        "inspection-start-time": "2022-02-06-16-31",
+        "project": "commons-exec",
+        "spec-id": "00268",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I",
+        "method-b": "org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.io.File",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00268.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:104",
+                        "method-b-site": "DefaultExecutorTest.java:107",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a most likely got replaced with the default value 0, which is the value that method-a is expected to return. (not setting to expected value because the return value of method-a itself isn't checked via an assertion, but the return value of Executor.isFailure(), which performs a check on the return value of method-a, is checked via an assertion. ORDER_OF_ASSERTIONS - moving DefaultExecutorTest.java:105-106 past DefaultExecutorTest.java:107 may have prevent the DSI experiment from resulting in stage-0.",
+                "notes": "The test failed because it expected some output from the process; however, since the process itself was never called (because method-a was never called), the assertion on DefaultExecutorTest.java:105 failed."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecute with DefaultExecutorTest.java:107 moved to before DefaultExecutorTest.java:104.",
+        "notes": "ONE_STATELESS_METHOD: the only implementation of method-b is a 1-line naive getter to the field variable DefaultExecutor.workingDirectory. method-a performs some checks on DefaultExecutor.workingDirectory but doesn't modify it, so this is a spurious specification. CHECKS_MISDIRECTED_OUTPUT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-16-38",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 61,
+        "inspection-start-time": "2022-02-06-19-32",
+        "project": "commons-exec",
+        "spec-id": "00270",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00270.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:692",
+                        "method-b-site": "DefaultExecutor.java:412",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED - refer to snippet.",
+                "notes": "The test failed because it expected some output from the process; however, since the process itself was never called (because method-a was never called), the assertion on DefaultExecutorTest.java:694 failed."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "CHECKS_MISDIRECTED_OUTPUT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-19-37",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 62,
+        "inspection-start-time": "2022-02-06-19-37",
+        "project": "commons-exec",
+        "spec-id": "00271",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I",
+        "method-a-return-type": "int",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00271.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:692",
+                        "method-b-site": "DefaultExecutor.java:175",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED - refer to snippet.",
+                "notes": "The test failed because it expected some output from the process; however, since the process itself was never called (because method-a was never called), the assertion on DefaultExecutorTest.java:694 failed."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "CHECKS_MISDIRECTED_OUTPUT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-19-39",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 63,
+        "inspection-start-time": "2022-02-06-19-39",
+        "project": "commons-exec",
+        "spec-id": "00272",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.io.IOException",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00272.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:692",
+                        "method-b-site": "DefaultExecutor.java:414",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED - refer to snippet.",
+                "notes": "The test failed because it expected some output from the process; however, since the process itself was never called (because method-a was never called), the assertion on DefaultExecutorTest.java:694 failed."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "ONE_STATELESS_METHOD. CHECKS_MISDIRECTED_OUTPUT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-19-41",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 64,
+        "inspection-start-time": "2022-02-06-19-41",
+        "project": "commons-exec",
+        "spec-id": "00273",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.isFailure(I)Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00273.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:692",
+                        "method-b-site": "DefaultExecutor.java:431",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED - refer to snippet.",
+                "notes": "The test failed because it expected some output from the process; however, since the process itself was never called (because method-a was never called), the assertion on DefaultExecutorTest.java:694 failed."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "CHECKS_MISDIRECTED_OUTPUT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-19-43",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 65,
+        "inspection-start-time": "2022-02-06-19-43",
+        "project": "commons-exec",
+        "spec-id": "00274",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "java.lang.Process",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00274.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:692",
+                        "method-b-site": "DefaultExecutor.java:351",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED - refer to snippet.",
+                "notes": "The test failed because it expected some output from the process; however, since the process itself was never called (because method-a was never called), the assertion on DefaultExecutorTest.java:694 failed."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "CHECKS_MISDIRECTED_OUTPUT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-19-44",
+        "inspection-time-in-minutes": 1
+    },
+    {
+        "iid": 66,
+        "inspection-start-time": "2022-02-06-19-44",
+        "project": "commons-exec",
+        "spec-id": "00275",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I",
+        "method-b": "org.apache.commons.exec.Executor.isFailure(I)Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00275.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithSingleEnvironmentVariable",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:163",
+                        "method-b-site": "DefaultExecutorTest.java:166",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a most likely got replaced with the default value 0, which is the value that method-a is expected to return. (not setting to expected value because the return value of method-a itself isn't checked via an assertion, but the return value of method-b, which performs a check on the return value of method-a, is checked via an assertion.",
+                "notes": "The test failed on DefaultExecutorTest.java:165 (before method-b was called) because it expected some output from the process; however, since the process itself was not called by that point (because method-b was not called at that point). ORDER_OF_ASSERTIONS: moving DefaultExecutorTest.java:165 past DefaultExecutorTest.java:166 would have prevented the DSI experiment from failing at stage-0."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "use cases in test",
+        "notes": "method-a performs a synchronous execution of a subprocess running the intended script, and method-b checks the exit value of the subprocess to check whether it failed, and that exit value is the return value of method-a. If one wants to check the result of a synchronous execution, then they must call method-a before method-b, so I think this is a true spec? CHECKS_MISDIRECTED_OUTPUT. DECISION: This is a spurious spec because method-b is a public method that can be called at any point; the common use case being that the return value of method-a gets passed into method-b implies that this is a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-19-48",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 67,
+        "inspection-start-time": "2022-02-06-19-56",
+        "project": "commons-exec",
+        "spec-id": "00277",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Thread",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 10,
+        "code-snippets-file": "snippets/u/00277.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:507",
+                        "method-b-site": "DefaultExecutor.java:222",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The assertion fails on DefaultExecutorTest.java:524 where the size of exec.getProcessDestroyer() (the field variable DefaultExecutor.processDestroyer) is checked. The subprocess only gets added to the data structure DefaultExecutor.processDestroyer when the process is run within the call to method-a, so the delay to method-a causes DefaultExecutor.processDestroyer to only have size 0, instead of the size 1 that the test was expecting."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-20-04",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 68,
+        "inspection-start-time": "2022-02-06-20-08",
+        "project": "commons-exec",
+        "spec-id": "00279",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 10,
+        "code-snippets-file": "snippets/u/00279.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:507",
+                        "method-b-site": "DefaultExecutor.java:186",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The assertion fails on DefaultExecutorTest.java:524 where the size of exec.getProcessDestroyer() (the field variable DefaultExecutor.processDestroyer) is checked. The subprocess only gets added to the data structure DefaultExecutor.processDestroyer when the process is run within the call to method-a, so the delay to method-a causes DefaultExecutor.processDestroyer to only have size 0, instead of the size 1 that the test was expecting."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-20-10",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 69,
+        "inspection-start-time": "2022-02-06-20-25",
+        "project": "commons-exec",
+        "spec-id": "00281",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Thread",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 10,
+        "code-snippets-file": "snippets/u/00281.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:507",
+                        "method-b-site": "DefaultExecutor.java:223",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The assertion fails on DefaultExecutorTest.java:524 where the size of exec.getProcessDestroyer() (the field variable DefaultExecutor.processDestroyer) is checked. The subprocess only gets added to the data structure DefaultExecutor.processDestroyer when the process is run within the call to method-a, so the delay to method-a causes DefaultExecutor.processDestroyer to only have size 0, instead of the size 1 that the test was expecting."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "ONE_STATELESS_METHOD.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-20-27",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 70,
+        "inspection-start-time": "2022-02-06-20-32",
+        "project": "commons-exec",
+        "spec-id": "00285",
+        "method-a": "org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V",
+        "method-b": "org.apache.commons.exec.Executor.isFailure(I)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00285.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsync",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:179",
+                        "method-b-site": "DefaultExecutorTest.java:183",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The assertion on DefaultExecutorTest.java:181 fails because the test expected for the handler to have a result (i.e. the subprocess finished/was terminated). However, since that assertion was between the call to method-a and the call to method-b, there was no result at that point because method-a was not called by that point and therefore the process never started. ORDER_OF_ASSERTIONS - moving DefaultExecutorTest.java:181-182 past DefaultExecutorTest.java:183 may have prevented the DSI experiment from failing at stage-0."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsync with method-b called with some int argument between DefaultExecutorTest.java:178 and DefaultExecutorTest.java:179.",
+        "notes": "method-a performs an asynchronous execution of a subprocess running the intended script, and method-b checks the exit value of the subprocess to check whether it failed, and that exit value is only fetched by DefaultExecuteResultHandler.getExitValue() only if the process initiated by method-a has terminated at that point. This might be more of a spec between method-a and DefaultExecuteResultHandler.getExitValue() rather than between method-a and method-b, but one must start the execution of the subprocess before checking the results of said subprocess. DECISION: method-a and method-b are both from a public interface, and they can technically be called at any point (neither inhibits the other from executing correctly). Note that this could be a SPECIAL_NBP given that the only implementation of method-b is indirectly called via the only implementation of method-a through an asynchronous thread.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-20-39",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 71,
+        "inspection-start-time": "2022-02-06-21-36",
+        "project": "commons-exec",
+        "spec-id": "00293",
+        "method-a": "org.apache.commons.exec.Executor.setExitValue(I)V",
+        "method-b": "org.apache.commons.exec.DefaultExecutor.setExitValues([I)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00293.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithCustomExitValue1",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:440",
+                        "method-b-site": "DefaultExecutor.java:229",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test crashes because method-a was supposed to set what it expects the process's exit value to be as valid, but since method-a was delayed and not called, DefaultExecutor.executeInternal() took the exit value as invalid and threw an exception instead."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-21-41",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 72,
+        "inspection-start-time": "2022-02-07-12-40",
+        "project": "commons-exec",
+        "spec-id": "00322",
+        "method-a": "org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V",
+        "method-b": "org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.io.File",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00322.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutorTest.java:81",
+                        "method-b-site": "DefaultExecutorTest.java:107",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test fails because method-a was not called before the Executor.execute() call, which prevents the OutputStream variable baos from receiving any output from the subprocess. This causes the check at DefaultExecutorTest.java:105 to fail. ORDER_OF_ASSERTIONS - moving DefaultExecutorTest.java:105-106 past DefaultExecutorTest.java:107 may have prevented the DSI experiment from failing at stage-0."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "Modified version of org.apache.commons.exec.DefaultExecutorTest#testExecute in snippet",
+        "notes": "The only implementation of method-a modifies the field variable DefaultExecutor.streamHandler, and the only implementation of method-b is a 1-line naive getter to the field variable DefaultExecutor.workingDirectory (ONE_STATELESS_METHOD). Since these variables are not related to each other, this is a spurious spec. CHECKS_MISDIRECTED_OUTPUT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-07-12-48",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 73,
+        "inspection-start-time": "2022-02-07-16-40",
+        "project": "commons-exec",
+        "spec-id": "00350",
+        "method-a": "org.apache.commons.exec.launcher.CommandLauncher.exec(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;",
+        "method-b": "org.apache.commons.exec.launcher.CommandLauncher.isFailure(I)Z",
+        "method-a-return-type": "java.lang.Process",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 17,
+        "code-snippets-file": "snippets/u/00350.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:292",
+                        "method-b-site": "DefaultExecutor.java:247",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION: NullPointerException at DefaultExecutor.hava:361",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testAddEnvironmentVariables/snippet",
+        "notes": "In general terms, method-a creates and launches a new process for the given command, and method-b checks whether the exit value of the process signals a failure. It seems like one would have to successfully start the command in order to check its exit value, so I think this is a true spec? Note that DefaultExecutor.executeInternal() manages the calls to method-a and method-b, and that method-b may not necessarily be called (if the user adds values to the field variable DefaultExecutor.exitValues to add in exit values that are valid). DECISION: This is a spurious spec because method-a and method-b are both public methods that can be called at any point. While a common use case is similar to the one in the test, method-b can be called before method-a safely, and vice versa. Given their definitions, it seems like this is a case of UNRELATED_STATELESS_METHODS.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-16-58",
+        "inspection-time-in-minutes": 18
+    },
+    {
+        "iid": 74,
+        "inspection-start-time": "2022-02-07-18-02",
+        "project": "commons-exec",
+        "spec-id": "00352",
+        "method-a": "org.apache.commons.exec.ProcessDestroyer.add(Ljava/lang/Process;)Z",
+        "method-b": "org.apache.commons.exec.ShutdownHookProcessDestroyer.addShutdownHook()V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00352.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:378",
+                        "method-b-site": "ShutdownHookProcessDestroyer.java:86",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": "Since method-a was delayed, the size of processDestroyer ended up staying at 0; so, the assertion that checked whether processDestroyer was empty at the end of the process execution passed."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "Note that this is a nbp only when the ProcessDestroyer object is a ShutdownHookProcessDestroyer object (ShutdownHookProcessDestroyer is the only class implementing ProcessDestroyer in the project).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-07-18-08",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 75,
+        "inspection-start-time": "2022-02-07-18-08",
+        "project": "commons-exec",
+        "spec-id": "00353",
+        "method-a": "org.apache.commons.exec.ProcessDestroyer.add(Ljava/lang/Process;)Z",
+        "method-b": "org.apache.commons.exec.ShutdownHookProcessDestroyer.removeShutdownHook()V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00353.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:378",
+                        "method-b-site": "ShutdownHookProcessDestroyer.java:135",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": "Since method-a was delayed, the size of processDestroyer ended up staying at 0; so, the assertion that checked whether processDestroyer was empty at the end of the process execution passed. This is also why method-b was never called; the boolean processRemoved at ShutdownHookProcessDestroyer.java:133 was false because there was no Process in processDestroyer to be removed. This causes the if conditional on method-b to evaluate to false. REPLACEMENT_TRIGGERS_CHECK_THAT_PREVENTS_B"
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithProcessDestroyer",
+        "notes": "The callee of the only implementation of method-a (ShutdownHookProcessDestroyer.addShutdownHook()) registers the ProcessDestroyer object as a shutdown hook, and method-b removes the ProcessDestroyer as a shutdown hook. If method-a is not called before method-b, then method-b becomes a sort of no-op. Note that if there were other implementations of ProcessDestroyer, this may not be a true spec.",
+        "findings": "Type-b: method-a is never followed by method-b?",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-18-17",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 76,
+        "inspection-start-time": "2022-02-07-18-17",
+        "project": "commons-exec",
+        "spec-id": "00354",
+        "method-a": "org.apache.commons.exec.ProcessDestroyer.remove(Ljava/lang/Process;)Z",
+        "method-b": "org.apache.commons.exec.ShutdownHookProcessDestroyer.removeShutdownHook()V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00354.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:439",
+                        "method-b-site": "ShutdownHookProcessDestroyer.java:135",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": "Since method-a was never called, the size of processDestroyer remained at 1 (because ProcessDestroyer.add() added the running process to processDestroyer, and method-a was supposed to clean up that state). The assertion checked whether processDestroyer was empty, and failed."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "Note that this is a nbp only when the ProcessDestroyer object is a ShutdownHookProcessDestroyer object (ShutdownHookProcessDestroyer is the only class implementing ProcessDestroyer in the project).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-07-18-23",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 77,
+        "inspection-start-time": "2022-02-07-23-07",
+        "project": "commons-exec",
+        "spec-id": "00379",
+        "method-a": "org.apache.commons.exec.TimeoutObserver.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V",
+        "method-b": "org.apache.commons.exec.ExecuteWatchdog.cleanUp()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/u/00379.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.issues.Exec34Test#testExec34_2",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Watchdog.java:56",
+                        "method-b-site": "ExecuteWatchdog.java:181",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test failed because method-a wasn't called, meaning that the process wasn't killed on timeout; this caused the process to exit with a exit value of 0 (because it was able to run to completion), which caused DefaultExecutor.executeInternal() to not throw an exception. This causes the assertion on Exec34Test.java:86 to fail."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "Note that this will only be a nbp if the TimeoutObserver instance is also a ExecuteWatchdog instance (currently ExecuteWatchdog is the only subclass of TimeoutObserver).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-07-23-14",
+        "inspection-time-in-minutes": 7
+    }
+
+]

@@ -1,0 +1,6 @@
+transition-id,method-sig
+cleanup,org.apache.commons.codec.language.DaitchMokotoffSoundex.cleanup(Ljava/lang/String;)Ljava/lang/String;
+encodeObject,org.apache.commons.codec.language.DaitchMokotoffSoundex.encode(Ljava/lang/Object;)Ljava/lang/Object;
+encodeString,org.apache.commons.codec.language.DaitchMokotoffSoundex.encode(Ljava/lang/String;)Ljava/lang/String;
+soundexString,org.apache.commons.codec.language.DaitchMokotoffSoundex.soundex(Ljava/lang/String;)Ljava/lang/String;
+soundexStringBoolean,org.apache.commons.codec.language.DaitchMokotoffSoundex.soundex(Ljava/lang/String;Z)[Ljava/lang/String;

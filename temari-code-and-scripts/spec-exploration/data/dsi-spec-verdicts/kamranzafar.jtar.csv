@@ -1,0 +1,12 @@
+method-a,method-b,verdict
+org.kamranzafar.jtar.TarEntry.computeCheckSum([B)J,org.kamranzafar.jtar.TarEntry.isDirectory()Z,spurious-spec
+org.kamranzafar.jtar.TarEntry.extractTarHeader(Ljava/lang/String;)V,org.kamranzafar.jtar.TarEntry.computeCheckSum([B)J,spurious-spec
+org.kamranzafar.jtar.TarEntry.getName()Ljava/lang/String;,org.kamranzafar.jtar.TarEntry.computeCheckSum([B)J,spurious-spec
+org.kamranzafar.jtar.TarEntry.writeEntryHeader([B)V,org.kamranzafar.jtar.TarEntry.computeCheckSum([B)J,no-break-pass (direct)
+org.kamranzafar.jtar.TarEntry.getName()Ljava/lang/String;,org.kamranzafar.jtar.TarEntry.writeEntryHeader([B)V,spurious-spec
+org.kamranzafar.jtar.TarEntry.parseTarHeader([B)V,org.kamranzafar.jtar.TarEntry.isDirectory()Z,sometimes-true-spec
+org.kamranzafar.jtar.TarInputStream.setDefaultSkip(Z)V,org.kamranzafar.jtar.TarInputStream.close()V,spurious-spec
+org.kamranzafar.jtar.TarEntry.extractTarHeader(Ljava/lang/String;)V,org.kamranzafar.jtar.TarEntry.isDirectory()Z,sometimes-true-spec
+org.kamranzafar.jtar.TarEntry.extractTarHeader(Ljava/lang/String;)V,org.kamranzafar.jtar.TarEntry.writeEntryHeader([B)V,sometimes-true-spec
+org.kamranzafar.jtar.TarEntry.writeEntryHeader([B)V,org.kamranzafar.jtar.TarEntry.isDirectory()Z,spurious-spec
+org.kamranzafar.jtar.TarEntry.parseTarHeader([B)V,org.kamranzafar.jtar.TarEntry.getName()Ljava/lang/String;,sometimes-true-spec

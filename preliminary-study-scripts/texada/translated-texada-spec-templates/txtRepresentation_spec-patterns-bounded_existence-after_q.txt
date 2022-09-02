@@ -1,0 +1,23 @@
+1
+s0_s2
+7
+s10_s8
+s6_s4
+s3_s1
+s5_s7
+s0_s2
+s11_s9
+null
+12
+s11_s9 s11_s9 q
+s10_s8 s10_s8 p
+s6_s4 s5_s7 q
+s5_s7 s5_s7 q
+s11_s9 violation p
+s6_s4 s6_s4 p
+s3_s1 s6_s4 p
+s10_s8 s11_s9 q
+s3_s1 s3_s1 q
+s0_s2 s0_s2 p
+s5_s7 s10_s8 p
+s0_s2 s3_s1 q

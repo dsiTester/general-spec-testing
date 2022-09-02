@@ -1,0 +1,79 @@
+MethodsStringConverter(Class<T> cls, Method toString, Method fromString, Class<?> effectiveType) {
+    super(cls, toString);
+    if (Modifier.isStatic(fromString.getModifiers()) == false) {
+        throw new IllegalStateException("FromString method must be static: " + fromString);
+    }
+    if (fromString.getParameterTypes().length != 1) {//NPE
+        throw new IllegalStateException("FromString method must have one parameter: " + fromString);
+    }
+    Class<?> param = fromString.getParameterTypes()[0];
+    if (param != String.class && param != CharSequence.class) {
+        throw new IllegalStateException("FromString method must take a String or CharSequence: " + fromString);
+    }
+    if (fromString.getReturnType().isAssignableFrom(cls) == false && cls.isAssignableFrom(fromString.getReturnType()) == false) {
+        throw new IllegalStateException("FromString method must return specified class or a supertype: " + fromString);
+    }
+    this.fromString = fromString;
+    this.effectiveType = effectiveType;
+}
+
+public <T> void registerMethodConstructor(final Class<T> cls, String toStringMethodName) {
+    if (cls == null) {
+        throw new IllegalArgumentException("Class must not be null");
+    }
+    if (toStringMethodName == null) {
+        throw new IllegalArgumentException("Method name must not be null");
+    }
+    if (this == INSTANCE) {
+        throw new IllegalStateException("Global singleton cannot be extended");
+    }
+    Method toString = findToStringMethod(cls, toStringMethodName);
+    Constructor<T> fromString = findFromStringConstructorByType(cls);//method a
+    MethodConstructorStringConverter<T> converter = new MethodConstructorStringConverter<T>(cls, toString, fromString);//null replacement for fromString caused NPE
+    registered.putIfAbsent(cls, converter);
+}
+
+private <T> Constructor<T> findFromStringConstructorByType(Class<T> cls) {//method a, does not change state
+    try {
+        return cls.getDeclaredConstructor(String.class);
+    } catch (NoSuchMethodException ex) {
+        try {
+            return cls.getDeclaredConstructor(CharSequence.class);
+        } catch (NoSuchMethodException ex2) {
+            throw new IllegalArgumentException("Constructor not found", ex2);
+        }
+    }
+}
+
+public String convertToString(Object object) {
+    if (object == null) {
+        return null;
+    }
+    Class<?> cls = object.getClass();
+    StringConverter<Object> conv = findConverterNoGenerics(cls);
+    return conv.convertToString(object);
+}
+
+public StringConverter<Object> findConverterNoGenerics(final Class<?> cls) {
+    return findTypedConverterNoGenerics(cls);//method b
+}
+
+public TypedStringConverter<Object> findTypedConverterNoGenerics(final Class<?> cls) {//method b
+    TypedStringConverter<Object> conv = (TypedStringConverter<Object>) findConverterQuiet(cls);
+    if (conv == null) {
+        throw new IllegalStateException("No registered converter found: " + cls);
+    }
+    return conv;
+}
+
+@Test
+public void test_registerMethodConstructorCharSequence() {
+    StringConvert test = new StringConvert();
+    test.registerMethodConstructor(DistanceNoAnnotationsCharSequence.class, "toString");//method a
+    DistanceNoAnnotationsCharSequence d = new DistanceNoAnnotationsCharSequence(25);
+    assertEquals("Distance[25m]", test.convertToString(d));//calls method b
+    assertEquals(d.amount, test.convertFromString(DistanceNoAnnotationsCharSequence.class, "25m").amount);
+    StringConverter<DistanceNoAnnotationsCharSequence> conv = test.findConverter(DistanceNoAnnotationsCharSequence.class);
+    assertEquals(true, conv instanceof MethodConstructorStringConverter<?>);
+    assertSame(conv, test.findConverter(DistanceNoAnnotationsCharSequence.class));
+}

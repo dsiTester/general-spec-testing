@@ -1,0 +1,13 @@
+1
+s11_s6_s9_s8_s5_s3_s2_s0_s13
+3
+s12_s10_s4_s1_s7
+null
+s11_s6_s9_s8_s5_s3_s2_s0_s13
+6
+s11_s6_s9_s8_s5_s3_s2_s0_s13 s11_s6_s9_s8_s5_s3_s2_s0_s13 r
+s11_s6_s9_s8_s5_s3_s2_s0_s13 s12_s10_s4_s1_s7 q
+s12_s10_s4_s1_s7 s12_s10_s4_s1_s7 q
+s12_s10_s4_s1_s7 s11_s6_s9_s8_s5_s3_s2_s0_s13 p
+s11_s6_s9_s8_s5_s3_s2_s0_s13 s11_s6_s9_s8_s5_s3_s2_s0_s13 p
+s12_s10_s4_s1_s7 violation r

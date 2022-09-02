@@ -1,0 +1,6 @@
+FileUploadTest # FileUploadTest.initializationError
+PortletFileUploadTest # depends on FileUploadTest
+ServletFileUploadTest # depends on FileUploadTest
+QuotedPrintableDecoderTestCase # METHODTRACER: traces not collected bc it only calls static and 3rd party. 11/83 test methods skipped
+MimeUtilityTestCase # METHODTRACER: traces not collected bc it only calls static and 3rd party. 6/83 test methods skipped
+Base64DecoderTestCase # METHODTRACER: traces not collected bc it only calls static and 3rd party. 13/83 test methods skipped

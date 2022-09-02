@@ -1,0 +1,9 @@
+project,#improved,#worsened,#accuracy-changed,#accuracy-not-changed,#total-accurate(JDK),total
+commons-codec,0,0,0,1,0,1
+commons-exec,0,0,0,0,0,0
+commons-fileupload,0,2,2,0,0,2
+commons-validator,2,8,10,5,5,15
+joda-convert,10,2,12,41,23,53
+kamranzafar.jtar,0,0,0,0,0,0
+TOTAL,12,12,24,47,28,71
+AVG,2.000,2.000,4.000,7.833,4.666,11.833

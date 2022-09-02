@@ -1,0 +1,1426 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-20-01-48",
+        "project": "commons-validator",
+        "spec-id": "00005",
+        "method-a": "org.apache.commons.validator.Field.determineArgPosition(Lorg/apache/commons/validator/Arg;)V",
+        "method-b": "org.apache.commons.validator.Field.ensureArgsCapacity(Lorg/apache/commons/validator/Arg;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 7,
+        "test-methods-mine-count": 39,
+        "LV-verdict-count": 39,
+        "LS-verdict-count": 7,
+        "code-snippets-file": "snippets/lv-ls/00005.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.LocaleTest#testLocale1",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Field.java:338",
+                        "invocation-count": 9
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.RequiredNameTest#testRequired",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Field.java:338",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: The test passes because the config file specified (for the first field) that Field.position = 0, but not for the second field in the config file. However, since DSI only perturbed the first instance, where position was not set to -1, there was no ArrayOutOfBoundsException."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.validator.LocaleTest#testLocale1",
+        "notes": "GOOD_EXAMPLE: method-a and method-b were given the same Arg argument arg. While method-a sets the position field of arg, method-b uses that position field to ensure that there is enough space. Since method-a wasn't called in the DSI experiment, it's most likely the case that method-b had to go off of incorrect information about the position field; causing the parsing in the validated test to fail, because not enough space was made?",
+        "findings": "Type-f: method-b is always immediately preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-20-02-32",
+        "inspection-time-in-minutes": 44
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-22-12-24",
+        "project": "commons-validator",
+        "spec-id": "00025",
+        "method-a": "org.apache.commons.validator.Field.getDepends()Ljava/lang/String;",
+        "method-b": "org.apache.commons.validator.Field.validateForRule(Lorg/apache/commons/validator/ValidatorAction;Lorg/apache/commons/validator/ValidatorResults;Ljava/util/Map;Ljava/util/Map;I)Z",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 12,
+        "test-methods-mine-count": 73,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 83,
+        "code-snippets-file": "snippets/lv-ls/00025.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:884",
+                        "method-b-site": "Field.java:908",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "It seems that method-a was replaced with a non-null value, as the return value of method-a is only used in the caller to check whether it's null or not. If DSI allows function parameters to count as arguments, the replacement value could be String fieldname from Form.validate().",
+                "notes": "The DSI experiment resulted in stage-1, but the test passed because method-b threw the EXPECTED_EXCEPTION."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ByteTest#testByte",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:884",
+                        "method-b-site": "Field.java:908",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "It seems that method-a was replaced with a non-null value, as the return value of method-a is only used in the caller to check whether it's null or not. If DSI allows function parameters to count as arguments, the replacement value could be String fieldname from Form.validate().",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ByteTest#testByte",
+        "notes": "method-a is a 1-line stateless getter that retrieves Field.depends (ONE_STATELESS_METHOD). The caller of method-a and method-b returns early with a different value if method-a returned null, but I don't think that implies that method-a **needs** to be called before method-b. While method-b is a stateful method that uses Field.dependencyList, a list representation of the same data that Field.depends contains, there is no direct relationship/use between method-a and method-b. To add further confidence to this argument, I commented out method-a and ran the entire test suite, and all tests passed. So, I think this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-22-12-32",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-22-13-09",
+        "project": "commons-validator",
+        "spec-id": "00028",
+        "method-a": "org.apache.commons.validator.Field.getKey()Ljava/lang/String;",
+        "method-b": "org.apache.commons.validator.Field.process(Ljava/util/Map;Ljava/util/Map;)V",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 5,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 4,
+        "code-snippets-file": "snippets/lv-ls/00028.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.VarTest#testVars",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:101",
+                        "method-b-site": "Form.java:207",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "It seems that DSI replaced the return value of method-a with some other string value, which caused the Form to register an incorrect key value for the field. So, when the test tried to find the field with key \"field-1\" from the Form, the assertNotNull on VarTest.java:72 happened.",
+                "notes": "The DSI experiment resulted in stage-1, but the test passed because method-b threw the EXPECTED_EXCEPTION."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.EntityImportTest#testEntityImport",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:101",
+                        "method-b-site": "Form.java:207",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced the return value of method-a with null, but the test didn't check for the values impacted by method-a.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "snippet",
+        "notes": "method-a returns the field variable Field.key, and initializes that field variable if necessary (by calling Field.generateKey()). method-b modifies the argument Map constants and modifies the field variable Field.hMsgs. The contexts at which method-a and method-b are called are very different. method-a is used to generate a key to which a Field object will be indexed within the field variable Form.hFields, however that variable is not related to the call to method-b (the call to method-b is affected by the field variable Form.lFields, which is the list counterpart to Form.hFields. Given these pieces of evidence, I think that method-a doesn't necessarily have to be called before method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-22-13-39",
+        "inspection-time-in-minutes": 30
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-22-15-01",
+        "project": "commons-validator",
+        "spec-id": "00032",
+        "method-a": "org.apache.commons.validator.Field.getPage()I",
+        "method-b": "org.apache.commons.validator.Field.validate(Ljava/util/Map;Ljava/util/Map;)Lorg/apache/commons/validator/ValidatorResults;",
+        "method-a-return-type": "int",
+        "method-b-return-type": "org.apache.commons.validator.ValidatorResults",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 17,
+        "test-methods-mine-count": 90,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 105,
+        "code-snippets-file": "snippets/lv-ls/00032.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:291",
+                        "method-b-site": "Form.java:292",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. On execution, method-a returns the int value 0. The DSI default replacement value is 0.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ByteTest#testByte",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:291",
+                        "method-b-site": "Form.java:292",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. On execution, method-a returns the int value 0. The DSI default replacement value is 0.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ByteTest#testByte",
+        "notes": "SUPPLEMENTARY_EVIDENCE_BY_JAVADOC: According to the JavaDoc of Form.validate() (the direct caller of both method-a and method-b), \"Fields on pages higher than this will not be validated\". method-a is a 1-line naive getter for the field variable Field.page (ONE_STATELESS_METHOD). The return value of method-a is used to determine whether the field ought to be validated. method-b is a part of the validation process - it does not use the field variable Field.page. Given the JavaDoc comment, maybe this is a MORE_COMPLEX_THAN_AB spec, something like \"a | ab\"? Note that every test that calls method-a in commons-validator is weak against this spec; every invocation of method-a returned 0, so there does not exist a case where method-b would not be called after method-a. DECISION: both method-a and method-b are public methods that can be called at any point; hence this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-22-15-17",
+        "inspection-time-in-minutes": 16
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-01-22-15-17",
+        "project": "commons-validator",
+        "spec-id": "00033",
+        "method-a": "org.apache.commons.validator.Field.getPage()I",
+        "method-b": "org.apache.commons.validator.Field.validateForRule(Lorg/apache/commons/validator/ValidatorAction;Lorg/apache/commons/validator/ValidatorResults;Ljava/util/Map;Ljava/util/Map;I)Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 12,
+        "test-methods-mine-count": 73,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 83,
+        "code-snippets-file": "snippets/lv-ls/00033.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:291",
+                        "method-b-site": "Field.java:908",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. On execution, method-a returns the int value 0. The DSI default replacement value is 0.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ByteTest#testByte",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:291",
+                        "method-b-site": "Field.java:908",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. On execution, method-a returns the int value 0. The DSI default replacement value is 0.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ByteTest#testByte",
+        "notes": "SUPPLEMENTARY_EVIDENCE_BY_JAVADOC: According to the JavaDoc of Form.validate() (the direct caller of method-a and the indirect caller of method-b), \"Fields on pages higher than this will not be validated\". method-a is a 1-line naive getter for the field variable Field.page (ONE_STATELESS_METHOD). The return value of method-a is used to determine whether the field ought to be validated. method-b is a part of the validation process - it does not use the field variable Field.page. Given the JavaDoc comment, maybe this is a MORE_COMPLEX_THAN_AB spec, something like \"a | ab\"? Note that every test that calls method-a in commons-validator is weak against this spec; every invocation of method-a returned 0, so there does not exist a case where method-b would not be called after method-a. DECISION: This is a spurious spec because method-a is a stateless public method that can be called at any point. No tests fail when method-a is changed to always return 0.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-22-15-30",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2022-01-23-13-30",
+        "project": "commons-validator",
+        "spec-id": "00048",
+        "method-a": "org.apache.commons.validator.Field.getVarMap()Ljava/util/Map;",
+        "method-b": "org.apache.commons.validator.Field.validate(Ljava/util/Map;Ljava/util/Map;)Lorg/apache/commons/validator/ValidatorResults;",
+        "method-a-return-type": "java.util.Map",
+        "method-b-return-type": "org.apache.commons.validator.ValidatorResults",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 5,
+        "test-methods-mine-count": 22,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 25,
+        "code-snippets-file": "snippets/lv-ls/00048.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:595",
+                        "method-b-site": "Form.java:292",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Same as invalidated-inspected-case, method-a's return value was replaced with a similarly empty Map<String, Var> object, so it may have been Field.hVars itself.",
+                "notes": "The DSI experiment resulted in stage-1, but the test passed because method-b threw the EXPECTED_EXCEPTION."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:595",
+                        "method-b-site": "Form.java:282",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR. Based on the fact that a NullPointerException was not thrown, the return value of method-a was replaced with a different Map<String, Var> object. I don't immediately see a declared Map<String, Var> object, but it is likely that the replacement value was the field variable Field.hVars itself, which is actually the return value of method-a. Either way, the original test gets an empty set on Field.java:595, so the replacement value did not change the state much.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+        "notes": "Since the validating test was a case of an expected exception, this means that all tests passed when ran with the DSI experiment (manually checked that replacing method-a with an empty Map object would not change the exception call stack of the expected exception in the validated-test). method-a is a 1-line naive getter (ONE_STATELESS_METHOD), and while method-b is stateful, method-b nor its callees access/modify/influence the field variable returned by method-a. Hence, this is likely a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-23-13-51",
+        "inspection-time-in-minutes": 21
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2022-01-23-13-59",
+        "project": "commons-validator",
+        "spec-id": "00049",
+        "method-a": "org.apache.commons.validator.Field.getVarMap()Ljava/util/Map;",
+        "method-b": "org.apache.commons.validator.Field.validateForRule(Lorg/apache/commons/validator/ValidatorAction;Lorg/apache/commons/validator/ValidatorResults;Ljava/util/Map;Ljava/util/Map;I)Z",
+        "method-a-return-type": "java.util.Map",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 3,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 13,
+        "code-snippets-file": "snippets/lv-ls/00049.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:595",
+                        "method-b-site": "Field.java:908",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Same as invalidated-inspected-case, method-a's return value was replaced with a similarly empty Map<String, Var> object, so it may have been Field.hVars itself.",
+                "notes": "The DSI experiment resulted in stage-1, but the test passed because method-b threw the EXPECTED_EXCEPTION."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:595",
+                        "method-b-site": "Field.java:908",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Based on the fact that a NullPointerException was not thrown, the return value of method-a was replaced with a different Map<String, Var> object. I don't immediately see a declared Map<String, Var> object, but it is likely that the replacement value was the field variable Field.hVars itself, which is actually the return value of method-a. INSPECTION_TODO to check the DSI replacement mechanism on this one. Either way, the original test gets an empty set on Field.java:595, so the replacement value did not change the state much.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+        "notes": "This method-b is called from 00048's method-b... Since the validating test was a case of an expected exception, this means that all tests passed when ran with the DSI experiment (manually checked that replacing method-a with an empty Map object would not change the exception call stack of the expected exception in the validated-test). method-a is a 1-line naive getter (ONE_STATELESS_METHOD), and while method-b is stateful, method-b nor its callees access/modify/influence the field variable returned by method-a. Hence, this is likely a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-23-16-08",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2022-01-24-02-42",
+        "project": "commons-validator",
+        "spec-id": "00058",
+        "method-a": "org.apache.commons.validator.Field.process(Ljava/util/Map;Ljava/util/Map;)V",
+        "method-b": "org.apache.commons.validator.Field.validate(Ljava/util/Map;Ljava/util/Map;)Lorg/apache/commons/validator/ValidatorResults;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.validator.ValidatorResults",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 7,
+        "test-methods-mine-count": 29,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 34,
+        "code-snippets-file": "snippets/lv-ls/00058.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:207",
+                        "method-b-site": "Form.java:292",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The DSI experiment ended in stage-1, but the test passed because method-b threw the EXPECTED_EXCEPTION."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.DateTest#testValidDate",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:207",
+                        "method-b-site": "Form.java:292",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "INSPECTION_TODO: none of the tests that invoke both method-a and method-b fail when the call to method-a is commented out. Is there any chance we can construct a stronger test that would fail if method-b is called without method-a being called? We would need more domain knowledge for this.",
+        "notes": "SUPPLEMENTARY_EVIDENCE_BY_JAVADOC. The DSI experiments show that calling method-a after calling method-b would still make all of the tests that mined the spec pass in one way or another (note the expected exception). However, according to the JavaDocs of the indirect caller of method-a, it does seem like method-a ought to be called before method-b (refer to 00057). DECISION: keeping this an unknown for now, we need to try out various configurations and write a completely new test in order to verify the relationship between method-a and method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-24-03-00",
+        "inspection-time-in-minutes": 18
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2022-01-24-03-00",
+        "project": "commons-validator",
+        "spec-id": "00059",
+        "method-a": "org.apache.commons.validator.Field.process(Ljava/util/Map;Ljava/util/Map;)V",
+        "method-b": "org.apache.commons.validator.Field.validateForRule(Lorg/apache/commons/validator/ValidatorAction;Lorg/apache/commons/validator/ValidatorResults;Ljava/util/Map;Ljava/util/Map;I)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 5,
+        "test-methods-mine-count": 19,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 22,
+        "code-snippets-file": "snippets/lv-ls/00059.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:207",
+                        "method-b-site": "Field.java:908",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The DSI experiment ended in stage-1, but the test passed because method-b threw the EXPECTED_EXCEPTION."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.DateTest#testValidDate",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:207",
+                        "method-b-site": "Field.java:908",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.DateTest#testValidDate",
+        "notes": "The DSI experiments show that calling method-a after calling method-b would still make all of the tests that mined the spec pass in one way or another (note the expected exception). SUPPLEMENTARY_EVIDENCE_BY_JAVADOC: However, according to the JavaDocs of the indirect caller of method-a, it does seem like method-a ought to be called before method-b (refer to 00057). INSPECTION_TODO - might be best to update after gaining more domain knowledge via more inspections.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-24-03-09",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2022-01-24-17-15",
+        "project": "commons-validator",
+        "spec-id": "00087",
+        "method-a": "org.apache.commons.validator.Field.setProperty(Ljava/lang/String;)V",
+        "method-b": "org.apache.commons.validator.Field.getVarMap()Ljava/util/Map;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 4,
+        "code-snippets-file": "snippets/lv-ls/00087.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorTest.java:156",
+                        "method-b-site": "Field.java:595",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The exception is thrown because Form.hFields doesn't have an entry with the key \"date\" (String fieldName). When an entry is added to Form.hFields via Form.addField, Field.generateKey is called, and in certain cases (like this test), Field.property (the return value from Field.getProperty()) will be used as the key value. Hence, since method-a was delayed, the key of the entry became null instead. So, there was no entry with the key \"date\", and the test failed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testManualBoolean",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorTest.java:185",
+                        "method-b-site": "Field.java:595",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Opposed to the validating case, an exception was not thrown here because the test does not cover the branch in which the exception would have been thrown (the if branch from Form.java:273."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ValidatorTest#testManualBoolean",
+        "notes": "ONE_PURE_SETTER + ONE_STATELESS_METHOD: method-a is a pure setter to the field variable Field.property, and method-b is a 1-line naive getter to the field variable Field.hVars. These two field variables are unrelated.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-24-17-31",
+        "inspection-time-in-minutes": 16
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2022-01-24-17-32",
+        "project": "commons-validator",
+        "spec-id": "00088",
+        "method-a": "org.apache.commons.validator.Field.setProperty(Ljava/lang/String;)V",
+        "method-b": "org.apache.commons.validator.Field.process(Ljava/util/Map;Ljava/util/Map;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 4,
+        "code-snippets-file": "snippets/lv-ls/00088.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorTest.java:156",
+                        "method-b-site": "Form.java:207",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The exception is thrown because Form.hFields doesn't have an entry with the key \"date\" (String fieldName). When an entry is added to Form.hFields via Form.addField, Field.generateKey is called, and in certain cases (like this test), Field.property (the return value from Field.getProperty()) will be used as the key value. Hence, since method-a was delayed, the key of the entry became null instead. So, there was no entry with the key \"date\", and the test failed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testManualBoolean",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorTest.java:185",
+                        "method-b-site": "Form.java:207",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Opposed to the validating case, an exception was not thrown here because the test does not cover the branch in which the exception would have been thrown (the if branch from Form.java:273."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ValidatorTest#testManualBoolean",
+        "notes": "ONE_PURE_SETTER: method-a sets the field variable Field.property. method-b processes/modifies the field variables Field.hMsgs, Field.hVars, Field.key, and Field.args. From inspection, it seems that neither method-b nor its callees accesses/modifies Field.property, so this seems to be a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-24-17-43",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2022-01-25-12-25",
+        "project": "commons-validator",
+        "spec-id": "00111",
+        "method-a": "org.apache.commons.validator.Form.isExtending()Z",
+        "method-b": "org.apache.commons.validator.Form.validate(Ljava/util/Map;Ljava/util/Map;ILjava/lang/String;)Lorg/apache/commons/validator/ValidatorResults;",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "org.apache.commons.validator.ValidatorResults",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 7,
+        "test-methods-mine-count": 29,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 34,
+        "code-snippets-file": "snippets/lv-ls/00111.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:186",
+                        "method-b-site": "Validator.java:363",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN + REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a should return false in this execution, and the DSI replacement value was false.",
+                "notes": "The DSI experiment resulted in stage-1, but the test passed because method-b threw the EXPECTED_EXCEPTION. Note that the stack trace of the exception is the same no matter what the return value of method-a is replaced with."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.DateTest#testValidDate",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:186",
+                        "method-b-site": "Validator.java:363",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN + REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a should return false in this execution, and the DSI replacement value was false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.DateTest#testValidDate",
+        "notes": "The validated test case's test actually passed (refer to notes). This is a spurious spec because method-a checks the value of the field variable Form.inherit. Since the method setting Form.inherit (Form.setExtends()) is never called in the code, it seems reasonable to call this a spurious spec... ONE_STATELESS_METHOD",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-25-12-45",
+        "inspection-time-in-minutes": 20
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-01-25-12-51",
+        "project": "commons-validator",
+        "spec-id": "00113",
+        "method-a": "org.apache.commons.validator.Form.isProcessed()Z",
+        "method-b": "org.apache.commons.validator.Form.validate(Ljava/util/Map;Ljava/util/Map;ILjava/lang/String;)Lorg/apache/commons/validator/ValidatorResults;",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "org.apache.commons.validator.ValidatorResults",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 7,
+        "test-methods-mine-count": 29,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 34,
+        "code-snippets-file": "snippets/lv-ls/00113.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:181",
+                        "method-b-site": "Validator.java:363",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN + REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a should return false in this execution, and the DSI replacement value was false.",
+                "notes": "The DSI experiment resulted in stage-1, but the test passed because method-b threw the EXPECTED_EXCEPTION. Note that the stack trace of the exception does not change regardless of what value method-a was replaced with."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.DateTest#testValidDate",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Form.java:181",
+                        "method-b-site": "Validator.java:363",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN + REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: method-a should return false in this execution, and the DSI replacement value was false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.DateTest#testValidDate",
+        "notes": "The validated test case's test actually passed due to expected exception. This is a spurious spec because method-a is a 1-line stateless method that retrieves the value of the field variable Form.processed (ONE_STATELESS_METHOD), and method-b performs validation on the fields within Form.lFields, and does not access/modify Form.processed.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-25-12-57",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-01-25-13-45",
+        "project": "commons-validator",
+        "spec-id": "00118",
+        "method-a": "org.apache.commons.validator.Form.process(Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;)V",
+        "method-b": "org.apache.commons.validator.Form.validate(Ljava/util/Map;Ljava/util/Map;ILjava/lang/String;)Lorg/apache/commons/validator/ValidatorResults;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.validator.ValidatorResults",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 7,
+        "test-methods-mine-count": 29,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 34,
+        "code-snippets-file": "snippets/lv-ls/00118.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FormSet.java:293",
+                        "method-b-site": "Validator.java:363",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The DSI experiment resulted in stage-1, but the test passed because method-b threw the EXPECTED_EXCEPTION. Note that the stack trace of the exception does not change even when method-a is not called."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.DateTest#testValidDate",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FormSet.java:293",
+                        "method-b-site": "Validator.java:363",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "Maybe we can construct a case where a test like MultipleConfigFilesTest.testMergedConfig() (a test that fails when method-a is simply not called), but insert method-b into it?",
+        "notes": "method-a accesses the field variables Form.processed and Form.extending, and potentially iterates over and modifies the contents of the field variables Form.hFields and Form.lFields, and method-b validates the contents of the field variables Form.hFields and Form.lFields. I think there is a precondition relationship between method-a and method-b, in the sense that one needs to finish processing the Form's Fields, but outside of the field variables Field.hMsgs, there doesn't seem to be much affect via processing; which is why all of the tests that mined the spec passed.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-25-14-09",
+        "inspection-time-in-minutes": 24
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2022-01-26-11-20",
+        "project": "commons-validator",
+        "spec-id": "00163",
+        "method-a": "org.apache.commons.validator.FormSet.setVariant(Ljava/lang/String;)V",
+        "method-b": "org.apache.commons.validator.FormSet.process(Ljava/util/Map;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 21,
+        "test-methods-mine-count": 107,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 127,
+        "code-snippets-file": "snippets/lv-ls/00163.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.LocaleTest#testLocale2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FormSetFactory.java:85",
+                        "method-b-site": "ValidatorResources.java:535",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "FormSetFactory.java:85",
+                        "method-b-site": "ValidatorResources.java:545",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "INSPECTION_TODO: can't quite reproduce how this test exactly failed, because manually delaying a after b for the second perturbation causes a NullPointerException that didn't show up in the DSI experiment. My guess is that the test failed more specifically due to the FormSet objects that were at play and possibly the FormSet.merge() method, instead of a relationship between method-a and method-b."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.DateTest#testValidDate",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FormSetFactory.java:85",
+                        "method-b-site": "ValidatorResources.java:535",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.DateTest#testValidDate",
+        "notes": "The two perturbations in the validated test makes it difficult to understand how and why the test validated the spec. However, upon inspection of the two methods, method-a is a pure setter for the field variable FormSet.variant (ONE_PURE_SETTER), and method-b doesn't access or modify that field variable (it accesses the field variables Form.processed and Form.extending, and potentially iterates over and modifies the contents of the field variables Form.hFields and Form.lFields).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-26-11-58",
+        "inspection-time-in-minutes": 38
+    },
+    {
+        "iid": 16,
+        "inspection-start-time": "2022-01-26-18-38",
+        "project": "commons-validator",
+        "spec-id": "00206",
+        "method-a": "org.apache.commons.validator.Validator.getParameterValue(Ljava/lang/String;)Ljava/lang/Object;",
+        "method-b": "org.apache.commons.validator.Validator.getClassLoader()Ljava/lang/ClassLoader;",
+        "method-a-return-type": "java.lang.Object",
+        "method-b-return-type": "java.lang.ClassLoader",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 11,
+        "test-methods-mine-count": 70,
+        "LV-verdict-count": 5,
+        "LS-verdict-count": 76,
+        "code-snippets-file": "snippets/lv-ls/00206.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.LocaleTest#testLocale1",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Validator.java:352",
+                        "method-b-site": "ValidatorAction.java:758",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DSI most likely replaced with null, which caused Validator.java:355 to be set. This made the Locale a different object than what the test intended it to be (simply en/US, instead of en/US/TEST1). Because the Locale was different, a different Form object was constructed/chosen on Validator.java:360. Hence, there was no result for middleName (because the used Form object didn't have a middleName field, so no evaluation was done for middleName). Refer to LocaleTest-config.xml for more details.",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.DateTest#testValidDate",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Validator.java:352",
+                        "method-b-site": "ValidatorAction.java:758",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DSI most likely replaced with null. This had no effect because DateTest-config.xml only contained a single formSet (with no specification of locale info), so the overwriting that happened in Validator.java:355 would lead to the same Form object.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "Either test with tweaks proposed in snippet; tweaks show that it's possible to call method-b before method-a.",
+        "notes": "method-a retrieves a specified value (via the argument) from the Map field variable Validator.parameters (ONE_STATELESS_METHOD). method-b accesses the field variables Validator.classLoader and Validator.useContextClassLoader in order to determine the ClassLoader object that should be used to instantiate required application objects. While the use case depicted in the test shows that method-a is used as a part of the setup leading to method-b, one can also simply call method-b before method-a without making the test fail (as demostrated in snippet). Hence, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-26-19-12",
+        "inspection-time-in-minutes": 34
+    },
+    {
+        "iid": 17,
+        "inspection-start-time": "2022-01-27-13-26",
+        "project": "commons-validator",
+        "spec-id": "00219",
+        "method-a": "org.apache.commons.validator.ValidatorAction.formatJavascriptFileName()Ljava/lang/String;",
+        "method-b": "org.apache.commons.validator.ValidatorAction.executeValidationMethod(Lorg/apache/commons/validator/Field;Ljava/util/Map;Lorg/apache/commons/validator/ValidatorResults;I)Z",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 10,
+        "code-snippets-file": "snippets/lv-ls/00219.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:387",
+                        "method-b-site": "Field.java:826",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with ValidatorAction.jsFunction (REPLACEMENT_VALUE_UNCLEAR just in case). Either way, the original value of method-a and the replacement value of method-a both achieve the same effect in this test because ValidatorAction.javascript, the field variable that gets impacted by the return value of method-a, gets assigned null. Refer to snippet for more details.",
+                "notes": "The DSI experiment resulted in stage-1, but the test passed because method-b threw the EXPECTED_EXCEPTION."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:387",
+                        "method-b-site": "Field.java:826",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with ValidatorAction.jsFunction (REPLACEMENT_VALUE_UNCLEAR just in case). Either way, the original value of method-a and the replacement value of method-a both achieve the same effect in this test because ValidatorAction.javascript, the field variable that gets impacted by the return value of method-a, gets assigned null. Refer to snippet for more details.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+        "notes": "The test oracles are weak because they don't check the value of ValidatorAction.javascript (a field value that gets impacted by the return value of method-a). However, given that ValidatorAction.javascript is an optional field variable, method-a is simply a helper method to format a filename in a way that can be passed to another method that actually sets up ValidatorAction.javascript, and method-b doesn't directly access the field variable (it runs via reflection the validation method for the validator), this seems like a spurious spec. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-27-13-57",
+        "inspection-time-in-minutes": 31
+    },
+    {
+        "iid": 18,
+        "inspection-start-time": "2022-01-28-19-07",
+        "project": "commons-validator",
+        "spec-id": "00275",
+        "method-a": "org.apache.commons.validator.ValidatorAction.init()V",
+        "method-b": "org.apache.commons.validator.ValidatorAction.executeValidationMethod(Lorg/apache/commons/validator/Field;Ljava/util/Map;Lorg/apache/commons/validator/ValidatorResults;I)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 10,
+        "code-snippets-file": "snippets/lv-ls/00275.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorResources.java:365",
+                        "method-b-site": "Field.java:826",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The DSI test resulted in stage-1 but the test passed because method-b throws the EXPECTED_EXCEPTION. Note that the exception message does not change based on whether method-a is called or not."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorResources.java:365",
+                        "method-b-site": "Field.java:826",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+        "notes": "The test passed for the validated test, since the expected exception was thrown by method-b. method-a sets up some field variables pertaining to JavaScript functions that ought to be called, but method-b does not access or modify those variables, and only calls a Java Method object via reflection (so, no JavaScript). So, I think this spec is spurious. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-19-28",
+        "inspection-time-in-minutes": 21
+    },
+    {
+        "iid": 19,
+        "inspection-start-time": "2022-01-28-20-21",
+        "project": "commons-validator",
+        "spec-id": "00292",
+        "method-a": "org.apache.commons.validator.ValidatorAction.javascriptAlreadyLoaded()Z",
+        "method-b": "org.apache.commons.validator.ValidatorAction.executeValidationMethod(Lorg/apache/commons/validator/Field;Ljava/util/Map;Lorg/apache/commons/validator/ValidatorResults;I)Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 10,
+        "code-snippets-file": "snippets/lv-ls/00292.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:359",
+                        "method-b-site": "Field.java:826",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The DSI test resulted in stage-1 but the test passed because method-b throws the EXPECTED_EXCEPTION. Note that the exception's stack trace does not differ whether method-a is called or not."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:359",
+                        "method-b-site": "Field.java:826",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+        "notes": "The test passed for the validated test, since the expected exception was thrown by method-b. method-a simply performs a check on the field variable ValidatorAction.javascript, but method-b does not access or modify that field variable, and only calls a Java Method object via reflection (so, no JavaScript). So, I think this spec is spurious. UNRELATED_STATEFUL_METHODS. No test relies on method-a returning true.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-20-27",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 20,
+        "inspection-start-time": "2022-01-28-21-55",
+        "project": "commons-validator",
+        "spec-id": "00306",
+        "method-a": "org.apache.commons.validator.ValidatorAction.loadJavascriptFunction()V",
+        "method-b": "org.apache.commons.validator.ValidatorAction.executeValidationMethod(Lorg/apache/commons/validator/Field;Ljava/util/Map;Lorg/apache/commons/validator/ValidatorResults;I)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 10,
+        "code-snippets-file": "snippets/lv-ls/00306.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:359",
+                        "method-b-site": "Field.java:826",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The DSI test resulted in stage-1 but the test passed because method-b throws the EXPECTED_EXCEPTION. Note that the stack trace of the exception does not change whether method-a is called or not."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:359",
+                        "method-b-site": "Field.java:826",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Commenting out method-a does not cause the test to fail"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+        "notes": "The test passed for the validated test, since the expected exception was thrown by method-b. method-a sets up some field variables pertaining to JavaScript functions that ought to be called, but method-b does not access or modify those variables, and only calls a Java Method object via reflection (so, no JavaScript). So, I think this spec is spurious. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-22-13",
+        "inspection-time-in-minutes": 18
+    },
+    {
+        "iid": 21,
+        "inspection-start-time": "2022-01-29-03-17",
+        "project": "commons-validator",
+        "spec-id": "00336",
+        "method-a": "org.apache.commons.validator.ValidatorAction.readJavascriptFile(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.validator.ValidatorAction.executeValidationMethod(Lorg/apache/commons/validator/Field;Ljava/util/Map;Lorg/apache/commons/validator/ValidatorResults;I)Z",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 10,
+        "code-snippets-file": "snippets/lv-ls/00336.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExceptionTest#testValidatorException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:393",
+                        "method-b-site": "Field.java:826",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a on the test run without DSI experimentation returns null, and DSI most likely replaced the return value of method-a with the String value javascriptFileName, which is defined in ValidatorAction.java:387. The test is weak because it doesn't detect the \"incorrect\" replacement value.",
+                "notes": "The DSI test resulted in stage-1 but the test passed because method-b throws the EXPECTED_EXCEPTION. Note that the stack trace of the exception does not change whether method-a is actually called, replaced with a bogus value, or replaced with null."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorAction.java:393",
+                        "method-b-site": "Field.java:826",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a on the test run without DSI experimentation returns null, and DSI most likely replaced the return value of method-a with the String value javascriptFileName, which is defined in ValidatorAction.java:387. The test is weak because it doesn't detect the \"incorrect\" replacement value.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+        "notes": "The test passed for the validated test, since the expected exception was thrown by method-b. The tests are weak because they don't detect the replaced value, which differs from the original return value of method-a. The field variable ValidatorAction.javascript is set to the return value of method-a (method-a doesn't access or modify any other field variables otherwise), but method-b does not access or modify those variables, and only calls a Java Method object via reflection (so, no JavaScript). So, I think this spec is spurious. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-03-23",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 22,
+        "inspection-start-time": "2022-01-30-13-49",
+        "project": "commons-validator",
+        "spec-id": "00422",
+        "method-a": "org.apache.commons.validator.ValidatorResources.addFormSet(Lorg/apache/commons/validator/FormSet;)V",
+        "method-b": "org.apache.commons.validator.ValidatorResources.getConstants()Ljava/util/Map;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 19,
+        "test-methods-mine-count": 96,
+        "LV-verdict-count": 8,
+        "LS-verdict-count": 107,
+        "code-snippets-file": "snippets/lv-ls/00422.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExtensionTest#testOrder",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FormSetFactory.java:88",
+                        "method-b-site": "ValidatorResources.java:535",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Assertion failed at ExtensionTest.java:324 because DSI most likely called the delayed call to method-a after the call to defaultFormSet.process()? INSPECTION_TODO: interesting case to check *when* DSI calls the delayed call to method-a, or when the effects of calling method-a after method-b take place."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorTest.java:162",
+                        "method-b-site": "ValidatorResources.java:535",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "One can say this spec is spurious compared to the validated test because the test doesn't really check for the items in the ValidatorResources variable resources (defined in test)..."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.ExtensionTest#testOrder with ValidatorResources.processForms() replaced with the modified version proposed in snippet.",
+        "notes": "Running the test with the validating-test-file should show that the relationship that is crucial is not between method-a and method-b (because the test should pass). My speculation is that somehow the delayed call of method-a only took effect after the call defaultFormSet.process(), which was the crucial point at which method-a should have been called by. method-a and method-b themselves are not related because method-b is a 1-line naive getter for the field variable ValidatorResources.hConstants (ONE_STATELESS_METHOD), which is not set or used in method-a.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-30-14-55",
+        "inspection-time-in-minutes": 66
+    },
+    {
+        "iid": 23,
+        "inspection-start-time": "2022-01-30-15-10",
+        "project": "commons-validator",
+        "spec-id": "00426",
+        "method-a": "org.apache.commons.validator.ValidatorResources.addFormSet(Lorg/apache/commons/validator/FormSet;)V",
+        "method-b": "org.apache.commons.validator.ValidatorResources.process()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 19,
+        "test-methods-mine-count": 96,
+        "LV-verdict-count": 8,
+        "LS-verdict-count": 107,
+        "code-snippets-file": "snippets/lv-ls/00426.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExtensionTest#testOrder",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FormSetFactory.java:88",
+                        "method-b-site": "ValidatorResources.java:164",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Assertion failed at ExtensionTest.java:324 because of the effects of calling method-a after method-b. The XML for this test specified that the Form nameForm has the parent baseForm; nameForm originally only had 1 field (lastName), but calling method-b makes it inherit the field firstName as well. So, after calling method-b, nameForm should have two fields."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorTest.java:162",
+                        "method-b-site": "ValidatorTest.java:163",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "One can say this spec is spurious compared to the validated test because the test doesn't really check for the items in the ValidatorResources variable resources (defined in test)..."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "both",
+        "validating-test-file": "org.apache.commons.validator.ExtensionTest#testOrder with ValidatorResources.process() called before method-a",
+        "notes": "method-a sets/modifies the field variable ValidatorResources.defaultFormSet, and method-b (or more specifically, ValidatorResources.processForms, which is called by method-b) can modify the contents of ValidatorResources.defaultFormSet. Hence, one can conclude that the relationship is somewhat two fold: 1) if method-a is not called before method-b, then method-b will be operating on an incorrect FormSet object (although, this is not necessarily true because one could potentially intend for method-b to operate on a fresh FormSet() object), and 2) if method-a is called after method-b, it would overwrite the work that method-b did on the field variable ValidatorResources.defaultFormSet.",
+        "findings": "Type-c: method-b is always preceded by method-a seems like the more potent spec here",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-30-15-21",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 24,
+        "inspection-start-time": "2022-01-30-15-51",
+        "project": "commons-validator",
+        "spec-id": "00427",
+        "method-a": "org.apache.commons.validator.ValidatorResources.addFormSet(Lorg/apache/commons/validator/FormSet;)V",
+        "method-b": "org.apache.commons.validator.ValidatorResources.processForms()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 19,
+        "test-methods-mine-count": 96,
+        "LV-verdict-count": 8,
+        "LS-verdict-count": 107,
+        "code-snippets-file": "snippets/lv-ls/00427.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExtensionTest#testOrder",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FormSetFactory.java:88",
+                        "method-b-site": "ValidatorResources.java:522",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Assertion failed at ExtensionTest.java:324 because of the effects of calling method-a after method-b. The XML for this test specified that the Form nameForm has the parent baseForm; nameForm originally only had 1 field (lastName), but calling method-b makes it inherit the field firstName as well. So, after calling method-b, nameForm should have two fields."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testOnlyValidateField",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorTest.java:162",
+                        "method-b-site": "ValidatorResources.java:522",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "One can say this spec is spurious compared to the validated test because the test doesn't really check for the items in the ValidatorResources variable resources (defined in test)..."
+            }
+        ],
+        "verdict": "sometimes-true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "both",
+        "validating-test-file": "org.apache.commons.validator.ExtensionTest#testOrder with ValidatorResources.processForms() called before method-a",
+        "notes": "method-a sets/modifies the field variable ValidatorResources.defaultFormSet, and method-b can modify the contents of ValidatorResources.defaultFormSet. Hence, one can conclude that the relationship is somewhat two fold: 1) if method-a is not called before method-b, then method-b will be operating on an incorrect FormSet object (although, this is not necessarily true because one could potentially intend for method-b to operate on a fresh FormSet() object), and 2) if method-a is called after method-b, it would overwrite the work that method-b did on the field variable ValidatorResources.defaultFormSet. DECISION: I think this would be a SOMETIMES_TRUE_SPEC in the form of (ab|b), where one *could* call method-a before method-b but does not have to. The problem arises if method-a were to be called after method-b.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-30-15-55",
+        "inspection-time-in-minutes": 4
+    }
+
+]

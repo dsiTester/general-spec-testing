@@ -1,0 +1,4 @@
+CrawlerConfigurationTest # only contains Constructors that call third party libraries. 5/54 test methods skipped.
+DomainVisitorTest # only contains Constructors that call third party libraries. 3/54 test methods skipped.
+StatusTest # only calls third party libraries. 1/54 test methods skipped.
+UrlUtilsTest # only calls static and third party libraries. 3/54 test methods skipped.

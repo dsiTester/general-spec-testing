@@ -1,0 +1,79 @@
+[
+    {
+        "iid": 8,
+        "inspection-start-time": "",
+        "project": "commons-exec",
+        "spec-id": "00323",
+        "method-a": "org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V",
+        "method-b": "org.apache.commons.exec.Executor.isFailure(I)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 18,
+        "LV-verdict-count": 5,
+        "LS-verdict-count": 8,
+        "U-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls-u/00323.java",
+        "validated-inspected-cases": [
+            {
+                "test": "",
+                "stage": "",
+                "exception-or-assertion": "",
+                "invocation-info": [
+                    {
+                        "method-a-site": "",
+                        "method-b-site": "",
+                        "invocation-count": -1
+                    }
+                ],
+                "perturbation-count": -1,
+                "comment-on-return-values": "",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "",
+                "stage": "",
+                "exception-or-assertion": "",
+                "invocation-info": [
+                    {
+                        "method-a-site": "",
+                        "method-b-site": "",
+                        "invocation-count": -1
+                    }
+                ],
+                "perturbation-count": -1,
+                "comment-on-return-values": "",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "",
+                "stage": "",
+                "exception-or-assertion": "",
+                "invocation-info": [
+                    {
+                        "method-a-site": "",
+                        "method-b-site": "",
+                        "invocation-count": -1
+                    }
+                ],
+                "perturbation-count": -1,
+                "comment-on-return-values": "",
+                "notes": ""
+            }
+        ],
+        "verdict": "",
+        "is-oracle-weak": false,
+        "spec-type": "",
+        "validating-test-file": "",
+        "notes": "",
+        "part-of-bigger-spec": "",
+        "inspection-end-time": "",
+        "inspection-time-in-minutes": -1
+    }
+]

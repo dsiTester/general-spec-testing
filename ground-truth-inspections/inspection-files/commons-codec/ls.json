@@ -1,0 +1,3086 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-10-21-27",
+        "project": "commons-codec",
+        "spec-id": "00046",
+        "method-a": "org.apache.commons.codec.binary.Base16.isStrictDecoding()Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00046.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testLenientDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16.java:263",
+                        "method-b-site": "BaseNCodec.java:715",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: Most likely replaced with false, which is the value that method-a would have returned if it was actually invoked. If DSI replaced the return value of method-a with true, an exception would have been (wrongfully) thrown.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16Test#testLenientDecoding",
+        "notes": "This is a spurious spec: method-a is public and can be called by itself, and method-b is package private and can be called from within the package without calling a. In the snippet, they are related via the context object: the value returned by method-a determines if some field in context is (re-)set.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-10-21-36",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-10-21-58",
+        "project": "commons-codec",
+        "spec-id": "00047",
+        "method-a": "org.apache.commons.codec.binary.Base16.isStrictDecoding()Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00047.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testLenientDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16.java:263",
+                        "method-b-site": "BaseNCodec.java:437",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION: Most likely replaced with false, which is the value that method-a would have returned if it was actually invoked. If DSI replaced the return value of method-a with true, an exception would have been (wrongfully) thrown.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16Test#testLenientDecoding",
+        "notes": "method-a is a 1-line stateless method (ONE_STATELESS_METHOD), and method-b doesn't interact with the value that method-a deals with. There is an indirect interaction in the sense that if method-a returned true, then an exception would be thrown. So, depending on the return value of method-a, method-b may not even be called. Maybe we can identify cases like this via simply manipulating the return value of method-a and seeing how the control flow affects method-b?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-10-22-01",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-10-22-05",
+        "project": "commons-codec",
+        "spec-id": "00049",
+        "method-a": "org.apache.commons.codec.binary.Base16.validateTrailingCharacter()V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00049.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testLenientDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16.java:155",
+                        "method-b-site": "BaseNCodec.java:715",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Method-a throws an exception if strict encoding is enabled and this test does not expect this exception"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16Test#testLenientDecoding",
+        "notes": "method-a checks the value of the field variable Base16.decodingPolicy, and throws an exception if it is equal to the value CodecPolicy.STRICT. method-b performs a check on its input Context object, and returns the amount of space available in the buffered data for reading. Since the values that method-a and method-b use don't interact with each other (besides the fact that method-b will not execute at all if method-b threw the exception), this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-10-22-12",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-10-22-12",
+        "project": "commons-codec",
+        "spec-id": "00050",
+        "method-a": "org.apache.commons.codec.binary.Base16.validateTrailingCharacter()V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00050.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testLenientDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16.java:155",
+                        "method-b-site": "BaseNCodec.java:437",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Method-a throws an exception if strict encoding is enabled and this test does not expect this exception"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16Test#testLenientDecoding",
+        "notes": "MODIFIED_STATE_DOES_NOT_INTERSECT: method-a does not change state besides (potentially) throwing an exception, and none of the values that method-b deals with (and the state changes it makes) impacts whether method-a would throw an exception or not.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-10-22-15",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-01-10-22-15",
+        "project": "commons-codec",
+        "spec-id": "00051",
+        "method-a": "org.apache.commons.codec.binary.Base16InputStream.markSupported()Z",
+        "method-b": "org.apache.commons.codec.binary.Base16InputStream.close()V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00051.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16InputStreamTest#testMarkSupported",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16InputStreamTest.java:280",
+                        "method-b-site": "Base16InputStreamTest.java:281",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT - DSI replaced with false, and the call to method-a was in an assertFalse().",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16InputStreamTest#testMarkSupported",
+        "notes": "GOOD_EXAMPLE: Replacing method-a with false is the same as invoking method-a here. If method-a actually had any computation to it (method-a simply returns false), maybe this spec would be a true spec. method-b is defined in a third party class. DYNAMIC_DISPATCH.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-10-22-23",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2022-01-11-13-27",
+        "project": "commons-codec",
+        "spec-id": "00068",
+        "method-a": "org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.Base32.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00068.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testBase32EmptyOutputStreamMimeChunkSize",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:332",
+                        "method-b-site": "Base32.java:495",
+                        "invocation-count": 22
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - in the execution, method-a returns false, which is the default value that DSI replaces the return value of method-a with.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32OutputStreamTest#testBase32EmptyOutputStreamMimeChunkSize",
+        "notes": "method-a checks whether any characters from the argument byte[] are any characters within the alphabet or pad using the field variables BaseNCodec.pad and Base32.decodeTable. method-b checks whether its input Context object has a large enough buffer for the number of bytes indicated by the argument size, and modifies Context.buffer accordingly. From these definitions, this seems like a case of UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-13-41",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2022-01-11-13-48",
+        "project": "commons-codec",
+        "spec-id": "00070",
+        "method-a": "org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "code-snippets-file": "snippets/ls/00070.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testMarkSupported",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:332",
+                        "method-b-site": "Base32.java:344",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - in the execution, method-a returns false, which is the default value that DSI replaces the return value of method-a with.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "DYNAMIC_DISPATCH caused this method-b to be defined differently from BaseNCodec.isInAlphabet(), however they are the same method as Base32 does not define the method itself (and Base32 extends BaseNCodec). Upon inspection of method-a, it is clear that method-a calls BaseNCodec.isInAlphabet() under certain conditions, which is equivalent to this method. Hence, this is a no-break-pass spec. SPECIAL_NBP",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-13-59",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2022-01-11-14-15",
+        "project": "commons-codec",
+        "spec-id": "00072",
+        "method-a": "org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/ls/00072.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testBase32EmptyInputStreamMimeChuckSize",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:332",
+                        "method-b-site": "BaseNCodec.java:715",
+                        "invocation-count": 22
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - in the execution, method-a returns false, which is the default value that DSI replaces the return value of method-a with.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testBase32EmptyInputStreamMimeChuckSize",
+        "notes": "method-a checks whether any characters from the argument byte[] are any characters within the alphabet or pad using the field variables BaseNCodec.pad and Base32.decodeTable. method-b checks some variables of the input Context object to return an int indicating the amount of buffered data that is available to be read. From the definitions, this seems like a UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-14-28",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2022-01-11-14-28",
+        "project": "commons-codec",
+        "spec-id": "00073",
+        "method-a": "org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.encode([B)[B",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "byte[]",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00073.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32Test#testRandomBytesChunked",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:332",
+                        "method-b-site": "BaseNTestData.java:168",
+                        "invocation-count": 20
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - in the execution, method-a returns false, which is the default value that DSI replaces the return value of method-a with.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32Test#testRandomBytesChunked",
+        "notes": "method-a checks whether any characters from the argument byte[] are any characters within the alphabet or pad using the field variables BaseNCodec.pad and Base32.decodeTable. method-b encodes the byte[] containing binary data to one that contains characters in the alphabet. From the definitions, this seems like a UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-14-35",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2022-01-11-14-35",
+        "project": "commons-codec",
+        "spec-id": "00074",
+        "method-a": "org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.encode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/ls/00074.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testBase32EmptyOutputStreamMimeChunkSize",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:332",
+                        "method-b-site": "BaseNCodecOutputStream.java:92",
+                        "invocation-count": 22
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - in the execution, method-a returns false, which is the default value that DSI replaces the return value of method-a with.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32OutputStreamTest#testBase32EmptyOutputStreamMimeChunkSize",
+        "notes": "method-a checks whether any characters from the argument byte[] are any characters within the alphabet or pad using the field variables BaseNCodec.pad and Base32.decodeTable. method-b encodes the byte[] containing binary data to one that contains characters in the alphabet. From the definitions, this seems like a UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-14-43",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2022-01-11-14-44",
+        "project": "commons-codec",
+        "spec-id": "00075",
+        "method-a": "org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00075.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testBase32EmptyOutputStreamMimeChunkSize",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:332",
+                        "method-b-site": "BaseNCodec.java:572",
+                        "invocation-count": 22
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - in the execution, method-a returns false, which is the default value that DSI replaces the return value of method-a with.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32OutputStreamTest#testBase32EmptyOutputStreamMimeChunkSize",
+        "notes": "method-a checks whether any characters from the argument byte[] are any characters within the alphabet or pad using the field variables BaseNCodec.pad and Base32.decodeTable. method-b is a 1-line naive getter to the field variable BaseNCodec.DEFAULT_BUFFER_SIZE (ONE_STATELESS_METHOD). Since these field variables do not influence/affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-14-47",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2022-01-11-15-08",
+        "project": "commons-codec",
+        "spec-id": "00078",
+        "method-a": "org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z",
+        "method-b": "org.apache.commons.codec.binary.Base32.getCodecPolicy()Lorg/apache/commons/codec/CodecPolicy;",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "org.apache.commons.codec.CodecPolicy",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "code-snippets-file": "snippets/ls/00078.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32Test#testBase32DecodingOfTrailing10Bits",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:344",
+                        "method-b-site": "Base32Test.java:487",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "Base32.java:344",
+                        "method-b-site": "Base32Test.java:491",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - the default value that replaced method-a (false) was also the return value of method-a.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32Test#testBase32DecodingOfTrailing10Bits",
+        "notes": "method-a checks whether argument byte object is in the Base32 alphabet by checking the field variable Base32.decodeTable. method-b is a 1-line naive getter to the field variable BaseNCodec.decodingPolicy (ONE_STATELESS_METHOD). Since these two field variables do not influence/affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-15-23",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-01-11-15-44",
+        "project": "commons-codec",
+        "spec-id": "00080",
+        "method-a": "org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z",
+        "method-b": "org.apache.commons.codec.binary.Base32.isStrictDecoding()Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "code-snippets-file": "snippets/ls/00080.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:344",
+                        "method-b-site": "Base32.java:604",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - the default value that replaced method-a (false) was also the return value of method-a.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+        "notes": "method-a checks whether argument byte object is in the Base32 alphabet by checking the field variable Base32.decodeTable. method-b checks whether the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT. Since these two field variables do not influence/affect each other, this is a spurious spec (UNRELATED_STATEFUL_METHODS).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-15-55",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-01-11-17-06",
+        "project": "commons-codec",
+        "spec-id": "00081",
+        "method-a": "org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z",
+        "method-b": "org.apache.commons.codec.binary.Base32.validateCharacter(JLorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "code-snippets-file": "snippets/ls/00081.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:344",
+                        "method-b-site": "Base32.java:437",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - the default value that replaced method-a (false) was also the return value of method-a.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+        "notes": "method-a checks whether argument byte object is in the Base32 alphabet by checking the field variable Base32.decodeTable. method-b checks whether the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT, performs a check on its arguments, and throws an exception accordingly. Since the field variable that method-a accesses is not related to the field variable used by method-b, this is a spurious spec (UNRELATED_STATEFUL_METHODS).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-17-14",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2022-01-11-17-29",
+        "project": "commons-codec",
+        "spec-id": "00083",
+        "method-a": "org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "code-snippets-file": "snippets/ls/00083.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:344",
+                        "method-b-site": "BaseNCodec.java:715",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - the default value that replaced method-a (false) was also the return value of method-a.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+        "notes": "method-a checks whether argument byte object is in the Base32 alphabet by checking the field variable Base32.decodeTable. method-b performs a check on its argument Context object. Since the field variable that method-a accesses is not related to any Context object, this is a spurious spec (UNRELATED_STATEFUL_METHODS).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-17-37",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 16,
+        "inspection-start-time": "2022-01-11-17-37",
+        "project": "commons-codec",
+        "spec-id": "00084",
+        "method-a": "org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.encode([B)[B",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "byte[]",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00084.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32Test#testRandomBytes",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:344",
+                        "method-b-site": "BaseNTestData.java:168",
+                        "invocation-count": 20
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - the default value that replaced method-a (false) was also the return value of method-a.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32Test#testRandomBytes",
+        "notes": "method-a checks whether argument byte object is in the Base32 alphabet by checking the field variable Base32.decodeTable. method-b encodes the argument byte[] to one that contains characters in the alphabet. From these definitions, it seems like this is a case of UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-17-43",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 17,
+        "inspection-start-time": "2022-01-11-19-45",
+        "project": "commons-codec",
+        "spec-id": "00085",
+        "method-a": "org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.encode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/ls/00085.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testWriteOutOfBounds",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:344",
+                        "method-b-site": "BaseNCodecOutputStream.java:92",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - the default value that replaced method-a (false) was also the return value of method-a.",
+                "notes": "EXPECTED_EXCEPTION."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32OutputStreamTest#testWriteOutOfBounds",
+        "notes": "method-a checks whether argument byte object is in the Base32 alphabet by checking the field variable Base32.decodeTable. method-b performs an encoding of the byte[] argument, using its other int and Context arguments. From these definitions, it seems like this is a case of UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-19-56",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 18,
+        "inspection-start-time": "2022-01-11-19-56",
+        "project": "commons-codec",
+        "spec-id": "00086",
+        "method-a": "org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "code-snippets-file": "snippets/ls/00086.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testStrictDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:344",
+                        "method-b-site": "BaseNCodec.java:572",
+                        "invocation-count": 12
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - the default value that replaced method-a (false) was also the return value of method-a.",
+                "notes": "EXPECTED_EXCEPTION."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32OutputStreamTest#testStrictDecoding",
+        "notes": "method-a checks whether argument byte object is in the Base32 alphabet by checking the field variable Base32.decodeTable. ONE_STATELESS_METHOD: method-b is a 1-line naive getter to the field variable BaseNCodec.DEFAULT_BUFFER_SIZE. Since these two field variables do not influence/affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-20-01",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 19,
+        "inspection-start-time": "2022-01-11-20-01",
+        "project": "commons-codec",
+        "spec-id": "00087",
+        "method-a": "org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.isStrictDecoding()Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/ls/00087.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testStrictDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:344",
+                        "method-b-site": "BaseNCodecOutputStream.java:143",
+                        "invocation-count": 12
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - the default value that replaced method-a (false) was also the return value of method-a.",
+                "notes": "EXPECTED_EXCEPTION."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32OutputStreamTest#testStrictDecoding",
+        "notes": "method-a checks whether argument byte object is in the Base32 alphabet by checking the field variable Base32.decodeTable. method-b checks whether the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT. Since these two field variables do not influence/affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-20-07",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 20,
+        "inspection-start-time": "2022-01-11-20-07",
+        "project": "commons-codec",
+        "spec-id": "00088",
+        "method-a": "org.apache.commons.codec.binary.Base32.isStrictDecoding()Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 5,
+        "code-snippets-file": "snippets/ls/00088.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:604",
+                        "method-b-site": "BaseNCodec.java:715",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - the default value that replaced method-a (false) was also the return value of method-a.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+        "notes": "method-a checks whether the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT. method-b performs some computations on the Context argument to return the amount of data that is available for reading. Since the field variable that is used by method-b is not affected by method-b, this is a spurious spec. UNRELATED_STATELESS_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-20-19",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 21,
+        "inspection-start-time": "2022-01-11-20-28",
+        "project": "commons-codec",
+        "spec-id": "00090",
+        "method-a": "org.apache.commons.codec.binary.Base32.validateCharacter(JLorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 5,
+        "code-snippets-file": "snippets/ls/00090.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32.java:437",
+                        "method-b-site": "BaseNCodec.java:715",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Method-a is designed to throw an exception if strict encoding is enabled and the trailing bits cannot be encoded in the current content. This test does not expect this exception."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+        "notes": "method-a checks whether the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT, performs some checks on its arguments, and throws an exception if necessary. method-b performs some computations on the Context argument to return the amount of data that is available for reading. Since the field variable that is used by method-b is not affected by method-b, this is a spurious spec. ONE_STATELESS_METHOD",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-20-32",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 22,
+        "inspection-start-time": "2022-01-11-20-32",
+        "project": "commons-codec",
+        "spec-id": "00091",
+        "method-a": "org.apache.commons.codec.binary.Base32InputStream.markSupported()Z",
+        "method-b": "org.apache.commons.codec.binary.Base32InputStream.close()V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00091.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testMarkSupported",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base32InputStreamTest.java:392",
+                        "method-b-site": "Base32InputStreamTest.java:393",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_EXPECTED_OUTPUT. The DSI default value is false, and the call to method-a was around an assertFalse().",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testMarkSupported",
+        "notes": "ONE_STATELESS_METHOD: method-a simply returns false. Hence, any spec that calls method-a is inherently a spurious spec. Mayyyybe GOOD_EXAMPLE?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-11-20-38",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 23,
+        "inspection-start-time": "2022-01-12-10-42",
+        "project": "commons-codec",
+        "spec-id": "00113",
+        "method-a": "org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.Base64.encode([B)[B",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00113.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base64Codec13Test#testStaticEncode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:593",
+                        "method-b-site": "Base64.java:253",
+                        "invocation-count": 96
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. method-a returns false during the normal test execution, and DSI replaced the return value of method-a with the default value false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base64Codec13Test#testStaticEncode",
+        "notes": "method-a checks whether any characters from the argument byte[] are any characters within the alphabet or pad using the field variables BaseNCodec.pad and Base64.decodeTable. method-b encodes the argument byte[] containing binary data to one that contains characters in the alphabet. From the definitions, this seems like a UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-10-59",
+        "inspection-time-in-minutes": 17
+    },
+    {
+        "iid": 24,
+        "inspection-start-time": "2022-01-12-11-12",
+        "project": "commons-codec",
+        "spec-id": "00115",
+        "method-a": "org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.Base64.isStrictDecoding()Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00115.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:593",
+                        "method-b-site": "Base64.java:827",
+                        "invocation-count": 5
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. method-a returns false during the normal test execution, and DSI eplaced the return value of method-a with the default value false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+        "notes": "method-a checks whether any characters from the argument byte[] are any characters within the alphabet or pad using the field variables BaseNCodec.pad and Base64.decodeTable. method-b checks whether the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT. Since these two field variables don't influence/affect each other, this is a UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-11-27",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 25,
+        "inspection-start-time": "2022-01-12-11-50",
+        "project": "commons-codec",
+        "spec-id": "00117",
+        "method-a": "org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "code-snippets-file": "snippets/ls/00117.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:593",
+                        "method-b-site": "BaseNCodec.java:715",
+                        "invocation-count": 5
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. method-a returns false during the normal test execution, and DSI replaced the return value of method-a with the default value false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+        "notes": "method-a checks whether any characters from the argument byte[] are any characters within the alphabet or pad using the field variables BaseNCodec.pad and Base64.decodeTable. method-b computes from its Context argument the amount of buffered data available to read. Since these two field variables don't influence/affect each other, this is a UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-11-56",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 26,
+        "inspection-start-time": "2022-01-12-12-12",
+        "project": "commons-codec",
+        "spec-id": "00119",
+        "method-a": "org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.encode([BII)[B",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "byte[]",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00119.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base64Codec13Test#testStaticEncode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:593",
+                        "method-b-site": "BaseNCodec.java:489",
+                        "invocation-count": 96
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. method-a returns false during the normal test execution, and DSI replaced the return value of method-a with the default value false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base64Codec13Test#testStaticEncode",
+        "notes": "method-a checks whether any characters from the argument byte[] are any characters within the alphabet or pad using the field variables BaseNCodec.pad and Base64.decodeTable. method-b encodes a byte[] containing binary data to one that has characters in the alphabet using its other arguments. From these definitions, it seems that this is a UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-12-19",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 27,
+        "inspection-start-time": "2022-01-12-12-20",
+        "project": "commons-codec",
+        "spec-id": "00120",
+        "method-a": "org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 9,
+        "code-snippets-file": "snippets/ls/00120.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base64Codec13Test#testStaticEncode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:593",
+                        "method-b-site": "BaseNCodec.java:572",
+                        "invocation-count": 96
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. method-a returns false during the normal test execution, and DSI replaced the return value of method-a with the default value false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base64Codec13Test#testStaticEncode",
+        "notes": "method-a checks whether any characters from the argument byte[] are any characters within the alphabet or pad using the field variables BaseNCodec.pad and Base64.decodeTable. method-b is a 1-line naive getter to the field variable BaseNCodec.DEFAULT_BUFFER_SIZE (ONE_STATELESS_METHOD).Since both methods only access the field variables and don't modify, I think this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-12-26",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 28,
+        "inspection-start-time": "2022-01-12-12-26",
+        "project": "commons-codec",
+        "spec-id": "00121",
+        "method-a": "org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "code-snippets-file": "snippets/ls/00121.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base64Codec13Test#testStaticEncode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:593",
+                        "method-b-site": "BaseNCodec.java:513",
+                        "invocation-count": 96
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. method-a returns false during the normal test execution, and DSI replaced the return value of method-a with the default value false.",
+                "notes": "method-a checks whether any characters from the argument byte[] are any characters within the alphabet or pad using the field variables BaseNCodec.pad and Base64.decodeTable. method-b performs some computation to extract the buffered data from the Context argument to the byte[] argument. Since method-b doesn't access/modify any field variables, I think this is a UNRELATED_STATEFUL_METHODS case."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base64Codec13Test#testStaticEncode",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-12-35",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 29,
+        "inspection-start-time": "2022-01-12-14-34",
+        "project": "commons-codec",
+        "spec-id": "00137",
+        "method-a": "org.apache.commons.codec.binary.Base64.isStrictDecoding()Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00137.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:827",
+                        "method-b-site": "BaseNCodec.java:715",
+                        "invocation-count": 5
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - method-a returns false in the execution of the test, and DSI replaced the return value of method-a with the default boolean value false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+        "notes": "method-a simply checks that the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT. method-b performs a check on its Context input and returns the number of buffered data that is available for reading. Since method-a does not affect the return value of method-b at all (while it does affect whether an exception will be thrown), this seems like a case of UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-14-44",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 30,
+        "inspection-start-time": "2022-01-12-14-44",
+        "project": "commons-codec",
+        "spec-id": "00138",
+        "method-a": "org.apache.commons.codec.binary.Base64.isStrictDecoding()Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00138.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:827",
+                        "method-b-site": "BaseNCodec.java:437",
+                        "invocation-count": 5
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - method-a returns false in the execution of the test, and DSI replaced the return value of method-a with the default boolean value false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+        "notes": "method-a simply checks that the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT. method-b extracts buffered data from its Context argument into its byte[] argument. Since method-a does not affect the state changes and the return value of method-b at all (while it does affect whether an exception will be thrown), this seems like a case of ONE_STATELESS_METHOD.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-14-51",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 31,
+        "inspection-start-time": "2022-01-12-14-59",
+        "project": "commons-codec",
+        "spec-id": "00140",
+        "method-a": "org.apache.commons.codec.binary.Base64.validateCharacter(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00140.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:683",
+                        "method-b-site": "BaseNCodec.java:715",
+                        "invocation-count": 3
+                    },
+                    {
+                        "method-a-site": "Base64.java:688",
+                        "method-b-site": "BaseNCodec.java:715",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "method-a doesn't change the state besides to throw an exception in certain situations. For this test execution, the exception didn't need to be thrown, so the test passed."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+        "notes": "method-a checks that the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT, performs a check on its arguments, and throws an exception if necessary. method-b performs a check on its Context input and returns the number of buffered data that is available for reading. Since method-a does not affect the return value of method-b at all (while it does affect whether an exception will be thrown), this seems like a case of UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-15-05",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 32,
+        "inspection-start-time": "2022-01-12-15-06",
+        "project": "commons-codec",
+        "spec-id": "00141",
+        "method-a": "org.apache.commons.codec.binary.Base64.validateCharacter(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00141.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base64.java:683",
+                        "method-b-site": "BaseNCodec.java:437",
+                        "invocation-count": 3
+                    },
+                    {
+                        "method-a-site": "Base64.java:688",
+                        "method-b-site": "BaseNCodec.java:437",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "method-a doesn't change the state besides to throw an exception in certain situations. For this test execution, the exception didn't need to be thrown, so the test passed."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+        "notes": "method-a checks that the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT, performs a check on its arguments, and throws an exception if necessary. method-b performs a check on its Context input and returns the number of buffered data that is available for reading. Since method-a does not affect the return value of method-b at all (while it could throw an exception), this seems like a case of UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-15-12",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 33,
+        "inspection-start-time": "2022-01-12-21-58",
+        "project": "commons-codec",
+        "spec-id": "00154",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.encode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00154.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16OutputStreamTest#testWriteOutOfBounds",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodecOutputStream.java:92",
+                        "method-b-site": "BaseNCodecOutputStream.java:119",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "DSIValidationTest#00154 is a starter, one can also refer to snippet",
+        "notes": "There seems to be a connection between BaseNCodec.ensureBufferSize() (which is called from method-a) and BaseNCodec.available(), as BaseNCodec.ensureBufferSize() checks and modifies the field variables BaseNCodec.buffer, BaseNCodec.pos, BaseNCodec.readPos, and method-b uses these same field variables. This seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING, as method-b is safe to be called before method-a because due to its nullness check. ONE_STATELESS_METHOD",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-22-33",
+        "inspection-time-in-minutes": 35
+    },
+    {
+        "iid": 34,
+        "inspection-start-time": "2022-01-12-22-58",
+        "project": "commons-codec",
+        "spec-id": "00157",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-b": "org.apache.commons.codec.binary.Base16.isStrictDecoding()Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/ls/00157.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testLenientDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "Base16.java:263",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR - Most likely replaced with the default value 0 - manually checked that replacing the call to method-a with 0 does not have any bearing on the outcome of the test.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16Test#testLenientDecoding",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line naive getter to the field variable BaseNCodec.DEFAULT_BUFFER_SIZE. method-b is a simple check whether the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT. Since these two field variables do not affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-23-08",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 35,
+        "inspection-start-time": "2022-01-12-23-09",
+        "project": "commons-codec",
+        "spec-id": "00159",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-b": "org.apache.commons.codec.binary.Base32.isStrictDecoding()Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "code-snippets-file": "snippets/ls/00159.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "Base32.java:604",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with the default value 0 - manually checked that replacing the call to method-a with 0 does not have any bearing on the outcome of the test.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line naive getter to the field variable BaseNCodec.DEFAULT_BUFFER_SIZE. method-b is a simple check whether the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT. Since these two field variables do not affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-23-17",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 36,
+        "inspection-start-time": "2022-01-12-23-31",
+        "project": "commons-codec",
+        "spec-id": "00160",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-b": "org.apache.commons.codec.binary.Base32.validateCharacter(JLorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "code-snippets-file": "snippets/ls/00160.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "Base32.java:437",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with the default value 0 - manually checked that replacing the call to method-a with 0 does not have any bearing on the outcome of the test.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testAvailable",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line naive getter to the field variable BaseNCodec.DEFAULT_BUFFER_SIZE. method-b checks whether the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT, performs another check on its arguments, and throws an exception if necessary. Since the field variable returned by method-a does not affect the outcome of method-b, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-23-39",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 37,
+        "inspection-start-time": "2022-01-12-23-40",
+        "project": "commons-codec",
+        "spec-id": "00161",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-b": "org.apache.commons.codec.binary.Base64.isStrictDecoding()Z",
+        "method-a-return-type": "int",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00161.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "Base64.java:827",
+                        "invocation-count": 5
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with the default value 0 - manually checked that replacing the call to method-a with 0 does not have any bearing on the outcome of the test.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testBase64ImpossibleSamplesDefault",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line naive getter to the field variable BaseNCodec.DEFAULT_BUFFER_SIZE. method-b is a simple check whether the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT. Since these two field variables do not affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-12-23-47",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 38,
+        "inspection-start-time": "2022-01-13-00-01",
+        "project": "commons-codec",
+        "spec-id": "00163",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "int",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 45,
+        "code-snippets-file": "snippets/ls/00163.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16InputStreamTest#testAvailable",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "BaseNCodec.java:715",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with the default value 0 - manually checked that replacing the call to method-a with 0 does not have any bearing on the outcome of the test.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16InputStreamTest#testAvailable",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line naive getter to the field variable BaseNCodec.DEFAULT_BUFFER_SIZE. method-b performs some computation on its argument Context object, and returns the amount of data available to be read. Since the return value of method-a has no bearing on the return value of method-b, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-13-00-06",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 39,
+        "inspection-start-time": "2022-01-13-00-07",
+        "project": "commons-codec",
+        "spec-id": "00164",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "int",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 32,
+        "code-snippets-file": "snippets/ls/00164.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testBase16",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "BaseNCodec.java:513",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "BaseNCodec.java:572",
+                        "method-b-site": "BaseNCodec.java:437",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Most likely replaced with the default value 0 - manually checked that replacing the call to method-a with 0 does not have any bearing on the outcome of the test.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16Test#testBase16",
+        "notes": "ONE_STATELESS_METHOD: method-a is a 1-line naive getter to the field variable BaseNCodec.DEFAULT_BUFFER_SIZE. method-b reads the data from the Context argument into the byte[] argument. While method-a was used by BaseNCodec.ensureBufferSize() to set a size for the Context.buffer value, it does not affect the operations of method-b. So, I think this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-13-00-13",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 40,
+        "inspection-start-time": "2022-01-13-00-16",
+        "project": "commons-codec",
+        "spec-id": "00165",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.isStrictDecoding()Z",
+        "method-b": "org.apache.commons.codec.binary.Base32.isStrictDecoding()Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/ls/00165.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testStrictDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodecOutputStream.java:143",
+                        "method-b-site": "Base32.java:604",
+                        "invocation-count": 12
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_EXPECTED_OUTPUT. Since there was only one perturbation, the first call to method-a would be delayed. The first call to method-a was called by a wrapper, to which there was an assertFalse - hence, the DSI default value replacement still made the test pass.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32OutputStreamTest#testStrictDecoding",
+        "notes": "DYNAMIC_DISPATCH_SAME_METHOD. The snippets show that method-a and method-b are actually the same method as Base32 does not define isStrictDecoding().",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-13-00-26",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 41,
+        "inspection-start-time": "2022-01-13-00-26",
+        "project": "commons-codec",
+        "spec-id": "00166",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.isStrictDecoding()Z",
+        "method-b": "org.apache.commons.codec.binary.Base32.validateCharacter(JLorg/apache/commons/codec/binary/BaseNCodec$Context;)V",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/ls/00166.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testStrictDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodecInputStream.java:78",
+                        "method-b-site": "Base32.java:422",
+                        "invocation-count": 6
+                    },
+                    {
+                        "method-a-site": "BaseNCodecInputStream.java:78",
+                        "method-b-site": "Base32.java:431",
+                        "invocation-count": 2
+                    },
+                    {
+                        "method-a-site": "BaseNCodecInputStream.java:78",
+                        "method-b-site": "Base32.java:437",
+                        "invocation-count": 2
+                    },
+                    {
+                        "method-a-site": "BaseNCodecInputStream.java:78",
+                        "method-b-site": "Base32.java:452",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 4,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_EXPECTED_OUTPUT. For each context set, the first call to method-a would be delayed. The first call to method-a was called by a wrapper, to which there was an assertFalse - hence, the DSI default value replacement still made the test pass.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32InputStreamTest#testStrictDecoding",
+        "notes": "Upon inspection, this seems like a REVERSE_NBP case - method-b calls isStrictDecoding(), but I think DYNAMIC_DISPATCH caused DSI to classify that call to method-b as Base32.isStrictDecoding()?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-13-00-36",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 42,
+        "inspection-start-time": "2022-01-13-00-37",
+        "project": "commons-codec",
+        "spec-id": "00167",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodec.isStrictDecoding()Z",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/ls/00167.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testStrictDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodecOutputStream.java:143",
+                        "method-b-site": "BaseNCodec.java:572",
+                        "invocation-count": 12
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_EXPECTED_OUTPUT. Since there was only one perturbation, the first call to method-a would be delayed. The first call to method-a was called by a wrapper, to which there was an assertFalse - hence, the DSI default value replacement still made the test pass.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.binary.Base32OutputStreamTest#testStrictDecoding",
+        "notes": "method-a is a simple check on whether the field variable BaseNCodec.decodingPolicy is equal to the value CodecPolicy.STRICT. ONE_STATELESS_METHOD: method-b is a 1-line naive getter to the field variable BaseNCodec.DEFAULT_BUFFER_SIZE. Since these two field variables don't directly affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-13-00-42",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 43,
+        "inspection-start-time": "2022-01-13-00-50",
+        "project": "commons-codec",
+        "spec-id": "00169",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I",
+        "method-b": "org.apache.commons.codec.binary.Base16InputStream.close()V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00169.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16InputStreamTest#testSkipNone",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodecInputStream.java:113",
+                        "method-b-site": "Base16InputStreamTest.java:391",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: DSI most likely replaced the return value of method-a with the default int value 0. However, the call to method-a would return -1 on a correct execution, so the state was polluted. But the code had a conditional that checked whether method-a returned a nonzero value, so it is most likely the case that method-a was called again via the conditional. Refer to snippet for more details. GOOD_EXAMPLE",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00169",
+        "notes": "In the use cases in this test, method-b is a do-nothing close because Base16InputStream doesn't implement its own close() method; instead it uses FileInputStream's close() method, which simply closes the input stream that is in the field variable FileInputStream.in, and the test passes in ByteArrayInputStream, which has a do-nothing close method. In general, this is a SOMETIMES_TRUE_SPEC, in the case that the input stream used internally by Base16InputStream has a do-something close() method.",
+        "findings": "interesting state changes caused by the replacement of the return value of method-a and the setup of the code that most likely caused method-a to be called before method-b in the DSI experiment... If we can get JavaMOP to know whether the close() method called on FileItemStream.in made any changes in state, then I think we can encode this in such a way that calling method-a after method-b is OK as long as the close() method called on FileItemStream.in does not make any differences. Alternatively, we can keep a list of \"do-nothing close classes\", where if FileItemStream.in was one of the classes that were in the list, we would permit calling method-a after method-b. This will require a bit more creativity to actually create a JavaMOP spec. POTENTIAL_BIGGER_SPEC with 00057 and 00170: (method-a) (00169-method-b | 00170-method-b) based on the subclass of BaseNCodecInputStream that is being used. With 00057: (00057-method-a | 00169-method-a) method-b",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-13-01-04",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 44,
+        "inspection-start-time": "2022-01-13-01-07",
+        "project": "commons-codec",
+        "spec-id": "00170",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I",
+        "method-b": "org.apache.commons.codec.binary.Base32InputStream.close()V",
+        "method-a-return-type": "int",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00170.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32InputStreamTest#testSkipNone",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodecInputStream.java:113",
+                        "method-b-site": "Base32InputStreamTest.java:491",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: DSI most likely replaced the return value of method-a with the default int value 0. However, the call to method-a would return -1 on a correct execution, so the state was polluted. But the code had a conditional that checked for whether method-a returned a nonzero value, so it is most likely the case that method-a was called again via the conditional. Refer to snippet for more details. GOOD_EXAMPLE",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00170",
+        "notes": "In the use cases in these tests, method-b is a do-nothing close because Base16InputStream doesn't implement its own close() method; instead it uses FileInputStream's close() method, which simply closes the input stream that is in the field variable FileInputStream.in, and the test passes in ByteArrayInputStream, which has a do-nothing close method. The validating-test-file demonstrates this by calling method-a after method-b. In general, this is a SOMETIMES_TRUE_SPEC, in the case that the input stream used internally by Base16InputStream has a do-something close() method.",
+        "findings" : "If we can get JavaMOP to know whether the close() method called on FileItemStream.in made any changes in state, then I think we can encode this in such a way that calling method-a after method-b is OK as long as the close() method called on FileItemStream.in does not make any differences. Alternatively, we can keep a list of \"do-nothing close classes\", where if FileItemStream.in was one of the classes that were in the list, we would permit calling method-a after method-b. This will require a bit more creativity to actually create a JavaMOP spec.  POTENTIAL_BIGGER_SPEC with 00169: method-a (00169-method-b | 00170-method-b) based on the subclass of BaseNCodecInputStream that is being used.",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-13-01-14",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 45,
+        "inspection-start-time": "2022-01-13-12-15",
+        "project": "commons-codec",
+        "spec-id": "00172",
+        "method-a": "org.apache.commons.codec.binary.BaseNCodecOutputStream.eof()V",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodecOutputStream.flush(Z)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00172.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base32OutputStreamTest#testWriteOutOfBounds",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BaseNCodecOutputStream.java:77",
+                        "method-b-site": "BaseNCodecOutputStream.java:106",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "postcondition",
+        "validating-test-file": "transitively from 00171",
+        "notes": "method-a encodes an EOF, and notifies the encoder. method-b flushes the contents of the output stream at that point. If method-b is called before method-a, then the additional contents that ought to be written via method-a will not be written. GOOD_EXAMPLE",
+        "findings": "POTENTIAL_BIGGER_SPEC with 00171: method-a ==> 00172-method-b --> (nbp) 00171-method-b, method-a ==> 00171-method-b. Type-b - method-b is never followed by method-a",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-01-13-12-25",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 46,
+        "inspection-start-time": "2022-01-13-17-39",
+        "project": "commons-codec",
+        "spec-id": "00216",
+        "method-a": "org.apache.commons.codec.language.DaitchMokotoffSoundex$Branch.processNextReplacement(Ljava/lang/String;Z)V",
+        "method-b": "org.apache.commons.codec.language.DaitchMokotoffSoundex$Branch.finish()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00216.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.DaitchMokotoffSoundexTest#testLocaleIndependence",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DaitchMokotoffSoundex.java:521",
+                        "method-b-site": "DaitchMokotoffSoundex.java:545",
+                        "invocation-count": 6
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Commenting out method-a does not cause this test to fail, as the none of the replacments were above the maximum length"
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "a-until-b",
+        "validating-test-file": "Run DaitchMokotoffSoundexTest#testAccentedCharacterFolding with modifications to DaitchMokotoffSoundex.soundex() with inserting \"nextBranch.finish()\" immediately before DaitchMokotoffSoundex.java:521.",
+        "notes": "method-a adds the next replacement to the field variable builder, but ensures that it does not go above maximum length, and method-b pads builder until the end. So, if you call method-b before method-a, DaitchMokotoffSoundex.builder will be full by the time it reaches method-a, which disables method-b from modifying the contents of the field variable. However, this seems like it is not a (ab) spec, its a (a*b) spec given that method-a is called in a loop within DaitchMokotoffSoundex.soundex() before method-b is called.",
+        "findings": "Type-b - method-b is never followed by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-13-18-04",
+        "inspection-time-in-minutes": 25
+    },
+    {
+        "iid": 47,
+        "inspection-start-time": "2022-01-14-00-51",
+        "project": "commons-codec",
+        "spec-id": "00224",
+        "method-a": "org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendAlternate(C)V",
+        "method-b": "org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.getPrimary()Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00224.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.DoubleMetaphoneTest#testCCedilla",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DoubleMetaphone.java:950",
+                        "method-b-site": "DoubleMetaphone.java:188",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "This test does not fail if method-a is commented out"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.DoubleMetaphoneTest#testCCedilla",
+        "notes": "method-a adds the argument char to the field variable DoubleMetaphone.alternate. method-b returns a String version of the field variable DoubleMetaphone.primary. Since these two variables are not directly related, this is a UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-01-00",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 48,
+        "inspection-start-time": "2022-01-14-01-00",
+        "project": "commons-codec",
+        "spec-id": "00225",
+        "method-a": "org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendPrimary(C)V",
+        "method-b": "org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendAlternate(C)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 5,
+        "code-snippets-file": "snippets/ls/00225.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.DoubleMetaphoneTest#testCCedilla",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DoubleMetaphone.java:949",
+                        "method-b-site": "DoubleMetaphone.java:950",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "This test does not fail if method-b is commented out"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.DoubleMetaphoneTest#testCCedilla",
+        "notes": "method-a checks that the length of the field variable DoubleMetaphone.primary does not exceed the field variable DoubleMetaphone.maxLength, and adds the argument char to DoubleMetaphone.primary. method-b checks that the length of the field variable DoubleMetaphone.alternate does not exceed the field variable DoubleMetaphone.maxLength, and adds the argument char to DoubleMetaphone.alternate. Since DoubleMetaphone.primary and DoubleMetaphone.alternate are not directly related, this is a UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-01-06",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 49,
+        "inspection-start-time": "2022-01-14-01-06",
+        "project": "commons-codec",
+        "spec-id": "00227",
+        "method-a": "org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendPrimary(Ljava/lang/String;)V",
+        "method-b": "org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendAlternate(Ljava/lang/String;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00227.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.DoubleMetaphoneTest#testIsDoubleMetaphoneEqualWithMATCHES",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DoubleMetaphone.java:971",
+                        "method-b-site": "DoubleMetaphone.java:972",
+                        "invocation-count": 74
+                    },
+                    {
+                        "method-a-site": "DoubleMetaphone.java:976",
+                        "method-b-site": "DoubleMetaphone.java:977",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "This test does not fail if method-b is commented out"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.DoubleMetaphoneTest#testCCedilla",
+        "notes": "method-a checks that the length of the field variable DoubleMetaphone.primary does not exceed the field variable DoubleMetaphone.maxLength, and adds the argument String to DoubleMetaphone.primary. method-b checks that the length of the field variable DoubleMetaphone.alternate does not exceed the field variable DoubleMetaphone.maxLength, and adds the argument String to DoubleMetaphone.alternate. Since DoubleMetaphone.primary and DoubleMetaphone.alternate are not directly related, this is a UNRELATED_STATEFUL_METHODS.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-01-14",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 50,
+        "inspection-start-time": "2022-01-14-11-18",
+        "project": "commons-codec",
+        "spec-id": "00236",
+        "method-a": "org.apache.commons.codec.language.DoubleMetaphone.isSlavoGermanic(Ljava/lang/String;)Z",
+        "method-b": "org.apache.commons.codec.language.DoubleMetaphone.isSilentStart(Ljava/lang/String;)Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00236.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.DoubleMetaphoneTest#testCodec184",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DoubleMetaphone.java:90",
+                        "method-b-site": "DoubleMetaphone.java:91",
+                        "invocation-count": 4
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - the return value of method-a on each invocation was false, and the DSI default value for booleans is false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.DoubleMetaphoneTest#testCodec184",
+        "notes": "method-a returns whether the String argument is of slavo-germanic origin by performing a couple of checks. method-b returns whether the String argument starts with any of the Strings in the field variable DoubleMetaphone.SILENT_START. Since these two checks are not dependent on each other, this is an UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-11-25",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 51,
+        "inspection-start-time": "2022-01-14-21-50",
+        "project": "commons-codec",
+        "spec-id": "00251",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.isVowel(Ljava/lang/String;)Z",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.getFirst3Last3(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00251.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:420",
+                        "method-b-site": "MatchRatingApproachEncoder.java:142",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. The return value of method-a if called normally in this test is false, and the DSI default value for booleans is false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+        "notes": "method-a returns whether its String argument contains a vowel character, and method-b returns the first and last 3 characters of the String argument in the case that the String argument exceeded 6 characters. The use case of method-a and method-b suggest ordering relationship since they act on the \"same value\" as a part of an algorithm. However, these methods by themselves don't seem to depend on each other? So this could go either way. DECISION either method can be called independently, and in any order",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-22-03",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 52,
+        "inspection-start-time": "2022-01-14-22-14",
+        "project": "commons-codec",
+        "spec-id": "00252",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.isVowel(Ljava/lang/String;)Z",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.removeDoubleConsonants(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00252.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:420",
+                        "method-b-site": "MatchRatingApproachEncoder.java:139",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. The return value of method-a if called normally in this test is false, and the DSI default value for booleans is false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+        "notes": "method-a returns whether its String argument contains a vowel character, and method-b returns a String in which every double consonant pair in the String argument is replaced with a single consonant equivalent. This is an UNRELATED_STATEFUL_METHODS case, given that these methods by themselves have nothing to do with each other.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-22-24",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 53,
+        "inspection-start-time": "2022-01-14-22-24",
+        "project": "commons-codec",
+        "spec-id": "00253",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.removeAccents(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.getFirst3Last3(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00253.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:91",
+                        "method-b-site": "MatchRatingApproachEncoder.java:142",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. Most likely returned the variable upperName, which is actually the return value of method-a because method-a is a no-op in this test.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+        "notes": "method-a replaces all instances of accented letters with non-accented ascii equivalents from the argument String, and method-b removes all vowel instances from the input String. The use case of method-a and method-b suggest ordering relationship since they act on the \"same value\" as a part of an algorithm. However, these methods by themselves don't seem to depend on each other? So this could go either way. DECISION: either method can be called independently and in any order",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-22-34",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 54,
+        "inspection-start-time": "2022-01-14-22-44",
+        "project": "commons-codec",
+        "spec-id": "00254",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.removeAccents(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.isVowel(Ljava/lang/String;)Z",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00254.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:91",
+                        "method-b-site": "MatchRatingApproachEncoder.java:420",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. Most likely returned the variable upperName, which is actually the return value of method-a because method-a is a no-op in this test.",
+                "notes": "Weak test because method-a is essentially a no-op."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "argument below, not sure if this is a true-spec or not.",
+        "notes": "This method-a replaces any accented characters from the input string with their non-accented equivalent. This method-b checks whether the input string is a single vowel character. There's most likely a case where one needs to call method-a before method-b in order to check whether an accented vowel character is a vowel? This will only be a possible true-spec if method-b takes as input the return value of method-a. Might be good to write a test for this later. REVISIT. DECISION: either method can be called independently and in any order",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-14-22-55",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 55,
+        "inspection-start-time": "2022-01-14-22-56",
+        "project": "commons-codec",
+        "spec-id": "00255",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.removeAccents(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.removeDoubleConsonants(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00255.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:91",
+                        "method-b-site": "MatchRatingApproachEncoder.java:139",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. Most likely returned the variable upperName, which is actually the return value of method-a because method-a is a no-op in this test.",
+                "notes": "Weak test because method-a is essentially a no-op."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+        "notes": "This method-a replaces any accented characters from the input string with their non-accented equivalent. This method-b replaces double consonants in the input string with a single letter equivalent. There's most likely a case where one needs to call method-a before method-b in because an accented consonant value (Y/N) is adjacent to its non-accented counterpart? This will only be a possible true-spec if method-b takes as input the return value of method-a. Might be good to write a test for this later.  DECISION: either method can be called independently and in any order",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-14-23-04",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 56,
+        "inspection-start-time": "2022-01-14-23-04",
+        "project": "commons-codec",
+        "spec-id": "00256",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.removeAccents(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.removeVowels(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00256.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:91",
+                        "method-b-site": "MatchRatingApproachEncoder.java:136",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. Most likely returned the variable upperName, which is actually the return value of method-a because method-a is a no-op in this test.",
+                "notes": "Weak test because method-a is essentially a no-op."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "snippet? might want to write a test for this...",
+        "notes": "The oracle is weak because in this test, calling method-a essentially results in a no-op. This method-a replaces any accented characters from the input string with their non-accented equivalent. This method-b removes any vowels from the input string. Hence, if the return value of method-a was passed to method-b, then there will be a precondition relationship because otherwise accented vowel characters will remain, while non-accented vowel characters will be removed. (There will only be a relationship between the two methods if the argument to method-b was the return value of method-a (at least, transitively).)  DECISION: either method can be called independently and in any order",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-14-23-14",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 57,
+        "inspection-start-time": "2022-01-14-23-15",
+        "project": "commons-codec",
+        "spec-id": "00257",
+        "method-a": "org.apache.commons.codec.language.MatchRatingApproachEncoder.removeDoubleConsonants(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.language.MatchRatingApproachEncoder.getFirst3Last3(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00257.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MatchRatingApproachEncoderTest#testGetEncoding_SMITH_to_SMTH",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MatchRatingApproachEncoder.java:139",
+                        "method-b-site": "MatchRatingApproachEncoder.java:142",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. Most likely returned the variable name, which is actually the return value of method-a because method-a is a no-op in this test.",
+                "notes": "Weak test because method-a is essentially a no-op."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "DSIValidationTest#testDSI00257 with lines MatchRatingApproachEncoder.java:139 placed after MatchRatingApproachEncoder.java:142 (method-a and method-b are not public).",
+        "notes": "This method-a replaces all instances of double consonant pairs in the argument String with a single letter equivalent, and method-b removes all vowel instances from the input String. The use case of method-a and method-b suggest ordering relationship since they act on the \"same value\" as a part of an algorithm. However, these methods by themselves don't seem to depend on each other? So this could go either way.  DECISION: either method can be called independently and in any order",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-14-23-25",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 58,
+        "inspection-start-time": "2022-01-14-00-03",
+        "project": "commons-codec",
+        "spec-id": "00261",
+        "method-a": "org.apache.commons.codec.language.Metaphone.isNextChar(Ljava/lang/StringBuilder;IC)Z",
+        "method-b": "org.apache.commons.codec.language.Metaphone.isVowel(Ljava/lang/StringBuilder;I)Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00261.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.MetaphoneTest#testWordEndingInMB",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Metaphone.java:191",
+                        "method-b-site": "Metaphone.java:312",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. method-a was supposed to return false in this context, and the DSI default is false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.MetaphoneTest#testWordEndingInMB",
+        "notes": "ONE_STATELESS_METHOD method-a checks whether the char argument c is equal to the character at a particular index in the StringBuilder argument string. method-b uses the field variable Metaphone.VOWELS to check whether the int argument index of the StringBuilder argument string is a vowel. Since the return value of method-a does not affect the return value of method-b, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-00-14",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 59,
+        "inspection-start-time": "2022-01-15-11-42",
+        "project": "commons-codec",
+        "spec-id": "00274",
+        "method-a": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.setNameType(Lorg/apache/commons/codec/language/bm/NameType;)V",
+        "method-b": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.encode(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00274.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testEncodeGna",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoderTest.java:44",
+                        "method-b-site": "BeiderMorseEncoderTest.java:108",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "REVISIT: snippet for now - might want to construct a test later, but I don't know enough about nametypes and their effects for now.",
+        "notes": "method-a sets the field variable BeiderMorseEncoder.engine to a new PhoneticEngine object containing the NameType argument. method-b uses BeiderMorseEncoder.engine to encode the argument String. The test passes because this particular call to method-a was a no-op, since the NameType that method-a is setting is the default (NameType.GENERIC). The test class has no other test that calls method-a and method-b where method-a isn't setting to NameType.GENERIC, but if there was such a test, that would most likely validate the spec. This is a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, because the declaration of BeiderMorseEncoder.engine does set BeiderMorseEncoder.engine.nameType to a non-null value, meaning that both method-a and method-b can be called at any point without any potential NullPointerExceptions.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-11-53",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 60,
+        "inspection-start-time": "2022-01-15-12-08",
+        "project": "commons-codec",
+        "spec-id": "00276",
+        "method-a": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.setNameType(Lorg/apache/commons/codec/language/bm/NameType;)V",
+        "method-b": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.setMaxPhonemes(I)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00276.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testOOM",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoderTest.java:145",
+                        "method-b-site": "BeiderMorseEncoderTest.java:147",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "This test does not check the NameType"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testOOM",
+        "notes": "method-a sets the field variable BeiderMorseEncoder.engine to one in which PhoneticEngine.nameType is set to the argument NameType object, with all other fields being the same, and method-b sets the field variable BeiderMorseEncoder.engine to one in which PhoneticEngine.maxPhonemes is set to the int argument. While method-a and method-b modify the same field variable, they work in such a way that they each only change one field of PhoneticEngine. So, there doesn't seem to be an ordering relation between the two methods: CONNECTION_DOES_NOT_NECESSITATE_ORDERING.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-12-13",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 61,
+        "inspection-start-time": "2022-01-15-12-13",
+        "project": "commons-codec",
+        "spec-id": "00277",
+        "method-a": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.setNameType(Lorg/apache/commons/codec/language/bm/NameType;)V",
+        "method-b": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.setRuleType(Lorg/apache/commons/codec/language/bm/RuleType;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 10,
+        "code-snippets-file": "snippets/ls/00277.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testOOM",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoderTest.java:145",
+                        "method-b-site": "BeiderMorseEncoderTest.java:146",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "This test does not check the NameType, nor is the NameType relevant"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testOOM",
+        "notes": "method-a sets the field variable BeiderMorseEncoder.engine to one in which PhoneticEngine.nameType is set to the argument NameType object, with all other fields being the same, and method-b sets the field variable BeiderMorseEncoder.engine to one in which PhoneticEngine.ruleType is set to the RuleType argument. While method-a and method-b modify the same field variable, they work in such a way that they each only change one field of PhoneticEngine. So, there doesn't seem to be an ordering relation between the two methods: CONNECTION_DOES_NOT_NECESSITATE_ORDERING.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-12-17",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 62,
+        "inspection-start-time": "2022-01-15-12-36",
+        "project": "commons-codec",
+        "spec-id": "00280",
+        "method-a": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.setRuleType(Lorg/apache/commons/codec/language/bm/RuleType;)V",
+        "method-b": "org.apache.commons.codec.language.bm.BeiderMorseEncoder.setMaxPhonemes(I)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00280.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testOOM",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoderTest.java:146",
+                        "method-b-site": "BeiderMorseEncoderTest.java:147",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testOOM",
+        "notes": "method-a sets the field variable BeiderMorseEncoder.engine to one in which PhoneticEngine.ruleType is set to the argument RuleType object, with all other fields being the same, and method-b sets the field variable BeiderMorseEncoder.engine to one in which PhoneticEngine.maxPhonemes is set to the int argument. While method-a and method-b modify the same field variable, they work in such a way that they each only change one field of PhoneticEngine. So, there doesn't seem to be an ordering relation between the two methods: CONNECTION_DOES_NOT_NECESSITATE_ORDERING.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-12-39",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 63,
+        "inspection-start-time": "2022-01-15-14-46",
+        "project": "commons-codec",
+        "spec-id": "00285",
+        "method-a": "org.apache.commons.codec.language.bm.PhoneticEngine.getNameType()Lorg/apache/commons/codec/language/bm/NameType;",
+        "method-b": "org.apache.commons.codec.language.bm.PhoneticEngine.getMaxPhonemes()I",
+        "method-a-return-type": "org.apache.commons.codec.language.bm.NameType",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00285.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetConcat",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoder.java:136",
+                        "method-b-site": "BeiderMorseEncoder.java:139",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with null, but there was no operation/check on the value that was set via method-a, so the test passed.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetConcat",
+        "notes": "UNRELATED_STATELESS_METHODS: method-a is a 1-line naive getter to the field variable PhoneticEngine.nameType, and method-b is a 1-line naive getter to the field variable PhoneticEngine.maxPhonemes. Since these two field variables do not directly affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-14-52",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 64,
+        "inspection-start-time": "2022-01-15-14-52",
+        "project": "commons-codec",
+        "spec-id": "00286",
+        "method-a": "org.apache.commons.codec.language.bm.PhoneticEngine.getNameType()Lorg/apache/commons/codec/language/bm/NameType;",
+        "method-b": "org.apache.commons.codec.language.bm.PhoneticEngine.getRuleType()Lorg/apache/commons/codec/language/bm/RuleType;",
+        "method-a-return-type": "org.apache.commons.codec.language.bm.NameType",
+        "method-b-return-type": "org.apache.commons.codec.language.bm.RuleType",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00286.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetConcat",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoder.java:136",
+                        "method-b-site": "BeiderMorseEncoder.java:137",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with null, but there was no operation/check on the value that was set via method-a, so the test passed.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetConcat",
+        "notes": "UNRELATED_STATELESS_METHODS: method-a is a 1-line naive getter to the field variable PhoneticEngine.nameType, and method-b is a 1-line naive getter to the field variable PhoneticEngine.ruleType. Since these two field variables do not directly affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-14-54",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 65,
+        "inspection-start-time": "2022-01-15-14-53",
+        "project": "commons-codec",
+        "spec-id": "00287",
+        "method-a": "org.apache.commons.codec.language.bm.PhoneticEngine.getNameType()Lorg/apache/commons/codec/language/bm/NameType;",
+        "method-b": "org.apache.commons.codec.language.bm.PhoneticEngine.isConcat()Z",
+        "method-a-return-type": "org.apache.commons.codec.language.bm.NameType",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/ls/00287.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetRuleTypeExact",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoder.java:163",
+                        "method-b-site": "BeiderMorseEncoder.java:165",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with null, but there was no operation/check on the value that was set via method-a, so the test passed.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetRuleTypeExact",
+        "notes": "UNRELATED_STATELESS_METHODS: method-a is a 1-line naive getter to the field variable PhoneticEngine.nameType, and method-b is a 1-line naive getter to the field variable PhoneticEngine.isConcat. Since these two field variables do not directly affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-14-57",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 66,
+        "inspection-start-time": "2022-01-15-14-57",
+        "project": "commons-codec",
+        "spec-id": "00288",
+        "method-a": "org.apache.commons.codec.language.bm.PhoneticEngine.getRuleType()Lorg/apache/commons/codec/language/bm/RuleType;",
+        "method-b": "org.apache.commons.codec.language.bm.PhoneticEngine.getMaxPhonemes()I",
+        "method-a-return-type": "org.apache.commons.codec.language.bm.RuleType",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/ls/00288.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetConcat",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoder.java:137",
+                        "method-b-site": "BeiderMorseEncoder.java:139",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with null, but there was no operation/check on the value that was set via method-a, so the test passed.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetConcat",
+        "notes": "UNRELATED_STATELESS_METHODS: method-a is a 1-line naive getter to the field variable PhoneticEngine.ruleType, and method-b is a 1-line naive getter to the field variable PhoneticEngine.maxPhonemes. Since these two field variables do not directly affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-14-59",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 67,
+        "inspection-start-time": "2022-01-15-14-59",
+        "project": "commons-codec",
+        "spec-id": "00289",
+        "method-a": "org.apache.commons.codec.language.bm.PhoneticEngine.getRuleType()Lorg/apache/commons/codec/language/bm/RuleType;",
+        "method-b": "org.apache.commons.codec.language.bm.PhoneticEngine.isConcat()Z",
+        "method-a-return-type": "org.apache.commons.codec.language.bm.RuleType",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00289.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetNameTypeAsh",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoder.java:151",
+                        "method-b-site": "BeiderMorseEncoder.java:152",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with null, but there was no operation/check on the value that was set via method-a, so the test passed.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetConcat",
+        "notes": "UNRELATED_STATELESS_METHODS: method-a is a 1-line naive getter to the field variable PhoneticEngine.ruleType, and method-b is a 1-line naive getter to the field variable PhoneticEngine.isConcat. Since these two field variables do not directly affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-15-02",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 68,
+        "inspection-start-time": "2022-01-15-15-02",
+        "project": "commons-codec",
+        "spec-id": "00290",
+        "method-a": "org.apache.commons.codec.language.bm.PhoneticEngine.isConcat()Z",
+        "method-b": "org.apache.commons.codec.language.bm.PhoneticEngine.getMaxPhonemes()I",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 12,
+        "code-snippets-file": "snippets/ls/00290.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetNameTypeAsh",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BeiderMorseEncoder.java:152",
+                        "method-b-site": "BeiderMorseEncoder.java:153",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with null, but there was no operation/check on the value that was set via method-a, so the test passed.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testSetConcat",
+        "notes": "UNRELATED_STATELESS_METHODS: method-a is a 1-line naive getter to the field variable PhoneticEngine.isConcat, and method-b is a 1-line naive getter to the field variable PhoneticEngine.maxPhonemes. Since these two field variables do not directly affect each other, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-15-04",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 69,
+        "inspection-start-time": "2022-01-15-17-00",
+        "project": "commons-codec",
+        "spec-id": "00296",
+        "method-a": "org.apache.commons.codec.net.BCodec.doDecoding([B)[B",
+        "method-b": "org.apache.commons.codec.net.BCodec.doEncoding([B)[B",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00296.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.BCodecTest#testNullInput",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "BCodecTest.java:67",
+                        "method-b-site": "BCodecTest.java:68",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI couldn't find a replacement value so it replaced the call to method-a with null, and the test expected a null output.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.BCodecTest#testNullInput",
+        "notes": "method-a returns null on null input, and returns a Base64 decoding from the byte[] argument. method-a returns null on null input, and returns a Base64 encoding from the byte[] argument otherwise. Since one does not necessarily need to call method-a before method-b, nor both of these methods, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-14-17-05",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 70,
+        "inspection-start-time": "2022-01-15-21-56",
+        "project": "commons-codec",
+        "spec-id": "00323",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.decode(Ljava/lang/Object;)Ljava/lang/Object;",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00323.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:127",
+                        "method-b-site": "PercentCodecTest.java:133",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION. Method-a will return false in the location it was called in this execution, and DSI replaced method-a with the default value false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+        "notes": "method-a checks whether its byte[] argument contains a space character. method-b perfroms a decoding of the byte[] argument. Since method-a is called within the context of encoding, this seems like a UNRELATED_STATEFUL_METHODS case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-22-06",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 71,
+        "inspection-start-time": "2022-01-17-14-27",
+        "project": "commons-codec",
+        "spec-id": "00349",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00349.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:96",
+                        "method-b-site": "PercentCodec.java:127",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+        "notes": "method-a accesses the field variables PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax, and modifies the field variable PercentCodec.alwaysEncodeChars, PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax (depending on the conditional). method-b checks whether its byte[] argument contains a space character. Since method-b is not impacted by the state changes made by method-a, this is a spurious spec. ONE_STATELESS_METHOD?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-14-34",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 72,
+        "inspection-start-time": "2022-01-17-16-37",
+        "project": "commons-codec",
+        "spec-id": "00357",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00357.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:82",
+                        "method-b-site": "PercentCodec.java:127",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test is somewhat weak because the encoded value does not contain ESCAPE_CHAR, which is included in this.alwaysEncodeChars via a call to method-a."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+        "notes": "method-a accesses the field variables PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax, and modifies the field variable PercentCodec.alwaysEncodeChars, PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax (depending on the conditional) for each entry in the byte[] argument. method-b checks whether its byte[] argument contains a space character. Since method-b is not impacted by the state changes made by method-a, this is a spurious spec. ONE_STATELESS_METHOD",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-16-42",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 73,
+        "inspection-start-time": "2022-01-17-16-42",
+        "project": "commons-codec",
+        "spec-id": "00358",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.decode(Ljava/lang/Object;)Ljava/lang/Object;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00358.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:82",
+                        "method-b-site": "PercentCodecTest.java:133",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test is somewhat weak because the encoded value does not contain ESCAPE_CHAR, which is included in this.alwaysEncodeChars via a call to method-a."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+        "notes": "method-a accesses the field variables PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax, and modifies the field variable PercentCodec.alwaysEncodeChars, PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax (depending on the conditional) for each entry in the byte[] argument. method-b decodes the byte[] argument encoded in the Percent-Encoding. Not calling method-a affects the output of PercentCodec.encode(), and not method-b. Additionally, inspection of this.alwaysEncodeChars shows that method-b does not use the variable in any way. Hence, this is a spurious-spec. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-16-49",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 74,
+        "inspection-start-time": "2022-01-17-17-06",
+        "project": "commons-codec",
+        "spec-id": "00361",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.encode(Ljava/lang/Object;)Ljava/lang/Object;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00361.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testSafeCharEncodeDecodeObject",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:82",
+                        "method-b-site": "PercentCodecTest.java:131",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "DSIValidationTest#testDSI00361 with PercentCodec.java:82 commented out shows the connection between method-a and method-b.",
+        "notes": "method-a accesses the field variables PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax, and modifies the field variable PercentCodec.alwaysEncodeChars, PercentCodec.alwaysEncodeCharsMin and PercentCodec.alwaysEncodeCharsMax (depending on the conditional) for each entry in the byte[] argument. method-b performs an encoding from the byte[] argument to a byte[] that is encoded with the Percent-Encoding. The test is weak because the value to be encoded doesn't contain any values from this.alwaysEncodeChars. The validating-test-file shows that not calling method-a before method-b in the specific use case would cause method-b to output an incorrect value. DECISION: This is most likely a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, given that method-b can be called without a call to method-a (by calling the zero-argument constructor of PercentCodec(), and then calling method-b).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-17-14",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 75,
+        "inspection-start-time": "2022-01-17-20-58",
+        "project": "commons-codec",
+        "spec-id": "00371",
+        "method-a": "org.apache.commons.codec.net.QCodec.doDecoding([B)[B",
+        "method-b": "org.apache.commons.codec.net.QCodec.doEncoding([B)[B",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00371.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QCodecTest#testNullInput",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "QCodecTest.java:62",
+                        "method-b-site": "QCodecTest.java:63",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI replaced the return value of method-a with null, and the call to method-a was around an assertNull().",
+                "notes": "I think the oracle in this test is most likely weak because it simply checks whether method-a and method-b would return null when called with argument null."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.QCodecTest#testNullInput",
+        "notes": "method-a returns null on null input, and returns a Base64 decoding from the byte[] argument. method-a returns null on null input, and returns a Base64 encoding from the byte[] argument otherwise. Since one does not necessarily need to call method-a before method-b, nor both of these methods, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-17-21-08",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 76,
+        "inspection-start-time": "2022-01-18-18-14",
+        "project": "commons-codec",
+        "spec-id": "00424",
+        "method-a": "org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;",
+        "method-b": "org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/ls/00424.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.QCodecTest#testDecodeObjects",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "RFC1522Codec.java:148",
+                        "method-b-site": "RFC1522Codec.java:154",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. DSI most likely replaced the return value of method-a with the String value encoding, which is what the return value of method-a was compared against. If they didn't equal, an exception would be thrown, but DSI's manipulations made it such that they equal each other.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.QCodecTest#testDecodeObjects",
+        "notes": "method-a returns the String literal \"Q\" (ONE_STATELESS_METHOD), and method-b performs a decoding on the byte[] argument. The caller of method-a and method-b throws an exception based on the return value of method-a, but given that method-a literally simply returns a constant, this ought to be a spurious spec. GOOD_EXAMPLE?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-18-25",
+        "inspection-time-in-minutes": 11
+    }
+]

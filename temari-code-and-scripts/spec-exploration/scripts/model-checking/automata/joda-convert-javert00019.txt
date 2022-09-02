@@ -1,0 +1,15 @@
+1
+s0
+1
+s0
+10
+s5_s4 s5_s4 org.joda.convert.StringConvert.findToStringMethod(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Method;
+s5_s4 s5_s4 org.joda.convert.StringConvert.findFromStringMethod(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Method;
+s2 s2 org.joda.convert.TypedStringConverter.getEffectiveType()Ljava/lang/Class;
+s1 s2 org.joda.convert.StringConvert.tryRegisterJava8Optionals()V
+s5_s4 s6 org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V
+s0 s1 org.joda.convert.StringConvert.tryRegisterGuava()V
+s5_s4 s5_s4 org.joda.convert.StringConvert.registerMethods(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)V
+s3 s5_s4 org.joda.convert.StringConvert.tryRegisterJava8()V
+s2 s3 org.joda.convert.StringConvert.tryRegisterTimeZone()V
+s6 s0 org.joda.convert.StringConvert.tryRegisterThreeTenOld()V

@@ -1,0 +1,1 @@
+grep -A1 ^a ~/sandbox/dsiPlus-dsiAllGranularities-commons-fileupload/commons-fileupload/dsiPlus-dsiAllGranularities/dsi-results/org.apache.commons.fileupload2.SizesTest#testFileUpload@org.apache.commons.fileupload2.SizesTest#testFileUpload/SizesTest#testFileUpload@SizesTest#testFileUpload_00037.log | cut -d\( -f2  | sort | uniq -c

@@ -1,0 +1,446 @@
+method-a,method-b,verdict
+org.apache.commons.codec.DecoderException.getMessage()Ljava/lang/String;,org.apache.commons.codec.DecoderException.getCause()Ljava/lang/Throwable;,spurious-spec
+org.apache.commons.codec.EncoderException.getMessage()Ljava/lang/String;,org.apache.commons.codec.EncoderException.getCause()Ljava/lang/Throwable;,spurious-spec
+org.apache.commons.codec.StringEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.DoubleMetaphone.cleanInput(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (indirect)
+org.apache.commons.codec.StringEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.DoubleMetaphone.doubleMetaphone(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.StringEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.DoubleMetaphone.doubleMetaphone(Ljava/lang/String;Z)Ljava/lang/String;,no-break-pass (indirect)
+org.apache.commons.codec.StringEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.Metaphone.metaphone(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.StringEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.Nysiis.nysiis(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.StringEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.RefinedSoundex.soundex(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.StringEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.Soundex.soundex(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16.decode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.binary.BaseNCodec.decode(Ljava/lang/String;)[B,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16.decode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.binary.BaseNCodec.decode([B)[B,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16.decode([B)[B,org.apache.commons.codec.binary.Base16.decodeOctet(B)I,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base16.decode([B)[B,org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base16.decode([B)[B,org.apache.commons.codec.binary.Base16.isStrictDecoding()Z,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base16.decode([B)[B,org.apache.commons.codec.binary.Base16.validateTrailingCharacter()V,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base16.decode([B)[B,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base16.decode([B)[B,org.apache.commons.codec.binary.BaseNCodec.decode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16.decode([B)[B,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base16.decode([B)[B,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16.encode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.binary.BaseNCodec.encode([B)[B,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16.encode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.binary.BaseNCodec.encode([BII)[B,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base16.encode([B)[B,org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base16.encode([B)[B,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base16.encode([B)[B,org.apache.commons.codec.binary.BaseNCodec.encode([BII)[B,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16.encode([B)[B,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16.encode([B)[B,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16.encode([BII)[B,org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base16.encode([BII)[B,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base16.encode([BII)[B,org.apache.commons.codec.binary.BaseNCodec.encode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16.encode([BII)[B,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base16.encode([BII)[B,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16.getCodecPolicy()Lorg/apache/commons/codec/CodecPolicy;,org.apache.commons.codec.binary.Base16.decode([B)[B,spurious-spec
+org.apache.commons.codec.binary.Base16.getCodecPolicy()Lorg/apache/commons/codec/CodecPolicy;,org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,spurious-spec
+org.apache.commons.codec.binary.Base16.getCodecPolicy()Lorg/apache/commons/codec/CodecPolicy;,org.apache.commons.codec.binary.Base16.isStrictDecoding()Z,spurious-spec
+org.apache.commons.codec.binary.Base16.getCodecPolicy()Lorg/apache/commons/codec/CodecPolicy;,org.apache.commons.codec.binary.Base16.validateTrailingCharacter()V,spurious-spec
+org.apache.commons.codec.binary.Base16.getCodecPolicy()Lorg/apache/commons/codec/CodecPolicy;,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base16.getCodecPolicy()Lorg/apache/commons/codec/CodecPolicy;,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,spurious-spec
+org.apache.commons.codec.binary.Base16.getCodecPolicy()Lorg/apache/commons/codec/CodecPolicy;,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base16.validateTrailingCharacter()V,org.apache.commons.codec.binary.Base16.isStrictDecoding()Z,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16InputStream.read()I,org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16InputStream.read([BII)I,org.apache.commons.codec.binary.Base16InputStream.read()I,spurious-spec
+org.apache.commons.codec.binary.Base16InputStream.read([BII)I,org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I,spurious-spec
+org.apache.commons.codec.binary.Base16InputStream.skip(J)J,org.apache.commons.codec.binary.Base16InputStream.close()V,unknown
+org.apache.commons.codec.binary.Base16InputStream.skip(J)J,org.apache.commons.codec.binary.Base16InputStream.read()I,spurious-spec
+org.apache.commons.codec.binary.Base16InputStream.skip(J)J,org.apache.commons.codec.binary.Base16InputStream.read([BII)I,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16InputStream.skip(J)J,org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16OutputStream.close()V,org.apache.commons.codec.binary.BaseNCodecOutputStream.eof()V,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16OutputStream.close()V,org.apache.commons.codec.binary.BaseNCodecOutputStream.flush()V,no-break-pass (direct)
+org.apache.commons.codec.binary.Base16OutputStream.close()V,org.apache.commons.codec.binary.BaseNCodecOutputStream.flush(Z)V,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.Base32.getEncodedLength([B)J,spurious-spec
+org.apache.commons.codec.binary.Base32.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base32.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,no-break-pass (direct)
+org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z,org.apache.commons.codec.binary.Base32.getEncodedLength([B)J,spurious-spec
+org.apache.commons.codec.binary.Base32.validateCharacter(JLorg/apache/commons/codec/binary/BaseNCodec$Context;)V,org.apache.commons.codec.binary.Base32.isStrictDecoding()Z,no-break-pass (direct)
+org.apache.commons.codec.binary.Base32InputStream.read()I,org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I,no-break-pass (direct)
+org.apache.commons.codec.binary.Base32InputStream.read([BII)I,org.apache.commons.codec.binary.Base32InputStream.read()I,spurious-spec
+org.apache.commons.codec.binary.Base32InputStream.read([BII)I,org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I,spurious-spec
+org.apache.commons.codec.binary.Base32InputStream.skip(J)J,org.apache.commons.codec.binary.Base32InputStream.close()V,spurious-spec
+org.apache.commons.codec.binary.Base32InputStream.skip(J)J,org.apache.commons.codec.binary.Base32InputStream.read()I,spurious-spec
+org.apache.commons.codec.binary.Base32InputStream.skip(J)J,org.apache.commons.codec.binary.Base32InputStream.read([BII)I,spurious-spec
+org.apache.commons.codec.binary.Base32InputStream.skip(J)J,org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I,no-break-pass (direct)
+org.apache.commons.codec.binary.Base32OutputStream.close()V,org.apache.commons.codec.binary.BaseNCodecOutputStream.eof()V,no-break-pass (direct)
+org.apache.commons.codec.binary.Base32OutputStream.close()V,org.apache.commons.codec.binary.BaseNCodecOutputStream.flush()V,no-break-pass (direct)
+org.apache.commons.codec.binary.Base32OutputStream.close()V,org.apache.commons.codec.binary.BaseNCodecOutputStream.flush(Z)V,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base32OutputStream.isStrictDecoding()Z,org.apache.commons.codec.binary.Base32OutputStream.write([B)V,spurious-spec
+org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.Base64.getEncodedLength([B)J,spurious-spec
+org.apache.commons.codec.binary.Base64.decode([B)[B,org.apache.commons.codec.binary.Base64.isStrictDecoding()Z,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base64.decode([B)[B,org.apache.commons.codec.binary.Base64.validateCharacter(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base64.decode([B)[B,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base64.decode([B)[B,org.apache.commons.codec.binary.BaseNCodec.decode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,no-break-pass (direct)
+org.apache.commons.codec.binary.Base64.decode([B)[B,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base64.decode([B)[B,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,no-break-pass (direct)
+org.apache.commons.codec.binary.Base64.encode([B)[B,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base64.encode([B)[B,org.apache.commons.codec.binary.BaseNCodec.encode([BII)[B,no-break-pass (direct)
+org.apache.commons.codec.binary.Base64.encode([B)[B,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base64.encode([B)[B,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,no-break-pass (indirect)
+org.apache.commons.codec.binary.Base64.getEncodedLength([B)J,org.apache.commons.codec.binary.Base64.encode([B)[B,spurious-spec
+org.apache.commons.codec.binary.Base64.getEncodedLength([B)J,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base64.getEncodedLength([B)J,org.apache.commons.codec.binary.BaseNCodec.encode([BII)[B,spurious-spec
+org.apache.commons.codec.binary.Base64.getEncodedLength([B)J,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,spurious-spec
+org.apache.commons.codec.binary.Base64.getEncodedLength([B)J,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base64.validateCharacter(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,org.apache.commons.codec.binary.Base64.isStrictDecoding()Z,no-break-pass (direct)
+org.apache.commons.codec.binary.BaseNCodec.decode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,org.apache.commons.codec.binary.Base64.validateCharacter(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,no-break-pass (direct)
+org.apache.commons.codec.binary.BaseNCodec.encode([B)[B,org.apache.commons.codec.binary.Base32.getEncodedLength([B)J,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.encode([B)[B,org.apache.commons.codec.binary.BaseNCodec.encode([BII)[B,no-break-pass (direct)
+org.apache.commons.codec.binary.BaseNCodec.encode([BII)[B,org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,no-break-pass (indirect)
+org.apache.commons.codec.binary.BaseNCodec.encode([BII)[B,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,no-break-pass (indirect)
+org.apache.commons.codec.binary.BaseNCodec.encode([BII)[B,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,no-break-pass (indirect)
+org.apache.commons.codec.binary.BaseNCodec.encode([BII)[B,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,no-break-pass (direct)
+org.apache.commons.codec.binary.BaseNCodec.encode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,org.apache.commons.codec.binary.Base32.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,no-break-pass (direct)
+org.apache.commons.codec.binary.BaseNCodec.encode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,no-break-pass (indirect)
+org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,no-break-pass (direct)
+org.apache.commons.codec.binary.BaseNCodecOutputStream.flush()V,org.apache.commons.codec.binary.BaseNCodecOutputStream.flush(Z)V,no-break-pass (direct)
+org.apache.commons.codec.binary.Hex.decode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.binary.Hex.decode(Ljava/nio/ByteBuffer;)[B,no-break-pass (direct)
+org.apache.commons.codec.binary.Hex.decode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.binary.Hex.decode([B)[B,no-break-pass (direct)
+org.apache.commons.codec.binary.Hex.decode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.binary.Hex.getCharset()Ljava/nio/charset/Charset;,no-break-pass (indirect)
+org.apache.commons.codec.binary.Hex.decode(Ljava/nio/ByteBuffer;)[B,org.apache.commons.codec.binary.Hex.getCharset()Ljava/nio/charset/Charset;,no-break-pass (direct)
+org.apache.commons.codec.binary.Hex.decode([B)[B,org.apache.commons.codec.binary.Hex.getCharset()Ljava/nio/charset/Charset;,no-break-pass (direct)
+org.apache.commons.codec.binary.Hex.encode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.binary.Hex.getCharset()Ljava/nio/charset/Charset;,no-break-pass (direct)
+org.apache.commons.codec.binary.Hex.encode(Ljava/nio/ByteBuffer;)[B,org.apache.commons.codec.binary.Hex.getCharset()Ljava/nio/charset/Charset;,no-break-pass (direct)
+org.apache.commons.codec.binary.Hex.encode([B)[B,org.apache.commons.codec.binary.Hex.decode([B)[B,spurious-spec
+org.apache.commons.codec.binary.Hex.encode([B)[B,org.apache.commons.codec.binary.Hex.getCharset()Ljava/nio/charset/Charset;,no-break-pass (direct)
+org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/File;)[B,org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/InputStream;)[B,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/File;)[B,org.apache.commons.codec.digest.DigestUtils.digest(Ljava/nio/ByteBuffer;)[B,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/File;)[B,org.apache.commons.codec.digest.DigestUtils.digest([B)[B,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/File;)[B,org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/InputStream;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/File;)[B,org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/nio/ByteBuffer;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/File;)[B,org.apache.commons.codec.digest.DigestUtils.digestAsHex([B)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/InputStream;)[B,org.apache.commons.codec.digest.DigestUtils.digest(Ljava/nio/ByteBuffer;)[B,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/InputStream;)[B,org.apache.commons.codec.digest.DigestUtils.digest([B)[B,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/InputStream;)[B,org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/nio/ByteBuffer;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/InputStream;)[B,org.apache.commons.codec.digest.DigestUtils.digestAsHex([B)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digest([B)[B,org.apache.commons.codec.digest.DigestUtils.digest(Ljava/nio/ByteBuffer;)[B,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digest([B)[B,org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/nio/ByteBuffer;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/File;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/File;)[B,no-break-pass (direct)
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/File;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/InputStream;)[B,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/File;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digest(Ljava/nio/ByteBuffer;)[B,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/File;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digest([B)[B,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/File;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/InputStream;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/File;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/nio/ByteBuffer;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/File;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digestAsHex([B)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/InputStream;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digest(Ljava/io/InputStream;)[B,no-break-pass (direct)
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/InputStream;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digest(Ljava/nio/ByteBuffer;)[B,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/InputStream;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digest([B)[B,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/InputStream;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/nio/ByteBuffer;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/io/InputStream;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digestAsHex([B)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digest(Ljava/lang/String;)[B,no-break-pass (direct)
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/nio/ByteBuffer;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digest(Ljava/nio/ByteBuffer;)[B,no-break-pass (direct)
+org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/nio/file/Path;[Ljava/nio/file/OpenOption;)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digest(Ljava/nio/file/Path;[Ljava/nio/file/OpenOption;)[B,no-break-pass (direct)
+org.apache.commons.codec.digest.DigestUtils.digestAsHex([B)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digest(Ljava/nio/ByteBuffer;)[B,spurious-spec
+org.apache.commons.codec.digest.DigestUtils.digestAsHex([B)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digest([B)[B,no-break-pass (direct)
+org.apache.commons.codec.digest.DigestUtils.digestAsHex([B)Ljava/lang/String;,org.apache.commons.codec.digest.DigestUtils.digestAsHex(Ljava/nio/ByteBuffer;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.digest.HmacUtils.hmacHex(Ljava/io/InputStream;)Ljava/lang/String;,org.apache.commons.codec.digest.HmacUtils.hmac(Ljava/io/InputStream;)[B,no-break-pass (direct)
+org.apache.commons.codec.digest.HmacUtils.hmacHex(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.digest.HmacUtils.hmac(Ljava/lang/String;)[B,no-break-pass (direct)
+org.apache.commons.codec.digest.PureJavaCrc32C.update([BII)V,org.apache.commons.codec.digest.PureJavaCrc32C.getValue()J,spurious-spec
+org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.append(C)V,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendAlternate(C)V,no-break-pass (direct)
+org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.append(C)V,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendPrimary(C)V,no-break-pass (direct)
+org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.append(Ljava/lang/String;)V,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendAlternate(Ljava/lang/String;)V,no-break-pass (direct)
+org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.append(Ljava/lang/String;)V,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendPrimary(Ljava/lang/String;)V,no-break-pass (direct)
+org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.append(Ljava/lang/String;Ljava/lang/String;)V,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendAlternate(Ljava/lang/String;)V,no-break-pass (direct)
+org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.append(Ljava/lang/String;Ljava/lang/String;)V,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendPrimary(Ljava/lang/String;)V,no-break-pass (direct)
+org.apache.commons.codec.language.DoubleMetaphone.doubleMetaphone(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.DoubleMetaphone.cleanInput(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (indirect)
+org.apache.commons.codec.language.DoubleMetaphone.doubleMetaphone(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.DoubleMetaphone.doubleMetaphone(Ljava/lang/String;Z)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.language.DoubleMetaphone.doubleMetaphone(Ljava/lang/String;Z)Ljava/lang/String;,org.apache.commons.codec.language.DoubleMetaphone.cleanInput(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.language.DoubleMetaphone.isDoubleMetaphoneEqual(Ljava/lang/String;Ljava/lang/String;)Z,org.apache.commons.codec.language.DoubleMetaphone.charAt(Ljava/lang/String;I)C,no-break-pass (indirect)
+org.apache.commons.codec.language.DoubleMetaphone.isDoubleMetaphoneEqual(Ljava/lang/String;Ljava/lang/String;)Z,org.apache.commons.codec.language.DoubleMetaphone.handleS(Ljava/lang/String;Lorg/apache/commons/codec/language/DoubleMetaphone$DoubleMetaphoneResult;IZ)I,no-break-pass (indirect)
+org.apache.commons.codec.language.DoubleMetaphone.isDoubleMetaphoneEqual(Ljava/lang/String;Ljava/lang/String;)Z,org.apache.commons.codec.language.DoubleMetaphone.isDoubleMetaphoneEqual(Ljava/lang/String;Ljava/lang/String;Z)Z,no-break-pass (direct)
+org.apache.commons.codec.language.DoubleMetaphone.isDoubleMetaphoneEqual(Ljava/lang/String;Ljava/lang/String;Z)Z,org.apache.commons.codec.language.DoubleMetaphone.charAt(Ljava/lang/String;I)C,no-break-pass (indirect)
+org.apache.commons.codec.language.DoubleMetaphone.isDoubleMetaphoneEqual(Ljava/lang/String;Ljava/lang/String;Z)Z,org.apache.commons.codec.language.DoubleMetaphone.handleS(Ljava/lang/String;Lorg/apache/commons/codec/language/DoubleMetaphone$DoubleMetaphoneResult;IZ)I,no-break-pass (indirect)
+org.apache.commons.codec.language.MatchRatingApproachEncoder.cleanName(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.removeAccents(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.language.MatchRatingApproachEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.cleanName(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.language.MatchRatingApproachEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.getFirst3Last3(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.language.MatchRatingApproachEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.isVowel(Ljava/lang/String;)Z,no-break-pass (indirect)
+org.apache.commons.codec.language.MatchRatingApproachEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.removeAccents(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (indirect)
+org.apache.commons.codec.language.MatchRatingApproachEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.removeDoubleConsonants(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.language.MatchRatingApproachEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.removeVowels(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.language.MatchRatingApproachEncoder.isEncodeEquals(Ljava/lang/String;Ljava/lang/String;)Z,org.apache.commons.codec.language.MatchRatingApproachEncoder.getMinRating(I)I,no-break-pass (direct)
+org.apache.commons.codec.language.MatchRatingApproachEncoder.isEncodeEquals(Ljava/lang/String;Ljava/lang/String;)Z,org.apache.commons.codec.language.MatchRatingApproachEncoder.leftToRightThenRightToLeftProcessing(Ljava/lang/String;Ljava/lang/String;)I,no-break-pass (direct)
+org.apache.commons.codec.language.MatchRatingApproachEncoder.removeVowels(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.isVowel(Ljava/lang/String;)Z,no-break-pass (direct)
+org.apache.commons.codec.language.Metaphone.metaphone(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.Metaphone.isNextChar(Ljava/lang/StringBuilder;IC)Z,no-break-pass (direct)
+org.apache.commons.codec.language.Metaphone.metaphone(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.Metaphone.isVowel(Ljava/lang/StringBuilder;I)Z,no-break-pass (direct)
+org.apache.commons.codec.language.Metaphone.metaphone(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.Metaphone.regionMatch(Ljava/lang/StringBuilder;ILjava/lang/String;)Z,no-break-pass (direct)
+org.apache.commons.codec.language.Nysiis.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.Nysiis.isStrict()Z,no-break-pass (indirect)
+org.apache.commons.codec.language.Nysiis.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.Nysiis.nysiis(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.language.Nysiis.nysiis(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.Nysiis.isStrict()Z,no-break-pass (direct)
+org.apache.commons.codec.language.Soundex.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.Soundex.soundex(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.language.bm.Languages$LanguageSet.isSingleton()Z,org.apache.commons.codec.language.bm.Languages$LanguageSet.getAny()Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.bm.PhoneticEngine.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.bm.PhoneticEngine.encode(Ljava/lang/String;Lorg/apache/commons/codec/language/bm/Languages$LanguageSet;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.BCodec.decode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.BCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.BCodec.decode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,no-break-pass (indirect)
+org.apache.commons.codec.net.BCodec.decode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,no-break-pass (indirect)
+org.apache.commons.codec.net.BCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,no-break-pass (direct)
+org.apache.commons.codec.net.BCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.BCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.BCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.BCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,no-break-pass (indirect)
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.BCodec.getCharset()Ljava/nio/charset/Charset;,no-break-pass (direct)
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,spurious-spec
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,no-break-pass (indirect)
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,no-break-pass (indirect)
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.BCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.BCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.BCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,spurious-spec
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,no-break-pass (indirect)
+org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,no-break-pass (indirect)
+org.apache.commons.codec.net.BCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.BCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.BCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.BCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.BCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,spurious-spec
+org.apache.commons.codec.net.BCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,no-break-pass (direct)
+org.apache.commons.codec.net.BCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.BCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.BCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.BCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.BCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.BCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,spurious-spec
+org.apache.commons.codec.net.BCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,spurious-spec
+org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z,org.apache.commons.codec.net.PercentCodec.doEncode([BIZ)[B,spurious-spec
+org.apache.commons.codec.net.PercentCodec.decode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.net.PercentCodec.decode([B)[B,no-break-pass (direct)
+org.apache.commons.codec.net.PercentCodec.decode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I,no-break-pass (indirect)
+org.apache.commons.codec.net.PercentCodec.decode([B)[B,org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I,no-break-pass (indirect)
+org.apache.commons.codec.net.PercentCodec.encode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z,no-break-pass (direct)
+org.apache.commons.codec.net.PercentCodec.encode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.net.PercentCodec.decode(Ljava/lang/Object;)Ljava/lang/Object;,spurious-spec
+org.apache.commons.codec.net.PercentCodec.encode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.net.PercentCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.PercentCodec.encode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.net.PercentCodec.encode([B)[B,no-break-pass (direct)
+org.apache.commons.codec.net.PercentCodec.encode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I,spurious-spec
+org.apache.commons.codec.net.PercentCodec.encode(Ljava/lang/Object;)Ljava/lang/Object;,org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I,no-break-pass (indirect)
+org.apache.commons.codec.net.PercentCodec.encode([B)[B,org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z,no-break-pass (indirect)
+org.apache.commons.codec.net.PercentCodec.encode([B)[B,org.apache.commons.codec.net.PercentCodec.decode(Ljava/lang/Object;)Ljava/lang/Object;,spurious-spec
+org.apache.commons.codec.net.PercentCodec.encode([B)[B,org.apache.commons.codec.net.PercentCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.PercentCodec.encode([B)[B,org.apache.commons.codec.net.PercentCodec.doEncode([BIZ)[B,no-break-pass (direct)
+org.apache.commons.codec.net.PercentCodec.encode([B)[B,org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I,spurious-spec
+org.apache.commons.codec.net.PercentCodec.encode([B)[B,org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I,no-break-pass (direct)
+org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I,org.apache.commons.codec.net.PercentCodec.decode(Ljava/lang/Object;)Ljava/lang/Object;,spurious-spec
+org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I,org.apache.commons.codec.net.PercentCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V,org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V,no-break-pass (direct)
+org.apache.commons.codec.net.QCodec.decode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.QCodec.decode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,no-break-pass (indirect)
+org.apache.commons.codec.net.QCodec.decode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,no-break-pass (indirect)
+org.apache.commons.codec.net.QCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,no-break-pass (direct)
+org.apache.commons.codec.net.QCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,no-break-pass (indirect)
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QCodec.getCharset()Ljava/nio/charset/Charset;,no-break-pass (direct)
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,spurious-spec
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,no-break-pass (indirect)
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,no-break-pass (indirect)
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.QCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.QCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.QCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,spurious-spec
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,no-break-pass (indirect)
+org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,no-break-pass (indirect)
+org.apache.commons.codec.net.QCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.QCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.QCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,spurious-spec
+org.apache.commons.codec.net.QCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,no-break-pass (direct)
+org.apache.commons.codec.net.QCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.QCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.QCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.QCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,spurious-spec
+org.apache.commons.codec.net.QCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,spurious-spec
+org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.decode([B)[B,no-break-pass (direct)
+org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.getCharset()Ljava/nio/charset/Charset;,no-break-pass (indirect)
+org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.decode([B)[B,no-break-pass (direct)
+org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.encode([B)[B,no-break-pass (direct)
+org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.getCharset()Ljava/nio/charset/Charset;,no-break-pass (direct)
+org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.encode([B)[B,no-break-pass (direct)
+org.apache.commons.codec.net.QuotedPrintableCodec.encode([B)[B,org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QuotedPrintableCodec.encode([B)[B,org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QuotedPrintableCodec.encode([B)[B,org.apache.commons.codec.net.QuotedPrintableCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.QuotedPrintableCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.QuotedPrintableCodec.encode([B)[B,spurious-spec
+org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,org.apache.commons.codec.net.BCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,org.apache.commons.codec.net.BCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,org.apache.commons.codec.net.QCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,org.apache.commons.codec.net.QCodec.decodeText(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,spurious-spec
+org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.decode([B)[B,no-break-pass (indirect)
+org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.getDefaultCharset()Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.decode([B)[B,no-break-pass (direct)
+org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.encode([B)[B,no-break-pass (indirect)
+org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.getDefaultCharset()Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.encode([B)[B,no-break-pass (direct)
+org.apache.commons.codec.net.URLCodec.encode([B)[B,org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.URLCodec.encode([B)[B,org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.URLCodec.encode([B)[B,org.apache.commons.codec.net.URLCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.PercentCodec.doEncode([BIZ)[B,org.apache.commons.codec.net.PercentCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.PercentCodec.doEncode([BIZ)[B,org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I,spurious-spec
+org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,true-spec
+org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication.invoke()Lorg/apache/commons/codec/language/bm/PhoneticEngine$RulesApplication;,org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication.getI()I,spurious-spec
+org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication.invoke()Lorg/apache/commons/codec/language/bm/PhoneticEngine$RulesApplication;,org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication.getPhonemeBuilder()Lorg/apache/commons/codec/language/bm/PhoneticEngine$PhonemeBuilder;,spurious-spec
+org.apache.commons.codec.binary.Base16.isStrictDecoding()Z,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base16.isStrictDecoding()Z,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base16.validateTrailingCharacter()V,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base16.validateTrailingCharacter()V,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base16InputStream.markSupported()Z,org.apache.commons.codec.binary.Base16InputStream.close()V,spurious-spec
+org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.Base32.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,spurious-spec
+org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z,no-break-pass (direct)
+org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.BaseNCodec.encode([B)[B,spurious-spec
+org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.BaseNCodec.encode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,spurious-spec
+org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,spurious-spec
+org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z,org.apache.commons.codec.binary.Base32.getCodecPolicy()Lorg/apache/commons/codec/CodecPolicy;,spurious-spec
+org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z,org.apache.commons.codec.binary.Base32.isStrictDecoding()Z,spurious-spec
+org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z,org.apache.commons.codec.binary.Base32.validateCharacter(JLorg/apache/commons/codec/binary/BaseNCodec$Context;)V,spurious-spec
+org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z,org.apache.commons.codec.binary.BaseNCodec.encode([B)[B,spurious-spec
+org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z,org.apache.commons.codec.binary.BaseNCodec.encode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,spurious-spec
+org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,spurious-spec
+org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z,org.apache.commons.codec.binary.BaseNCodec.isStrictDecoding()Z,spurious-spec
+org.apache.commons.codec.binary.Base32.isStrictDecoding()Z,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base32.validateCharacter(JLorg/apache/commons/codec/binary/BaseNCodec$Context;)V,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base32InputStream.markSupported()Z,org.apache.commons.codec.binary.Base32InputStream.close()V,spurious-spec
+org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.Base64.encode([B)[B,spurious-spec
+org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.Base64.isStrictDecoding()Z,spurious-spec
+org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.BaseNCodec.encode([BII)[B,spurious-spec
+org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,spurious-spec
+org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base64.isStrictDecoding()Z,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base64.isStrictDecoding()Z,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base64.validateCharacter(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.Base64.validateCharacter(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.encode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,org.apache.commons.codec.binary.Base16.isStrictDecoding()Z,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,org.apache.commons.codec.binary.Base32.isStrictDecoding()Z,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,org.apache.commons.codec.binary.Base32.validateCharacter(JLorg/apache/commons/codec/binary/BaseNCodec$Context;)V,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,org.apache.commons.codec.binary.Base64.isStrictDecoding()Z,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,org.apache.commons.codec.binary.BaseNCodec.available(Lorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.isStrictDecoding()Z,org.apache.commons.codec.binary.Base32.isStrictDecoding()Z,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.isStrictDecoding()Z,org.apache.commons.codec.binary.Base32.validateCharacter(JLorg/apache/commons/codec/binary/BaseNCodec$Context;)V,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.isStrictDecoding()Z,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,spurious-spec
+org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I,org.apache.commons.codec.binary.Base16InputStream.close()V,sometimes-true-spec
+org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I,org.apache.commons.codec.binary.Base32InputStream.close()V,sometimes-true-spec
+org.apache.commons.codec.binary.BaseNCodecOutputStream.eof()V,org.apache.commons.codec.binary.BaseNCodecOutputStream.flush(Z)V,true-spec
+org.apache.commons.codec.language.DaitchMokotoffSoundex$Branch.processNextReplacement(Ljava/lang/String;Z)V,org.apache.commons.codec.language.DaitchMokotoffSoundex$Branch.finish()V,true-spec
+org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendAlternate(C)V,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.getPrimary()Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendPrimary(C)V,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendAlternate(C)V,spurious-spec
+org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendPrimary(Ljava/lang/String;)V,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendAlternate(Ljava/lang/String;)V,spurious-spec
+org.apache.commons.codec.language.DoubleMetaphone.isSlavoGermanic(Ljava/lang/String;)Z,org.apache.commons.codec.language.DoubleMetaphone.isSilentStart(Ljava/lang/String;)Z,spurious-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.isVowel(Ljava/lang/String;)Z,org.apache.commons.codec.language.MatchRatingApproachEncoder.getFirst3Last3(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.isVowel(Ljava/lang/String;)Z,org.apache.commons.codec.language.MatchRatingApproachEncoder.removeDoubleConsonants(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.removeAccents(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.getFirst3Last3(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.removeAccents(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.isVowel(Ljava/lang/String;)Z,spurious-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.removeAccents(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.removeDoubleConsonants(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.removeAccents(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.removeVowels(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.removeDoubleConsonants(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.getFirst3Last3(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.Metaphone.isNextChar(Ljava/lang/StringBuilder;IC)Z,org.apache.commons.codec.language.Metaphone.isVowel(Ljava/lang/StringBuilder;I)Z,spurious-spec
+org.apache.commons.codec.language.bm.BeiderMorseEncoder.setNameType(Lorg/apache/commons/codec/language/bm/NameType;)V,org.apache.commons.codec.language.bm.BeiderMorseEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.bm.BeiderMorseEncoder.setNameType(Lorg/apache/commons/codec/language/bm/NameType;)V,org.apache.commons.codec.language.bm.BeiderMorseEncoder.setMaxPhonemes(I)V,spurious-spec
+org.apache.commons.codec.language.bm.BeiderMorseEncoder.setNameType(Lorg/apache/commons/codec/language/bm/NameType;)V,org.apache.commons.codec.language.bm.BeiderMorseEncoder.setRuleType(Lorg/apache/commons/codec/language/bm/RuleType;)V,spurious-spec
+org.apache.commons.codec.language.bm.BeiderMorseEncoder.setRuleType(Lorg/apache/commons/codec/language/bm/RuleType;)V,org.apache.commons.codec.language.bm.BeiderMorseEncoder.setMaxPhonemes(I)V,spurious-spec
+org.apache.commons.codec.language.bm.PhoneticEngine.getNameType()Lorg/apache/commons/codec/language/bm/NameType;,org.apache.commons.codec.language.bm.PhoneticEngine.getMaxPhonemes()I,spurious-spec
+org.apache.commons.codec.language.bm.PhoneticEngine.getNameType()Lorg/apache/commons/codec/language/bm/NameType;,org.apache.commons.codec.language.bm.PhoneticEngine.getRuleType()Lorg/apache/commons/codec/language/bm/RuleType;,spurious-spec
+org.apache.commons.codec.language.bm.PhoneticEngine.getNameType()Lorg/apache/commons/codec/language/bm/NameType;,org.apache.commons.codec.language.bm.PhoneticEngine.isConcat()Z,spurious-spec
+org.apache.commons.codec.language.bm.PhoneticEngine.getRuleType()Lorg/apache/commons/codec/language/bm/RuleType;,org.apache.commons.codec.language.bm.PhoneticEngine.getMaxPhonemes()I,spurious-spec
+org.apache.commons.codec.language.bm.PhoneticEngine.getRuleType()Lorg/apache/commons/codec/language/bm/RuleType;,org.apache.commons.codec.language.bm.PhoneticEngine.isConcat()Z,spurious-spec
+org.apache.commons.codec.language.bm.PhoneticEngine.isConcat()Z,org.apache.commons.codec.language.bm.PhoneticEngine.getMaxPhonemes()I,spurious-spec
+org.apache.commons.codec.net.BCodec.doDecoding([B)[B,org.apache.commons.codec.net.BCodec.doEncoding([B)[B,spurious-spec
+org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z,org.apache.commons.codec.net.PercentCodec.decode(Ljava/lang/Object;)Ljava/lang/Object;,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V,org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V,org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V,org.apache.commons.codec.net.PercentCodec.decode(Ljava/lang/Object;)Ljava/lang/Object;,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V,org.apache.commons.codec.net.PercentCodec.encode(Ljava/lang/Object;)Ljava/lang/Object;,spurious-spec
+org.apache.commons.codec.net.QCodec.doDecoding([B)[B,org.apache.commons.codec.net.QCodec.doEncoding([B)[B,spurious-spec
+org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doDecoding([B)[B,spurious-spec
+org.apache.commons.codec.StringEncoderAbstractTest.createStringEncoder()Lorg/apache/commons/codec/StringEncoder;,org.apache.commons.codec.StringEncoderAbstractTest.getStringEncoder()Lorg/apache/commons/codec/StringEncoder;,true-spec
+org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,org.apache.commons.codec.binary.Base16.isStrictDecoding()Z,spurious-spec
+org.apache.commons.codec.binary.Base16InputStream.read([BII)I,org.apache.commons.codec.binary.Base16InputStream.close()V,sometimes-true-spec
+org.apache.commons.codec.binary.Base32InputStream.read([BII)I,org.apache.commons.codec.binary.Base32InputStream.close()V,sometimes-true-spec
+org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.Base64.decode([B)[B,spurious-spec
+org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.Base64.validateCharacter(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,org.apache.commons.codec.binary.Base16.validateTrailingCharacter()V,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,org.apache.commons.codec.binary.Base64.validateCharacter(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,spurious-spec
+org.apache.commons.codec.binary.BaseNCodecOutputStream.eof()V,org.apache.commons.codec.binary.BaseNCodecOutputStream.flush()V,true-spec
+org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.append(C)V,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.getPrimary()Ljava/lang/String;,true-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.cleanName(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.getFirst3Last3(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.cleanName(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.isVowel(Ljava/lang/String;)Z,spurious-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.cleanName(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.removeDoubleConsonants(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.cleanName(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.removeVowels(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.getMinRating(I)I,org.apache.commons.codec.language.MatchRatingApproachEncoder.leftToRightThenRightToLeftProcessing(Ljava/lang/String;Ljava/lang/String;)I,spurious-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.removeVowels(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.getFirst3Last3(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.MatchRatingApproachEncoder.removeVowels(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.language.MatchRatingApproachEncoder.removeDoubleConsonants(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.bm.BeiderMorseEncoder.setRuleType(Lorg/apache/commons/codec/language/bm/RuleType;)V,org.apache.commons.codec.language.bm.BeiderMorseEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V,org.apache.commons.codec.net.PercentCodec.decode(Ljava/lang/Object;)Ljava/lang/Object;,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V,org.apache.commons.codec.net.PercentCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V,org.apache.commons.codec.net.PercentCodec.doEncode([BIZ)[B,true-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V,org.apache.commons.codec.net.PercentCodec.encode(Ljava/lang/Object;)Ljava/lang/Object;,true-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V,org.apache.commons.codec.net.PercentCodec.encode([B)[B,true-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V,org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChar(B)V,org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V,org.apache.commons.codec.net.PercentCodec.doEncode([BIZ)[B,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V,org.apache.commons.codec.net.PercentCodec.encode([B)[B,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V,org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I,spurious-spec
+org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,org.apache.commons.codec.binary.Base16.decodeOctet(B)I,spurious-spec
+org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,org.apache.commons.codec.binary.Base16.validateTrailingCharacter()V,spurious-spec
+org.apache.commons.codec.binary.Base16InputStream.read()I,org.apache.commons.codec.binary.Base16InputStream.close()V,sometimes-true-spec
+org.apache.commons.codec.binary.Base16OutputStream.write([BII)V,org.apache.commons.codec.binary.Base16OutputStream.close()V,sometimes-true-spec
+org.apache.commons.codec.binary.Base16OutputStream.write([BII)V,org.apache.commons.codec.binary.BaseNCodecOutputStream.eof()V,true-spec
+org.apache.commons.codec.binary.Base16OutputStream.write([BII)V,org.apache.commons.codec.binary.BaseNCodecOutputStream.flush()V,spurious-spec
+org.apache.commons.codec.binary.Base16OutputStream.write([BII)V,org.apache.commons.codec.binary.BaseNCodecOutputStream.flush(Z)V,no-break-pass (direct)
+org.apache.commons.codec.binary.Base32.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.Base32.validateTrailingCharacters()V,spurious-spec
+org.apache.commons.codec.binary.Base32.isInAlphabet(B)Z,org.apache.commons.codec.binary.Base32.validateTrailingCharacters()V,spurious-spec
+org.apache.commons.codec.binary.Base32InputStream.read()I,org.apache.commons.codec.binary.Base32InputStream.close()V,sometimes-true-spec
+org.apache.commons.codec.binary.Base32OutputStream.write([B)V,org.apache.commons.codec.binary.Base32OutputStream.close()V,spurious-spec
+org.apache.commons.codec.binary.Base32OutputStream.write([B)V,org.apache.commons.codec.binary.BaseNCodecOutputStream.eof()V,true-spec
+org.apache.commons.codec.binary.Base32OutputStream.write([B)V,org.apache.commons.codec.binary.BaseNCodecOutputStream.flush()V,true-spec
+org.apache.commons.codec.binary.Base32OutputStream.write([BII)V,org.apache.commons.codec.binary.Base32OutputStream.close()V,sometimes-true-spec
+org.apache.commons.codec.binary.Base32OutputStream.write([BII)V,org.apache.commons.codec.binary.BaseNCodecOutputStream.eof()V,unknown
+org.apache.commons.codec.binary.Base32OutputStream.write([BII)V,org.apache.commons.codec.binary.BaseNCodecOutputStream.flush()V,spurious-spec
+org.apache.commons.codec.binary.Base32OutputStream.write([BII)V,org.apache.commons.codec.binary.BaseNCodecOutputStream.flush(Z)V,no-break-pass (direct)
+org.apache.commons.codec.binary.Base64.containsAlphabetOrPad([B)Z,org.apache.commons.codec.binary.BaseNCodec.decode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,spurious-spec
+org.apache.commons.codec.binary.BaseNCodec.decode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,org.apache.commons.codec.binary.Base16.decodeOctet(B)I,no-break-pass (direct)
+org.apache.commons.codec.binary.BaseNCodec.decode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B,no-break-pass (direct)
+org.apache.commons.codec.binary.BaseNCodec.decode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,org.apache.commons.codec.binary.Base64.isStrictDecoding()Z,no-break-pass (indirect)
+org.apache.commons.codec.binary.BaseNCodec.decode([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)V,org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,no-break-pass (indirect)
+org.apache.commons.codec.binary.BaseNCodec.getDefaultBufferSize()I,org.apache.commons.codec.binary.Base16.decodeOctet(B)I,spurious-spec
+org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendPrimary(C)V,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.getPrimary()Ljava/lang/String;,true-spec
+org.apache.commons.codec.language.Metaphone.isNextChar(Ljava/lang/StringBuilder;IC)Z,org.apache.commons.codec.language.Metaphone.regionMatch(Ljava/lang/StringBuilder;ILjava/lang/String;)Z,spurious-spec
+org.apache.commons.codec.language.Metaphone.regionMatch(Ljava/lang/StringBuilder;ILjava/lang/String;)Z,org.apache.commons.codec.language.Metaphone.isNextChar(Ljava/lang/StringBuilder;IC)Z,spurious-spec
+org.apache.commons.codec.language.Metaphone.setMaxCodeLen(I)V,org.apache.commons.codec.language.Metaphone.metaphone(Ljava/lang/String;)Ljava/lang/String;,sometimes-true-spec
+org.apache.commons.codec.language.bm.BeiderMorseEncoder.setConcat(Z)V,org.apache.commons.codec.language.bm.BeiderMorseEncoder.isConcat()Z,spurious-spec
+org.apache.commons.codec.language.bm.BeiderMorseEncoder.setMaxPhonemes(I)V,org.apache.commons.codec.language.bm.BeiderMorseEncoder.encode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.language.bm.BeiderMorseEncoder.setNameType(Lorg/apache/commons/codec/language/bm/NameType;)V,org.apache.commons.codec.language.bm.BeiderMorseEncoder.getNameType()Lorg/apache/commons/codec/language/bm/NameType;,spurious-spec
+org.apache.commons.codec.language.bm.BeiderMorseEncoder.setRuleType(Lorg/apache/commons/codec/language/bm/RuleType;)V,org.apache.commons.codec.language.bm.BeiderMorseEncoder.getRuleType()Lorg/apache/commons/codec/language/bm/RuleType;,spurious-spec
+org.apache.commons.codec.net.BCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.BCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.BCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.BCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.BCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I,org.apache.commons.codec.net.PercentCodec.doEncode([BIZ)[B,unknown
+org.apache.commons.codec.net.QCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.QCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.QCodec.encodeText(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QuotedPrintableCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,true-spec
+org.apache.commons.codec.net.QuotedPrintableCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.QuotedPrintableCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.QuotedPrintableCodec.getCharset()Ljava/nio/charset/Charset;,org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,true-spec
+org.apache.commons.codec.net.RFC1522Codec.getEncoding()Ljava/lang/String;,org.apache.commons.codec.net.RFC1522Codec.doEncoding([B)[B,spurious-spec
+org.apache.commons.codec.net.URLCodec.getDefaultCharset()Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;,true-spec
+org.apache.commons.codec.net.URLCodec.getDefaultCharset()Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.URLCodec.getDefaultCharset()Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;,true-spec
+org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z,org.apache.commons.codec.net.PercentCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z,org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I,spurious-spec
+org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I,org.apache.commons.codec.net.PercentCodec.containsSpace([B)Z,spurious-spec
+org.apache.commons.codec.net.PercentCodec.expectedEncodingBytes([B)I,org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V,org.apache.commons.codec.net.PercentCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.PercentCodec.insertAlwaysEncodeChars([B)V,org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I,spurious-spec
+org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.decode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.QuotedPrintableCodec.encode(Ljava/lang/String;Ljava/nio/charset/Charset;)Ljava/lang/String;,org.apache.commons.codec.net.QuotedPrintableCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.decode([B)[B,spurious-spec
+org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.decode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.codec.net.URLCodec.encode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.codec.net.URLCodec.decode([B)[B,spurious-spec

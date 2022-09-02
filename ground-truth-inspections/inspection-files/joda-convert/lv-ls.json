@@ -1,0 +1,2777 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2021-01-24-14-05",
+        "project": "joda-convert",
+        "spec-id": "00010",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromString(Ljava/lang/Class;)Ljava/lang/reflect/Method;",
+        "method-a-return-type": "org.joda.convert.MethodConstructorStringConverter",
+        "method-b-return-type": "java.lang.reflect.Method",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 18,
+        "LV-verdict-count": 7,
+        "LS-verdict-count": 11,
+        "code-snippets-file": "snippets/lv-ls/00010.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotatedMethodAndConstructor",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:67",
+                        "method-b-site": "AnnotationStringConverterFactory.java:164",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, The test attempts to cause an exception by passing in a class that has a constructor from a string, and method annotated @FromString, but replacing the return value with null means that method-b does not check superclasses for these a methods, so no exception is thrown."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:67",
+                        "method-b-site": "AnnotationStringConverterFactory.java:164",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION in this case, the return value should have been null (i.e the class did not have a constructor from a string), so the test passed."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "",
+        "notes": "method-a is used to check if a class has a constructor from a string, and method-b checks if it has a method annotated @Fromstring, one should not call method-b without first checking if the constructor exists because it influences whether or not the superclasses of a given class need to checked for such a method, this logic is controlled in findFromStringMethod",
+        "findings": "Type-c: method-b is always preceded by method-b",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2021-01-24-14-37",
+        "inspection-time-in-minutes": 32
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2021-01-24-18-46",
+        "project": "joda-convert",
+        "spec-id": "00011",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;",
+        "method-a-return-type": "org.joda.convert.MethodConstructorStringConverter",
+        "method-b-return-type": "org.joda.convert.MethodsStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 26,
+        "LV-verdict-count": 11,
+        "LS-verdict-count": 15,
+        "code-snippets-file": "snippets/lv-ls/00011.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotatedMethodAndConstructor",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:67",
+                        "method-b-site": "AnnotationStringConverterFactory.java:68",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, The test attempts to cause an exception by passing in a class that has a constructor from a string, and method annotated @FromString, but replacing the return value with null means that method-b does not check superclasses for these a methods, so no exception is thrown."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:67",
+                        "method-b-site": "AnnotationStringConverterFactory.java:68",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION in this case, the return value should have been null (i.e the class did not have a constructor from a string), so the test passed."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "",
+        "notes": "method-a is used to check if a class has a constructor from a string, and method-b checks if it has a method annotated @Fromstring, but method-b needs to know if a constructor was found so that it knows if it needs to check superclasses for a constructor.",
+        "findings": "Type-c: method-b is always preceded by method-b",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2021-01-24-18-58",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-27-10-30",
+        "project": "joda-convert",
+        "spec-id": "00025",
+        "method-a": "org.joda.convert.RenameHandler.loadFromClasspath()V",
+        "method-b": "org.joda.convert.RenameHandler.lookupEnum(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Enum",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 3,
+        "code-snippets-file": "snippets/lv-ls/00025.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Enum_invalidConstant",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "RenameHandler.java:86",
+                        "method-b-site": "EnumStringConverterFactory.java:80",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION This test was designed so that method-b would fail because the enum based in was invalid with or without renames. The test passed because method-b threw the exception."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "RenameHandler.java:86",
+                        "method-b-site": "EnumStringConverterFactory.java:80",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "Delaying method-a prevented the RenameHandler's configuration from being loaded, which prevented any renamed enums to be registered as it was constructed, but the test did not rely on any renamed enums being preregistered."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestJDKStringConverters#test_Enum_invalidConstant",
+        "notes": "SOMETIMES_TRUE_SPEC Delaying method-a causes the RenameHandler to not preload the enum renames that are registered during the construction of the RenameHandler. Without this loading from the classpath, no renames will be registered and each rename will need to be explicitly registered with the public method renamedEnum(). This may not be an issue if one does not need to load any renamed enums from the classpath, and the only test that relies on enum renames did not mine this spec. ",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-27-10-50",
+        "inspection-time-in-minutes": 20
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-27-12-34",
+        "project": "joda-convert",
+        "spec-id": "00029",
+        "method-a": "org.joda.convert.RenameHandler.loadRenameFile(Ljava/net/URL;)Ljava/util/List;",
+        "method-b": "org.joda.convert.RenameHandler.lookupEnum(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;",
+        "method-a-return-type": "java.util.List",
+        "method-b-return-type": "java.lang.Enum",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 3,
+        "code-snippets-file": "snippets/lv-ls/00029.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Enum_invalidConstant",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "RenameHandler.java:320",
+                        "method-b-site": "EnumStringConverterFactory.java:80",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION, replacing method-a with null caused a NPE in the attempt to parse the rename file, but this exception was caught and logged",
+                "notes": "EXPECTED_EXCEPTION This test was designed so that method-b would fail because the enum based in was invalid with or without the rename file being parsed correctly."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "RenameHandler.java:320",
+                        "method-b-site": "EnumStringConverterFactory.java:80",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION, replacing method-a with null caused a NPE in the attempt to parse the rename file, but this exception was caught and logged",
+                "notes": "There were no renamed enums in this test, so the rename file failing to be parsed did not change anything."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+        "notes": "SOMETIMES_TRUE_SPEC delaying method-a, causes loadFromClassPath() to fail, due to the return value of method-a being replaced by null, which prevents renames from being preloaded during the construction of the Renamehandler. Without this loading from the classpath, no renames will be registered and each rename will need to be explicitly registered with the public method renamedEnum(). which is only relevant if these renames are called upon by the test, and the only test that relies on enum renames did not mine this spec.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-27-12-46",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-01-28-17-22",
+        "project": "joda-convert",
+        "spec-id": "00034",
+        "method-a": "org.joda.convert.RenameHandler.parseRenameFile(Ljava/util/List;Ljava/net/URL;)V",
+        "method-b": "org.joda.convert.RenameHandler.lookupEnum(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Enum",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 3,
+        "code-snippets-file": "snippets/lv-ls/00034.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Enum_invalidConstant",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "RenameHandler.java:321",
+                        "method-b-site": "EnumStringConverterFactory.java:80",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, this test is written such that it is impossible to convert the given arguments into an enum, so method-b is designed to fail in this case, regardless of the delaying of method-a. The test passed because method-b threw the exception as expected."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "RenameHandler.java:321",
+                        "method-b-site": "EnumStringConverterFactory.java:80",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "Delaying method-a prevented any enums renames to be registered by the Rename handler upon its construction, but the test did not rely on any renamed enums."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestJDKStringConverters#test_Enum_invalidConstant",
+        "notes": "SOMETIMES_TRUE_SPEC Delaying method-a causes the RenameHandler to not preload the enum renames that are registered during the construction of the RenameHandler. Without this loading from the classpath, no renames will be registered and each rename will need to be explicitly registered with the public method renamedEnum(). This may not be an issue if one does not need to load any renamed enums from the classpath, and the only test that relies on enum renames did not mine this spec. DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-28-17-35",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2022-02-03-13-04",
+        "project": "joda-convert",
+        "spec-id": "00108",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00108.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed. The test passed because method-b threw the exception as expected."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the guava converter, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether Guava converts the class in question or if there are redundant converters for the same class (e.g something like a String would almost certainly not rely on the Guava converter if other converters were registered before it). DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-03-13-18",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2022-02-03-13-26",
+        "project": "joda-convert",
+        "spec-id": "00109",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00109.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "TestStringConvert.java:133",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed (method-b threw the expected exception)."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "TestStringConvert.java:118",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the guava converter, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether Guava converts the class in question or if there are redundant converters for the same class (e.g something like a String would almost certainly not rely on the Guava converter if other converters were registered before it). DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-03-13-33",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2022-02-03-13-59",
+        "project": "joda-convert",
+        "spec-id": "00112",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00112.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:445",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:445",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the guava converter, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether Guava converts the class in question or if there are redundant converters for the same class (e.g something like a String would almost certainly not rely on the Guava converter if other converters were registered before it). DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-03-14-06",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2022-02-03-14-07",
+        "project": "joda-convert",
+        "spec-id": "00113",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 9,
+        "code-snippets-file": "snippets/lv-ls/00113.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the guava converter, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether Guava converts the class in question or if there are redundant converters for the same class (e.g something like a String would almost certainly not rely on the Guava converter if other converters were registered before it).  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-03-14-14",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2022-02-03-14-16",
+        "project": "joda-convert",
+        "spec-id": "00114",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 27,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 24,
+        "code-snippets-file": "snippets/lv-ls/00114.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the guava converter, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether Guava converts the class in question or if there are redundant converters for the same class (e.g something like a String would almost certainly not rely on the Guava converter if other converters were registered before it).  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-03-14-22",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2022-02-03-14-24",
+        "project": "joda-convert",
+        "spec-id": "00115",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00115.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:487",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveBoolean",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:487",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the guava converter, given that it was a primitive boolean, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether Guava converts the class in question or if there are redundant converters for the same class (e.g something like a String would almost certainly not rely on the Guava converter if other converters were registered before it).  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-03-14-22",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2022-02-03-18-27",
+        "project": "joda-convert",
+        "spec-id": "00116",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 9,
+        "code-snippets-file": "snippets/lv-ls/00116.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:509",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:509",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the guava converter, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether Guava converts the class in question or if there are redundant converters for the same class (e.g something like an Integer would almost certainly not rely on the Guava converter if other converters were registered before it).  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-03-18-34",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-02-03-20-27",
+        "project": "joda-convert",
+        "spec-id": "00127",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00127.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 optional converters, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the optional classes of Java8 convert the class in question or if there are redundant converters for the same class (e.g something like an Integer would almost certainly not rely on the Java8 optional classes convert the class in question or if there are redundant converters for the same class (e.g something like an Integer would almost certainly not rely on the Java8 optional converters if other converters were registered before it).  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-03-20-30",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-02-03-20-31",
+        "project": "joda-convert",
+        "spec-id": "00128",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00128.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "TestStringConvert.java:133",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "TestStringConvert.java:118",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 optional classes converters, given that it was a primitive int, and can be done by other Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether the Java8 optional classes convert the class in question or if there are redundant converters for the same class (e.g something like an Integer would almost certainly not rely on the Java8 optional converters if other converters were registered before it).  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-03-13-33",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2022-02-04-15-09",
+        "project": "joda-convert",
+        "spec-id": "00131",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00131.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:445",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:445",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 options converters, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether any of the Java8 optional classes convert the class in question or if there are redundant converters for the same class (e.g something like an Integer would almost certainly not rely on the Java8 optional converters if other converters were registered before it).  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-04-15-13",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 16,
+        "inspection-start-time": "2022-02-04-15-14",
+        "project": "joda-convert",
+        "spec-id": "00132",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 9,
+        "code-snippets-file": "snippets/lv-ls/00132.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 options converters, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether any of the Java8 optional classes convert the class in question or if there are redundant converters for the same class (e.g something like an Integer would almost certainly not rely on the Java8 optional converters if other converters were registered before it).  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-04-15-17",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 17,
+        "inspection-start-time": "2022-02-04-15-30",
+        "project": "joda-convert",
+        "spec-id": "00133",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 27,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 24,
+        "code-snippets-file": "snippets/lv-ls/00133.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 options converters, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether any of the Java8 optional classes convert the class in question or if there are redundant converters for the same class (e.g something like an Integer would almost certainly not rely on the Java8 optional converters if other converters were registered before it).  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-04-15-32",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 18,
+        "inspection-start-time": "2022-02-04-15-33",
+        "project": "joda-convert",
+        "spec-id": "00134",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00134.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:487",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveBoolean",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:487",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 options converters, given that it was a primitive boolean, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether any of the Java8 optional classes convert the class in question or if there are redundant converters for the same class (e.g something like an Integer would almost certainly not rely on the Java8 optional converters if other converters were registered before it).  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-04-15-35",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 19,
+        "inspection-start-time": "2022-02-04-15-39",
+        "project": "joda-convert",
+        "spec-id": "00135",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 9,
+        "code-snippets-file": "snippets/lv-ls/00135.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:509",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:509",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 options converters, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether any of the Java8 optional classes convert the class in question or if there are redundant converters for the same class (e.g something like an Integer would almost certainly not rely on the Java8 optional converters if other converters were registered before it).  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-04-15-41",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 20,
+        "inspection-start-time": "2022-02-04-17-16",
+        "project": "joda-convert",
+        "spec-id": "00145",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00145.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 converters, given that it was a primitive int, and can be done without the use of any the converters in the Java8 method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the Java8 method convert the class in question or if there are redundant converters for the same class.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-04-17-24",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 21,
+        "inspection-start-time": "2022-02-04-17-24",
+        "project": "joda-convert",
+        "spec-id": "00146",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00146.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "TestStringConvert.java:133",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "TestStringConvert.java:118",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 converters, given that it was a primitive int, and can be done without the use of any the converters in the Java8 method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the Java8 method convert the class in question or if there are redundant converters for the same class.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-04-17-27",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 22,
+        "inspection-start-time": "2022-02-04-17-54",
+        "project": "joda-convert",
+        "spec-id": "00149",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-b": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00149.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "StringConvert.java:445",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "StringConvert.java:445",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 converters, given that it was a primitive int, and can be done without the use of any the converters in the Java8 method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the Java8 method convert the class in question or if there are redundant converters for the same class.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-04-17-59",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 23,
+        "inspection-start-time": "2022-02-04-17-59",
+        "project": "joda-convert",
+        "spec-id": "00150",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-b": "org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 9,
+        "code-snippets-file": "snippets/lv-ls/00150.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "StringConvert.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "StringConvert.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 options converters, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the Java8 method convert the class in question or if there are redundant converters for the same class.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-04-18-01",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 24,
+        "inspection-start-time": "2022-02-05-20-29",
+        "project": "joda-convert",
+        "spec-id": "00151",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 27,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 24,
+        "code-snippets-file": "snippets/lv-ls/00151.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 converters, given that it was a primitive int, and can be done without the use of any the converters in the Java8 method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the Java8 method convert the class in question or if there are redundant converters for the same class.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-05-20-32",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 25,
+        "inspection-start-time": "2022-02-05-23-01",
+        "project": "joda-convert",
+        "spec-id": "00152",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00152.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 converters, given that it was a primitive int, and can be done without the use of any the converters in the Java8 method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the Java8 method convert the class in question or if there are redundant converters for the same class.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-05-23-03",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 26,
+        "inspection-start-time": "2022-02-05-23-03",
+        "project": "joda-convert",
+        "spec-id": "00153",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 9,
+        "code-snippets-file": "snippets/lv-ls/00153.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "StringConvert.java:509",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 converters, given that it was a primitive int, and can be done without the use of any the converters in the Java8 method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the Java8 method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-05-23-06",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 27,
+        "inspection-start-time": "2022-02-05-23-38",
+        "project": "joda-convert",
+        "spec-id": "00161",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00161.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenBackport converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenBackport method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenBackport method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-05-23-43",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 28,
+        "inspection-start-time": "2022-02-06-21-20",
+        "project": "joda-convert",
+        "spec-id": "00162",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00162.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenBackport converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenBackport method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenBackport method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-21-26",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 29,
+        "inspection-start-time": "2022-02-06-21-44",
+        "project": "joda-convert",
+        "spec-id": "00165",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-b": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00165.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenBackport converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenBackport method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenBackport method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-21-46",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 30,
+        "inspection-start-time": "2022-02-06-21-46",
+        "project": "joda-convert",
+        "spec-id": "00166",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-b": "org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 9,
+        "code-snippets-file": "snippets/lv-ls/00166.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "StringConvert.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "StringConvert.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenBackport converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenBackport method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenBackport method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-21-47",
+        "inspection-time-in-minutes": 1
+    },
+    {
+        "iid": 31,
+        "inspection-start-time": "2022-02-06-21-48",
+        "project": "joda-convert",
+        "spec-id": "00167",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 27,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 24,
+        "code-snippets-file": "snippets/lv-ls/00167.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenBackport converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenBackport method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenBackport method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-21-49",
+        "inspection-time-in-minutes": 1
+    },
+    {
+        "iid": 32,
+        "inspection-start-time": "2022-02-06-21-50",
+        "project": "joda-convert",
+        "spec-id": "00168",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00168.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenBackport converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenBackport method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenBackport method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-21-52",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 33,
+        "inspection-start-time": "2022-02-06-21-52",
+        "project": "joda-convert",
+        "spec-id": "00169",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 9,
+        "code-snippets-file": "snippets/lv-ls/00169.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenBackport converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenBackport method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenBackport method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-21-53",
+        "inspection-time-in-minutes": 1
+    },
+    {
+        "iid": 34,
+        "inspection-start-time": "2022-02-06-22-41",
+        "project": "joda-convert",
+        "spec-id": "00176",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00176.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenOld converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenOld method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenOld method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-22-44",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 35,
+        "inspection-start-time": "2022-02-06-22-44",
+        "project": "joda-convert",
+        "spec-id": "00177",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00177.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenOld converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenOld method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenOld method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-22-45",
+        "inspection-time-in-minutes": 1
+    },
+    {
+        "iid": 36,
+        "inspection-start-time": "2022-02-06-22-53",
+        "project": "joda-convert",
+        "spec-id": "00180",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-b": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00180.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenOld converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenOld method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenOld method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-22-55",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 37,
+        "inspection-start-time": "2022-02-06-23-16",
+        "project": "joda-convert",
+        "spec-id": "00181",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-b": "org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 9,
+        "code-snippets-file": "snippets/lv-ls/00181.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "StringConvert.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "StringConvert.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenOld converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenOld method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenOld method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-23-19",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 38,
+        "inspection-start-time": "2022-02-06-23-19",
+        "project": "joda-convert",
+        "spec-id": "00182",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 27,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 24,
+        "code-snippets-file": "snippets/lv-ls/00182.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenOld converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenOld method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenOld method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-23-21",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 39,
+        "inspection-start-time": "2022-02-06-23-21",
+        "project": "joda-convert",
+        "spec-id": "00183",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00183.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenOld converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenOld method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenOld method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-23-22",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 40,
+        "inspection-start-time": "2022-02-06-23-22",
+        "project": "joda-convert",
+        "spec-id": "00184",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 9,
+        "code-snippets-file": "snippets/lv-ls/00184.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenOld converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenOld method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenOld method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-23-25",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 41,
+        "inspection-start-time": "2022-02-07-17-57",
+        "project": "joda-convert",
+        "spec-id": "00190",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00190.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on Timezone converters, given that it was a primitive int, and can be done without the use of any the converters in the Timezone method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenOld method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-18-00",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 42,
+        "inspection-start-time": "2022-02-07-18-00",
+        "project": "joda-convert",
+        "spec-id": "00191",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 7,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00191.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Timezone converters, given that it was a primitive int, and can be done without the use of any the converters in the Timezone method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the Timezone method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-18-03",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 43,
+        "inspection-start-time": "2022-02-07-18-08",
+        "project": "joda-convert",
+        "spec-id": "00194",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-b": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00194.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "TestStringConvert.java:174",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "TestStringConvert.java:144",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Timezone converters, given that it was a primitive int, and can be done without the use of any the converters in the Timezone method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the Timezone method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-18-11",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 44,
+        "inspection-start-time": "2022-02-07-18-30",
+        "project": "joda-convert",
+        "spec-id": "00195",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-b": "org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 9,
+        "code-snippets-file": "snippets/lv-ls/00195.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "StringConvert.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "StringConvert.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenOld converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenOld method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenOld method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-18-36",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 45,
+        "inspection-start-time": "2022-02-07-18-43",
+        "project": "joda-convert",
+        "spec-id": "00196",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 27,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 24,
+        "code-snippets-file": "snippets/lv-ls/00196.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Timezone converters, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether any of the Timezone classes convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-18-46",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 46,
+        "inspection-start-time": "2022-02-07-18-46",
+        "project": "joda-convert",
+        "spec-id": "00197",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 10,
+        "LV-verdict-count": 4,
+        "LS-verdict-count": 6,
+        "code-snippets-file": "snippets/lv-ls/00197.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "StringConvert.java:487",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveBoolean",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "StringConvert.java:487",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Timezone converters, given that it was a primitive boolean, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether any of the Timezone classes convert the class in question or if there are redundant converters for the same class (e.g something like an Integer would almost certainly not rely on the Java8 optional converters if other converters were registered before it).",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-18-48",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 47,
+        "inspection-start-time": "2022-02-07-18-49",
+        "project": "joda-convert",
+        "spec-id": "00198",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 9,
+        "code-snippets-file": "snippets/lv-ls/00198.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_nullClass",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:509",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, the intention of this test was for method-b to fail, since no converter existed for the tested class, so method-b failing was not indicative of the spec being true (although it can be: see notes). The test passed, but this is still a validated case because method-b crashed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_primitive2",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:509",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Timezone converters, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC.  DECISION: unless we can establish that (b -> (*) a) holds, this is likely a spurious spec. method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether Timezone converters converts the class in question or if there are redundant converters for the same class (e.g something like an Integer would almost certainly not rely on the Timezone converter if other converters were registered before it).",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-18-54",
+        "inspection-time-in-minutes": 5
+    }
+]

@@ -1,0 +1,42 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-12-11-44",
+        "project": "kamranzafar.jtar",
+        "spec-id": "00007",
+        "method-a": "org.kamranzafar.jtar.TarEntry.parseTarHeader([B)V",
+        "method-b": "org.kamranzafar.jtar.TarEntry.getName()Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 2,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00007.java",
+        "inspected-cases": [
+            {
+                "test": "org.kamranzafar.jtar.JTarAppendTest#testAppend",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TarEntry.java:44",
+                        "method-b-site": "JTarAppendTest.java:115",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "Not calling parseTarHeader leads to the TarEntry having no name, leading to a FileNotFoundException when trying to untar the file (since we use the name to find the file)."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.kamranzafar.jtar.DSIValidationTest#testDSI00007",
+        "notes": "SOMETIMES_TRUE_SPEC, there are ways to give the TarEntry a name that do not involve a, e.g the setter setName() and the constructor that calls extractTarHeader(). This suggests that extractTarHeader() and setName() could precede getName() in specs, however, these specs were not mined. setName() is never called in a test but extractTarHeader() precedes getName() in certain tests, despite this the spec was not mined. ",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-12-12-50",
+        "inspection-time-in-minutes": 66
+    }
+]

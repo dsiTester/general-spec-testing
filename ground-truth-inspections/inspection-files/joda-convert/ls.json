@@ -1,0 +1,1842 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2021-01-24-13-56",
+        "project": "joda-convert",
+        "spec-id": "00009",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;",
+        "method-a-return-type": "org.joda.convert.MethodConstructorStringConverter",
+        "method-b-return-type": "java.lang.Class",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/ls/00009.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotatedToStringNoFromString",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:67",
+                        "method-b-site": "AnnotationStringConverterFactory.java:176",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION, delaying method-a does not prevent the test from failing to find a from string constructor (given that method-a is replaced with null, which is what would happen if none existed)."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotatedToStringNoFromString",
+        "notes": "UNRELATED_STATEFUL_METHODS method-a returns a constructor of the given class that takes as input a string, and method-b returns a class or its superclass if it is the member of an enum. Neither of these rely on shared state.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-01-24-14-05",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-25-21-55",
+        "project": "joda-convert",
+        "spec-id": "00023",
+        "method-a": "org.joda.convert.RenameHandler.loadFromClasspath()V",
+        "method-b": "org.joda.convert.RenameHandler.getEnumRenames(Ljava/lang/Class;)Ljava/util/Map;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00023.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "RenameHandler.java:86",
+                        "method-b-site": "RenameHandler.java:274",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "This test case did not involve any enums being renamed, so any failure to properly load renames from the class path in the Renamehandler class was not relevant, however, the delay to method-a could have prevented a renanmed enum from being properly recognized if it was supposed to be loaded via the class path."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "",
+        "notes": "SOMETIMES_TRUE_SPEC method-a does actually change the configuration of the RenameHandler that method-b depends on (i.e the enumRenames that that handler loads from the class path). However, it is not the only way to populate enumRenames. E.g the public method RenamedEnum())",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-25-22-10",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-27-12-01",
+        "project": "joda-convert",
+        "spec-id": "00028",
+        "method-a": "org.joda.convert.RenameHandler.loadRenameFile(Ljava/net/URL;)Ljava/util/List;",
+        "method-b": "org.joda.convert.RenameHandler.getEnumRenames(Ljava/lang/Class;)Ljava/util/Map;",
+        "method-a-return-type": "java.util.List",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00028.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "RenameHandler.java:320",
+                        "method-b-site": "RenameHandler.java:274",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTIONThe delay of method-a caused an exception which was caught, but prevented the Renamehandler from being initially configured with prealoaded renames, but that did not cause the test to fail since no preloaded renames were required to perform the task of converting the single enum in the test."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+        "notes": "SOMETIMES_TRUE_SPEC method-a loads a rename file from the classpath which allows the RenameHandler to be preconfigured with renames (which one should do before getting them with method-b), but that is not always needed, as there is an explicit boolean condition to skip this step. Without this loading from the classpath, no renames will be registered and each rename will need to be explicitly registered with the public method renamedEnum().",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "SOMETIMES_TRUE_SPEC 2022-01-27-12-13",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-27-14-01",
+        "project": "joda-convert",
+        "spec-id": "00033",
+        "method-a": "org.joda.convert.RenameHandler.parseRenameFile(Ljava/util/List;Ljava/net/URL;)V",
+        "method-b": "org.joda.convert.RenameHandler.getEnumRenames(Ljava/lang/Class;)Ljava/util/Map;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00033.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "RenameHandler.java:321",
+                        "method-b-site": "RenameHandler.java:274",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "delaying method-a prevents the RenameHandler from storing the renames that were loaded from the classpath, if any of these renames are required to perform a conversion from an enum or a type, the test will fail, which was not the case here."
+            }
+        ],
+        "verdict": "true-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+        "notes": "SOMETIMES_TRUE_SPEC method-a loads a rename file from the classpath which allows the RenameHandler to be preconfigured with renames (which one should do before getting them with method-b), but that is not always needed, as there is an explicit boolean condition to skip this step. Without this loading from the classpath, no renames will be registered and each rename will need to be explicitly registered with the public method renamedEnum().",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-27-14-08",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-01-28-19-08",
+        "project": "joda-convert",
+        "spec-id": "00041",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/ls/00041.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestNumericObjectArrayStringConverterFactory.java:75",
+                        "method-b-site": "TestNumericObjectArrayStringConverterFactory.java:76",
+                        "invocation-count": 4
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT, the return value of method-a is checked against a declared value and replaced with the other side of the assertion.",
+                "notes": "method-a and method-b are unrelated and called in separate assertions, and the correct replacement caused the assertion with method-a to to pass"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+        "notes": "UNRELATED_STATEFUL_METHODS, method-a converts a given object to a string and method-b converts a string to a given object, it was mined because of the testing pattern: convert an object to a string -> convert that string back into the object.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-19-17",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2022-01-28-19-45",
+        "project": "joda-convert",
+        "spec-id": "00043",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/ls/00043.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestNumericObjectArrayStringConverterFactory.java:75",
+                        "method-b-site": "StringConvert.java:445",
+                        "invocation-count": 4
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT, the return value of method-a is checked against a declared value and replaced with the other side of the assertion.",
+                "notes": "method-a and method-b are unrelated and called in separate assertions, and the correct replacement caused the assertion with method-a to to pass"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+        "notes": "UNRELATED_STATEFUL_METHODS, method-a converts a given object to a string and method-b finds a converter from string to a given object, it was mined because of the testing pattern: convert an object to a string -> convert that string back into the object.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-19-50",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2022-01-28-19-59",
+        "project": "joda-convert",
+        "spec-id": "00046",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/ls/00046.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestNumericObjectArrayStringConverterFactory.java:75",
+                        "method-b-site": "StringConvert.java:487",
+                        "invocation-count": 4
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT, the return value of method-a is checked against a declared value and replaced with the other side of the assertion.",
+                "notes": "method-a and method-b are unrelated and called in separate assertions, and the correct replacement caused the assertion with method-a to to pass"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+        "notes": "UNRELATED_STATEFUL_METHODS, method-a converts a given object to a string and method-b converts a string to a given object, it was mined because of the testing pattern: convert an object to a string -> convert that string back into the object.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-20-03",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2022-01-29-19-30",
+        "project": "joda-convert",
+        "spec-id": "00049",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/ls/00049.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestNumericObjectArrayStringConverterFactory.java:74",
+                        "method-b-site": "TestNumericObjectArrayStringConverterFactory.java:75",
+                        "invocation-count": 4
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT, the return value of method-a is checked against a declared value and replaced with the other side of the assertion.",
+                "notes": "method-a and method-b are unrelated and called in separate assertions, and the correct replacement caused the assertion with method-a to to pass"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+        "notes": "UNRELATED_STATEFUL_METHODS, method-a and method-b are overloaded versions of the same method that convert an object into a string, they do not rely on each other. They behave nearly identically, except that method-a finds the class of an object and method-b takes it as an argument.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-17-37",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2022-01-29-19-53",
+        "project": "joda-convert",
+        "spec-id": "00051",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/ls/00051.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestNumericObjectArrayStringConverterFactory.java:74",
+                        "method-b-site": "StringConvert.java:445",
+                        "invocation-count": 4
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT, the return value of method-a is checked against a declared value and replaced with the other side of the assertion.",
+                "notes": "method-a and method-b are unrelated and called in separate assertions, and the correct replacement caused the assertion with method-a to to pass"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+        "notes": "UNRELATED_STATEFUL_METHODS, method-a converts a given object to a string and method-b finds a converter from string to a given object, it was mined because of the testing pattern: convert an object to a string -> convert that string back into the object.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-19-59",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2022-01-29-12-48",
+        "project": "joda-convert",
+        "spec-id": "00054",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/ls/00054.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestNumericObjectArrayStringConverterFactory.java:74",
+                        "method-b-site": "StringConvert.java:487",
+                        "invocation-count": 4
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT, the return value of method-a is checked against a delcared variable, and DSI replaces the return value with the other side of the assertion",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+        "notes": "UNRELATED_STATELESS_METHODS, method-a converts an object to a string, and method-b is called in the process of constructing an object from a string, they are unrelated.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-12-50",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2022-02-01-16-26",
+        "project": "joda-convert",
+        "spec-id": "00091",
+        "method-a": "org.joda.convert.StringConvert.registerFactory(Lorg/joda/convert/StringConverterFactory;)V",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00091.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConverterFactory.java:46",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test does not fail despite the fact that method-a is delayed, and the test ostensibly tests method-a registering a factory from which method-b can convert an object. This is because the test only checks the type of the converter and there is a default factory which will produce a factory of the same type, but not the same functionality. "
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.DSIValidationTest#testDSI00091",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a factory to be used by method-b to return a converter from a given class object. However, the constructor of StringConvert includes several default factories, so it is not always required to register a particular factory to make a conversion. INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-01-16-45",
+        "inspection-time-in-minutes": 19
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2022-02-01-16-46",
+        "project": "joda-convert",
+        "spec-id": "00092",
+        "method-a": "org.joda.convert.StringConvert.registerFactory(Lorg/joda/convert/StringConverterFactory;)V",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00092.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConverterFactory.java:46",
+                        "method-b-site": "StringConvert.java:537",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test does not fail despite the fact that method-a is delayed, and the test ostensibly tests method-a registering a factory from which method-b can convert an object. This is because the test only checks the type of the converter and there is a default factory which will produce a factory of the same type, but not the same functionality. "
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.DSIValidationTest#testDSI00091",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a factory to be used to by method-b to return a converter from a given class of object. However, the constructor of StringConvert includes several factories by default, so it is not always required to register a particular factory to make a conversion.  INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-01-16-48",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-02-01-16-48",
+        "project": "joda-convert",
+        "spec-id": "00093",
+        "method-a": "org.joda.convert.StringConvert.registerFactory(Lorg/joda/convert/StringConverterFactory;)V",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00093.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConverterFactory.java:46",
+                        "method-b-site": "TestStringConverterFactory.java:47",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test does not fail despite the fact that method-a is delayed, and the test ostensibly tests method-a registering a factory from which method-b can convert an object. This is because the test only checks the type of the converter and there is a default factory which will produce a factory of the same type, but not the same functionality. "
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.DSIValidationTest#testDSI00091",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a factory to be used to by method-b to return a converter from a given class of object. However, the constructor of StringConvert includes several factories by default, so it is not always required to register a particular factory to make a conversion.  INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-01-16-50",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-02-03-13-37",
+        "project": "joda-convert",
+        "spec-id": "00110",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00110.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_primitive",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "TestStringConvert.java:82",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the guava converter, given that it was a primitive int, and can be done by Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be needed to convert a class with method-a depending on whether Guava converts the class in question or if there are redundant converters for the same class. Integers have a specific converter that is not the Guava method.  INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-03-13-41",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2022-02-03-13-42",
+        "project": "joda-convert",
+        "spec-id": "00111",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "code-snippets-file": "snippets/ls/00111.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_isConvertible@org.joda.convert.TestStringConvert",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the guava converter, given that it was the Object class, and can be done by the TypeConverterFactory that is also registered."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_isConvertible@org.joda.convert.TestStringConvert",
+        "notes": "method-a registers a converter, but method-b is only called when a registered converter is not found for a given class, and does not rely on registered converters. Method-b tries to generate a new converter from all of the registered converter factories.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-13-42",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 16,
+        "inspection-start-time": "2022-02-03-18-36",
+        "project": "joda-convert",
+        "spec-id": "00117",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "code-snippets-file": "snippets/ls/00117.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Class",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "Status.java:26",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "Method-b was called in the construction of a mock enum used for testing that was not used in this test. In addition, the class to be converted in question was an enum, which can be converted by the EnumStringConverterFactory, rather than the guava converter."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to determine if a class is convertible with method-b depending on whether Guava converts the class in question or if there are redundant converters for the same class (e.g something like an Integer would almost certainly not rely on the Guava converter if other converters were registered before it).  INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-18-43",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 17,
+        "inspection-start-time": "2022-02-03-19-10",
+        "project": "joda-convert",
+        "spec-id": "00122",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00122.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:177",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-19-16",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 18,
+        "inspection-start-time": "2022-02-03-19-17",
+        "project": "joda-convert",
+        "spec-id": "00123",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00123.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:179",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-19-19",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 19,
+        "inspection-start-time": "2022-02-03-19-20",
+        "project": "joda-convert",
+        "spec-id": "00124",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00124.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:180",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object. CONNECTION_DOES_NOT_NECESSITATE_ORDERING"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-19-21",
+        "inspection-time-in-minutes": 1
+    },
+    {
+        "iid": 20,
+        "inspection-start-time": "2022-02-03-19-21",
+        "project": "joda-convert",
+        "spec-id": "00125",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00125.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:181",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert CONNECTION_DOES_NOT_NECESSITATE_ORDERING",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-19-23",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 21,
+        "inspection-start-time": "2022-02-03-19-24",
+        "project": "joda-convert",
+        "spec-id": "00126",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterGuava()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00126.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:176",
+                        "method-b-site": "StringConvert.java:178",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert CONNECTION_DOES_NOT_NECESSITATE_ORDERING",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-19-25",
+        "inspection-time-in-minutes": 1
+    },
+    {
+        "iid": 22,
+        "inspection-start-time": "2022-02-03-20-34",
+        "project": "joda-convert",
+        "spec-id": "00129",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00129.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_primitive",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "TestStringConvert.java:82",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 optional class converters, given that it was a primitive int, and can be done by the other Java libraries that are also registered."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-a depending on whether any of the Java8 optional classes convert the class in question or if there are redundant converters for the same class. In the case of this spec, all of the tests had redundant converters. INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-03-20-39",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 23,
+        "inspection-start-time": "2022-02-03-20-40",
+        "project": "joda-convert",
+        "spec-id": "00130",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "code-snippets-file": "snippets/ls/00130.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_isConvertible@org.joda.convert.TestStringConvert",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passes because method-b does not rely on any registered converters, so delaying method-a did not effect any tests where method-b was used to find a converter."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_isConvertible@org.joda.convert.TestStringConvert",
+        "notes": "method-a registers a converter, but method-b is only called when a registered converter is not found for a given class, and does not rely on registered converters. Method-b tries to generate a new converter from all of the registered converter factories.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-03-20-46",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 24,
+        "inspection-start-time": "2022-02-04-15-42",
+        "project": "joda-convert",
+        "spec-id": "00136",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "code-snippets-file": "snippets/ls/00136.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Class",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "Status.java:26",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "Method-b was called in the construction of a mock enum used for testing that was not used in this test. In addition, the class to be converted in question was an enum, which can be converted by the EnumStringConverterFactory, rather than the Java8 optional converters."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to determine if a class is convertible with method-b depending on whether any of the Java8 optional converters convert the class in question or if there are redundant converters for the same class. INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-04-15-47",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 25,
+        "inspection-start-time": "2022-02-04-17-05",
+        "project": "joda-convert",
+        "spec-id": "00141",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00141.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:179",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-17-09",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 26,
+        "inspection-start-time": "2022-02-04-17-09",
+        "project": "joda-convert",
+        "spec-id": "00142",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00142.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:180",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-17-11",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 27,
+        "inspection-start-time": "2022-02-04-17-11",
+        "project": "joda-convert",
+        "spec-id": "00143",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00143.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:181",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-17-13",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 28,
+        "inspection-start-time": "2022-02-04-17-14",
+        "project": "joda-convert",
+        "spec-id": "00144",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8Optionals()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00144.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:177",
+                        "method-b-site": "StringConvert.java:178",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-17-13",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 29,
+        "inspection-start-time": "2022-02-04-17-28",
+        "project": "joda-convert",
+        "spec-id": "00147",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00147.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_primitive",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "TestStringConvert.java:82",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Java8 converters, given that it was a primitive int, and can be done without the use of any the converters in the Java8 method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*. method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the Java8 method convert the class in question or if there are redundant converters for the same class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-04-17-35",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 30,
+        "inspection-start-time": "2022-02-04-17-35",
+        "project": "joda-convert",
+        "spec-id": "00148",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "code-snippets-file": "snippets/ls/00148.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_isConvertible@org.joda.convert.TestStringConvert",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passes because method-b does not rely on any registered converters, so delaying method-a did not effect any tests where method-b was used to find a converter."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_isConvertible@org.joda.convert.TestStringConvert",
+        "notes": "method-a registers a converter, but method-b is only called when a registered converter is not found for a given class, and does not rely on registered converters. Method-b tries to generate a new converter from all of the registered converter factories.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-04-17-39",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 31,
+        "inspection-start-time": "2022-02-05-23-06",
+        "project": "joda-convert",
+        "spec-id": "00154",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-b": "org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "code-snippets-file": "snippets/ls/00154.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Class",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "Status.java:26",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "Method-b was called in the construction of a mock enum used for testing that was not used in this test. In addition, the class to be converted in question was an enum, which can be converted by the EnumStringConverterFactory, rather than the Java8 converters."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to determine if a class is convertible with method-b depending on whether any of the Java8 converters convert the class in question or if there are redundant converters for the same class. INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-05-23-11",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 32,
+        "inspection-start-time": "2022-02-05-23-34",
+        "project": "joda-convert",
+        "spec-id": "00159",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00159.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "StringConvert.java:180",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-05-23-37",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 33,
+        "inspection-start-time": "2022-02-05-23-37",
+        "project": "joda-convert",
+        "spec-id": "00160",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00160.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:179",
+                        "method-b-site": "StringConvert.java:181",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-05-23-37",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 34,
+        "inspection-start-time": "2022-02-06-21-29",
+        "project": "joda-convert",
+        "spec-id": "00163",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00163.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_primitive",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "TestStringConvert.java:82",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenBackport converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenBackport method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenBackport method convert the class in question or if there are redundant converters for the same class. INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-21-33",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 35,
+        "inspection-start-time": "2022-02-06-21-33",
+        "project": "joda-convert",
+        "spec-id": "00164",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "code-snippets-file": "snippets/ls/00164.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_isConvertible@org.joda.convert.TestStringConvert",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passes because method-b does not rely on any registered converters, so delaying method-a did not effect any tests where method-b was used to find a converter."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_isConvertible@org.joda.convert.TestStringConvert",
+        "notes": "method-a registers a converter, but method-b is only called when a registered converter is not found for a given class, and does not rely on registered converters. Method-b tries to generate a new converter from all of the registered converter factories.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-21-37",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 36,
+        "inspection-start-time": "2022-02-06-21-55",
+        "project": "joda-convert",
+        "spec-id": "00170",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-b": "org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "code-snippets-file": "snippets/ls/00170.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Class",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "Status.java:26",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "Method-b was called in the construction of a mock enum used for testing that was not used in this test. In addition, the class to be converted in question was an enum, which can be converted by the EnumStringConverterFactory, rather than the ThreeTenBackport converters."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to determine if a class is convertible with method-b depending on whether the ThreeTenBackport converters convert the class in question or if there are redundant converters for the same class. INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-21-58",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 37,
+        "inspection-start-time": "2022-02-06-22-38",
+        "project": "joda-convert",
+        "spec-id": "00175",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00175.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:180",
+                        "method-b-site": "StringConvert.java:181",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-22-41",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 38,
+        "inspection-start-time": "2022-02-06-22-46",
+        "project": "joda-convert",
+        "spec-id": "00178",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00178.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_primitive",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "TestStringConvert.java:82",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the ThreeTenOld converters, given that it was a primitive int, and can be done without the use of any the converters in the ThreeTenOld method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the ThreeTenBackOld method convert the class in question or if there are redundant converters for the same class. INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-06-22-48",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 39,
+        "inspection-start-time": "2022-02-06-22-49",
+        "project": "joda-convert",
+        "spec-id": "00179",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "code-snippets-file": "snippets/ls/00179.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_isConvertible@org.joda.convert.TestStringConvert",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passes because method-b does not rely on any registered converters, so delaying method-a did not effect any tests where method-b was used to find a converter."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_isConvertible@org.joda.convert.TestStringConvert",
+        "notes": "method-a registers a converter, but method-b is only called when a registered converter is not found for a given class, and does not rely on registered converters. Method-b tries to generate a new converter from all of the registered converter factories.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-06-22-52",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 40,
+        "inspection-start-time": "2022-02-07-17-46",
+        "project": "joda-convert",
+        "spec-id": "00185",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-b": "org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "code-snippets-file": "snippets/ls/00185.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Class",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:181",
+                        "method-b-site": "Status.java:26",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "Method-b was called in the construction of a mock enum used for testing that was not used in this test. In addition, the class to be converted in question was an enum, which can be converted by the EnumStringConverterFactory, rather than the ThreeTenBackold converters."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to determine if a class is convertible with method-b depending on whether the ThreeTenBackOld converters convert the class in question or if there are redundant converters for the same class. INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-17-49",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 41,
+        "inspection-start-time": "2022-02-07-18-03",
+        "project": "joda-convert",
+        "spec-id": "00192",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/ls/00192.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_primitive",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "TestStringConvert.java:82",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passed because the conversion tested did not rely on the Timezone converters, given that it was a primitive int, and can be done without the use of any the converters in the Timezone method (see snippets)."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to convert a class with method-b depending on whether any of the classes in the Timezone method convert the class in question or if there are redundant converters for the same class. INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-18-05",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 42,
+        "inspection-start-time": "2022-02-07-18-06",
+        "project": "joda-convert",
+        "spec-id": "00193",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 8,
+        "code-snippets-file": "snippets/ls/00193.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_isConvertible@org.joda.convert.TestStringConvert",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test passes because method-b does not rely on any registered converters, so delaying method-a did not effect any tests where method-b was used to find a converter."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_isConvertible@org.joda.convert.TestStringConvert",
+        "notes": "method-a registers a converter, but method-b is only called when a registered converter is not found for a given class, and does not rely on registered converters. Method-b tries to generate a new converter from all of the registered converter factories.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-07-18-08",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 43,
+        "inspection-start-time": "2022-02-07-23-51",
+        "project": "joda-convert",
+        "spec-id": "00199",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-b": "org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "code-snippets-file": "snippets/ls/00199.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Class",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "Status.java:26",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "Method-b was called in the construction of a mock enum used for testing that was not used in this test. In addition, the class to be converted in question was an enum, which can be converted by the EnumStringConverterFactory, rather than the ThreeTenBackold converters."
+            }
+        ],
+        "verdict": "unknown",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_primitiveInt",
+        "notes": "SOMETIMES_TRUE_SPEC, method-a registers a converter class, which may or may not be necessary to determine if a class is convertible with method-b depending on whether the Timezone converters convert the class in question or if there are redundant converters for the same class. INSPECTION_TODO: we may reclassify this one if we get too many FPs and there's no smart way to encode the conditional in the MOP spec; the spec does not seem *necessary* for program correctness. DECISION: it seems possible to call method-a without calling method-b, so the spec is more like (a*b)*",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-23-54",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 44,
+        "inspection-start-time": "2022-02-07-00-04",
+        "project": "joda-convert",
+        "spec-id": "00204",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterJava8()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00204.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "StringConvert.java:179",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-07-00-06",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 45,
+        "inspection-start-time": "2022-02-07-00-06",
+        "project": "joda-convert",
+        "spec-id": "00205",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00205.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "StringConvert.java:180",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-07-00-07",
+        "inspection-time-in-minutes": 1
+    },
+    {
+        "iid": 46,
+        "inspection-start-time": "2022-02-07-00-08",
+        "project": "joda-convert",
+        "spec-id": "00206",
+        "method-a": "org.joda.convert.StringConvert.tryRegisterTimeZone()V",
+        "method-b": "org.joda.convert.StringConvert.tryRegisterThreeTenOld()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 9,
+        "test-methods-mine-count": 117,
+        "code-snippets-file": "snippets/ls/00206.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:178",
+                        "method-b-site": "StringConvert.java:181",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The test did not rely on either method-a or method-b, they were both called in the construction in StringConvert, but the converters they registered were not needed as the point of the test was to register a factory to string convert, not convert an object."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory_null",
+        "notes": "Both method-a and method-b register converters, they do not rely on any registered converters. The spec is mined because method-a is called before method-b in the constructor of StringConvert",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-07-00-09",
+        "inspection-time-in-minutes": 2
+    }
+]

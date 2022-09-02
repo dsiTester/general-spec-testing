@@ -1,0 +1,15 @@
+all-tests
+org.jboss.jandex.test.AnnotationInstanceFilterTestCase
+org.jboss.jandex.test.BasicTestCase
+org.jboss.jandex.test.CompositeTestCase
+org.jboss.jandex.test.DotNameTestCase
+org.jboss.jandex.test.TypeAnnotationTestCase
+org.jboss.jandex.test.CompositeTestCase#testComposite
+org.jboss.jandex.test.AnnotationInstanceFilterTestCase#testFilter
+org.jboss.jandex.test.BasicTestCase#testWriteReadPreviousVersion
+org.jboss.jandex.test.BasicTestCase#testWriteRead
+org.jboss.jandex.test.BasicTestCase#testHasNoArgsConstructor
+org.jboss.jandex.test.BasicTestCase#testIndexer
+org.jboss.jandex.test.DotNameTestCase#testIsComponentized
+org.jboss.jandex.test.TypeAnnotationTestCase#testReadWrite
+org.jboss.jandex.test.TypeAnnotationTestCase#testIndexer

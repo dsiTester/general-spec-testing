@@ -1,0 +1,829 @@
+[
+    {
+        "iid" : 1,
+        "inspection-start-time": "2021-12-03-15-10",
+        "project": "commons-fileupload",
+        "spec-id": "00048",
+        "method-a": "a=org.apache.commons.fileupload2.FileItem.getOutputStream()Ljava/io/OutputStream;",
+        "method-b": "b=org.apache.commons.fileupload2.FileItem.getFieldName()Ljava/lang/String;",
+        "method-a-return-type": "java.io.OutputStream",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls/00048.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:347",
+                        "method-b-site": "StreamingTest.java:151",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a was replaced with null.",
+                "notes": "The assertion failed specifically because method-a was delayed to be after method-b, which means that a new assignment to dfos was created **after** the computation that the return value of method-a was supposed to be used for ended. But, the failure itself is unrelated to method-b."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileUpload",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:347",
+                        "method-b-site": "SizesTest.java:83",
+                        "invocation-count": 699
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with baos (SizesTest.java:55)?",
+                "notes": "It's clear that method-b is a public getter, and the state that method-a sets is not related to the value that method-b gets."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testFileUpload",
+        "notes": "While method-a does impact state, the value that method-b returns is not related to the state that method-a changes. ONE_STATELESS_METHOD: the implementation of method-b is a 1-line getter to the field variable DiskFileUploadTest.fieldName.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-03-16-11",
+        "inspection-time-in-minutes": 61
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2021-12-15-19-25",
+        "project": "commons-fileupload",
+        "spec-id": "00052",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getOutputStream()Ljava/io/OutputStream;",
+        "method-b": "org.apache.commons.fileupload2.FileItem.setHeaders(Lorg/apache/commons/fileupload2/FileItemHeaders;)V",
+        "method-a-return-type": "java.io.OutputStream",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 5,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 5,
+        "code-snippets-file": "snippets/lv-ls/00052.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:347",
+                        "method-b-site": "FileUploadBase.java:355",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "STATE_RESTORED. DSI most likely replaced the return value of method-a with null, as there seems to be no OutputStream object in scope. Interestingly, we don't end up with a NullPointerException (on the call to FileItem.get() at StreamingTest.java:152 because method-a was called after the call to method-b, restoring the state.",
+                "notes": "The test failed because the content was not actually written via the inteded OutputStream because method-a was delayed."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:347",
+                        "method-b-site": "FileUploadBase.java:355",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Same as above (validated-case), DSI most likely replaced the return value of method-a with null.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+        "notes": "The test oracles are certainly weak at catching the state change effects of not calling method-a, but I don't think there is particularly a relationship between method-a and method-b considering the code-snippet implementations of method-a and method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-15-19-53",
+        "inspection-time-in-minutes": 28
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2021-12-20-20-00",
+        "project": "commons-fileupload",
+        "spec-id": "00099",
+        "method-a": "org.apache.commons.fileupload2.FileItemStream.getFieldName()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileItemStream.getContentType()Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 8,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 7,
+        "code-snippets-file": "snippets/lv-ls/00099.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileUpload",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:343",
+                        "method-b-site": "FileUploadBase.java:343",
+                        "invocation-count": 699
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. I'm confused about where DSI got the replacement value, because the previously defined string is null (fileName on line 343 of FileUploadBase is null). From the log file, it seems that the replacement value was the empty string. (If the value was null, that would have led to a different error message)",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:343",
+                        "method-b-site": "FileUploadBase.java:343",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Not sure what the actual replacement value was, but the test did not check for the value of fieldName (the state that would change if method-a was not called at FileUploadBase.java:343).",
+                "notes": "EXPECTED_EXCEPTION."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "Modify org.apache.commons.fileupload2.SizesTest#testFileSizeLimit as it says in the TODO comments in the snippet",
+        "notes": "UNRELATED_STATELESS_METHODS. (both 1-line getters)",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-20-22-22",
+        "inspection-time-in-minutes": 22
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2021-12-20-22-23",
+        "project": "commons-fileupload",
+        "spec-id": "00100",
+        "method-a": "org.apache.commons.fileupload2.FileItemStream.getFieldName()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileItemStream.getHeaders()Lorg/apache/commons/fileupload2/FileItemHeaders;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemHeaders",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 5,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 3,
+        "code-snippets-file": "snippets/lv-ls/00100.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileUpload",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:343",
+                        "method-b-site": "FileUploadBase.java:354",
+                        "invocation-count": 699
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. I'm confused about where DSI got the replacement value, because the previously defined string is null (fileName on line 343 of FileUploadBase is null). From the log file, it seems that the replacement value was the empty string. (If the value was null, that would have led to a different error message)",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:343",
+                        "method-b-site": "FileUploadBase.java:354",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR. Not sure what the actual replacement value was, but the test did not check for the value of fieldName (the state that would change if method-a was not called at FileUploadBase.java:343).",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "Refer to snippet - FileUploadBase.modifiedParseRequest().",
+        "notes": "UNRELATED_STATELESS_METHODS. (both 1-line getters)",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-20-22-43",
+        "inspection-time-in-minutes": 20
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2021-12-21-16-14",
+        "project": "commons-fileupload",
+        "spec-id": "00102",
+        "method-a": "org.apache.commons.fileupload2.FileItemStream.getFieldName()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileItemStream.isFormField()Z",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 8,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 7,
+        "code-snippets-file": "snippets/lv-ls/00102.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileUpload",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:343",
+                        "method-b-site": "FileUploadBase.java:344",
+                        "invocation-count": 699
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. I'm confused about where DSI got the replacement value, because the previously defined string is null (fileName on line 343 of FileUploadBase is null). From the log file, it seems that the replacement value was the empty string. (If the value was null, that would have led to a different error message)",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:343",
+                        "method-b-site": "FileUploadBase.java:344",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Not sure what the actual replacement value was, but the test did not check for the value of fieldName (the state that would change if method-a was not called at FileUploadBase.java:343), so the test oracle is somewhat weak.",
+                "notes": "EXPECTED_EXCEPTION"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testFileUpload with modifications proposed in FileUploadBase.modifiedParseRequest() in the snippet.",
+        "notes": "UNRELATED_STATELESS_METHODS - implementations of both method-a and method-b are 1-line getters.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-21-16-28",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2021-12-21-16-29",
+        "project": "commons-fileupload",
+        "spec-id": "00103",
+        "method-a": "org.apache.commons.fileupload2.FileItemStream.getFieldName()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileItemStream.openStream()Ljava/io/InputStream;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.io.InputStream",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 8,
+        "LV-verdict-count": 3,
+        "LS-verdict-count": 7,
+        "code-snippets-file": "snippets/lv-ls/00103.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFileUpload",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:343",
+                        "method-b-site": "FileUploadBase.java:347",
+                        "invocation-count": 699
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. I'm confused about where DSI got the replacement value, because the previously defined string is null (fileName on line 343 of FileUploadBase is null). From the log file, it seems that the replacement value was the empty string. (If the value was null, that would have led to a different error message)",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimitWithFakedContentLength",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:343",
+                        "method-b-site": "FileUploadBase.java:347",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Not sure what the actual replacement value was, but the test did not check for the value of fieldName (the state that would change if method-a was not called at FileUploadBase.java:343), so the test oracle is somewhat weak.",
+                "notes": "EXPECTED_EXCEPTION - but the test doesn't expect an exception at the point where DSI delays method-a (since DSI only perturbs once, the only checks that matter for the relationship between method-a and method-b are the first set of checks - but the first set of checks don't expect an exception)."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFileUpload with FileUploadBase.parseRequest() modified as the snippets say.",
+        "notes": "While method-b can throw an exception and modify some state, method-a is a 1-line getter (ONE_STATELESS_METHOD) and method-b's state changes do not affect the value that method-a returns (fieldName).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-21-16-53",
+        "inspection-time-in-minutes": 24
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2021-12-23-01-24",
+        "project": "commons-fileupload",
+        "spec-id": "00140",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.getFieldName(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFileItemFactory()Lorg/apache/commons/fileupload2/FileItemFactory;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemFactory",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 3,
+        "code-snippets-file": "snippets/lv-ls/00140.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:503",
+                        "method-b-site": "FileUploadBase.java:334",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. The used return value of method-a was checked via an assertEquals, but the replacement value (\"\") was different from the expected value (\"field\").",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:503",
+                        "method-b-site": "FileUploadBase.java:334",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 3,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR. The replacement value is not clear, but the test oracles in the test don't check for the affected value (fieldName). Hence the test is weak.",
+                "notes": "Technically EXPECTED_EXCEPTION, but the expected exception is not related to the calls to method-a and method-b."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135 with modifications proposed in the NOTE comments in the snippets",
+        "notes": "UNRELATED_STATELESS_METHODS. Seeing that both method are getters that don't impact state, this spec is spurious.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-23-01-44",
+        "inspection-time-in-minutes": 20
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2021-12-23-13-01",
+        "project": "commons-fileupload",
+        "spec-id": "00141",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.getFieldName(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFileName(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 4,
+        "code-snippets-file": "snippets/lv-ls/00141.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:503",
+                        "method-b-site": "FileUploadBase.java:461",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. The used return value of method-a was checked via an assertEquals, but the replacement value (\"\") was different from the expected value (\"field\").",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:503",
+                        "method-b-site": "FileUploadBase.java:461",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 3,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR. The replacement value is not clear, but the test oracles in the test don't check for the affected value (fieldName). Hence the test is weak.",
+                "notes": "Technically EXPECTED_EXCEPTION, but the expected exception is not related to the calls to method-a and method-b."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135 with modifications proposed in the NOTES comments in the snippets",
+        "notes": "Seeing that both method are getters that don't impact state, this spec is spurious.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-23-13-28",
+        "inspection-time-in-minutes": 27
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2021-12-23-13-29",
+        "project": "commons-fileupload",
+        "spec-id": "00142",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.getFieldName(Ljava/lang/String;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFileName(Lorg/apache/commons/fileupload2/FileItemHeaders;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 4,
+        "code-snippets-file": "snippets/lv-ls/00142.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:503",
+                        "method-b-site": "FileUploadBase.java:1069",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. The used return value of method-a was checked via an assertEquals, but the replacement value (\"\") was different from the expected value (\"field\").",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:503",
+                        "method-b-site": "FileUploadBase.java:1069",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 3,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR. The replacement value is not clear, but the test oracles in the test don't check for the affected value (fieldName). Hence the test is weak.",
+                "notes": "Technically EXPECTED_EXCEPTION, but the expected exception is not related to the calls to method-a and method-b."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135 with modifications proposed in the NOTES comments in the snippets",
+        "notes": "Seeing that both method do computation but don't change field variables, this spec is spurious. (The method-b in this spec is the immediate caller of method-b of 00141, and this method-b does not do any other operations besides calling method-b of 00141)",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-23-13-36",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2021-12-23-14-02",
+        "project": "commons-fileupload",
+        "spec-id": "00144",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.getFieldName(Lorg/apache/commons/fileupload2/FileItemHeaders;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFileItemFactory()Lorg/apache/commons/fileupload2/FileItemFactory;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemFactory",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 3,
+        "code-snippets-file": "snippets/lv-ls/00144.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:1056",
+                        "method-b-site": "FileUploadBase.java:334",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. The used return value of method-a was checked via an assertEquals, but the replacement value (\"\") was different from the expected value (\"field\").",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:1056",
+                        "method-b-site": "FileUploadBase.java:334",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR. The replacement value is not clear, but the test oracles in the test don't check for the affected value (fieldName). Hence the test is weak.",
+                "notes": "Technically EXPECTED_EXCEPTION, but the expected exception is not related to the calls to method-a and method-b."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135 with modifications proposed in the NOTES comments in the snippets",
+        "notes": "Seeing that both method are getters that don't impact state, this spec is spurious. (The method-a from this spec is the caller of method-a from 00140).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-23-14-11",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2021-12-23-14-12",
+        "project": "commons-fileupload",
+        "spec-id": "00145",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.getFieldName(Lorg/apache/commons/fileupload2/FileItemHeaders;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFileName(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 4,
+        "code-snippets-file": "snippets/lv-ls/00145.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:1056",
+                        "method-b-site": "FileUploadBase.java:461",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. The used return value of method-a was checked via an assertEquals, but the replacement value (\"\") was different from the expected value (\"field\").",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:1056",
+                        "method-b-site": "FileUploadBase.java:461",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 3,
+                "comment-on-return-values": "The replacement value is not clear, but the test oracles in the test don't check for the affected value (fieldName). Hence the test is weak.",
+                "notes": "Technically EXPECTED_EXCEPTION, but the expected exception is not related to the calls to method-a and method-b."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135 with modifications proposed in the NOTES comments in the snippets",
+        "notes": "UNRELATED_STATELESS_METHODS. Seeing that both method are getters that don't impact state, this spec is spurious. (The method-a of this spec is the immediate caller of method-a from 00141, and does not do any operations besides call the method-a of 00141).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-23-14-18",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2021-12-23-14-19",
+        "project": "commons-fileupload",
+        "spec-id": "00146",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.getFieldName(Lorg/apache/commons/fileupload2/FileItemHeaders;)Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFileName(Lorg/apache/commons/fileupload2/FileItemHeaders;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 4,
+        "code-snippets-file": "snippets/lv-ls/00146.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:1056",
+                        "method-b-site": "FileUploadBase.java:1069",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. The used return value of method-a was checked via an assertEquals, but the replacement value (\"\") was different from the expected value (\"field\").",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:1056",
+                        "method-b-site": "FileUploadBase.java:1069",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 3,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: The replacement value is not clear, but the test oracles in the test don't check for the affected value (fieldName). Hence the test is weak.",
+                "notes": "Technically EXPECTED_EXCEPTION, but the expected exception is not related to the calls to method-a and method-b."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135 with modifications proposed in the NOTES comments in the snippets",
+        "notes": "Seeing that both methods do some computation but don't modify any field variables, this spec is spurious. (The method-a in this spec is the immediate caller of method-a of 00142, and this method-a does not do any other operations besides calling method-a of 00142)",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-23-14-23",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-01-04-11-21",
+        "project": "commons-fileupload",
+        "spec-id": "00193",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.setFileItemFactory(Lorg/apache/commons/fileupload2/FileItemFactory;)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getItemIterator(Lorg/apache/commons/fileupload2/RequestContext;)Lorg/apache/commons/fileupload2/FileItemIterator;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemIterator",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 5,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 5,
+        "code-snippets-file": "snippets/lv-ls/00193.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testIOException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StreamingTest.java:181",
+                        "method-b-site": "FileUploadBase.java:333",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Test passed, most likely due to EXPECTED_EXCEPTION, but the experiment result was categorized as a stage-1. Is this a bug?"
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StreamingTest.java:181",
+                        "method-b-site": "FileUploadBase.java:333",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+        "notes": "STATE_RESTORED. The JavaDoc comments for ServletFileUpload state that method-a does need to be called before attempting to parse requests, so there seems to be a relationship between FileUploadBase.parseRequest() and method-a. However, calling method-a immediately after method-b restores the state (setFileItemFactory being called) before it is actually necessary (FileUploadBase.java:334). Plus, there's no actual relationship between method-a and method-b itself; thus, this is most likely a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-04-11-30",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-01-06-11-34",
+        "project": "commons-fileupload",
+        "spec-id": "00250",
+        "method-a": "org.apache.commons.fileupload2.RequestContext.getInputStream()Ljava/io/InputStream;",
+        "method-b": "org.apache.commons.fileupload2.RequestContext.getCharacterEncoding()Ljava/lang/String;",
+        "method-a-return-type": "java.io.InputStream",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 4,
+        "test-methods-mine-count": 12,
+        "LV-verdict-count": 15,
+        "LS-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls/00250.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:993",
+                        "method-b-site": "FileUploadBase.java:998",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at MultipartStream.java:1027 (best to refer to the stack trace in the log file)",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testWithInvalidRequest",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:993",
+                        "method-b-site": "FileUploadBase.java:998",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with null?",
+                "notes": "EXPECTED_EXCEPTION, so most likely the run (that is supposed to throw an exception) threw an exception before the execution got to the point in the validated test where the NullPointerException would have been thrown."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile with adjustments proposed in snippet",
+        "notes": "The used implementation of method-a retrieves the InputStream object from the field variable ServletRequestContext.request, and the used implementation of method-b retrieves a character encoding from the field variable ServletRequestContext.request. This could be either UNRELATED_STATELESS_METHODS or UNRELATED_STATEFUL_METHODS depending on what class ServletRequestContext.request is. RQ: It seems that the NullPointerException comes from the fact that the variable input was set to null via replacement rather than the fact that method-a was called after method-b. The value of input doesn't change even after method-a was called (after method-b). Maybe if we can devise a way to fully restore the state, then this spec can be categorized as a spurious spec across the board?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-06-12-00",
+        "inspection-time-in-minutes": 26
+    }
+
+]

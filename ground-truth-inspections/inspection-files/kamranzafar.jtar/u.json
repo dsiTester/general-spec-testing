@@ -1,0 +1,158 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-18-16-08",
+        "project": "kamranzafar.jtar",
+        "spec-id": "00001",
+        "method-a": "org.kamranzafar.jtar.TarEntry.computeCheckSum([B)J",
+        "method-b": "org.kamranzafar.jtar.TarEntry.isDirectory()Z",
+        "method-a-return-type": "long",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00001.java",
+        "inspected-cases": [
+            {
+                "test": "org.kamranzafar.jtar.JTarAppendTest#testSingleOperation",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "ASM_ERROR"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.kamranzafar.jtar.JTarAppendTest#testSingleOperation",
+        "notes": "UNRELATED_STATELESS_METHODS, Method-a computes the checksum of the byte array passed to it, it only depends on its argument as has no side effect apart from its return value. method-b checks if the current TarEntry is a directory.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-18-16-17",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-18-16-17",
+        "project": "kamranzafar.jtar",
+        "spec-id": "00002",
+        "method-a": "org.kamranzafar.jtar.TarEntry.extractTarHeader(Ljava/lang/String;)V",
+        "method-b": "org.kamranzafar.jtar.TarEntry.computeCheckSum([B)J",
+        "method-a-return-type": "void",
+        "method-b-return-type": "long",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00002.java",
+        "inspected-cases": [
+            {
+                "test": "org.kamranzafar.jtar.JTarAppendTest#testAppend",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "ASM_ERROR"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.kamranzafar.jtar.JTarAppendTest#testAppend",
+        "notes": "ONE_STATELESS_METHOD method-a is used to parse a tar header to construct a TarEntry, and method-b calculates the checksum of a byte array and only depends on its argument.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-18-16-25",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-19-14-36",
+        "project": "kamranzafar.jtar",
+        "spec-id": "00005",
+        "method-a": "org.kamranzafar.jtar.TarEntry.getName()Ljava/lang/String;",
+        "method-b": "org.kamranzafar.jtar.TarEntry.computeCheckSum([B)J",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "long",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00005.java",
+        "inspected-cases": [
+            {
+                "test": "org.kamranzafar.jtar.JTarTest#fileEntry",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "ASM_ERROR"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.kamranzafar.jtar.JTarTest#fileEntry",
+        "notes": "ONE_STATELESS_METHOD method-b calculates the checksum of a byte array and does not rely on anything but the array it is passed. Its only side effect is its return value. Method-a gets the name of a TarEntry, making sure that the prefix is appended if one exists.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-19-14-43",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-19-14-44",
+        "project": "kamranzafar.jtar",
+        "spec-id": "00009",
+        "method-a": "org.kamranzafar.jtar.TarEntry.writeEntryHeader([B)V",
+        "method-b": "org.kamranzafar.jtar.TarEntry.computeCheckSum([B)J",
+        "method-a-return-type": "void",
+        "method-b-return-type": "long",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/u/00009.java",
+        "inspected-cases": [
+            {
+                "test": "org.kamranzafar.jtar.JTarTest#fileEntry",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "ASM_ERROR"
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.kamranzafar.jtar.JTarTest#fileEntry",
+        "notes": "The only place method-b is called in any file is within method-a.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-19-14-57",
+        "inspection-time-in-minutes": 13
+    }
+]

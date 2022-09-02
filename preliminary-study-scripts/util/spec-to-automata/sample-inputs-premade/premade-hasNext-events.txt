@@ -1,0 +1,3 @@
+hasnexttrue
+# hasnextfalse
+next

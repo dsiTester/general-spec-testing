@@ -1,0 +1,9 @@
+project,total,acc,%acc,hit-ts,hit-ns
+commons-codec,263,83,31.56,50.0,29.54
+commons-exec,251,94,37.45,8.93,45.64
+commons-fileupload,231,80,34.63,21.74,36.06
+commons-validator,553,278,50.27,47.06,50.48
+joda-convert,162,41,25.31,15.19,34.94
+kamranzafar.jtar,10,3,30.0,25.0,33.33
+TOTAL,1470,579,39.39,23.42,42.19
+AVG,245.0,96.5,6.6,3.9,7.0

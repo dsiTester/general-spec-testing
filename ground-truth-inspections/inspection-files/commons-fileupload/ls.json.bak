@@ -1,0 +1,561 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time" : "2021-12-02-15-06",
+        "project" : "commons-fileupload",
+        "spec-id" : "00004",
+        "method-a" : "a=org.apache.commons.fileupload2.DefaultFileItemFactory.setSizeThreshold(I)V",
+        "method-b" : "b=org.apache.commons.fileupload2.DefaultFileItemFactory.getRepository()Ljava/io/File;",
+        "method-a": "org.apache.commons.fileupload2.DefaultFileItemFactory.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItemFactory.getRepository()Ljava/io/File;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.io.File",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00004.java",
+        "inspected-cases" : [
+            {
+                "test" : "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage" : "stage-3-complete",
+                "exception-or-assertion" : "NA",
+                "invocation-info" : [ { "method-a-site" : "DiskFileUpload.java:138", "method-b-site" : "DefaultFileItemFactory.java:102", "invocation-count" : 1 } ],
+                "comment-on-return-values" : "method-a returns void",
+                "perturbation-count" : 1,
+                "notes" : ""
+            }
+        ],
+        "verdict" : "spurious-spec",
+        "is-likely-valid-spec" : true,
+        "is-true-spec" : false,
+        "validating-test-file" : "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "manually-written-validating-test-file" : "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile, with line `myUpload.setSizeThreshold(0);` commented out.",
+        "spec-type" : "NA",
+        "notes" : "Weak Oracle - the test does not check for the changed state by delaying a (or calling a with any other value). org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile has been deleted as of commit 0cef2ba.",
+        "part-of-bigger-spec" : "no",
+        "inspection-end-time" : "2021-12-02-15-46",
+        "inspection-time-in-minutes" : 40
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2021-12-10-16-22",
+        "project": "commons-fileupload",
+        "spec-id": "00005",
+        "method-a": "org.apache.commons.fileupload2.DefaultFileItemFactory.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItemFactory.getSizeThreshold()I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00005.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileUpload.java:138",
+                        "method-b-site": "DefaultFileItemFactory.java:102",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Not calling method-a has no bearing on the result, and so does replacing method-b with various int values (0, negative, positive). In this test, method-a sets the sizeThreshold to 0.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "We would need to have a stronger assertion that checks whether setSizeThreshold() was called?",
+        "notes": "The verdict here was made with consideration that sizeThreshold can be set via the constructor (refer to code snippet). However, it wouldn't **Really** make sense to call getSizeThreshold() before you call setSizeThreshold(), since the latter changes the state that getSizeThreshold() deals with. Additionally, it's evident that the oracle here is weak, because the changed state via setSizeThreshold() had no bearing on the test result.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-10-16-50",
+        "inspection-time-in-minutes": 38
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2021-12-10-16-57",
+        "project": "commons-fileupload",
+        "spec-id": "00006",
+        "method-a": "org.apache.commons.fileupload2.DefaultFileItemFactory.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.FileItemFactory.createItem(Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;)Lorg/apache/commons/fileupload2/FileItem;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItem",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00006.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileUpload.java:138",
+                        "method-b-site": "FileUploadBase.java:343",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Not calling method-a has no bearing on the result (method-a returns void as well). Replacing the argument to method-a (method-a sets sizeThreshold to 0 in the original test) to MAX_INT and MIN_INT did not change the outcome of the test as well. method-b returns a FileItem, but no oracle checks for its sizeThreshold value (as evident from the fact that the test does not fail after DSI manipulates the program.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "notes": "The oracle is weak because there is clearly changed state (sizeThreshold changes when method-a is called), but it is not caught. However, this is not a true spec because the size threshold can also be obtained without setting (refer to spec-id 00005 for more explanation).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-10-17-10",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2021-12-11-11-05",
+        "project": "commons-fileupload",
+        "spec-id": "00017",
+        "method-a": "org.apache.commons.fileupload2.DiskFileUpload.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.DiskFileUpload.parseRequest(Ljavax/servlet/http/HttpServletRequest;)Ljava/util/List;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.List",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00017.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileUploadTest.java:78",
+                        "method-b-site": "DiskFileUploadTest.java:90",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Refer to 00006.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "notes": "Refer to 00006 - same method-a, and method-b from this spec is the immediate caller of method-b from 00006.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-11-16",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2021-12-11-11-16",
+        "project": "commons-fileupload",
+        "spec-id": "00018",
+        "method-a": "org.apache.commons.fileupload2.DiskFileUpload.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getBoundary(Ljava/lang/String;)[B",
+        "method-a-return-type": "void",
+        "method-b-return-type": "byte[]",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00018.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileUploadTest.java:78",
+                        "method-b-site": "FileUploadBase.java:1001",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Refer to 00006.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "notes": "The oracle can be strengthened to check that calling method-a made a change to the execution - otherwise there is no use for calling method-a. There is no direct relationship between method-a and method-b (method-b does not use getSizeThreshold()/access sizeThreshold.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-11-31",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2021-12-11-11-34",
+        "project": "commons-fileupload",
+        "spec-id": "00019",
+        "method-a": "org.apache.commons.fileupload2.DiskFileUpload.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFieldName(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00019.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileUploadTest.java:78",
+                        "method-b-site": "FileUploadBase.java:503",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Refer to 00006.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "notes": "Similar to 00018. NOTE: org.apache.commons.fileupload2.DiskFileUploadTest mined the spec as well, but the invocation sites are identical as org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-11-51",
+        "inspection-time-in-minutes": 17
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2021-12-11-12-02",
+        "project": "commons-fileupload",
+        "spec-id": "00020",
+        "method-a": "org.apache.commons.fileupload2.DiskFileUpload.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFieldName(Lorg/apache/commons/fileupload2/FileItemHeaders;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00020.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileUploadTest.java:78",
+                        "method-b-site": "FileUploadBase.java:1056",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Refer to 00006.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "notes": "The method-a for this spec is the same as that of 00019, and the method-b for this spec is the immediate caller of that of 00019. Refer to 00018 for a more thorough explanation.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-12-10",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2021-12-11-12-11",
+        "project": "commons-fileupload",
+        "spec-id": "00021",
+        "method-a": "org.apache.commons.fileupload2.DiskFileUpload.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFileItemFactory()Lorg/apache/commons/fileupload2/FileItemFactory;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemFactory",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00021.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileUploadTest.java:78",
+                        "method-b-site": "FileUploadBase.java:334",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Refer to 00006.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "notes": "Somewhat similar to 00017 - the method-b here is a method that method-b from 00017 calls. However, there is no relationship between method-a and method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-12-20",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2021-12-11-13-10",
+        "project": "commons-fileupload",
+        "spec-id": "00022",
+        "method-a": "org.apache.commons.fileupload2.DiskFileUpload.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFileName(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00022.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileUploadTest.java:78",
+                        "method-b-site": "FileUploadBase.java:461",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Refer to 00006.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "notes": "Similar to 00018.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-13-15",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2021-12-11-13-15",
+        "project": "commons-fileupload",
+        "spec-id": "00023",
+        "method-a": "org.apache.commons.fileupload2.DiskFileUpload.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFileName(Lorg/apache/commons/fileupload2/FileItemHeaders;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00023.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileUploadTest.java:78",
+                        "method-b-site": "FileUploadBase.java:1069",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Refer to 00006.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "notes": "Similar to 00022; the method-b of this spec is the immediate caller of method-b from 00022. Refer to 00018 for more details on why this is spurious.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-13-19",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2021-12-11-13-20",
+        "project": "commons-fileupload",
+        "spec-id": "00024",
+        "method-a": "org.apache.commons.fileupload2.DiskFileUpload.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getItemIterator(Lorg/apache/commons/fileupload2/RequestContext;)Lorg/apache/commons/fileupload2/FileItemIterator;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemIterator",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00024.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileUploadTest.java:78",
+                        "method-b-site": "FileUploadBase.java:333",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Refer to 00006.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "notes": "The method-a here is same as 00018, and the method-b here is the method that calls method-b-s from 00018-00023. That being said, nowhere in method-b was sizeThreshold used... If the value of sizeThreshold was actually influential here, then all of 00018-00023 could have been a bigger spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-13-32",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2021-12-11-13-32",
+        "project": "commons-fileupload",
+        "spec-id": "00025",
+        "method-a": "org.apache.commons.fileupload2.DiskFileUpload.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getParsedHeaders(Ljava/lang/String;)Lorg/apache/commons/fileupload2/FileItemHeaders;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemHeaders",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00025.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileUploadTest.java:78",
+                        "method-b-site": "FileUploadBase.java:1053",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Refer to 00006.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "notes": "Similar case as 00019.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-13-38",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2021-12-11-13-38",
+        "project": "commons-fileupload",
+        "spec-id": "00026",
+        "method-a": "org.apache.commons.fileupload2.DiskFileUpload.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.newFileItemHeaders()Lorg/apache/commons/fileupload2/util/FileItemHeadersImpl;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.util.FileItemHeadersImpl",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00026.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileUploadTest.java:78",
+                        "method-b-site": "FileUploadBase.java:580",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Refer to 00006.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "notes": "Similar to 00025 - the method-a-s are the same, and the method-b from this spec is immediately called by method-b of 00025.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-13-51",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2021-12-11-13-52",
+        "project": "commons-fileupload",
+        "spec-id": "00027",
+        "method-a": "org.apache.commons.fileupload2.DiskFileUpload.setSizeThreshold(I)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.parseRequest(Lorg/apache/commons/fileupload2/RequestContext;)Ljava/util/List;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.List",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/ls/00027.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileUploadTest.java:78",
+                        "method-b-site": "FileUploadBase.java:287",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Refer to 00006.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "notes": "Refer to 00017 - this spec's method-b is immediately called after that of 00017.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-14-02",
+        "inspection-time-in-minutes": 10
+    }
+]
+

@@ -1,0 +1,179 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-02-07-17-41",
+        "project": "commons-exec",
+        "spec-id": "00351",
+        "method-a": "org.apache.commons.exec.ProcessDestroyer.add(Ljava/lang/Process;)Z",
+        "method-b": "org.apache.commons.exec.ProcessDestroyer.remove(Ljava/lang/Process;)Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LV-verdict-count": 1,
+        "U-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-u/00351.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithProcessDestroyer",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:378",
+                        "method-b-site": "DefaultExecutor.java:439",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": "The check for the size of processDestroyer was done after the execution of DefaultExecutor.executeInternal() has finished. Since method-a was called after method-b, the Process object created by DefaultExecutor.executeInternal() was still in processDestroyer. Hence, the test failed (because it expected method-b to remove that object once the execution of the process was done)."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:378",
+                        "method-b-site": "DefaultExecutor.java:439",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED.",
+                "notes": "The check for the size of processDestroyer was done while the asynchronous process running DefaultExecutor.executeInternal() was running. Since method-b is called at the end of DefaultExecutor.executeInternal(), the check is done before then, and because method-a wasn't called by that point, the size of processDestroyer was still 0. Most likely related to ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "both",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithProcessDestroyer",
+        "notes": "As the methods suggest, this is an add-remove relationship; method-a adds a Process to the list of processes to be destroyed (if needed), and method-b removes that Process object. DECISION remove can be called as many times as one needs, even before calling add, because it merely returns false if called on an empty vector: https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html#removeElement-java.lang.Object- . Hence, this is a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-18-01",
+        "inspection-time-in-minutes": 20
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-02-07-21-23",
+        "project": "commons-exec",
+        "spec-id": "00369",
+        "method-a": "org.apache.commons.exec.ShutdownHookProcessDestroyer.addShutdownHook()V",
+        "method-b": "org.apache.commons.exec.ProcessDestroyer.remove(Ljava/lang/Process;)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LV-verdict-count": 1,
+        "U-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-u/00369.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithProcessDestroyer",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ShutdownHookProcessDestroyer.java:86",
+                        "method-b-site": "DefaultExecutor.java:439",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The check for whether the processDestroyer was added as a shutdown hook was done after the execution of DefaultExecutor.executeInternal() has finished. Since method-a was called after method-b, processDestroyer was newly added as a shutdown hook after the it was supposed to be removed/cleaned up. Hence, the test failed."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ShutdownHookProcessDestroyer.java:86",
+                        "method-b-site": "DefaultExecutor.java:439",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The check for whether the processDestroyer was added as a shutdown hook was done while the asynchronous process running DefaultExecutor.executeInternal() was running. Since method-b is called at the end of DefaultExecutor.executeInternal(), the check is done before then, and because method-a wasn't called by that point, processDestroyer was not added as a shutdown hook at that point."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "both",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithProcessDestroyer",
+        "notes": "As the methods suggest, this is an add-remove relationship; method-a registers the ShutdownHookProcessDestroyer object as a shut down hook, and method-b (more specifically, ShutdownHookProcessDestroyer.removeShutdownHook(), the callee of method-b) removes the ShutdownHookProcessDestroyer object from the list of shut down hooks. This is most likely MORE_COMPLEX_THAN_AB? DECISION: this one seems differnt from iid 1 because the call to removeShutdownHook is guarded by checks to ensure that `a` was called first. Note that the Runtime.removeShutdownHook method that gets called eventually can be called as many times as one wants even when `a` has not been called: https://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html#removeShutdownHook(java.lang.Thread)",
+        "findings": "Type-c: method-b is always/*sometimes* preceded by method-a?",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-21-35",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-02-07-21-35",
+        "project": "commons-exec",
+        "spec-id": "00370",
+        "method-a": "org.apache.commons.exec.ShutdownHookProcessDestroyer.addShutdownHook()V",
+        "method-b": "org.apache.commons.exec.ShutdownHookProcessDestroyer.removeShutdownHook()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "LV-verdict-count": 1,
+        "U-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-u/00370.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithProcessDestroyer",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ShutdownHookProcessDestroyer.java:86",
+                        "method-b-site": "ShutdownHookProcessDestroyer.java:135",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The check for whether the processDestroyer was added as a shutdown hook was done after the execution of DefaultExecutor.executeInternal() has finished. Since method-a was called after method-b, processDestroyer was newly added as a shutdown hook after the it was supposed to be removed/cleaned up. Hence, the test failed."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsyncWithProcessDestroyer",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ShutdownHookProcessDestroyer.java:86",
+                        "method-b-site": "ShutdownHookProcessDestroyer.java:135",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The check for whether the processDestroyer was added as a shutdown hook was done while the asynchronous process running DefaultExecutor.executeInternal() was running. Since method-b is called at the end of DefaultExecutor.executeInternal(), the check is done before then, and because method-a wasn't called by that point, processDestroyer was not added as a shutdown hook at that point."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "both",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithProcessDestroyer",
+        "notes": "As the methods suggest, this is an add-remove relationship; method-a registers the ShutdownHookProcessDestroyer object as a shut down hook, and method-b removes the ShutdownHookProcessDestroyer object from the list of shut down hooks. This is most likely MORE_COMPLEX_THAN_AB?",
+        "findings": "Type-c: method-b is always preceded by method-a?",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-07-21-37",
+        "inspection-time-in-minutes": 2
+    }
+
+]

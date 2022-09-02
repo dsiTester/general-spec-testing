@@ -1,0 +1,65 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-31-13-20",
+        "project": "commons-validator",
+        "spec-id": "00503",
+        "method-a": "org.apache.commons.validator.ValidatorResult.add(Ljava/lang/String;ZLjava/lang/Object;)V",
+        "method-b": "org.apache.commons.validator.ValidatorResult.containsAction(Ljava/lang/String;)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 10,
+        "test-methods-mine-count": 72,
+        "LV-verdict-count": 62,
+        "U-verdict-count": 20,
+        "code-snippets-file": "snippets/lv-u/00503.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.DateTest#testValidDate",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorResults.java:83",
+                        "method-b-site": "DateTest.java:105",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test failed because method-a was supposed to add the \"date\" action, but since the assertion was checked immediately after the call to method-b, the \"date\" action did not exist at that point and the assertion failed."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorTest#testManualObject",
+                "stage": "pre-stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ValidatorResults.java:83",
+                        "method-b-site": "ValidatorTest.java:67",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "ValidatorResults.java:83",
+                        "method-b-site": "ValidatorTest.java:85",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The DSI experiment results in a pre-stage-0-failure because the first perturbation causes the test to fail, which means that the second perturbation never happened. This could be a potential ORDER_OF_ASSERTIONS case."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.DateTest#testValidDate demonstrates that there is a connection between method-a and method-b",
+        "notes": "The return value of method-b may change depending on whether method-a was called beforehand or not. method-a adds the result of a validator action to the map field variable ValidatorResult.hAction, and method-b checks whether a specific validator (based on the argument String variable key) is in ValidatorResult.hAction. (MORE_COMPLEX_THAN_AB - The spec may actually be of the form \"b*a+b*\".) Overall, this seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, since both methods are public methods that can be called at any time.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-31-13-44",
+        "inspection-time-in-minutes": 24
+    }
+]

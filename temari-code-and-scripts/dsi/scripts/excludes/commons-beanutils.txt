@@ -1,0 +1,3 @@
+MemoryLeakTestCase # took unreasonably long on testClasses
+Jira347TestCase # depends on MemoryLeakTestCase
+ShortConverterTestCase # testInvalidAmount fails on allTests

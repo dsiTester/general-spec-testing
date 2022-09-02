@@ -1,0 +1,129 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-15-13-10",
+        "project": "commons-codec",
+        "spec-id": "00282",
+        "method-a": "org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication.invoke()Lorg/apache/commons/codec/language/bm/PhoneticEngine$RulesApplication;",
+        "method-b": "org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication.getI()I",
+        "method-a-return-type": "org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 15,
+        "U-verdict-count": 15,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00282.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testAsciiEncodeNotEmpty1Letter",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PhoneticEngine.java:467",
+                        "method-b-site": "PhoneticEngine.java:468",
+                        "invocation-count": 52
+                    },
+                    {
+                        "method-a-site": "PhoneticEngine.java:343",
+                        "method-b-site": "PhoneticEngine.java:352",
+                        "invocation-count": 192
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at PhoneticEngine.java:469",
+                "notes": "Not quite sure why there wasn't a NullPointerException on PhoneticEngine.java:468 (the call site of b)? because it seems that rulesApplication is null, so calling a method from a null value would lead to a NullPointerException?"
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testAllChars",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "java.io.FileNotFoundException: serialized-files/BeiderMorseEncoderTest#testAllChars@BeiderMorseEncoderTest#testAllChars-collectTraceSerializedObj.txt - most likely a bug with DSI? POSSIBLE_DSI_BUG."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testAsciiEncodeNotEmpty1Letter",
+        "notes": "REVISIT: I'm confused about what's going on in this spec. It seems like in some sense, method-a needs to be called before method-b (at least, from the unknown case), because method-b is invoked on the object that is returned from method-a? But, it also seems entirely plausible to call method-b on a PhoneticEngine$RulesApplication object that isn't generated via calling method-a. ONE_STATELESS_METHOD: method-b is a 1-line naive getter to the field variable RulesApplication.i. DECISION method-b can be called at anytime without regards to method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-15-13-56",
+        "inspection-time-in-minutes": 46
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-15-13-56",
+        "project": "commons-codec",
+        "spec-id": "00283",
+        "method-a": "org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication.invoke()Lorg/apache/commons/codec/language/bm/PhoneticEngine$RulesApplication;",
+        "method-b": "org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication.getPhonemeBuilder()Lorg/apache/commons/codec/language/bm/PhoneticEngine$PhonemeBuilder;",
+        "method-a-return-type": "org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication",
+        "method-b-return-type": "org.apache.commons.codec.language.bm.PhoneticEngine$PhonemeBuilder",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 15,
+        "U-verdict-count": 15,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00283.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testAsciiEncodeNotEmpty1Letter",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PhoneticEngine.java:467",
+                        "method-b-site": "PhoneticEngine.java:469",
+                        "invocation-count": 52
+                    },
+                    {
+                        "method-a-site": "PhoneticEngine.java:343",
+                        "method-b-site": "PhoneticEngine.java:345",
+                        "invocation-count": 192
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at PhoneticEngine.java:468",
+                "notes": "Confusing - in 00282, the NullPointerException occurred at PhoneticEngine.java:469, but here, it occured at PhoneticEngine.java:469, even though the same perturbation is happening."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testAllChars",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "java.io.FileNotFoundException: serialized-files/BeiderMorseEncoderTest#testAllChars@BeiderMorseEncoderTest#testAllChars-collectTraceSerializedObj.txt - most likely a bug with DSI? POSSIBLE_DSI_BUG."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.language.bm.BeiderMorseEncoderTest#testAsciiEncodeNotEmpty1Letter",
+        "notes": "REVISIT - I'm confused about what's going on in this spec. It seems like in some sense, method-a needs to be called before method-b (at least, from the unknown case), because method-b is invoked on the object that is returned from method-a? But, it also seems entirely plausible to call method-b on a PhoneticEngine$RulesApplication object that isn't generated via calling method-a. ONE_STATELESS_METHOD: method-b is a 1-line naive getter to the field variable RulesApplication.phonemeBuilder. DECISION method-b can be called at anytime without any regards to method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-15-14-06",
+        "inspection-time-in-minutes": 10
+    }
+
+]

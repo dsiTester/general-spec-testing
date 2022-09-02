@@ -1,0 +1,4 @@
+transition-id,method-sig
+calculate,org.apache.commons.validator.routines.checkdigit.ModulusTenCheckDigit.calculate(Ljava/lang/String;)Ljava/lang/String;
+getModulus,org.apache.commons.validator.routines.checkdigit.ModulusTenCheckDigit.getModulus()I
+isValid,org.apache.commons.validator.routines.checkdigit.ModulusTenCheckDigit.isValid(Ljava/lang/String;)Z

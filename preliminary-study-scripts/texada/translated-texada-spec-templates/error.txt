@@ -1,0 +1,4 @@
+spec-patterns-existence-after_q.txt: G(!q) | F(q & Fp))
+spec-patterns-precedence_chain-p_preceds_s_t-after_q.txt: (G!q) | ((!q) U (q & ((F(s & XFt)) -> ((!s) U p)))
+spec-patterns-precedence_chain-p_preceds_s_t-globally.txt: (F(s & XFt)) -> ((!s) U p))
+spec-patterns-precedence_chain-s_t_precedes_p-after_q.txt: (G!q) | (!q U (q & Fp -> (!p U (s & !p & X(!p U t))))

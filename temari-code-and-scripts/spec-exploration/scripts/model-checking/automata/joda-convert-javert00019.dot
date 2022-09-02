@@ -1,0 +1,21 @@
+digraph Automaton {
+  rankdir = LR;
+  0 [shape=circle,label="s6"];
+  1 [shape=circle,label="s2"];
+  2 [shape=circle,label="s3"];
+  3 [shape=doublecircle,label="s0"];
+  initial [shape=plaintext,label=""];
+  initial -> 3
+  4 [shape=circle,label="s1"];
+  5 [shape=circle,label="s5_s4"];
+  5 -> 5 [label="org.joda.convert.StringConvert.findToStringMethod(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Method;"];
+  5 -> 5 [label="org.joda.convert.StringConvert.findFromStringMethod(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Method;"];
+  1 -> 1 [label="org.joda.convert.TypedStringConverter.getEffectiveType()Ljava/lang/Class;"];
+  4 -> 1 [label="org.joda.convert.StringConvert.tryRegisterJava8Optionals()V"];
+  5 -> 0 [label="org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V"];
+  3 -> 4 [label="org.joda.convert.StringConvert.tryRegisterGuava()V"];
+  5 -> 5 [label="org.joda.convert.StringConvert.registerMethods(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)V"];
+  2 -> 5 [label="org.joda.convert.StringConvert.tryRegisterJava8()V"];
+  1 -> 2 [label="org.joda.convert.StringConvert.tryRegisterTimeZone()V"];
+  0 -> 3 [label="org.joda.convert.StringConvert.tryRegisterThreeTenOld()V"];
+}

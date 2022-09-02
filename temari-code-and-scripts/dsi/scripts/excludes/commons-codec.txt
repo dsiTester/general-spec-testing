@@ -1,0 +1,5 @@
+MessageDigestAlgorithmsTest # intereferes with allTests
+ColognePhoneticTest # tests fail on method level due to AfterClass method that Checks that all possible input sequence conditions are represented. One method cannot satisfy all of the possible input sequences.
+Base64Test # DSI++ got stuck
+Base64OutputStreamTest # depends on Base64Test
+Base64InputStreamTest # depends on Base64Test

@@ -1,0 +1,2926 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-20-13-46",
+        "project": "joda-convert",
+        "spec-id": "00001",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;",
+        "method-a-return-type": "java.lang.Class",
+        "method-b-return-type": "org.joda.convert.MethodConstructorStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00001.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:106",
+                        "method-b-site": "AnnotationStringConverterFactory.java:67",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION",
+                "notes": "The return value of method-a was immediately accessed in the form method-a().method-x(), causing a null pointer exception."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "UNRELATED_STATELESS_METHODS method-a is a function which takes a class as input, and returns that class if it is not a member of an enum, otherwise it returns the enum that the class is a member of. It does not alter the state of the AnnotationStringConverterFactory, and it is not called in method-b, so they are unrelated. Method-b is also stateless. The spec was mined because method-a is called by a method that finds a way to convert an object into a string in a method which finds a way to convert an object to and from a string (with the latter coming first).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-20-14-16",
+        "inspection-time-in-minutes": 30
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-20-14-20",
+        "project": "joda-convert",
+        "spec-id": "00002",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromString(Ljava/lang/Class;)Ljava/lang/reflect/Method;",
+        "method-a-return-type": "java.lang.Class",
+        "method-b-return-type": "java.lang.reflect.Method",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00002.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:106",
+                        "method-b-site": "AnnotationStringConverterFactory.java:164",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION",
+                "notes": "The return value of method-a was immediately accessed in the form method-a().method-x(), causing a null pointer exception."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "",
+        "notes": "ONE_STATELESS_METHOD method-a is a function which takes a class as input, and returns that class if it is not a member of an enum, otherwise it returns the enum that the class is a member of. It does not alter the state of the AnnotationStringConverterFactory, and it is not called in method-b, so they are unrelated. The spec was mined because method-a is called in a method that converts an object to a string, which is called before method-b in the test from which the spec was mined.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-20-14-27",
+        "inspection-time-in-minutes": 17
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-20-14-56",
+        "project": "joda-convert",
+        "spec-id": "00003",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;",
+        "method-a-return-type": "java.lang.Class",
+        "method-b-return-type": "org.joda.convert.MethodsStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00003.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:106",
+                        "method-b-site": "AnnotationStringConverterFactory.java:164",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION",
+                "notes": "The return value of method-a was immediately accessed in the form method-a().method-x(), causing a null pointer exception."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "",
+        "notes": "ONE_STATELESS_METHOD method-a is a function which takes a class as input, and returns that class if it is not a member of an enum, otherwise it returns the enum that the class is a member of. It does not alter the state of the AnnotationStringConverterFactory, and it is not called in method-b, so they are unrelated. The spec was mined because method-a is called in a method that converts an object to a string, which is called before method-b in the test from which the spec was mined.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-20-15-17",
+        "inspection-time-in-minutes": 21
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2021-01-24-12-27",
+        "project": "joda-convert",
+        "spec-id": "00004",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findAnnotatedConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "java.lang.Class",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 18,
+        "code-snippets-file": "snippets/u/00004.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_isConvertible",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:51",
+                        "method-b-site": "AnnotationStringConverterFactory.java:106",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_isConvertible",
+        "notes": "method-b returns the class it is passed in or its super class if it is a member of an enum. It is used to make sure you don't try to interact with the member of an enum instead of the enum itself. To interact with an AnnotationConverterFactory one calls findAnnotatedConverter, which eventually call all of the private methods in the class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2021-01-24-12-47",
+        "inspection-time-in-minutes": 20
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2021-01-24-12-49",
+        "project": "joda-convert",
+        "spec-id": "00005",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findAnnotatedConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "org.joda.convert.MethodConstructorStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 28,
+        "code-snippets-file": "snippets/u/00005.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:51",
+                        "method-b-site": "AnnotationStringConverterFactory.java:67",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "This is a direct no-break-pass so method b could never be called, and so method-a was never called, resulting in an error when the converter that method-a was supposed to return was accessed."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "method-b is purely functional, returning a class or its super class if it is a member of an enum. There is no need to call anything before it. To interact with an AnnotationConverterFactory one calls findAnnotatedConverter, which eventually call all of the private methods in the class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2021-01-24-13-01",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2021-01-24-13-08",
+        "project": "joda-convert",
+        "spec-id": "00006",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findAnnotatedConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromString(Ljava/lang/Class;)Ljava/lang/reflect/Method;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "java.lang.reflect.Method",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 18,
+        "code-snippets-file": "snippets/u/00006.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:51",
+                        "method-b-site": "AnnotationStringConverterFactory.java:67",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "This is an indirect no-break-pass so method-b could never be called, and so method-a was never called, resulting in an error when the converter that method-a was supposed to return was accessed."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "method-b is purely functional, returning a class or its super class if it is a member of an enum. There is no need to call anything before it. To interact with an AnnotationConverterFactory one calls findAnnotatedConverter, which eventually call all of the private methods in the class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2021-01-24-01-14",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2021-01-24-13-15",
+        "project": "joda-convert",
+        "spec-id": "00007",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findAnnotatedConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "org.joda.convert.MethodsStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 26,
+        "code-snippets-file": "snippets/u/00007.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:51",
+                        "method-b-site": "AnnotationStringConverterFactory.java:68",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "This is a direct no-break-pass so method b could never be called, and so method-a so was never called, resulting in an error when the converter that method-a was supposed to return was accessed."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "To interact with an AnnotationConverterFactory one calls its only public method that is not toString, which does nothing but call findAnnotatedConverter, which will eventually call all of the private methods in the class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2021-01-24-01-21",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2021-01-24-13-22",
+        "project": "joda-convert",
+        "spec-id": "00008",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findAnnotatedConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findToStringMethod(Ljava/lang/Class;)Ljava/lang/reflect/Method;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "java.lang.reflect.Method",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 43,
+        "code-snippets-file": "snippets/u/00008.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:51",
+                        "method-b-site": "AnnotationStringConverterFactory.java:68",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "This is a direct no-break-pass so method b could never be called, and so method-a so was never called, resulting in an error when the converter that method-a was supposed to return was accessed."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "To interact with an AnnotationConverterFactory one calls its only public method that is not toString, which does nothing but call findAnnotatedConverter, which will eventually call all of the private methods in the class.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2021-01-24-13-28",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2021-01-24-19-07",
+        "project": "joda-convert",
+        "spec-id": "00012",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;",
+        "method-a-return-type": "org.joda.convert.MethodsStringConverter",
+        "method-b-return-type": "java.lang.Class",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00012.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotatedToStringNoFromString",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:68",
+                        "method-b-site": "AnnotationStringConverterFactory.java:176",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "We did not ever get to call method-b because this is a direct no break pass."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotatedToStringNoFromString",
+        "notes": "",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2021-01-24-19-11",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2021-01-24-19-12",
+        "project": "joda-convert",
+        "spec-id": "00013",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromString(Ljava/lang/Class;)Ljava/lang/reflect/Method;",
+        "method-a-return-type": "org.joda.convert.MethodsStringConverter",
+        "method-b-return-type": "java.lang.reflect.Method",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 18,
+        "code-snippets-file": "snippets/u/00013.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:68",
+                        "method-b-site": "AnnotationStringConverterFactory.java:164",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "This is a direct no break pass, and it not legal for the return value of method-a to be null in this case, an explicit check throws an IllegalArgumentException"
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "We throew an exception before reaching the end of the test with method-a delayed because it was illegal for the value returned by method-b to be null.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2021-01-24-19-20",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2022-01-25-17-11",
+        "project": "joda-convert",
+        "spec-id": "00014",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findToStringMethod(Ljava/lang/Class;)Ljava/lang/reflect/Method;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;",
+        "method-a-return-type": "java.lang.reflect.Method",
+        "method-b-return-type": "java.lang.Class",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 18,
+        "code-snippets-file": "snippets/u/00014.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:63",
+                        "method-b-site": "AnnotationStringConverterFactory.java:106",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The return value of method-a is replaced by null, which causes an illegal state exception since we expect to find a non-null converter for the given class to be converted in to a string."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-01-25-17-35",
+        "inspection-time-in-minutes": 24
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2022-01-25-17-50",
+        "project": "joda-convert",
+        "spec-id": "00015",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findToStringMethod(Ljava/lang/Class;)Ljava/lang/reflect/Method;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;",
+        "method-a-return-type": "java.lang.reflect.Method",
+        "method-b-return-type": "org.joda.convert.MethodConstructorStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 28,
+        "code-snippets-file": "snippets/u/00015.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:63",
+                        "method-b-site": "AnnotationStringConverterFactory.java:67",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The return value of method-a is replaced by null, which causes an illegal state exception since we expect to find a non-null converter for the given class to be converted in to a string."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "method-b finds a constructor of a class that takes only a string as an argument, it combines this with its toString to create a converter of the class to and from a string. Method-a finds the toString of a class. This spec was ruled unknown because there is check in between method-a and method-b that returns if the return value of method-a is null, so we never called method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-25-18-03",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-01-25-18-10",
+        "project": "joda-convert",
+        "spec-id": "00016",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findToStringMethod(Ljava/lang/Class;)Ljava/lang/reflect/Method;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromString(Ljava/lang/Class;)Ljava/lang/reflect/Method;",
+        "method-a-return-type": "java.lang.reflect.Method",
+        "method-b-return-type": "java.lang.reflect.Method",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 18,
+        "code-snippets-file": "snippets/u/00016.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:63",
+                        "method-b-site": "AnnotationStringConverterFactory.java:164",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "The return value of method-a is replaced by null, which causes an illegal state exception since we expect to find a non-null converter for the given class to be converted in to a string."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "UNRELATED_STATEFUL_METHODS method-a finds a converter from a class to string, method-b does the inverse. method-b does not rely on the toString() found by method-a.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-25-18-19",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-01-25-18-20",
+        "project": "joda-convert",
+        "spec-id": "00017",
+        "method-a": "org.joda.convert.AnnotationStringConverterFactory.findToStringMethod(Ljava/lang/Class;)Ljava/lang/reflect/Method;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;",
+        "method-a-return-type": "java.lang.reflect.Method",
+        "method-b-return-type": "org.joda.convert.MethodsStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 26,
+        "code-snippets-file": "snippets/u/00017.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "AnnotationStringConverterFactory.java:63",
+                        "method-b-site": "AnnotationStringConverterFactory.java:68",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "stage-0-failure",
+                "notes": "REPLACEMENT_TRIGGERS_CHECK_THAT_PREVENTS_B The method calling method-a checks if the return value of method-a is null, and then returns null before we reach method-b, so we never get to run method-b, this causes an IllegalStateException since it falsely seems like a class has no toString."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "method-b finds a constructor of a class that takes only a string as an argument, it combines this with its toString to create a converter of the class to and from a string. Method-a finds the toString of a class. This spec was ruled unknown because there is check in between method-a and method-b that returns if the return value of method-a is null, so we never called method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-25-18-35",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2022-01-25-18-36",
+        "project": "joda-convert",
+        "spec-id": "00018",
+        "method-a": "org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertToString(Ljava/lang/Enum;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.Enum",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00018.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Enum",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "EnumStringConverterFactory.java:64",
+                        "method-b-site": "EnumStringConverterFactory.java:64",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT REPLACEMENT_VALUE_UNCLEAR, there was a literal string next to method-a that DSI did not end up replacing the return value of method-a with.",
+                "notes": "GOOD_EXAMPLE We did not get to call method-b because method-a was called in an assertion, before method-b was called in its own assertion, so the assertion with method-a failed before method-b could be called. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestJDKStringConverters#test_Enum",
+        "notes": "UNRELATED_STATELESS_METHODS, these methods convert an enum to and from a string respectively, method-a does so as a pure-getter, they do not rely on each other.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-25-18-51",
+        "inspection-time-in-minutes": 51
+    },
+    {
+        "iid": 16,
+        "inspection-start-time": "2022-01-25-19-54",
+        "project": "joda-convert",
+        "spec-id": "00019",
+        "method-a": "org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertToString(Ljava/lang/Enum;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.TypedStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "no",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00019.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Enum",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "EnumStringConverterFactory.java:64",
+                        "method-b-site": "TestJDKStringConverters.java:457",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT REPLACEMENT_VALUE_UNCLEAR, there was a literal string next to method-a that DSI did not end up replacing the return value of method-a with.",
+                "notes": "We did not get to call method-b because method-a was called in an assertion, before method-b was called in its own assertion, so the assertion with method-a failed before method-b could be called. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestJDKStringConverters#test_Enum",
+        "notes": "UNRELATED_STATELESS_METHODS, these methods convert an enum to and from a string respectively, method-a does so as a pure-getter, they do not rely on each other.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-25-20-12",
+        "inspection-time-in-minutes": 18
+    },
+    {
+        "iid": 17,
+        "inspection-start-time": "2022-01-27-09-06",
+        "project": "joda-convert",
+        "spec-id": "00024",
+        "method-a": "org.joda.convert.RenameHandler.loadFromClasspath()V",
+        "method-b": "org.joda.convert.RenameHandler.loadRenameFile(Ljava/net/URL;)Ljava/util/List;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.List",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 9,
+        "code-snippets-file": "snippets/u/00024.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "RenameHandler.java:86",
+                        "method-b-site": "RenameHandler.java:320",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "We did not ever call method-b due to a no-break-pass, and no exception was thrown since there were no renamed enums or types in this test that needed to be loaded from the class path so the Renamehandler not storing any renames upon creation was not relevant. The test passed, but we never reached method-b so this is still a stage-0-failure."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+        "notes": "The no break pass prevents the Renamehandler from being configured properly by delayed method-a forever, which did not lead to an exception since the tests only ever really on renamed enums that are registered after the initial configuration of the Renamehandler",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-27-09-16",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 18,
+        "inspection-start-time": "2022-01-27-11-50",
+        "project": "joda-convert",
+        "spec-id": "00027",
+        "method-a": "org.joda.convert.RenameHandler.loadFromClasspath()V",
+        "method-b": "org.joda.convert.RenameHandler.parseRenameFile(Ljava/util/List;Ljava/net/URL;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 9,
+        "code-snippets-file": "snippets/u/00027.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_enumSubclass",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "RenameHandler.java:86",
+                        "method-b-site": "RenameHandler.java:321",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_enumSubclass",
+        "notes": "method-b does the majority of work in method-a by actually parsing the configuration file of the RenameHandler ",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-27-11-56",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 19,
+        "inspection-start-time": "2022-01-27-13-28",
+        "project": "joda-convert",
+        "spec-id": "00032",
+        "method-a": "org.joda.convert.RenameHandler.lookupEnum(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;",
+        "method-b": "org.joda.convert.RenameHandler.getEnumRenames(Ljava/lang/Class;)Ljava/util/Map;",
+        "method-a-return-type": "java.lang.Enum",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/u/00032.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Enum",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "EnumStringConverterFactory.java:80",
+                        "method-b-site": "RenameHandler.java:274",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the assertion was checked with a string literal, which may have been the reason DSI replaced the return of method-a with the empty string",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestJDKStringConverters#test_Enum",
+        "notes": "method-a will be delayed indefinitely to do the no-break-pass so any test that tries to look up an enum will fail unless DSI happens to replace method-a's return with the correct value",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-27-13-40",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 20,
+        "inspection-start-time": "2022-01-28-17-55",
+        "project": "joda-convert",
+        "spec-id": "00036",
+        "method-a": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "java.lang.Object",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/u/00036.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotationSuperFactorySubViaSub2",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:342",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a is not assigned or checked.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, the test consists of only the call to method-a, so when it is delayed, the test fails since no exception is thrown due to the no-break-pass."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotationSuperFactorySubViaSub2",
+        "notes": "The only place where method-b is called is when method-a is called.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-18-07",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 21,
+        "inspection-start-time": "2022-01-28-18-09",
+        "project": "joda-convert",
+        "spec-id": "00037",
+        "method-a": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-b": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "java.lang.Object",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 22,
+        "code-snippets-file": "snippets/u/00037.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotationSuperFactorySubViaSub2",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:342",
+                        "method-b-site": "StringConvert.java:445",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a is not assigned or checked.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, the test consists of only the call to method-a, so when it is delayed, the test fails since no exception is thrown due to the no-break-pass."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotationSuperFactorySubViaSub2",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-18-11",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 22,
+        "inspection-start-time": "2022-01-28-18-12",
+        "project": "joda-convert",
+        "spec-id": "00038",
+        "method-a": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "java.lang.Object",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "code-snippets-file": "snippets/u/00038.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotationSuperFactorySubViaSub2",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:342",
+                        "method-b-site": "StringConvert.java:445",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a is not assigned or checked.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, the test consists of only the call to method-a, so when it is delayed, the test fails since no exception is thrown due to the no-break-pass."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotationSuperFactorySubViaSub2",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-18-15",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 23,
+        "inspection-start-time": "2022-01-28-18-15",
+        "project": "joda-convert",
+        "spec-id": "00039",
+        "method-a": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "java.lang.Object",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 22,
+        "code-snippets-file": "snippets/u/00039.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotationSuperFactorySubViaSub2",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:342",
+                        "method-b-site": "StringConvert.java:487",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a is not assigned or checked.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, the test consists of only the call to method-a, so when it is delayed, the test fails since no exception is thrown due to the no-break-pass."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotationSuperFactorySubViaSub2",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-18-17",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 24,
+        "inspection-start-time": "2022-01-28-18-18",
+        "project": "joda-convert",
+        "spec-id": "00040",
+        "method-a": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-b": "org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z",
+        "method-a-return-type": "java.lang.Object",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00040.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:159",
+                        "method-b-site": "Status.java:26",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was replaced with the empty string, and it was checked against a string literal",
+                "notes": "method-b was called in the construction of a mock enum, which was not used in this test."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+        "notes": "ONE_STATELESS_METHOD method-a checks if an object can be converted to/from a string, and method b performs the conversion, they do not need to be called sequentially (especially converting before checking if something is convertible). DECISION: Running with a debugger shows that method-a calls method-b indirectly using reflection. SPECIAL_NBP",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-18-32",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 25,
+        "inspection-start-time": "2022-01-28-19-17",
+        "project": "joda-convert",
+        "spec-id": "00042",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00042.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_inherit1",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:123",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was replaced with the empty string, and it was checked against a string literal",
+                "notes": "The test consists of just a call to method-a, where its return is asserted"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertToString_withType_inherit1",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-19-23",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 26,
+        "inspection-start-time": "2022-01-28-19-51",
+        "project": "joda-convert",
+        "spec-id": "00044",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "code-snippets-file": "snippets/u/00044.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_inherit1",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:123",
+                        "method-b-site": "StringConvert.java:426",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was replaced with the empty string, and it was checked against a string literal",
+                "notes": "The test consists of just a call to method-a, where its return is asserted"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertToString_withType_inherit1",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-19-54",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 27,
+        "inspection-start-time": "2022-01-28-19-56",
+        "project": "joda-convert",
+        "spec-id": "00045",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "code-snippets-file": "snippets/u/00045.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_inherit1",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:123",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was replaced with the empty string, and it was checked against a string literal",
+                "notes": "The test consists of just a call to method-a, where its return is asserted"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertToString_withType_inherit1",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-19-58",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 28,
+        "inspection-start-time": "2022-01-28-20-08",
+        "project": "joda-convert",
+        "spec-id": "00047",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "code-snippets-file": "snippets/u/00047.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_withType_inherit1",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:123",
+                        "method-b-site": "StringConvert.java:509",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was replaced with the empty string, and it was checked against a string literal",
+                "notes": "The test consists of just a call to method-a, where its return is asserted"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertToString_withType_inherit1",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-20-10",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 29,
+        "inspection-start-time": "2022-01-29-20-04",
+        "project": "joda-convert",
+        "spec-id": "00052",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 23,
+        "code-snippets-file": "snippets/u/00052.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:585",
+                        "method-b-site": "StringConvert.java:407",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was replaced with the empty string and the other side of the assertion was a string literal",
+                "notes": "The return value of method-a being replaced with the empty string caused an assertion to fail, which prevented the test from finishing."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-20-08",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 30,
+        "inspection-start-time": "2022-01-29-20-09",
+        "project": "joda-convert",
+        "spec-id": "00053",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/u/00053.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotationSuperFactorySubViaSub1",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:335",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was replaced with the empty string and the other side of the assertion was a string literal",
+                "notes": "The return value of method-a being replaced with the empty string caused an assertion to fail, which prevented the test from finishing."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotationSuperFactorySubViaSub1",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-20-15",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 31,
+        "inspection-start-time": "2022-01-29-20-52",
+        "project": "joda-convert",
+        "spec-id": "00055",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 23,
+        "code-snippets-file": "snippets/u/00055.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:585",
+                        "method-b-site": "StringConvert.java:509",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was replaced with the empty string and the other side of the assertion was a string literal",
+                "notes": "The return value of method-a being replaced with the empty string caused an assertion to fail, which prevented the test from finishing."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-20-55",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 32,
+        "inspection-start-time": "2022-01-29-20-56",
+        "project": "joda-convert",
+        "spec-id": "00056",
+        "method-a": "org.joda.convert.StringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-b": "org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;",
+        "method-a-return-type": "java.lang.Object",
+        "method-b-return-type": "java.lang.Enum",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00056.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:446",
+                        "method-b-site": "EnumStringConverterFactory.java:64",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was replaced with the empty string and the other side of the assertion was a string literal",
+                "notes": "The return value of method-a being replaced with the empty string caused an assertion to fail, which prevented the test from finishing."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "",
+        "notes": "DYNAMIC_DISPATCH_SAME_METHOD, the StringConverter is just an empty interface and EnumStringConverter extends an interface that extends StringConverter",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-21-10",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 33,
+        "inspection-start-time": "2022-01-29-21-47",
+        "project": "joda-convert",
+        "spec-id": "00057",
+        "method-a": "org.joda.convert.StringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-b": "org.joda.convert.StringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.Object",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00057.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_findConverterNoGenerics",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:201",
+                        "method-b-site": "TestStringConvert.java:202",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was checked in an assertion with the other side being a call to Integer.valueOf(12), and DSI replaced the return value with null.",
+                "notes": "The call to method-b was made in an assertion after an assertion with method-a that failed, so we never reached method-b. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_findConverterNoGenerics",
+        "notes": "UNRELATED_STATEFUL_METHODS, StringConverter is an interface, so technically an implementing class might make method-a or method-b stateful, but no class in the source code does this.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-21-57",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 34,
+        "inspection-start-time": "2022-01-29-22-12",
+        "project": "joda-convert",
+        "spec-id": "00058",
+        "method-a": "org.joda.convert.StringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertToString(Ljava/lang/Enum;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00058.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertToString_inherit",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:408",
+                        "method-b-site": "EnumStringConverterFactory.java:64",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was replaced with the empty string and the other side of the assertion was a string literal",
+                "notes": "The return value of method-a being replaced with the empty string caused an assertion to fail, which prevented the test from finishing."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "",
+        "notes": "DYNAMIC_DISPATCH_SAME_METHOD, the StringConverter is just an empty interface and EnumStringConverter extends an interface that extends StringConverter",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-22-14",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 35,
+        "inspection-start-time": "2022-01-29-22-15",
+        "project": "joda-convert",
+        "spec-id": "00059",
+        "method-a": "org.joda.convert.StringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 17,
+        "code-snippets-file": "snippets/u/00059.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:408",
+                        "method-b-site": "StringConvert.java:456",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was replaced with the empty string and the other side of the assertion was a string literal",
+                "notes": "The return value of method-a being replaced with the empty string caused an assertion to fail, which prevented a later assertion containing method-b to be called. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_findConverterNoGenerics",
+        "notes": "UNRELATED_STATEFUL_METHODS, StringConverter is an interface, so technically an implementing class might make method-a or method-b stateful, but no class in the source code does this.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-22-20",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 36,
+        "inspection-start-time": "2022-01-29-22-21",
+        "project": "joda-convert",
+        "spec-id": "00060",
+        "method-a": "org.joda.convert.StringConverterFactory.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.eliminateEnumSubclass(Ljava/lang/Class;)Ljava/lang/Class;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "java.lang.Class",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 5,
+        "code-snippets-file": "snippets/u/00060.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:623",
+                        "method-b-site": "AnnotationStringConverterFactory.java:106",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a was replaced with null",
+                "notes": "The return value of method-a being replaced with null caused an illegal state where it was presumed a converter did not exist from the tested type to a string"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-22-33",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 37,
+        "inspection-start-time": "2022-01-29-22-48",
+        "project": "joda-convert",
+        "spec-id": "00061",
+        "method-a": "org.joda.convert.StringConverterFactory.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findAnnotatedConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 30,
+        "code-snippets-file": "snippets/u/00061.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:623",
+                        "method-b-site": "AnnotationStringConverterFactory.java:51",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a was replaced with null",
+                "notes": "The return value of method-a being replaced with null caused an illegal state where it was presumed a converter did not exist from the tested type to a string"
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-22-51",
+        "inspection-time-in-minutes": 3
+    },    {
+        "iid": 38,
+        "inspection-start-time": "2022-01-29-22-55",
+        "project": "joda-convert",
+        "spec-id": "00062",
+        "method-a": "org.joda.convert.StringConverterFactory.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromStringConstructor(Ljava/lang/Class;Ljava/lang/reflect/Method;)Lorg/joda/convert/MethodConstructorStringConverter;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "org.joda.convert.MethodConstructorStringConverter",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 28,
+        "code-snippets-file": "snippets/u/00062.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:623",
+                        "method-b-site": "AnnotationStringConverterFactory.java:67",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a was replaced with null",
+                "notes": "The return value of method-a being replaced with null caused an illegal state where it was presumed a converter did not exist from the tested type to a string"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-22-57",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 39,
+        "inspection-start-time": "2022-01-29-22-57",
+        "project": "joda-convert",
+        "spec-id": "00063",
+        "method-a": "org.joda.convert.StringConverterFactory.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromString(Ljava/lang/Class;)Ljava/lang/reflect/Method;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "java.lang.reflect.Method",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 18,
+        "code-snippets-file": "snippets/u/00063.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:623",
+                        "method-b-site": "AnnotationStringConverterFactory.java:67",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a was replaced with null",
+                "notes": "The return value of method-a being replaced with null caused an illegal state where it was presumed a converter did not exist from the tested type to a string"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-22-59",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 40,
+        "inspection-start-time": "2022-01-29-22-59",
+        "project": "joda-convert",
+        "spec-id": "00064",
+        "method-a": "org.joda.convert.StringConverterFactory.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findFromStringMethod(Ljava/lang/Class;Ljava/lang/reflect/Method;Z)Lorg/joda/convert/MethodsStringConverter;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "org.joda.convert.MethodsStringConverter",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 26,
+        "code-snippets-file": "snippets/u/00064.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:623",
+                        "method-b-site": "AnnotationStringConverterFactory.java:67",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a was replaced with null",
+                "notes": "The return value of method-a being replaced with null caused an illegal state where it was presumed a converter did not exist from the tested type to a string"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-23-00",
+        "inspection-time-in-minutes": 1
+    },
+    {
+        "iid": 41,
+        "inspection-start-time": "2022-01-30-22-02",
+        "project": "joda-convert",
+        "spec-id": "00065",
+        "method-a": "org.joda.convert.StringConverterFactory.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.AnnotationStringConverterFactory.findToStringMethod(Ljava/lang/Class;)Ljava/lang/reflect/Method;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "java.lang.reflect.Method",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 30,
+        "code-snippets-file": "snippets/u/00065.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:623",
+                        "method-b-site": "AnnotationStringConverterFactory.java:63",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a was replaced with null.",
+                "notes": "The null replacement of the return value of method-a resulted in an illegal state where it was believed that no converter existed between the tested class and a string."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-30-22-11",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 42,
+        "inspection-start-time": "2022-01-30-22-12",
+        "project": "joda-convert",
+        "spec-id": "00066",
+        "method-a": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "org.joda.convert.TypedStringConverter",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 26,
+        "code-snippets-file": "snippets/u/00066.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:597",
+                        "method-b-site": "TestStringConvert.java:389",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a was replaced with null.",
+                "notes": "The null replacement of the return value of method-a resulted in an illegal state where it was believed that no converter existed between the tested class and a string."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+        "notes": "UNRELATED_STATELESS_METHODS method-a is a stateless method called in the process of converting a class to a string, method-b is part of the inverse process and is also stateless.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-30-22-25",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 43,
+        "inspection-start-time": "2022-01-30-22-27",
+        "project": "joda-convert",
+        "spec-id": "00067",
+        "method-a": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "org.joda.convert.TypedStringConverter",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/u/00067.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:597",
+                        "method-b-site": "TestNumericObjectArrayStringConverterFactory.java:75",
+                        "invocation-count": 4
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a was replaced with null.",
+                "notes": "The null replacement of the return value of method-a resulted in an illegal state where it was believed that no converter existed between the tested class and a string."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+        "notes": "method-a is a stateless method that is called by a method called by method-b, this spec was mined because a previous assertion in the test also called method-a REVERSE_NBP UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-30-22-39",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 44,
+        "inspection-start-time": "2022-01-30-22-42",
+        "project": "joda-convert",
+        "spec-id": "00068",
+        "method-a": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-b": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "org.joda.convert.TypedStringConverter",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/u/00068.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:597",
+                        "method-b-site": "StringConvert.java:445",
+                        "invocation-count": 4
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a was replaced with null.",
+                "notes": "The null replacement of the return value of method-a resulted in an illegal state where it was believed that no converter existed between the tested class and a string."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+        "notes": "method-a is a stateless method that is called by a method called by method-b, this spec was mined because a previous assertion in the test called method-a without calling method-b because the converter for a numeric array has a shortcut to convert the array to a string if the array is empty which calls method-a without calling method b. This causes a trace of aba when the empty array is tested first. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-30-23-01",
+        "inspection-time-in-minutes": 19
+    },
+    {
+        "iid": 45,
+        "inspection-start-time": "2022-01-30-23-02",
+        "project": "joda-convert",
+        "spec-id": "00069",
+        "method-a": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "org.joda.convert.TypedStringConverter",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 14,
+        "code-snippets-file": "snippets/u/00069.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:597",
+                        "method-b-site": "StringConvert.java:487",
+                        "invocation-count": 4
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a was replaced with null.",
+                "notes": "The null replacement of the return value of method-a resulted in an illegal state where it was believed that no converter existed between the tested class and a string."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+        "notes": "method-a is a stateless method that is called by a method called by method-b, this spec was mined because a previous assertion in the test called method-a without calling method-b because the converter for a numeric array has a shortcut to convert the array to a string if the array is empty which calls method-a without calling method b. This causes a trace of aba when the empty array is tested first. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-30-23-11",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 46,
+        "inspection-start-time": "2022-01-30-23-12",
+        "project": "joda-convert",
+        "spec-id": "00070",
+        "method-a": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-b": "org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z",
+        "method-a-return-type": "org.joda.convert.TypedStringConverter",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00070.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:597",
+                        "method-b-site": "Status.java:26",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a was replaced with null.",
+                "notes": "The null replacement of the return value of method-a resulted in an illegal state where it was believed that no converter existed between the tested class and a string."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+        "notes": "UNRELATED_STATEFUL_METHODS method-a is a stateless method that is called by a method called by method-b, this spec was mined because a previous assertion in the test also called method-a. Method-b is called in the construction of an enum constructed for use in testing, the call to method-a has no effect on its state.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-30-23-29",
+        "inspection-time-in-minutes": 17
+    },
+    {
+        "iid": 47,
+        "inspection-start-time": "2022-01-30-23-30",
+        "project": "joda-convert",
+        "spec-id": "00071",
+        "method-a": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 23,
+        "code-snippets-file": "snippets/u/00071.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_findConverter_Object",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:193",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, the only method called in the test is method-a, so delaying method-a causes the test to immediately finish with no exception"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_findConverter_Object",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-30-23-39",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 48,
+        "inspection-start-time": "2022-01-30-23-40",
+        "project": "joda-convert",
+        "spec-id": "00072",
+        "method-a": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 28,
+        "code-snippets-file": "snippets/u/00072.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_findConverter_Object",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:193",
+                        "method-b-site": "StringConvert.java:537",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, the only method called in the test is method-a, so delaying method-a causes the test to immediately finish with no exception"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_findConverter_Object",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-30-23-42",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 49,
+        "inspection-start-time": "2022-01-30-23-42",
+        "project": "joda-convert",
+        "spec-id": "00073",
+        "method-a": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 44,
+        "code-snippets-file": "snippets/u/00073.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_findConverter_Object",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:193",
+                        "method-b-site": "StringConvert.java:537",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, the only method called in the test is method-a, so delaying method-a causes the test to immediately finish with no exception"
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_findConverter_Object",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-30-23-44",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 50,
+        "inspection-start-time": "2022-01-30-23-44",
+        "project": "joda-convert",
+        "spec-id": "00074",
+        "method-a": "org.joda.convert.StringConvert.findConverter(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00074.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:193",
+                        "method-b-site": "StringConvert.java:487",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION",
+                "notes": "The return value of method-a was immediately accessed in the form var1 = method-a(); return var1.method-x()"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+        "notes": "Method-b is called in the construction of an enum constructed for use in testing, the call to method-a has no effect on its state. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-30-23-56",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 51,
+        "inspection-start-time": "2022-01-30-23-57",
+        "project": "joda-convert",
+        "spec-id": "00075",
+        "method-a": "org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 19,
+        "code-snippets-file": "snippets/u/00075.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:407",
+                        "method-b-site": "TestStringConvert.java:586",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION",
+                "notes": "The return value of method-a was immediately accessed in the form var1 = method-a(); return var1.method-x()"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+        "notes": "UNRELATED_STATEFUL_METHODS Method-a finds a converter between from an object to a string, method-b finds a converter from a string to an object, they do not interact and are just called after one another in two different assertions.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-31-00-03",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 52,
+        "inspection-start-time": "2022-01-31-00-04",
+        "project": "joda-convert",
+        "spec-id": "00076",
+        "method-a": "org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 16,
+        "code-snippets-file": "snippets/u/00076.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_findConverterNoGenerics_Object",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:212",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, the only method called in the test is method-a, so delaying method-a causes the test to immediately finish with no exception"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_findConverterNoGenerics_Object",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-31-00-12",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 53,
+        "inspection-start-time": "2022-01-31-00-12",
+        "project": "joda-convert",
+        "spec-id": "00077",
+        "method-a": "org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 13,
+        "code-snippets-file": "snippets/u/00077.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_findConverterNoGenerics_Object",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:212",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, the only method called in the test is method-a, so delaying method-a causes the test to immediately finish with no exception"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_findConverterNoGenerics_Object",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-31-00-15",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 54,
+        "inspection-start-time": "2022-01-31-00-16",
+        "project": "joda-convert",
+        "spec-id": "00078",
+        "method-a": "org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "org.joda.convert.StringConverter",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 32,
+        "code-snippets-file": "snippets/u/00078.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:407",
+                        "method-b-site": "TestStringConvert.java:509",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION",
+                "notes": "The return value of method-a was immediately accessed in the form var1 = method-a(); return var1.method-x()"
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-31-00-23",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 55,
+        "inspection-start-time": "2022-01-31-00-25",
+        "project": "joda-convert",
+        "spec-id": "00079",
+        "method-a": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "org.joda.convert.TypedStringConverter",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 27,
+        "code-snippets-file": "snippets/u/00079.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_findConverter_Object",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:537",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION, the return value of method-a was replaced by null, which was the expected behaviour",
+                "notes": "EXPECTED_EXCEPTION, the IllegalStateException that was expected results from a converter from a given class not being found, which would happen when method-a returns null."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_findConverter_Object",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-31-00-28",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 56,
+        "inspection-start-time": "2022-01-31-00-30",
+        "project": "joda-convert",
+        "spec-id": "00080",
+        "method-a": "org.joda.convert.StringConvert.findFromStringConstructorByType(Ljava/lang/Class;)Ljava/lang/reflect/Constructor;",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "java.lang.reflect.Constructor",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00080.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_registerMethodConstructorCharSequence",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:784",
+                        "method-b-site": "TestStringConvert.java:696",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_registerMethodConstructorCharSequence",
+        "notes": "Method-a is stateless, but it is called within the method registerMethodConstructor(), which does register converters, which may or not be relevant for future conversions from strings, if the neccessary converter was registered.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-31-00-44",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 57,
+        "inspection-start-time": "2022-02-01-11-20",
+        "project": "joda-convert",
+        "spec-id": "00081",
+        "method-a": "org.joda.convert.StringConvert.findFromStringConstructorByType(Ljava/lang/Class;)Ljava/lang/reflect/Constructor;",
+        "method-b": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.reflect.Constructor",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00081.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_registerMethodConstructorCharSequence",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:784",
+                        "method-b-site": "TestStringConvert.java:695",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION",
+                "notes": "Method-a was called in a previous assertion to method-b, and the return value of method-a was passed into a method that assumed its arguments were not null, so a null pointer exception happened before we got to method-b."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_registerMethodConstructorCharSequence",
+        "notes": "ONE_STATELESS_METHOD method-a does not change state, but it is called in registerMethodConstructor(), which registers a method to be used in later conversions (e.g method-b).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-01-11-33",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 58,
+        "inspection-start-time": "2022-02-01-12-39",
+        "project": "joda-convert",
+        "spec-id": "00082",
+        "method-a": "org.joda.convert.StringConvert.findFromStringConstructorByType(Ljava/lang/Class;)Ljava/lang/reflect/Constructor;",
+        "method-b": "org.joda.convert.StringConvert.findConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/StringConverter;",
+        "method-a-return-type": "java.lang.reflect.Constructor",
+        "method-b-return-type": "org.joda.convert.StringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00082.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_registerMethodConstructorCharSequence",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:784",
+                        "method-b-site": "StringConvert.java:407",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION",
+                "notes": "Method-a was called in a previous assertion to method-b, and the return value of method-a was passed into a method that assumed its arguments were not null, so a null pointer exception happened before we got to method-b."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_registerMethodConstructorCharSequence",
+        "notes": "ONE_STATELESS_METHOD method-a does not change state, but it is called in registerMethodConstructor(), which registers a method to be used in later conversions (e.g method-b).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-01-12-43",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 59,
+        "inspection-start-time": "2022-02-01-12-43",
+        "project": "joda-convert",
+        "spec-id": "00083",
+        "method-a": "org.joda.convert.StringConvert.findFromStringConstructorByType(Ljava/lang/Class;)Ljava/lang/reflect/Constructor;",
+        "method-b": "org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "java.lang.reflect.Constructor",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00083.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_registerMethodConstructorCharSequence",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:784",
+                        "method-b-site": "StringConvert.java:509",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION",
+                "notes": "Method-a was called in a previous assertion to method-b, and the return value of method-a was passed into a method that assumed its arguments were not null, so a null pointer exception happened before we got to method-b."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_registerMethodConstructorCharSequence",
+        "notes": "ONE_STATELESS_METHOD method-a does not change state, but it is called in registerMethodConstructor(), which registers a method to be used in later conversions (e.g method-b).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-01-12-45",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 60,
+        "inspection-start-time": "2022-02-01-12-46",
+        "project": "joda-convert",
+        "spec-id": "00084",
+        "method-a": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "org.joda.convert.TypedStringConverter",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 28,
+        "code-snippets-file": "snippets/u/00084.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConverterFactory.java:47",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION",
+                "notes": "method-a's return value is immediately accessed in the form method-a().method-x()"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_registerMethodConstructorCharSequence",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-01-12-53",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 61,
+        "inspection-start-time": "2022-02-01-13-33",
+        "project": "joda-convert",
+        "spec-id": "00085",
+        "method-a": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "org.joda.convert.TypedStringConverter",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 31,
+        "code-snippets-file": "snippets/u/00085.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConverterFactory#test_registerFactory",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConverterFactory.java:47",
+                        "method-b-site": "StringConvert.java:537",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION",
+                "notes": "method-a's return value is immediately accessed in the form method-a().method-x()"
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConverterFactory#test_registerFactory",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-01-13-35",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 62,
+        "inspection-start-time": "2022-02-01-13-36",
+        "project": "joda-convert",
+        "spec-id": "00086",
+        "method-a": "org.joda.convert.StringConvert.findTypedConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-b": "org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z",
+        "method-a-return-type": "org.joda.convert.TypedStringConverter",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00086.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:487",
+                        "method-b-site": "Status.java:26",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION, the return value of method-a was accessed in a calling method",
+                "notes": "method-b was called in the construction of a mock enum used for testing, which was not used in this test"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_convertFromString_inherit",
+        "notes": "method-b checks if a suitable converter for a given type exists, and method-a does the same process in the method findConverter(), calling one before the other will cache the converter if one is converting the same type, but it will not change the correctness of the behaviour either way. INSPECTION_TODO: mark method-b in the snippet and tag this spec",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-01-13-55",
+        "inspection-time-in-minutes": 19
+    },
+    {
+        "iid": 63,
+        "inspection-start-time": "2022-02-01-13-55",
+        "project": "joda-convert",
+        "spec-id": "00087",
+        "method-a": "org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "org.joda.convert.TypedStringConverter",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 19,
+        "code-snippets-file": "snippets/u/00087.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:509",
+                        "method-b-site": "TestStringConvert.java:586",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION, the return value of method-a was accessed in a calling method",
+                "notes": "method-b was called in a subsequent assertion, and so was not called when the NPE crashed the test"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+        "notes": "ONE_STATELESS_METHOD method-a is called during the process of converting an object to a string, and method-b is called to convert as string into a given object, they do not interact.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-01-14-03",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 64,
+        "inspection-start-time": "2022-02-01-14-03",
+        "project": "joda-convert",
+        "spec-id": "00088",
+        "method-a": "org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "org.joda.convert.TypedStringConverter",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 16,
+        "code-snippets-file": "snippets/u/00088.java",
+        "inspected-cases": [
+            {
+                "test": "",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:509",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, the only method called in the test is method-a, so when it is delayed the test ends with no exception"
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_findConverterNoGenerics_Object",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-01-14-08",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 65,
+        "inspection-start-time": "2022-02-01-14-08",
+        "project": "joda-convert",
+        "spec-id": "00089",
+        "method-a": "org.joda.convert.StringConvert.findTypedConverterNoGenerics(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "org.joda.convert.TypedStringConverter",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 13,
+        "code-snippets-file": "snippets/u/00089.java",
+        "inspected-cases": [
+            {
+                "test": "",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:509",
+                        "method-b-site": "StringConvert.java:571",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, the only method called in the test is method-a, so when it is delayed the test ends with no exception"
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_findConverterNoGenerics_Object",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-01-14-11",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 66,
+        "inspection-start-time": "2022-02-01-14-12",
+        "project": "joda-convert",
+        "spec-id": "00090",
+        "method-a": "org.joda.convert.StringConvert.isConvertible(Ljava/lang/Class;)Z",
+        "method-b": "org.joda.convert.StringConvert.findConverterQuiet(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/u/00090.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Class_withRename",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Status.java:26",
+                        "method-b-site": "StringConvert.java:464",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "The return value of method-a is stored in the mock enum, but the mock enum is not used in this test.",
+                "notes": "method-a is called in the constructor of the mock enum used for testing"
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestJDKStringConverters#test_Class_withRename",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-01-14-12",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 67,
+        "inspection-start-time": "2022-02-01-17-04",
+        "project": "joda-convert",
+        "spec-id": "00094",
+        "method-a": "org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/StringConverter;)V",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00094.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:704",
+                        "method-b-site": "TestStringConvert.java:586",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "This spec would have been classified as ls, however, before method-b was called, the test first relies on the converter registered by method-a to call convertToString(), which fails, for the same reason method-b would have failed (the converter to convert the tested class was not registered, and so an exception was thrown when no converter was found)"
+            }
+        ],
+        "verdict": "unknown",
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+        "notes": "SOMETIMES_TRUE_SPEC. DECISION: we need to know how to effectively express this as a spec that we can monitor, e.g., (b -> (*) a )? method-a registers a converter to be used to by method-b convert a string to a given class of object. However, the constructor of StringConvert includes several factories that return converters by default, so it is not always required to register a particular converter to make a conversion.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-01-17-17",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 68,
+        "inspection-start-time": "2022-02-01-17-32",
+        "project": "joda-convert",
+        "spec-id": "00098",
+        "method-a": "org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/ToStringConverter;Lorg/joda/convert/FromStringConverter;)V",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00098.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StringConvert.java:583",
+                        "method-b-site": "TestStringConvert.java:586",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "This spec would have been classified as ls, however, before method-b was called, the test first relies on the converter registered by method-a to call convertToString(), which fails, for the same reason method-b would have failed (the converter to convert the tested class was not registered, and so an exception was thrown when no converter was found)"
+            }
+        ],
+        "verdict": "unknown",
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+        "notes": "SOMETIMES_TRUE_SPEC. DECISION: we need to know how to effectively express this as a spec that we can monitor, e.g., (b -> (*) a )? , method-a registers a converter to be used to by method-b convert a string to a given class of object. However, the constructor of StringConvert includes several factories that return converters by default, so it is not always required to register a particular converter to make a conversion.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-01-17-35",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 69,
+        "inspection-start-time": "2022-02-02-23-18",
+        "project": "joda-convert",
+        "spec-id": "00102",
+        "method-a": "org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/ToStringConverter;Lorg/joda/convert/FromStringConverter;)V",
+        "method-b": "org.joda.convert.StringConvert.register(Ljava/lang/Class;Lorg/joda/convert/StringConverter;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00102.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces_nullClass",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:595",
+                        "method-b-site": "StringConvert.java:704",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, the test consists of constructing StringConvert and then calling method-a in an assertion, so delaying method-a causes no exception to be thrown and the test to fail."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces_nullClass",
+        "notes": "",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-02-23-24",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 70,
+        "inspection-start-time": "2022-02-02-23-25",
+        "project": "joda-convert",
+        "spec-id": "00103",
+        "method-a": "org.joda.convert.StringConvert.registerMethodConstructor(Ljava/lang/Class;Ljava/lang/String;)V",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00103.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_registerMethodConstructorCharSequence",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:693",
+                        "method-b-site": "TestStringConvert.java:696",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "This spec would have been classified as ls, however, before method-b was called, the test first relies on the converter registered by method-a to call convertToString(), which fails, for the same reason method-b would have failed (the converter to convert the tested class was not registered, and so an exception was thrown when no converter was found)"
+            }
+        ],
+        "verdict": "unknown",
+        "spec-type": "precondition",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+        "notes": "SOMETIMES_TRUE_SPEC. DECISION: we need to know how to effectively express this as a spec that we can monitor, e.g., (b -> (*) a )? , method-a registers a converter to be used to by method-b convert a string to a given class of object. However, the constructor of StringConvert includes several factories that return converters by default, so it is not always required to register a particular converter to make a conversion.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-02-02-23-30",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 71,
+        "inspection-start-time": "2022-02-02-23-46",
+        "project": "joda-convert",
+        "spec-id": "00106",
+        "method-a": "org.joda.convert.StringConvert.registerMethodConstructor(Ljava/lang/Class;Ljava/lang/String;)V",
+        "method-b": "org.joda.convert.StringConvert.findFromStringConstructorByType(Ljava/lang/Class;)Ljava/lang/reflect/Constructor;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.reflect.Constructor",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "code-snippets-file": "snippets/u/00106.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_registerMethodConstructor_noSuchConstructor",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:729",
+                        "method-b-site": "StringConvert.java:784",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, the test consists of constructing StringConvert and then calling method-a in an assertion, so delaying method-a causes no exception to be thrown and the test to fail."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestStringConvert#test_registerMethodConstructor_noSuchConstructor",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-02-23-51",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 72,
+        "inspection-start-time": "2022-02-08-00-11",
+        "project": "joda-convert",
+        "spec-id": "00207",
+        "method-a": "org.joda.convert.TypedStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-b": "org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;",
+        "method-a-return-type": "java.lang.Object",
+        "method-b-return-type": "java.lang.Enum",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "code-snippets-file": "snippets/u/00207.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Enum_invalidConstant",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestJDKStringConverters.java:463",
+                        "method-b-site": "EnumStringConverterFactory.java:64",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "RETURN_VALUE_DISCARDED",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN The point of the test is to make sure method-a (also method-b: see verdict) throws an error when trying to convert a member of an enum when using a constant not in the enum, by delaying method-a this test fails because no exception is thrown, as method-a is the last method called in the test."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestJDKStringConverters#test_Enum_invalidConstant",
+        "notes": "DYNAMIC_DISPATCH_SAME_METHOD INSPECTION_TODO: add more details about this verdict and tag the spec if possible",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-08-00-18",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 73,
+        "inspection-start-time": "2022-02-08-00-19",
+        "project": "joda-convert",
+        "spec-id": "00208",
+        "method-a": "org.joda.convert.TypedStringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.Enum",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00208.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Enum",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestJDKStringConverters.java:456",
+                        "method-b-site": "EnumStringConverterFactory.java:64",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT",
+                "notes": "The return value of method-a (also method-b: see verdict) was compared in an assertion with a string literal, and was replaced by the empty string, causing the test to fail."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestJDKStringConverters#test_Enum",
+        "notes": "DYNAMIC_DISPATCH_SAME_METHOD INSPECTION_TODO: add more details about this verdict and tag the spec if possible",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-08-00-22",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 74,
+        "inspection-start-time": "2022-02-08-00-32",
+        "project": "joda-convert",
+        "spec-id": "00209",
+        "method-a": "org.joda.convert.TypedStringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.EnumStringConverterFactory$EnumStringConverter.convertToString(Ljava/lang/Enum;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00209.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Enum",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestJDKStringConverters.java:456",
+                        "method-b-site": "EnumStringConverterFactory.java:64",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT",
+                "notes": "The return value of method-a (also method-b: see verdict) was compared in an assertion with a string literal, and was replaced by the empty string, causing the test to fail."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestJDKStringConverters#test_Enum",
+        "notes": "DYNAMIC_DISPATCH_SAME_METHOD  INSPECTION_TODO: add more details about this verdict",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-08-00-35",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 75,
+        "inspection-start-time": "2022-02-08-00-24",
+        "project": "joda-convert",
+        "spec-id": "00210",
+        "method-a": "org.joda.convert.TypedStringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.TypedStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00210.java",
+        "inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_Enum",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestJDKStringConverters.java:456",
+                        "method-b-site": "TestJDKStringConverters.java:457",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT",
+                "notes": "The return value of method-a was compared in an assertion with a string literal, and was replaced by the empty string, causing the test to fail at the assertion containing method-a. Method-b was called in a subsequent assertion, and as such was never called. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestJDKStringConverters#test_Enum",
+        "notes": "UNRELATED_STATEFUL_METHODS, Method-a creates an object from a string, method-b does the opposite, they happen to be called sequentially during testing which is why the spec was mined.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-08-00-32",
+        "inspection-time-in-minutes": 8
+    }
+]

@@ -1,0 +1,6 @@
+https://github.com/apache/commons-collections ee282c7c6b6c6fb78e8452fc7ddda16893e009da commons-collections
+https://github.com/apache/commons-imaging 0c773d2a83c81eb470ab491f9bb4eb0031c3f9f1 commons-imaging
+https://github.com/apache/commons-beanutils.git d7ad98a743c3ce7398bcf29675065a84dae5fed2 commons-beanutils
+https://github.com/apache/commons-compress.git d2d1834f13f0056d3f23e4fe074939fcdbe55d5c commons-compress
+https://github.com/apache/commons-lang a25d6d800bc75f0c55517f80f98ddc2d08c02c0c commons-lang
+

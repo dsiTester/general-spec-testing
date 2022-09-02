@@ -1,0 +1,11 @@
+transition-id,method-sig
+DoubleMetaphoneDoubleMetaphoneResultappendAlternate,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendAlternate(C)V
+DoubleMetaphoneDoubleMetaphoneResultappend,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.append(C)V
+DoubleMetaphoneDoubleMetaphoneResultappendPrimary,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.appendPrimary(C)V
+DoubleMetaphoneDoubleMetaphoneResultgetPrimary,org.apache.commons.codec.language.DoubleMetaphone$DoubleMetaphoneResult.getPrimary()Ljava/lang/String;
+DoubleMetaphoneconditionC0,org.apache.commons.codec.language.DoubleMetaphone.conditionC0(Ljava/lang/String;I)Z
+DoubleMetaphonegetMaxCodeLen,org.apache.commons.codec.language.DoubleMetaphone.getMaxCodeLen()I
+DoubleMetaphonehandleAEIOUY,org.apache.commons.codec.language.DoubleMetaphone.handleAEIOUY(Lorg/apache/commons/codec/language/DoubleMetaphone$DoubleMetaphoneResult;I)I
+DoubleMetaphonehandleC,org.apache.commons.codec.language.DoubleMetaphone.handleC(Ljava/lang/String;Lorg/apache/commons/codec/language/DoubleMetaphone$DoubleMetaphoneResult;I)I
+DoubleMetaphoneisSilentStart,org.apache.commons.codec.language.DoubleMetaphone.isSilentStart(Ljava/lang/String;)Z
+DoubleMetaphoneisSlavoGermanic,org.apache.commons.codec.language.DoubleMetaphone.isSlavoGermanic(Ljava/lang/String;)Z

@@ -1,0 +1,22 @@
+digraph Automaton {
+  rankdir = LR;
+  0 [shape=doublecircle,label="s0"];
+  initial [shape=plaintext,label=""];
+  initial -> 0
+  1 [shape=circle,label="s4"];
+  2 [shape=circle,label="s1"];
+  3 [shape=circle,label="s5"];
+  4 [shape=circle,label="s2"];
+  5 [shape=circle,label="s3"];
+  6 [shape=circle,label="s6"];
+  6 -> 0 [label="org.apache.commons.validator.UrlValidator.isValidFragment(Ljava/lang/String;)Z"];
+  2 -> 4 [label="org.apache.commons.validator.UrlValidator.isValidScheme(Ljava/lang/String;)Z"];
+  5 -> 1 [label="org.apache.commons.validator.routines.InetAddressValidator.isValid(Ljava/lang/String;)Z"];
+  1 -> 1 [label="org.apache.commons.validator.routines.InetAddressValidator.isValidInet4Address(Ljava/lang/String;)Z"];
+  3 -> 3 [label="org.apache.commons.validator.UrlValidator.countToken(Ljava/lang/String;Ljava/lang/String;)I"];
+  1 -> 3 [label="org.apache.commons.validator.UrlValidator.isValidPath(Ljava/lang/String;)Z"];
+  3 -> 6 [label="org.apache.commons.validator.UrlValidator.isValidQuery(Ljava/lang/String;)Z"];
+  4 -> 5 [label="org.apache.commons.validator.UrlValidator.isValidAuthority(Ljava/lang/String;)Z"];
+  0 -> 2 [label="org.apache.commons.validator.UrlValidator.isValid(Ljava/lang/String;)Z"];
+  1 -> 1 [label="org.apache.commons.validator.routines.RegexValidator.match(Ljava/lang/String;)[Ljava/lang/String;"];
+}

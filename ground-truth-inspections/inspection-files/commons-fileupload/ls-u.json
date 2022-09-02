@@ -1,0 +1,61 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-07-00-45",
+        "project": "commons-fileupload",
+        "spec-id": "00274",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.getTempFile()Ljava/io/File;",
+        "method-b": "org.apache.commons.fileupload2.FileItem.setHeaders(Lorg/apache/commons/fileupload2/FileItemHeaders;)V",
+        "method-a-return-type": "java.io.File",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 5,
+        "LS-verdict-count": 4,
+        "U-verdict-count": 2,
+        "code-snippets-file": "snippets/ls-u/00274.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileUpload",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:509",
+                        "method-b-site": "FileUploadBase.java:355",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR: Not sure what the replacement value was here...",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases" : [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage" : "stage-0-failure",
+                "exception-or-assertion" : "exception",
+                "invocation-info" : [
+                    {
+                        "method-a-site" : "DiskFileItem.java:509",
+                        "method-b-site" : "FileUploadBase.java:355",
+                        "invocation-count" : 1
+                    }
+                ],
+                "perturbation-count" : 1,
+                "comment-on-return-values" : "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at FileUploadBase.java:347.",
+                "notes" : ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testFileUpload",
+        "notes": "method-a accesses and potentially modifies the field variables DiskFileItem.tempFile, DiskFileItem.tempDir, and returns the field variable DiskFileItem.tempFile. The return value of method-a is used by the caller to construct a DeferredFileOutputStream object to set the field variable DiskFileItem.dfos to. ONE_PURE_SETTER: the used implementation of method-b is a pure setter for the field variable DiskFileItem.headers, which is not related to the values that method-a deals with. Thus, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-07-01-04",
+        "inspection-time-in-minutes": 19
+    }
+]

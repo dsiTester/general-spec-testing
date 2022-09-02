@@ -1,0 +1,75 @@
+package PACKAGE;
+
+public privileged aspect NAME {
+    // only need info about whether method-a was called
+    static boolean methodACalled = false;
+    static boolean methodBCalled = false;
+
+    static boolean inMethodA = false;
+    static boolean inMethodB = false;
+
+    pointcut callMethodA() : call(METHOD_A_SIG);
+    pointcut callMethodB() : call(METHOD_B_SIG);
+
+    static boolean detailedObjectTypeMode = OBJECT_TYPE_MODE;
+
+    before() : callMethodA() {
+        System.out.println("ASPECT: before calling method-a");
+        inMethodA = true;
+    }
+
+    after() : callMethodA() {
+        inMethodA = false;
+        methodACalled = true;
+        System.out.println("ASPECT: after calling method-a");
+    }
+
+    before() : callMethodB() {
+        System.out.println("ASPECT: before calling method-b");
+        inMethodB = true;
+    }
+
+    after() : callMethodB() {
+        inMethodB = false;
+        methodBCalled = true;
+        System.out.println("ASPECT: after calling method-b");
+    }
+
+    // parts borrowed from JavaMOP BaseAspect.aj
+    pointcut notWithin() : !within(PACKAGE.NAME) && !within(org.aspectj..*) && !within(org.junit..*) && !within(junit..*) && !within(java.lang.Object) && !within(javax..*) && !within(sun..*) && !within(javafx..*) && !within(com.sun..*);
+
+    pointcut getSomeField(): if (inMethodA || inMethodB) && GETS && notWithin();
+
+    after() returning (Object field) : getSomeField() {
+        if (inMethodA && (!methodACalled)) {
+            inMethodA = false;
+            System.out.println("#####GET,METHOD_A,SIG=" + thisJoinPoint.getSignature().toLongString() + ",TARGET_HASHCODE=" + System.identityHashCode(thisJoinPoint.getTarget()));
+            if (detailedObjectTypeMode && field != null) {
+            System.out.println("METHOD_A,Specific type: " + field.getClass().getName() + "," + System.identityHashCode(field));
+            }
+            inMethodA = true;
+        } else if (inMethodB && (!methodBCalled)) {
+            inMethodB = false;
+            System.out.println("#####GET,METHOD_B,SIG=" + thisJoinPoint.getSignature().toLongString() + ",TARGET_HASHCODE=" + System.identityHashCode(thisJoinPoint.getTarget()));
+            if (detailedObjectTypeMode && field != null) {
+            System.out.println("METHOD_B,Specific type: " + field.getClass().getName() + "," + System.identityHashCode(field));
+            }
+            inMethodB = true;
+        }
+    }
+
+    pointcut setSomeField(): if (inMethodA || inMethodB) && SETS && notWithin();
+
+    after() : setSomeField() {
+        if (inMethodA && (!methodACalled)) {
+            inMethodA = false;
+            System.out.println("=====SET,METHOD_A,SIG=" + thisJoinPoint.getSignature().toLongString() + ",TARGET_HASHCODE=" + System.identityHashCode(thisJoinPoint.getTarget()));
+            inMethodA = true;
+        } else if (inMethodB && (!methodBCalled)) {
+            inMethodB = false;
+            System.out.println("=====SET,METHOD_B,SIG=" + thisJoinPoint.getSignature().toLongString() + ",TARGET_HASHCODE=" + System.identityHashCode(thisJoinPoint.getTarget()));
+            inMethodB = true;
+        }
+    }
+
+}

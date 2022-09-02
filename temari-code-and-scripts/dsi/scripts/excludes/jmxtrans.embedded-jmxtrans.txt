@@ -1,0 +1,3 @@
+*IntegrationTest # specified in maven surefire excludes.
+ManagedGenericKeyedObjectPoolTest # METHODTRACER: only calls third party and constructors. 1/67 tests skipped.
+StringUtils2Test # METHODTRACER: only calls static, third party and constructors. 3/67 tests skipped.

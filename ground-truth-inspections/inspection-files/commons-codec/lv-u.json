@@ -1,0 +1,67 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-19-20-25",
+        "project": "commons-codec",
+        "spec-id": "00038",
+        "method-a": "org.apache.commons.codec.binary.Base16.ensureBufferSize(ILorg/apache/commons/codec/binary/BaseNCodec$Context;)[B",
+        "method-b": "org.apache.commons.codec.binary.BaseNCodec.readResults([BIILorg/apache/commons/codec/binary/BaseNCodec$Context;)I",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 19,
+        "LV-verdict-count": 6,
+        "U-verdict-count": 13,
+        "code-snippets-file": "snippets/lv-u/00038.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testBase16AtBufferEnd",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16.java:232",
+                        "method-b-site": "BaseNCodec.java:513",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT - it's most likely that DSI replaced the return value of method-a with the byte[] field variable decodeTable from Base16.java.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.binary.Base16Test#testBase16",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Base16.java:232",
+                        "method-b-site": "BaseNCodec.java:513",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "Base16.java:173",
+                        "method-b-site": "BaseNCodec.java:437",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT - not exactly sure which variable DSI replaced the return value of method-a with, but it could potentially be the byte[] field variable encodeTable from Base16.java?",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.binary.Base16Test#testBase16AtBufferEnd",
+        "notes": "method-a sets context.buffer to be of the size necessary to encode/decode. method-b accesses that context.buffer and reads from it. Hence, this is most likely a true spec.",
+        "findings": "There seems to be a dependency between the state changes that method-a makes on the Context argument, and the computations that method-b does. This can be a type-c (b is always preceded by a)?",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-19-20-48",
+        "inspection-time-in-minutes": 23
+    }
+
+]

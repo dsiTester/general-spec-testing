@@ -1,0 +1,157 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-15-23-17",
+        "project": "commons-codec",
+        "spec-id": "00330",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.doEncode([BIZ)[B",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.decode([B)[B",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls-u/00330.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testUnsafeCharEncodeDecode",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:128",
+                        "method-b-site": "PercentCodecTest.java:145",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Seems like DSI replaced the return value of method-a with the byte[] variable bytes. However, this is the pre-encoded value. So, when method-b tries to decode it, it throws an exception because the characters are not what method-b expected.",
+                "notes": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT"
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testDecodeInvalidEncodedResultDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:128",
+                        "method-b-site": "PercentCodecTest.java:75",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Seems like DSI replaced the return value of method-a with the byte[] variable bytes. However, this is somehow fine because the execution still throws the EXPECTED_EXCEPTION...",
+                "notes": "EXPECTED_EXCEPTION."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:128",
+                        "method-b-site": "PercentCodec.java:196",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. Seems like DSI replaced the return value of method-a with the byte[] variable bytes. However, there was an assertion between method-a and method-b that checked the output of method-a. Hence, the test failed before the execution got to method-b.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testUnsafeCharEncodeDecode",
+        "notes": "method-a returns an encoded version of the byte[] argument, using the other int and boolean arguments. method-b returns a decoded version of the byte[] argument. Since one does not necessarily have to call decode after encode, this is a spurious spec. INSPECTION_TODO since method-a is private, it would be good to see what its callers are and whether they may have a true spec relationship with method-b",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-23-49",
+        "inspection-time-in-minutes": 32
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-15-23-49",
+        "project": "commons-codec",
+        "spec-id": "00331",
+        "method-a": "org.apache.commons.codec.net.PercentCodec.doEncode([BIZ)[B",
+        "method-b": "org.apache.commons.codec.net.PercentCodec.expectedDecodingBytes([B)I",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "LV-verdict-count": 1,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-ls-u/00331.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testUnsafeCharEncodeDecode",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:128",
+                        "method-b-site": "PercentCodec.java:196",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Seems like DSI replaced the return value of method-a with the byte[] variable bytes. However, this is the pre-encoded value. So, when Utils.digit16() tries to decode it, it throws an exception because the characters are not what it expected. REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT",
+                "notes": ""
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testDecodeInvalidEncodedResultDecoding",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:128",
+                        "method-b-site": "PercentCodec.java:196",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Seems like DSI replaced the return value of method-a with the byte[] variable bytes. However, this is somehow fine because the execution still throws the EXPECTED_EXCEPTION...",
+                "notes": "EXPECTED_EXCEPTION."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.codec.net.PercentCodecTest#testPercentEncoderDecoderWithPlusForSpace",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "PercentCodec.java:128",
+                        "method-b-site": "PercentCodec.java:196",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. Seems like DSI replaced the return value of method-a with the byte[] variable bytes. However, there was an assertion between method-a and method-b that checked the output of method-a. Hence, the test failed before the execution got to method-b.",
+                "notes": "ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.codec.net.PercentCodecTest#testDecodeInvalidEncodedResultDecoding/snippet",
+        "notes": "method-a returns an encoded version of the byte[] argument, using the other int and boolean arguments. method-b checks the number of bytes expected for the decoding based on the bytes[] argument. In this particular use case, the return value of method-a is being passed into method-b. However in the general sense, this wouldn't be a true spec even if the return value of method-a was passed into method-b? because method-b is a general method to count the number of bytes.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-16-00-04",
+        "inspection-time-in-minutes": 15
+    }
+
+]

@@ -1,0 +1,7 @@
+project,true-spec,spurious-spec,unknown,no-break-pass (direct),no-break-pass (indirect),sometimes-true-spec,total
+kamranzafar.jtar,0,6,0,1,0,4,11
+commons-codec,17,240,3,117,59,9,445
+commons-validator,27,520,5,75,30,7,664
+commons-exec,34,197,3,30,48,22,334
+joda-convert,2,88,0,21,22,77,210
+commons-fileupload,18,212,3,29,70,5,337

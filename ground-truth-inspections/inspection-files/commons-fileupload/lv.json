@@ -1,0 +1,895 @@
+[
+    {
+        "iid" : 1,
+        "inspection-start-time": "2021-12-02-14-26",
+        "project": "commons-fileupload",
+        "spec-id": "00060",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getOutputStream()Ljava/io/OutputStream;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.write(Ljava/io/File;)V",
+        "method-a-return-type": "java.io.OutputStream",
+        "method-b-return-type": "void",
+        "same-class": "no",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00060.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [ { "method-a-site": "FileUploadBase.java:347", "method-b-site": "DiskFileUploadTest.java:95", "invocation-count": 1 } ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Replacing the method call with null did not cause a crash. Rather, replacing with null meant that a was not called, which in turn meant that a precondition for b was not satisfied.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+        "notes": "method-a checks whether the field variable DiskFileItem.dfos is null or not, sets that field variable if it is null, and returns its value. (Note that method-a is the only location in the class where DiskFileItem.dfos is set.) method-b calls DiskFileItem.isInMemory(), which calls a method from DiskFileItem.dfos. Thus, if method-a was not called before method-b, method-b will end up throwing a NullPointerException.",
+        "findings": "Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2021-12-02-14-49",
+        "inspection-time-in-minutes": 23
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2021-12-23-20-26",
+        "project": "commons-fileupload",
+        "spec-id": "00153",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.getItemIterator(Lorg/apache/commons/fileupload2/RequestContext;)Lorg/apache/commons/fileupload2/FileItemIterator;",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFileItemFactory()Lorg/apache/commons/fileupload2/FileItemFactory;",
+        "method-a-return-type": "org.apache.commons.fileupload2.FileItemIterator",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemFactory",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 6,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00153.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileUpload",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:333",
+                        "method-b-site": "FileUploadBase.java:334",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. DSI couldn't find another FileItemIterator object, so it replaced the return value from method-a with null, causing a NullPointerException at FileUploadBase.java:339.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testFileUpload with FileUploadBase.java:333 and FileUploadBase.java:334 swapped.",
+        "notes": "method-a creates and returns a new FileItemIteratorImpl() object (or throws an exception). ONE_STATELESS_METHOD: the used implementation of method-b is a 1-line naive getter that retrieves the private variable fileItemFactory. Inspection shows that fileItemFactory can be modified via setFileItemFactory(), but method-a does not call that method, so there is no ordering relationship between method-a and method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-23-20-45",
+        "inspection-time-in-minutes": 19
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-03-11-00",
+        "project": "commons-fileupload",
+        "spec-id": "00160",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.getParsedHeaders(Ljava/lang/String;)Lorg/apache/commons/fileupload2/FileItemHeaders;",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFieldName(Lorg/apache/commons/fileupload2/FileItemHeaders;)Ljava/lang/String;",
+        "method-a-return-type": "org.apache.commons.fileupload2.FileItemHeaders",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00160.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:1053",
+                        "method-b-site": "FileUploadBase.java:1056",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION - NullPointerException at FileUploadBase.java:503.",
+                "notes": "Technically EXPECTED_EXCEPTION, but not related to the DSI experiment."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+        "notes": "method-a parses the String argument and returns the FileItemHeaders object from the result of parsing. method-b parses the CONTENT_DISPOSITION header, which is returned by method-a, and returns the \"name\" value from it. The return value from method-a is the argument to method-b, and since method-b does some computation on its argument assuming that the argument is not null, calling method-a successfully seems to be a prerequisite for calling method-b. This seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING, since method-a is not the only way that a FileUploadBase object can get a FileItemHeaders object, for example, one can simply call FileUploadBase.newFileItemHeaders() (both method-a and method-b are protected). Additionally, the method-b of this spec is the immediate caller of method-b from 00159.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-03-11-10",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-03-14-17",
+        "project": "commons-fileupload",
+        "spec-id": "00171",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.newFileItemHeaders()Lorg/apache/commons/fileupload2/util/FileItemHeadersImpl;",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.parseHeaderLine(Lorg/apache/commons/fileupload2/util/FileItemHeadersImpl;Ljava/lang/String;)V",
+        "method-a-return-type": "org.apache.commons.fileupload2.util.FileItemHeadersImpl",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00171.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:580",
+                        "method-b-site": "FileUploadBase.java:606",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at FileUploadBase.java:685.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+        "notes": "method-a returns a new FileItemHeadersImpl instance, which has an empty constructor. method-b retrieves the next line in the header and modifies the FileItemHeadersImpl argument. The method calling method-a and method-b (FileUploadBase.getParsedHeaders()) uses the return value from method-a and passes it as an argument to method-b. Method-b then uses that value, but doesn't check for null; hence, replacing the return value of method-a with null results in a NullPointerException.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-03-14-30",
+        "inspection-time-in-minutes": 13
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-01-03-14-31",
+        "project": "commons-fileupload",
+        "spec-id": "00172",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.parseHeaderLine(Lorg/apache/commons/fileupload2/util/FileItemHeadersImpl;Ljava/lang/String;)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFieldName(Ljava/lang/String;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00172.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:606",
+                        "method-b-site": "FileUploadBase.java:503",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+        "notes": "This is rather complicated, since the wrapper for method-b takes in as argument a FileItemHeaders object, which is supplied by the caller of method-a (FileUploadBase.getParsedHeaders()). method-a modifies its FileItemHeadersImpl argument. Within the control flow of StreamingTest#testFILEUPLOAD135, not calling method-a will result in method-b returning null, which alters the control flow of the test, resulting in an assertion error. However, I'm not sure how general this spec is, and whether it would apply in other situations besides the specific control flows that I have tested... Ultimately, I think this is a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case, given that method-b's return value simply depends on its String argument.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-03-14-58",
+        "inspection-time-in-minutes": 27
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2022-01-03-14-58",
+        "project": "commons-fileupload",
+        "spec-id": "00173",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.parseHeaderLine(Lorg/apache/commons/fileupload2/util/FileItemHeadersImpl;Ljava/lang/String;)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFieldName(Lorg/apache/commons/fileupload2/FileItemHeaders;)Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00173.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:606",
+                        "method-b-site": "FileUploadBase.java:1056",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+        "notes": "method-a parses the String argument header, and adds the parsed value to the argument FileItemHeadersImpl headers. Method-b takes in as argument a FileItemHeaders object, which is supplied by the caller of method-a. Calling method-a populates the FileItemHeaders object in such a way that method-b would return null if method-a is not called, altering the control flow of the test, resulting in an assertion error. However, I don't think this holds as a spec, this is most likely more of a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case. One can supply method-b a FileItemHeaders object that has not been passed to method-a; to do so, they can call newFileItemHeaders() to create a new FileItemHeadersImpl object, and call FileItemHeadersImpl.addHeader(). That being said, calling FileItemHeadersImpl.addHeader() on a specific String is what method-a itself is doing.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-03-15-06",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2022-01-03-15-06",
+        "project": "commons-fileupload",
+        "spec-id": "00174",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.parseHeaderLine(Lorg/apache/commons/fileupload2/util/FileItemHeadersImpl;Ljava/lang/String;)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFileItemFactory()Lorg/apache/commons/fileupload2/FileItemFactory;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemFactory",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00174.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:606",
+                        "method-b-site": "FileUploadBase.java:334",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135 with FileUploadBase.java:333 and FileUploadBase.java:334 swapped.",
+        "notes": "method-a parses the String argument header, and adds the parsed value to the argument FileItemHeadersImpl headers. The used implementation of method-b is a 1-line getter to the field variable FileUpload.fileItemFactory (ONE_STATELESS_METHOD). Delaying the call to method-a caused the call in FileUploadBase.java:1056 to return null and the subsequent if branch to not be entered (check FileItemIteratorImpl.findNextItem()), causing the assertion on StreamingTest.java:149 to fail. However, given that method-b is a 1-line getter and it can be safely called before the context of method-a, the two methods are not related.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-03-15-13",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2022-01-03-20-23",
+        "project": "commons-fileupload",
+        "spec-id": "00190",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.setFileItemFactory(Lorg/apache/commons/fileupload2/FileItemFactory;)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFileItemFactory()Lorg/apache/commons/fileupload2/FileItemFactory;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemFactory",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00190.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StreamingTest.java:181",
+                        "method-b-site": "FileUploadBase.java:334",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+        "notes": "Pretty simple setter-getter relationship - the getter is followed up by a check that the return value from the getter is not null, and throws a NullPointerException if the return value is null. ONE_PURE_SETTER + ONE_STATELESS_METHOD. However, given that method-a and method-b are both public methods that can technically be called in any order, this is a spurious spec (CONNECTION_DOES_NOT_NECESSITATE_ORDERING).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-03-20-30",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2022-01-04-11-38",
+        "project": "commons-fileupload",
+        "spec-id": "00197",
+        "method-a": "org.apache.commons.fileupload2.FileUploadBase.setFileItemFactory(Lorg/apache/commons/fileupload2/FileItemFactory;)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.parseRequest(Lorg/apache/commons/fileupload2/RequestContext;)Ljava/util/List;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.List",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 4,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00197.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "StreamingTest.java:181",
+                        "method-b-site": "StreamingTest.java:185",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Not calling method-a meant that the field variable FileUploadBase.fileItemFactory was not set to a value that is not null. This causes a NullPointerException to be thrown at FileUploadBase.java:337. DELAY_OF_A_CAUSES_UNEXPECTED_EXCEPTION"
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+        "notes": "ONE_PURE_SETTER: the used implementation of method-a sets the field variable FileUpload.fileItemFactory. method-b parses the argument RequestContext, and retrieves and uses FileUpload.fileItemFactory in the process. SUPPLEMENTARY_EVIDENCE_BY_JAVADOC: This is the spec stated in the JavaDoc Comments!!!!! It's pretty cool that we got DSI to validate a spec that the JavaDoc was claiming. The DSI experiment run crashed with a NullPointerException because the FileItemFactory was not set (which is why one needs to call method-a).",
+        "findings": "Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-04-11-45",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2022-01-04-11-45",
+        "project": "commons-fileupload",
+        "spec-id": "00199",
+        "method-a": "org.apache.commons.fileupload2.MultipartStream$ItemInputStream.findSeparator()V",
+        "method-b": "org.apache.commons.fileupload2.MultipartStream$ItemInputStream.close(Z)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00199.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testIOException",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "MultipartStream.java:841",
+                        "method-b-site": "MultipartStream.java:950",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN The test failed because not calling method-a sets the variable pos (from ItemInputStream) to 0 instead of -1. method-b is called indirectly called by Streams.copy(), in a finally block. So, regardless of a potential exception or not, as long as Streams.copy() is called, method-b is called."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testIOException with a call to method-a inserted in MultipartStream.java:951.",
+        "notes": "method-a sets the field variable ItemInputStream.pos while accessing the field variables ItemInputStream.tail, ItemInputStream.head, ItemInputStream.keepRegion. method-b closes the InputStream field variable input, and modifies the field variable ItemInputStream.closed. This seems like an UNRELATED_STATEFUL_METHODS case?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-04-12-28",
+        "inspection-time-in-minutes": 43
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2022-01-04-15-06",
+        "project": "commons-fileupload",
+        "spec-id": "00207",
+        "method-a": "org.apache.commons.fileupload2.MultipartStream.setHeaderEncoding(Ljava/lang/String;)V",
+        "method-b": "org.apache.commons.fileupload2.MultipartStream.discardBodyData()I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00207.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testIOException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:1015",
+                        "method-b-site": "MultipartStream.java:664",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION - the test succeeds even though the experiment is still in stage-1 because the call to method-b is **supposed** to fail; so DSI was never able to call method-a after method-b was called. Note that the stack trace of the expected exception is the same regardless of whether method-a was called or not."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testIOException",
+        "notes": "WEAK_ORACLE ONE_PURE_SETTER: method-a is a pure setter to the field variable MultipartStream.headerEncoding. method-b copies the argument OutputStream to a new ItemInputStream instance. The test actually passes because the thrown exception was expected, and there is no relationship between the value that method-a sets and the values that method-b uses in its computations. So, this is most likely a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-04-15-33",
+        "inspection-time-in-minutes": 27
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2022-01-05-13-07",
+        "project": "commons-fileupload",
+        "spec-id": "00210",
+        "method-a": "org.apache.commons.fileupload2.MultipartStream.setHeaderEncoding(Ljava/lang/String;)V",
+        "method-b": "org.apache.commons.fileupload2.MultipartStream.readBodyData(Ljava/io/OutputStream;)I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00210.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testIOException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:1015",
+                        "method-b-site": "MultipartStream.java:646",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The DSI experiment resulted at stage-1, but the test passed because method-b throws the EXPECTED_EXCEPTION (confirmed via printing the stack trace in a normal execution of the test and an execution of the test where method-a is commented out)."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testIOException - passes in DSI experiment.",
+        "notes": "WEAK_ORACLE ONE_PURE_SETTER: method-a is a pure setter to the field variable MultipartStream.headerEncoding. method-b copies the argument OutputStream to a new ItemInputStream instance. The point at which this field variable is used is *after* the call to method-b (MultipartStream.java:586). However, since method-b throws an exception (that is expected by the test), the point at which the effects of calling method-a would manifest is not reached by this test. Moreover, this is noted as a stage-1 because method-b was expected to throw an exception in the first place, which prevents DSI from calling method-a after method-b (because the program crashed at that point). GOOD_EXAMPLE.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-05-13-13",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-01-05-13-33",
+        "project": "commons-fileupload",
+        "spec-id": "00212",
+        "method-a": "org.apache.commons.fileupload2.MultipartStream.setHeaderEncoding(Ljava/lang/String;)V",
+        "method-b": "org.apache.commons.fileupload2.MultipartStream.skipPreamble()Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00212.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testIOException",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:1015",
+                        "method-b-site": "FileUploadBase.java:1038",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The DSI experiment resulted at stage-1, but the test passed because method-b (or more precisely, MultipartStream.readBodyData(), which is indirectly called from method-b) throws the EXPECTED_EXCEPTION (confirmed via printing the stack trace in a normal execution of the test and an execution of the test where method-a is commented out)."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.StreamingTest#testIOException - passes in DSI experiment.",
+        "notes": "WEAK_ORACLE ONE_PURE_SETTER: method-a is a pure setter to the field variable MultipartStream.headerEncoding. The point at which this field variable is used is *after* the call to method-b (MultipartStream.java:586). However, since method-b (or more precisely, MultipartStream.readBodyData(), which is indirectly called from method-b) throws an exception (that is expected by the test), the point at which the effects of calling method-a would manifest is not reached by this test. Moreover, this is noted as a stage-1 because method-b was expected to throw an exception in the first place, which prevents DSI from calling method-a after method-b (because the program crashed at that point).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-05-13-38",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-01-08-13-36",
+        "project": "commons-fileupload",
+        "spec-id": "00319",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.setFileSizeMax(J)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getFileItemFactory()Lorg/apache/commons/fileupload2/FileItemFactory;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemFactory",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00319.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:108",
+                        "method-b-site": "FileUploadBase.java:334",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:117",
+                        "method-b-site": "FileUploadBase.java:334",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:125",
+                        "method-b-site": "FileUploadBase.java:334",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "Theoretically, running DSI with org.apache.commons.fileupload2.SizesTest#testFileSizeLimit but with FileUploadBase.java:333 and FileUploadBase.java:334 should show that this is a spurious spec.",
+        "notes": "ONE_PURE_SETTER + ONE_STATELESS_METHOD: method-a is a pure setter to the field variable FileUploadBase.fileSizeMax, and the used implementation of method-b is a 1-line naive getter to the field variable FileUpload.fileItemFactory. The most likely reason why this got categorized as a stage-3-complete is because FileUploadBase.getItemIterator() would have thrown an exception in the case that method-a was called before its execution. However, the state was not restored in time because method-b is **after** FileUploadBase.getItemIterator(), and thus the exception was not thrown. METHOD_B_AFTER_CRITICAL_POINT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-08-13-52",
+        "inspection-time-in-minutes": 16
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2022-01-08-16-12",
+        "project": "commons-fileupload",
+        "spec-id": "00329",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.setProgressListener(Lorg/apache/commons/fileupload2/ProgressListener;)V",
+        "method-b": "org.apache.commons.fileupload2.FileUpload.getItemIterator(Lorg/apache/commons/fileupload2/RequestContext;)Lorg/apache/commons/fileupload2/FileItemIterator;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemIterator",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00329.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.ProgressListenerTest#testProgressListener",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ProgressListenerTest.java:107",
+                        "method-b-site": "ServletFileUpload.java:152",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.ProgressListenerTest#testProgressListener",
+        "notes": "One needs to call method-a before method-b because method-b bootstraps the set listener so that it picks up on events that occur. ONE_PURE_SETTER: method-a is a pure setter to the field variable FileUploadBase.listener (note that FileUploadBase.listener is not modified anywhere in the class besides method-a). method-b creates and returns a new FileItemIteratorImpl() instance using the argument RequestContext (or throws an exception). In its computations, method-b uses FileUploadBase.listener to initialize a new MultipartStream.ProgressNotifier instance, which fails if method-a is not called beforehand.",
+        "findings": "GOOD_EXAMPLE - Interesting case of stage-3-complete as the JavaDoc comments for method-a and method-b don't mention anything about each other, but in order for the listener to properly work one **must** call method-a before method-b. Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-08-16-32",
+        "inspection-time-in-minutes": 20
+    },
+    {
+        "iid": 16,
+        "inspection-start-time": "2022-01-08-16-39",
+        "project": "commons-fileupload",
+        "spec-id": "00331",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.setProgressListener(Lorg/apache/commons/fileupload2/ProgressListener;)V",
+        "method-b": "org.apache.commons.fileupload2.servlet.ServletFileUpload.getItemIterator(Ljavax/servlet/http/HttpServletRequest;)Lorg/apache/commons/fileupload2/FileItemIterator;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemIterator",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00331.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.ProgressListenerTest#testProgressListener",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ProgressListenerTest.java:107",
+                        "method-b-site": "ProgressListenerTest.java:108",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.ProgressListenerTest#testProgressListener",
+        "notes": "ONE_PURE_SETTER: method-a is a pure setter to the field variable FileUploadBase.listener (note that FileUploadBase.listener is not modified anywhere in the class besides method-a). method-b creates and returns a new FileItemIteratorImpl() instance using the argument RequestContext (or throws an exception). In its computations, method-b uses FileUploadBase.listener to initialize a new MultipartStream.ProgressNotifier instance, which fails if method-a is not called beforehand. This method-b is a wrapper around the method-b of 00329. INSPECTION_TODO: is this a case of having a spec relationship with the caller?",
+        "findings": "Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-08-16-45",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 17,
+        "inspection-start-time": "2022-01-08-16-54",
+        "project": "commons-fileupload",
+        "spec-id": "00332",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.setSizeMax(J)V",
+        "method-b": "org.apache.commons.fileupload2.FileUpload.getItemIterator(Lorg/apache/commons/fileupload2/RequestContext;)Lorg/apache/commons/fileupload2/FileItemIterator;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemIterator",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00332.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimitUnknownContentLength",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:246",
+                        "method-b-site": "ServletFileUpload.java:152",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimitUnknownContentLength",
+        "notes": "ONE_PURE_SETTER: method-a is a pure setter to the field variable FileUploadBase.sizeMax. method-b creates and returns a new FileItemIteratorImpl() instance using the argument RequestContext (or throws an exception). method-b indirectly calls FileItemIteratorImpl(), which throws a FileUploadIOException() if the size of the input exceeds the limit set by method-a. SOMETIMES_TRUE_SPEC. If you don't call method-a, then you don't get an exception when the size exceeds what you intend the maximum to be (by calling method-a). DECISION/INSPECTION_TODO: how do we encode this to not give too many FPs during RV?",
+        "findings": "I think it's next to impossible to infer when an user ought to set a limit for the file size vs not. We can have a spec \"(ab)|b\", but I don't know if that helps at all for RV. DECISION: Changing to spurious spec because the declaration of FileUploadBase.sizeMax sets the field variable to -1, which indicates no maximum; so method-a does not need to be called before method-b.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-08-17-20",
+        "inspection-time-in-minutes": 16
+    },
+    {
+        "iid": 18,
+        "inspection-start-time": "2022-01-08-18-06",
+        "project": "commons-fileupload",
+        "spec-id": "00333",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.setSizeMax(J)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getBoundary(Ljava/lang/String;)[B",
+        "method-a-return-type": "void",
+        "method-b-return-type": "byte[]",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00333.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimitUnknownContentLength",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:246",
+                        "method-b-site": "ServletFileUpload.java:1001",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimitUnknownContentLength with the call to method-b before FileUploadBase.java:973",
+        "notes": "ONE_PURE_SETTER: method-a is a pure setter to the field variable FileUploadBase.sizeMax. method-b parses the String argument contentType using a new ParameterParser object and retrieves the \"boundary\" value. Upon manual inspection and experimentation, it is evident that state changes by method-a bear no difference to the execution of method-b. The reason why this spec was categorized as stage-3-complete is because method-b **happened** to be called at a point after the state change caused by calling method-a would have changed the execution of the program (refer to snippet). So in some sense, it was a failed attempt at state restoration. METHOD_B_AFTER_CRITICAL_POINT",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-08-18-14",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 19,
+        "inspection-start-time": "2022-01-08-18-15",
+        "project": "commons-fileupload",
+        "spec-id": "00334",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.setSizeMax(J)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getItemIterator(Lorg/apache/commons/fileupload2/RequestContext;)Lorg/apache/commons/fileupload2/FileItemIterator;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemIterator",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00334.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:213",
+                        "method-b-site": "FileUploadBase.java:333",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimit",
+        "notes": "DYNAMIC_DISPATCH: This spec is identical to 00332, except that the method-bs were registered as two different methods due to dynamic dispatch. ONE_PURE_SETTER: method-a is a pure setter to the field variable FileUploadBase.sizeMax. method-b creates and returns a new FileItemIteratorImpl() instance using the argument RequestContext (or throws an exception). method-b indirectly calls FileItemIteratorImpl(), which throws a FileUploadIOException() if the size of the input exceeds the limit set by method-a. SOMETIMES_TRUE_SPEC. If you don't call method-a, then you don't get an exception when the size exceeds what you intend the maximum to be (by calling method-a) DECISION/INSPECTION_TODO: how do we encode this to not give too many FPs during RV? Also, how do we detect that there is an intention to have a max size?",
+        "findings": "I think it's next to impossible to infer when an user ought to set a limit for the file size vs not. We can have a spec \"(ab)|b\", but I don't know if that helps at all for RV. Change this to spurious spec? DECISION: Changing to spurious spec because the declaration of FileUploadBase.sizeMax sets the field variable to -1, which indicates no maximum; so method-a does not need to be called before method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-08-18-21",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 20,
+        "inspection-start-time": "2022-01-08-18-21",
+        "project": "commons-fileupload",
+        "spec-id": "00335",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.setSizeMax(J)V",
+        "method-b": "org.apache.commons.fileupload2.servlet.ServletFileUpload.getItemIterator(Ljavax/servlet/http/HttpServletRequest;)Lorg/apache/commons/fileupload2/FileItemIterator;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemIterator",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00335.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimitUnknownContentLength",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:246",
+                        "method-b-site": "SizesTest.java:257",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimitUnknownContentLength",
+        "notes": "ONE_PURE_SETTER: method-a is a pure setter to the field variable FileUploadBase.sizeMax. method-b creates and returns a new FileItemIteratorImpl() instance using the argument RequestContext (or throws an exception). method-b indirectly calls FileItemIteratorImpl(), which throws a FileUploadIOException() if the size of the input exceeds the limit set by method-a. SOMETIMES_TRUE_SPEC. If you don't call method-a, then you don't get an exception when the size exceeds what you intend the maximum to be (by calling method-a). The method-b of this spec is a wrapper around the method-b of 00332. DECISION/INSPECTION_TODO: how do we encode this to not give too many FPs during RV? Also, how do we detect that there is an intention to have a max size?.",
+        "findings": "I think it's next to impossible to infer when an user ought to set a limit for the file size vs not. We can have a spec \"(ab)|b\", but I don't know if that helps at all for RV. Change this to spurious spec? DECISION: Changing to spurious spec because the declaration of FileUploadBase.sizeMax sets the field variable to -1, which indicates no maximum; so method-a does not need to be called before method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-08-18-26",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 21,
+        "inspection-start-time": "2022-01-08-18-27",
+        "project": "commons-fileupload",
+        "spec-id": "00336",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.setSizeMax(J)V",
+        "method-b": "org.apache.commons.fileupload2.servlet.ServletFileUpload.parseRequest(Ljavax/servlet/http/HttpServletRequest;)Ljava/util/List;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.List",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00336.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:213",
+                        "method-b-site": "SizesTest.java:218",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimit",
+        "notes": "SOMETIMES_TRUE_SPEC. If you don't call method-a, then you don't get an exception when the size exceeds what you intend the maximum to be (by calling method-a), because method-b calls FileItemBase.getItemIterator(). ONE_PURE_SETTER: method-a is a pure setter to the field variable FileUploadBase.sizeMax. method-b parses and processes the argument HttpServletRequest, and it calls FileUploadBase.getItemIterator() in the process. FileItemBase.getItemIterator() creates and returns a new FileItemIteratorImpl() instance using the argument RequestContext (or throws an exception). FileItemBase.getItemIterator() indirectly calls FileItemIteratorImpl(), which throws a FileUploadIOException() if the size of the input exceeds the limit set by method-a.  DECISION/INSPECTION_TODO: how do we encode this to not give too many FPs during RV? Also, how do we detect that there is an intention to have a max size?.",
+        "findings": "I think it's next to impossible to infer when an user ought to set a limit for the file size vs not. We can have a spec \"(ab)|b\", but I don't know if that helps at all for RV. Change this to spurious spec? DECISION: Changing to spurious spec because the declaration of FileUploadBase.sizeMax sets the field variable to -1, which indicates no maximum; so method-a does not need to be called before method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-08-18-31",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 22,
+        "inspection-start-time": "2022-01-08-18-32",
+        "project": "commons-fileupload",
+        "spec-id": "00337",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.setSizeMax(J)V",
+        "method-b": "org.apache.commons.fileupload2.servlet.ServletFileUpload.parseRequest(Lorg/apache/commons/fileupload2/RequestContext;)Ljava/util/List;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.List",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "is-DSI+-true-spec": false,
+        "code-snippets-file": "snippets/lv/00337.java",
+        "inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:213",
+                        "method-b-site": "ServletFileUpload.java:113",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimit",
+        "notes": "SOMETIMES_TRUE_SPEC. If you don't call method-a, then you don't get an exception when the size exceeds what you intend the maximum to be (by calling method-a), because method-b calls FileItemBase.getItemIterator(). This method-b is called from the method-b of 00336. ONE_PURE_SETTER: method-a is a pure setter to the field variable FileUploadBase.sizeMax. method-b parses and processes the argument HttpServletRequest, and it calls FileUploadBase.getItemIterator() in the process. FileItemBase.getItemIterator() creates and returns a new FileItemIteratorImpl() instance using the argument RequestContext (or throws an exception). FileItemBase.getItemIterator() indirectly calls FileItemIteratorImpl(), which throws a FileUploadIOException() if the size of the input exceeds the limit set by method-a. DECISION/INSPECTION_TODO: how do we encode this to not give too many FPs during RV? Also, how do we detect that there is an intention to have a max size?.",
+        "findings": "I think it's next to impossible to infer when an user ought to set a limit for the file size vs not. We can have a spec \"(ab)|b\", but I don't know if that helps at all for RV. Change this to spurious spec? DECISION: Changing to spurious spec because the declaration of FileUploadBase.sizeMax sets the field variable to -1, which indicates no maximum; so method-a does not need to be called before method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-08-18-35",
+        "inspection-time-in-minutes": 3
+    }
+]

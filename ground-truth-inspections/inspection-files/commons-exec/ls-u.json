@@ -1,0 +1,181 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-02-05-03-02",
+        "project": "commons-exec",
+        "spec-id": "00119",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.isFailure(I)Z",
+        "method-b": "org.apache.commons.exec.Executor.isFailure(I)Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 13,
+        "LS-verdict-count": 12,
+        "U-verdict-count": 2,
+        "code-snippets-file": "snippets/ls-u/00119.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:431",
+                        "method-b-site": "DefaultExecutorTest.java:106",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - method-a in a normal run returns false, and DSI replaced the return value of method-a with the default value false.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteWithError",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:431",
+                        "method-b-site": "DefaultExecutorTest.java:138",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DSI replaced the return value of method-a with the default value false. However, in the execution of the test, method-a should have returned true, triggering the ExecuteException in the then branch afterwards. However, since DSI replaced the return value of method-a with false, the EXPECTED_EXCEPTION_NOT_THROWN, causing the test to fail before calling method-b.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "snippet",
+        "notes": "DYNAMIC_DISPATCH_SAME_METHOD - refer to snippet. Executor is an interface, and DefaultExecutor.isFailure() is the only implementation of Executor.isFailure().",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-05-03-10",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-02-05-03-40",
+        "project": "commons-exec",
+        "spec-id": "00125",
+        "method-a": "org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;",
+        "method-b": "org.apache.commons.exec.Executor.isFailure(I)Z",
+        "method-a-return-type": "java.lang.Process",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 13,
+        "LS-verdict-count": 2,
+        "U-verdict-count": 12,
+        "code-snippets-file": "snippets/ls-u/00125.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsync",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:351",
+                        "method-b-site": "DefaultExecutorTest.java:183",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "GOOD_EXAMPLE + CONCURRENCY: The property was not satisfied, most likely because of the concurrency issue; the Specialized Trace shows\nb @ Thd[1]Obj[0]:0(DefaultExecutorTest.java:183)\na @ Thd[27]Obj[0]:0(DefaultExecutor.java:351)\n, so I think \"ab\" was not satisfied for two reasons: (1) method-b was somehow called before method-a; (2) method-a and method-b were on different threads. We're clearly dealing with a concurrency issue here, I wonder how and why method-b was called before method-a? INSPECTION_TODO: try to look into this and see if we always get the same behavior, if this is a nondeterministic thing.",
+                "notes": "The test is formed in such a way that it checks for results after 2000 seconds; hence if method-a was not called by that point, it is most likely the case that the assertion on DefaultExecutorTest.java:181 fails, but I'm not 100% sure."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:351",
+                        "method-b-site": "DefaultExecutorTest.java:106",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION - NullPointerException at DefaultExecutor.java:361.",
+                "notes": ""
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testExecuteAsync",
+        "notes": "method-a creates and returns a process that runs a command, and method-b is checks the result of the intended process by either checking the field variable DefaultExecutor.exitValues, or the argument exitValue. It seems natural that one needs to launch the process in order to check whether or not it ended in a failure, so this seems like a true spec? Note that the invalidated-case is very interesting; method-b is somehow recorded as having been called *before* method-a in the specialized trace. DECISION: This is a spurious spec because method-b is a public method that will safely return no matter whether DefaultExecutor.exitValues was set, plus method-a does not set the field variable itself. So, one can safely call method-b before method-a as well (although that would be an edge case that most users would not do). Additionally, method-b can be called concurrently with method-a, as suggested by the sanity-check-failure cases.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-05-04-11",
+        "inspection-time-in-minutes": 31
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-02-05-22-08",
+        "project": "commons-exec",
+        "spec-id": "00179",
+        "method-a": "org.apache.commons.exec.ExecuteStreamHandler.setProcessInputStream(Ljava/io/OutputStream;)V",
+        "method-b": "org.apache.commons.exec.ExecuteStreamHandler.stop()V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 10,
+        "test-methods-mine-count": 38,
+        "LS-verdict-count": 37,
+        "U-verdict-count": 1,
+        "code-snippets-file": "snippets/ls-u/00179.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testExecute",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:361",
+                        "method-b-site": "DefaultExecutor.java:406",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test is weak for DSI's purpose because the script called by this test does not take an input. INSPECTION_TODO(L): why is DSI able to run `a` after `b`?"
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.exec.DefaultExecutorTest#testStdInHandling",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultExecutor.java:361",
+                        "method-b-site": "DefaultExecutor.java:406",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "The test failed because the subprocess did not return a result after the 2000ms waittime was over. The script ran by the process reads user input (via the read command), which means that it will continue to wait until it receives user input, or it gets killed. The handle to the process's inputstream was set up by method-a, so when DSI delayed the call to method-a, there was no way for the test to send anything to the process (because method-a was delayed past DefaultExecutor.java:372, which is the critical point before which method-a needs to be called for the parent process to be able to communicate with the subprocess running the script). (METHOD_B_AFTER_CRITICAL_POINT) Because of this, the subprocess/script hung because it couldn't read an input. Since the process didn't finish before the assertion failure, method-b was never called."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.exec.DefaultExecutorTest#testStdInHandling",
+        "notes": "method-a sets a value to the field variable PumpStreamHandler.errorThread (it is the only place in the code that does so), and method-b stops the thread field variable PumpStreamHandler.errorThread in the case that it is initialized. The more stringent relationship is between ExecuteStreamHandler.start (which starts the execution of the initialized threads) and method-b, rather than method-a and method-b. Most likely a bigger spec with method-a, ExecuteStreamHandler.setProcessInputStream() and ExecuteStreamHandler.setProcessOutputStream(), ExecuteStreamHandler.start(), and method-b. DECISION: flagging this as a spurious-spec as there is no direct relationship between method-a and method-b, and both methods are public methods that can technically be called at any point.",
+        "findings": "It seems like one can make a bigger spec that looks something like the regex: \"method-a? ExecuteStreamHandler.start() method-b \"?",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2022-02-05-22-31",
+        "inspection-time-in-minutes": 23
+    }
+
+]

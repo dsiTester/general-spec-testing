@@ -1,0 +1,11 @@
+digraph graphname {
+    s0 -> s1 [label = STN, fontcolor="#ff0000"];
+    s0 -> s11 [label = STN, fontcolor="#ff0000"];
+    s0 -> s12 [label = STN, fontcolor="#ff0000"];
+    s1 -> s2 [label = HMTT, fontcolor="#ff0000"];
+    s1 -> s11 [label = HMTT, fontcolor="#ff0000"];
+    s11 -> s12 [label = NT, fontcolor="#ff0000"];
+    s12 -> s3 [label = HMTF, fontcolor="#ff0000"];
+    s2 -> s3 [label = NT, fontcolor="#ff0000"];
+}
+

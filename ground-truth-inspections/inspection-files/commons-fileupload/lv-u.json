@@ -1,0 +1,317 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2021-12-03-16-12",
+        "project": "commons-fileupload",
+        "spec-id": "00059",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getOutputStream()Ljava/io/OutputStream;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.isInMemory()Z",
+        "method-a-return-type": "java.io.OutputStream",
+        "method-b-return-type": "boolean",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 5,
+        "LV-verdict-count": 4,
+        "U-verdict-count": 2,
+        "code-snippets-file": "snippets/lv-u/00059.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.StreamingTest#testFILEUPLOAD135",
+                "stage": "stage-1-f2-precond",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:347",
+                        "method-b-site": "DiskFileItem.java:301",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION: Replacing method-a with null will result in a NullPointerException - which is exactly what happened in DSI's manipulations of the code. (StreamingTest.java:152)",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "pre-stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FileUploadBase.java:347",
+                        "method-b-site": "DiskFileItem.java:301",
+                        "invocation-count": 2
+                    },
+                    {
+                        "method-a-site": "FileUploadBase.java:347",
+                        "method-b-site": "DiskFileItem.java:534",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 2,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION: Replacing the call to a with null caused a NullPointerException to happen at SizesTest.java:114.",
+                "notes": "The first context set resulted in a NullPointerException, causing the second context set perturbation to never happen. This is why the spec was labeled as unknown."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest - the two perturbations happen across two different test methods, so the second perturbation is actually run here.",
+        "notes": "Underlying true spec from spec-id 00060 (refer to lv.json). The fact that exceptions caused the second set of perturbations to not happen caused DSI to conclude that this spec is unknown. GOOD_EXAMPLE",
+        "findings": "Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2021-12-03-16-46",
+        "inspection-time-in-minutes": 34
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-08-14-10",
+        "project": "commons-fileupload",
+        "spec-id": "00322",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.setFileSizeMax(J)V",
+        "method-b": "org.apache.commons.fileupload2.FileUploadBase.getItemIterator(Lorg/apache/commons/fileupload2/RequestContext;)Lorg/apache/commons/fileupload2/FileItemIterator;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemIterator",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 2,
+        "U-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-u/00322.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:108",
+                        "method-b-site": "FileUploadBase.java:333",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:117",
+                        "method-b-site": "FileUploadBase.java:333",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:125",
+                        "method-b-site": "FileUploadBase.java:333",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 3,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, since method-a was supposed to modify FileUploadBase.fileSizeMax to an amount lower than the request to be parsed, but not calling method-a avoided that exception from being thrown."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimitWithFakedContentLength",
+                "stage": "pre-stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:151",
+                        "method-b-site": "FileUploadBase.java:333",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:160",
+                        "method-b-site": "FileUploadBase.java:333",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:169",
+                        "method-b-site": "FileUploadBase.java:333",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:180",
+                        "method-b-site": "FileUploadBase.java:333",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 4,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN. The experiment resulted on a fail-before-stage-0 because out of the four perturbations, the third one caused the test to fail (AssertionError to be thrown), so the fourth perturbation was never performed."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+        "notes": "ONE_PURE_SETTER. DYNAMIC_DISPATCH: method-b here is the same method as method-b from 00315, but classified as from different classes due to dynamic dispatch. If possible we probably want to consolidate these two specs into one? INSPECTION_TODO: does it mean that we need the presence of a third method-c to know when this is a true-spec? DECISION: In cases where you want to set a file size limit, you must call method-a before method-b, but it's not always required (SOMETIMES_TRUE_SPEC). However, it seems next to impossible to capture the user intent of setting a file size limit; so I don't think we can make this into an effective JavaMOP spec.",
+        "findings": "fail-before-stage-0 scenario where a failure caused by an earlier perturbation caused the subsequent perturbation to not be run (hence NOT_RUN). Otherwise, the spec would have completely been categorized as a LV spec. How can we be robust to situations like this?",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-08-14-40",
+        "inspection-time-in-minutes": 30
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-08-15-20",
+        "project": "commons-fileupload",
+        "spec-id": "00326",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.setFileSizeMax(J)V",
+        "method-b": "org.apache.commons.fileupload2.servlet.ServletFileUpload.parseRequest(Ljavax/servlet/http/HttpServletRequest;)Ljava/util/List;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.List",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 2,
+        "U-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-u/00326.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:108",
+                        "method-b-site": "SizesTest.java:111",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:117",
+                        "method-b-site": "SizesTest.java:119",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:125",
+                        "method-b-site": "SizesTest.java:128",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 3,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, since method-a was supposed to modify FileUploadBase.fileSizeMax to an amount lower than the request to be parsed, but not calling method-a avoided that exception from being thrown."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimitWithFakedContentLength",
+                "stage": "pre-stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:151",
+                        "method-b-site": "SizesTest.java:154",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:160",
+                        "method-b-site": "SizesTest.java:162",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:169",
+                        "method-b-site": "SizesTest.java:172",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:180",
+                        "method-b-site": "FileUploadBase.java:183",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 4,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN. The experiment resulted on a fail-before-stage-0 because out of the four perturbations, the third one caused the test to fail (AssertionError to be thrown), so the fourth perturbation was never performed."
+            }
+        ],
+        "verdict": "unknown",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+        "notes": "ONE_PURE_SETTER. If you expect a file size limit but don't set it via calling method-a before calling method-b, then an exception won't be thrown in the case that the limit was exceeded. (This method-b is a wrapper of the caller of method-b from 00322). INSPECTION_TODO: does it mean that we need the presence of a third method-c to know when this is a true-spec? DECISION: In cases where you want to set a file size limit, you must call method-a before method-b, but it's not always required (SOMETIMES_TRUE_SPEC). However, it seems next to impossible to capture the user intent of setting a file size limit; so I don't think we can make this into an effective JavaMOP spec.",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-08-15-28",
+        "inspection-time-in-minutes": 8
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-08-15-29",
+        "project": "commons-fileupload",
+        "spec-id": "00327",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.setFileSizeMax(J)V",
+        "method-b": "org.apache.commons.fileupload2.servlet.ServletFileUpload.parseRequest(Lorg/apache/commons/fileupload2/RequestContext;)Ljava/util/List;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.List",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 3,
+        "LV-verdict-count": 2,
+        "U-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-u/00327.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:108",
+                        "method-b-site": "ServletFileUpload.java:113",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:117",
+                        "method-b-site": "ServletFileUpload.java:113",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:125",
+                        "method-b-site": "ServletFileUpload.java:113",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 3,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN, since method-a was supposed to modify FileUploadBase.fileSizeMax to an amount lower than the request to be parsed, but not calling method-a avoided that exception from being thrown."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimitWithFakedContentLength",
+                "stage": "pre-stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:151",
+                        "method-b-site": "ServletFileUpload.java:113",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:160",
+                        "method-b-site": "ServletFileUpload.java:113",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:169",
+                        "method-b-site": "ServletFileUpload.java:113",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:180",
+                        "method-b-site": "ServletFileUpload.java:113",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 4,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "EXPECTED_EXCEPTION_NOT_THROWN. The experiment resulted on a fail-before-stage-0 because out of the four perturbations, the third one caused the test to fail (AssertionError to be thrown), so the fourth perturbation was never performed."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+        "notes": "SOMETIMES_TRUE_SPEC: In cases where you want to set a file size limit, you must call method-a before method-b, but it's not always required. If you expect a file size limit but don't set it via calling method-a before calling method-b, then an exception won't be thrown in the case that the limit was exceeded. (This method-b is the caller of method-b from 00322). INSPECTION_TODO: does it mean that we need the presence of a third method-c to know when this is a true-spec? DECISION: It seems next to impossible to retrieve the user intent of instituting a file size limit... so I don't think we can use this for JavaMOP. Plus, this seems like a spurious spec because FileUploadBase.fileSizeMax is initialized upon declaration, so one can definitely call method-b without calling method-a at all.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-08-15-39",
+        "inspection-time-in-minutes": 10
+    }
+
+]

@@ -1,0 +1,24 @@
+1
+s0
+1
+s0
+19
+s6_s5 s6_s5 org.apache.commons.codec.language.bm.Rule.patternAndContextMatches(Ljava/lang/CharSequence;I)Z
+s6_s5 s6_s5 org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication.getI()I
+s6_s5 s6_s5 org.apache.commons.codec.language.bm.Rule.getPattern()Ljava/lang/String;
+s0 s1 org.apache.commons.codec.language.bm.BeiderMorseEncoderTest.assertNotEmpty(Lorg/apache/commons/codec/language/bm/BeiderMorseEncoder;Ljava/lang/String;)V
+s6_s5 s6_s5 org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication.isFound()Z
+s3 s4 org.apache.commons.codec.language.bm.Lang.guessLanguages(Ljava/lang/String;)Lorg/apache/commons/codec/language/bm/Languages$LanguageSet;
+s6_s5 s6_s5 org.apache.commons.codec.language.bm.PhoneticEngine.applyFinalRules(Lorg/apache/commons/codec/language/bm/PhoneticEngine$PhonemeBuilder;Ljava/util/Map;)Lorg/apache/commons/codec/language/bm/PhoneticEngine$PhonemeBuilder;
+s6_s5 s6_s5 org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication.invoke()Lorg/apache/commons/codec/language/bm/PhoneticEngine$RulesApplication;
+s6_s5 s6_s5 org.apache.commons.codec.language.bm.Rule$Phoneme.getLanguages()Lorg/apache/commons/codec/language/bm/Languages$LanguageSet;
+s6_s5 s6_s5 org.apache.commons.codec.language.bm.Rule$RPattern.isMatch(Ljava/lang/CharSequence;)Z
+s6_s5 s6_s5 org.apache.commons.codec.language.bm.PhoneticEngine$PhonemeBuilder.getPhonemes()Ljava/util/Set;
+s4 s4 org.apache.commons.codec.language.bm.Lang$LangRule.matches(Ljava/lang/String;)Z
+s4 s6_s5 org.apache.commons.codec.language.bm.PhoneticEngine.encode(Ljava/lang/String;Lorg/apache/commons/codec/language/bm/Languages$LanguageSet;)Ljava/lang/String;
+s6_s5 s6_s5 org.apache.commons.codec.language.bm.Rule$Phoneme$1.compare(Lorg/apache/commons/codec/language/bm/Rule$Phoneme;Lorg/apache/commons/codec/language/bm/Rule$Phoneme;)I
+s6_s5 s6_s5 org.apache.commons.codec.language.bm.Languages$LanguageSet.isSingleton()Z
+s6_s5 s6_s5 org.apache.commons.codec.language.bm.PhoneticEngine$RulesApplication.getPhonemeBuilder()Lorg/apache/commons/codec/language/bm/PhoneticEngine$PhonemeBuilder;
+s6_s5 s0 org.apache.commons.codec.language.bm.PhoneticEngine$PhonemeBuilder.makeString()Ljava/lang/String;
+s2 s3 org.apache.commons.codec.language.bm.PhoneticEngine.encode(Ljava/lang/String;)Ljava/lang/String;
+s1 s2 org.apache.commons.codec.language.bm.BeiderMorseEncoder.encode(Ljava/lang/String;)Ljava/lang/String;

@@ -1,0 +1,11 @@
+transition-id,method-sig
+StringConvertfindFromStringMethod,org.joda.convert.StringConvert.findFromStringMethod(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Method;
+StringConvertfindToStringMethod,org.joda.convert.StringConvert.findToStringMethod(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Method;
+StringConvertregisterMethods,org.joda.convert.StringConvert.registerMethods(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)V
+StringConverttryRegisterGuava,org.joda.convert.StringConvert.tryRegisterGuava()V
+StringConverttryRegisterJava8Optionals,org.joda.convert.StringConvert.tryRegisterJava8Optionals()V
+StringConverttryRegisterJava8,org.joda.convert.StringConvert.tryRegisterJava8()V
+StringConverttryRegisterThreeTenBackport,org.joda.convert.StringConvert.tryRegisterThreeTenBackport()V
+StringConverttryRegisterThreeTenOld,org.joda.convert.StringConvert.tryRegisterThreeTenOld()V
+StringConverttryRegisterTimeZone,org.joda.convert.StringConvert.tryRegisterTimeZone()V
+TypedStringConvertergetEffectiveType,org.joda.convert.TypedStringConverter.getEffectiveType()Ljava/lang/Class;

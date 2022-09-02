@@ -1,0 +1,2 @@
+ToStringBuilderTest  # ToStringBuilderTest.testReflectionHierarchyArrayList fails (both DSI/No DSI). 74/2591 tests skipped.
+FastDateFormatTest # testParseSync:278->measureTime:317 fails on allTests DSI. 15/2591 tests skipped.

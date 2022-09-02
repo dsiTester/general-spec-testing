@@ -1,0 +1,11 @@
+1
+s6_s3_s0_s2
+3
+null
+s6_s3_s0_s2
+s5_s4_s1
+4
+s6_s3_s0_s2 s5_s4_s1 x
+s5_s4_s1 violation y
+s5_s4_s1 s5_s4_s1 x
+s6_s3_s0_s2 s6_s3_s0_s2 y

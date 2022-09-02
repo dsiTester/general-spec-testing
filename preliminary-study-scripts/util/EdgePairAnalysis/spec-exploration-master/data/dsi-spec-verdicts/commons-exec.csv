@@ -1,0 +1,335 @@
+method-a,method-b,verdict
+org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,no-break-pass (direct)
+org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,no-break-pass (direct)
+org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,no-break-pass (indirect)
+org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,no-break-pass (direct)
+org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,no-break-pass (direct)
+org.apache.commons.exec.CommandLine.expandArgument(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.getSubstitutionMap()Ljava/util/Map;,no-break-pass (direct)
+org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;,org.apache.commons.exec.CommandLine.expandArgument(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;,org.apache.commons.exec.CommandLine.getSubstitutionMap()Ljava/util/Map;,no-break-pass (indirect)
+org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;,org.apache.commons.exec.CommandLine.expandArgument(Ljava/lang/String;)Ljava/lang/String;,no-break-pass (indirect)
+org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;,org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;,org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;,no-break-pass (direct)
+org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;,org.apache.commons.exec.CommandLine.getSubstitutionMap()Ljava/util/Map;,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecuteResultHandler.getExitValue()I,org.apache.commons.exec.DefaultExecuteResultHandler.getException()Lorg/apache/commons/exec/ExecuteException;,spurious-spec
+org.apache.commons.exec.DefaultExecuteResultHandler.waitFor(J)V,org.apache.commons.exec.DefaultExecuteResultHandler.getException()Lorg/apache/commons/exec/ExecuteException;,unknown
+org.apache.commons.exec.DefaultExecuteResultHandler.waitFor(J)V,org.apache.commons.exec.DefaultExecuteResultHandler.getExitValue()I,unknown
+org.apache.commons.exec.DefaultExecuteResultHandler.waitFor()V,org.apache.commons.exec.DefaultExecuteResultHandler.getException()Lorg/apache/commons/exec/ExecuteException;,unknown
+org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,no-break-pass (direct)
+org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,no-break-pass (direct)
+org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,no-break-pass (direct)
+org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,no-break-pass (direct)
+org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;,spurious-spec
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,no-break-pass (direct)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,no-break-pass (direct)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;,spurious-spec
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;,no-break-pass (direct)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;,no-break-pass (direct)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,true-spec
+org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,true-spec
+org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,true-spec
+org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;,spurious-spec
+org.apache.commons.exec.environment.DefaultProcessingEnvironment.getProcEnvironment()Ljava/util/Map;,org.apache.commons.exec.environment.DefaultProcessingEnvironment.createProcEnvironment()Ljava/util/Map;,no-break-pass (direct)
+org.apache.commons.exec.ExecuteStreamHandler.setProcessErrorStream(Ljava/io/InputStream;)V,org.apache.commons.exec.PumpStreamHandler.createProcessErrorPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,no-break-pass (direct)
+org.apache.commons.exec.ExecuteStreamHandler.setProcessInputStream(Ljava/io/OutputStream;)V,org.apache.commons.exec.PumpStreamHandler.createSystemInPump(Ljava/io/InputStream;Ljava/io/OutputStream;)Ljava/lang/Thread;,no-break-pass (direct)
+org.apache.commons.exec.ExecuteStreamHandler.setProcessOutputStream(Ljava/io/InputStream;)V,org.apache.commons.exec.PumpStreamHandler.createProcessOutputPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,no-break-pass (direct)
+org.apache.commons.exec.ExecuteWatchdog.destroyProcess()V,org.apache.commons.exec.ExecuteWatchdog.cleanUp()V,no-break-pass (indirect)
+org.apache.commons.exec.ExecuteWatchdog.destroyProcess()V,org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V,no-break-pass (direct)
+org.apache.commons.exec.ExecuteWatchdog.destroyProcess()V,org.apache.commons.exec.ExecuteWatchdog.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,no-break-pass (direct)
+org.apache.commons.exec.ExecuteWatchdog.isWatching()Z,org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V,no-break-pass (direct)
+org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z,org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z,org.apache.commons.exec.ExecuteWatchdog.isWatching()Z,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,org.apache.commons.exec.ExecuteWatchdog.cleanUp()V,no-break-pass (direct)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;,spurious-spec
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,no-break-pass (direct)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V,no-break-pass (direct)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.Executor.setExitValue(I)V,org.apache.commons.exec.DefaultExecutor.setExitValues([I)V,no-break-pass (direct)
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;,spurious-spec
+org.apache.commons.exec.launcher.CommandLauncher.exec(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,org.apache.commons.exec.launcher.CommandLauncher.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.ProcessDestroyer.add(Ljava/lang/Process;)Z,org.apache.commons.exec.ShutdownHookProcessDestroyer.addShutdownHook()V,no-break-pass (direct)
+org.apache.commons.exec.ProcessDestroyer.add(Ljava/lang/Process;)Z,org.apache.commons.exec.ShutdownHookProcessDestroyer.removeShutdownHook()V,true-spec
+org.apache.commons.exec.ProcessDestroyer.remove(Ljava/lang/Process;)Z,org.apache.commons.exec.ShutdownHookProcessDestroyer.removeShutdownHook()V,no-break-pass (direct)
+org.apache.commons.exec.TimeoutObserver.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,org.apache.commons.exec.ExecuteWatchdog.cleanUp()V,no-break-pass (direct)
+org.apache.commons.exec.DefaultExecuteResultHandler.waitFor(J)V,org.apache.commons.exec.ExecuteResultHandler.onProcessComplete(I)V,spurious-spec
+org.apache.commons.exec.DefaultExecuteResultHandler.waitFor(J)V,org.apache.commons.exec.ExecuteResultHandler.onProcessFailed(Lorg/apache/commons/exec/ExecuteException;)V,spurious-spec
+org.apache.commons.exec.DefaultExecuteResultHandler.waitFor()V,org.apache.commons.exec.ExecuteResultHandler.onProcessFailed(Lorg/apache/commons/exec/ExecuteException;)V,spurious-spec
+org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,no-break-pass (indirect)
+org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,no-break-pass (indirect)
+org.apache.commons.exec.ExecuteResultHandler.onProcessComplete(I)V,org.apache.commons.exec.DefaultExecuteResultHandler.getException()Lorg/apache/commons/exec/ExecuteException;,sometimes-true-spec
+org.apache.commons.exec.ExecuteResultHandler.onProcessComplete(I)V,org.apache.commons.exec.DefaultExecuteResultHandler.getExitValue()I,sometimes-true-spec
+org.apache.commons.exec.ExecuteResultHandler.onProcessFailed(Lorg/apache/commons/exec/ExecuteException;)V,org.apache.commons.exec.DefaultExecuteResultHandler.getException()Lorg/apache/commons/exec/ExecuteException;,sometimes-true-spec
+org.apache.commons.exec.ExecuteResultHandler.onProcessFailed(Lorg/apache/commons/exec/ExecuteException;)V,org.apache.commons.exec.DefaultExecuteResultHandler.getExitValue()I,sometimes-true-spec
+org.apache.commons.exec.ExecuteWatchdog.checkException()V,org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.checkException()V,org.apache.commons.exec.ExecuteWatchdog.isWatching()Z,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.checkException()V,org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.cleanUp()V,org.apache.commons.exec.ExecuteWatchdog.checkException()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.cleanUp()V,org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.cleanUp()V,org.apache.commons.exec.ExecuteWatchdog.isWatching()Z,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.cleanUp()V,org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.cleanUp()V,org.apache.commons.exec.ExecuteWatchdog.stop()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.destroyProcess()V,org.apache.commons.exec.ExecuteWatchdog.checkException()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V,org.apache.commons.exec.ExecuteWatchdog.checkException()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z,org.apache.commons.exec.ExecuteWatchdog.checkException()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.setProcessNotStarted()V,org.apache.commons.exec.ExecuteWatchdog.checkException()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.setProcessNotStarted()V,org.apache.commons.exec.ExecuteWatchdog.start(Ljava/lang/Process;)V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.setProcessNotStarted()V,org.apache.commons.exec.ExecuteWatchdog.stop()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.setProcessNotStarted()V,org.apache.commons.exec.TimeoutObserver.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.start(Ljava/lang/Process;)V,org.apache.commons.exec.ExecuteWatchdog.cleanUp()V,true-spec
+org.apache.commons.exec.ExecuteWatchdog.start(Ljava/lang/Process;)V,org.apache.commons.exec.ExecuteWatchdog.destroyProcess()V,sometimes-true-spec
+org.apache.commons.exec.ExecuteWatchdog.start(Ljava/lang/Process;)V,org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V,true-spec
+org.apache.commons.exec.ExecuteWatchdog.start(Ljava/lang/Process;)V,org.apache.commons.exec.ExecuteWatchdog.isWatching()Z,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.start(Ljava/lang/Process;)V,org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.start(Ljava/lang/Process;)V,org.apache.commons.exec.ExecuteWatchdog.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.start(Ljava/lang/Process;)V,org.apache.commons.exec.TimeoutObserver.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,no-break-pass (indirect)
+org.apache.commons.exec.ExecuteWatchdog.stop()V,org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.stop()V,org.apache.commons.exec.ExecuteWatchdog.isWatching()Z,true-spec
+org.apache.commons.exec.ExecuteWatchdog.stop()V,org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,org.apache.commons.exec.ExecuteWatchdog.checkException()V,spurious-spec
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,no-break-pass (indirect)
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,no-break-pass (indirect)
+org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V,sometimes-true-spec
+org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V,sometimes-true-spec
+org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,spurious-spec
+org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,sometimes-true-spec
+org.apache.commons.exec.ShutdownHookProcessDestroyer.isEmpty()Z,org.apache.commons.exec.ProcessDestroyer.add(Ljava/lang/Process;)Z,spurious-spec
+org.apache.commons.exec.ShutdownHookProcessDestroyer.isEmpty()Z,org.apache.commons.exec.ProcessDestroyer.remove(Ljava/lang/Process;)Z,spurious-spec
+org.apache.commons.exec.ShutdownHookProcessDestroyer.isEmpty()Z,org.apache.commons.exec.ShutdownHookProcessDestroyer.addShutdownHook()V,spurious-spec
+org.apache.commons.exec.ShutdownHookProcessDestroyer.isEmpty()Z,org.apache.commons.exec.ShutdownHookProcessDestroyer.removeShutdownHook()V,spurious-spec
+org.apache.commons.exec.TimeoutObserver.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,org.apache.commons.exec.ExecuteWatchdog.checkException()V,true-spec
+org.apache.commons.exec.TimeoutObserver.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V,spurious-spec
+org.apache.commons.exec.TimeoutObserver.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,org.apache.commons.exec.ExecuteWatchdog.isWatching()Z,spurious-spec
+org.apache.commons.exec.TimeoutObserver.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z,spurious-spec
+org.apache.commons.exec.TimeoutObserver.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,org.apache.commons.exec.ExecuteWatchdog.stop()V,spurious-spec
+org.apache.commons.exec.Watchdog.addTimeoutObserver(Lorg/apache/commons/exec/TimeoutObserver;)V,org.apache.commons.exec.Watchdog.fireTimeoutOccured()V,true-spec
+org.apache.commons.exec.Watchdog.addTimeoutObserver(Lorg/apache/commons/exec/TimeoutObserver;)V,org.apache.commons.exec.Watchdog.start()V,spurious-spec
+org.apache.commons.exec.Watchdog.fireTimeoutOccured()V,org.apache.commons.exec.Watchdog.stop()V,spurious-spec
+org.apache.commons.exec.Watchdog.start()V,org.apache.commons.exec.Watchdog.fireTimeoutOccured()V,no-break-pass (indirect)
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,spurious-spec
+org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;,true-spec
+org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;,spurious-spec
+org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;,true-spec
+org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.ExecuteStreamHandler.start()V,org.apache.commons.exec.ExecuteStreamHandler.stop()V,true-spec
+org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.ProcessDestroyer.add(Ljava/lang/Process;)Z,org.apache.commons.exec.ProcessDestroyer.remove(Ljava/lang/Process;)Z,spurious-spec
+org.apache.commons.exec.ShutdownHookProcessDestroyer.addShutdownHook()V,org.apache.commons.exec.ProcessDestroyer.remove(Ljava/lang/Process;)Z,true-spec
+org.apache.commons.exec.ShutdownHookProcessDestroyer.addShutdownHook()V,org.apache.commons.exec.ShutdownHookProcessDestroyer.removeShutdownHook()V,true-spec
+org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.setSubstitutionMap(Ljava/util/Map;)V,spurious-spec
+org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.setSubstitutionMap(Ljava/util/Map;)V,spurious-spec
+org.apache.commons.exec.CommandLine.getSubstitutionMap()Ljava/util/Map;,org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;,spurious-spec
+org.apache.commons.exec.CommandLine.setSubstitutionMap(Ljava/util/Map;)V,org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;,spurious-spec
+org.apache.commons.exec.CommandLine.toCleanExecutable(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;,spurious-spec
+org.apache.commons.exec.CommandLine.toCleanExecutable(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;,spurious-spec
+org.apache.commons.exec.CommandLine.toCleanExecutable(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,spurious-spec
+org.apache.commons.exec.CommandLine.toCleanExecutable(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,spurious-spec
+org.apache.commons.exec.DefaultExecuteResultHandler.getException()Lorg/apache/commons/exec/ExecuteException;,org.apache.commons.exec.DefaultExecuteResultHandler.getExitValue()I,spurious-spec
+org.apache.commons.exec.DefaultExecuteResultHandler.onProcessComplete(I)V,org.apache.commons.exec.DefaultExecuteResultHandler.hasResult()Z,true-spec
+org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,true-spec
+org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;,spurious-spec
+org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;,spurious-spec
+org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setExitValues([I)V,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setExitValues([I)V,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setExitValues([I)V,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setExitValues([I)V,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setExitValues([I)V,org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,spurious-spec
+org.apache.commons.exec.ExecuteStreamHandler.setProcessInputStream(Ljava/io/OutputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.setProcessErrorStream(Ljava/io/InputStream;)V,spurious-spec
+org.apache.commons.exec.ExecuteStreamHandler.setProcessInputStream(Ljava/io/OutputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.setProcessOutputStream(Ljava/io/InputStream;)V,spurious-spec
+org.apache.commons.exec.ExecuteStreamHandler.setProcessInputStream(Ljava/io/OutputStream;)V,org.apache.commons.exec.PumpStreamHandler.createProcessErrorPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,spurious-spec
+org.apache.commons.exec.ExecuteStreamHandler.setProcessInputStream(Ljava/io/OutputStream;)V,org.apache.commons.exec.PumpStreamHandler.createProcessOutputPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,spurious-spec
+org.apache.commons.exec.ExecuteStreamHandler.setProcessOutputStream(Ljava/io/InputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.setProcessErrorStream(Ljava/io/InputStream;)V,spurious-spec
+org.apache.commons.exec.ExecuteStreamHandler.setProcessOutputStream(Ljava/io/InputStream;)V,org.apache.commons.exec.PumpStreamHandler.createProcessErrorPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V,org.apache.commons.exec.ExecuteWatchdog.cleanUp()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V,org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V,org.apache.commons.exec.ExecuteWatchdog.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.setProcessNotStarted()V,org.apache.commons.exec.ExecuteWatchdog.cleanUp()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.setProcessNotStarted()V,org.apache.commons.exec.ExecuteWatchdog.destroyProcess()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.setProcessNotStarted()V,org.apache.commons.exec.ExecuteWatchdog.ensureStarted()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.setProcessNotStarted()V,org.apache.commons.exec.ExecuteWatchdog.isWatching()Z,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.setProcessNotStarted()V,org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.setProcessNotStarted()V,org.apache.commons.exec.ExecuteWatchdog.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.stop()V,org.apache.commons.exec.ExecuteWatchdog.checkException()V,spurious-spec
+org.apache.commons.exec.Executor.isFailure(I)Z,org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;,spurious-spec
+org.apache.commons.exec.Executor.setExitValue(I)V,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,spurious-spec
+org.apache.commons.exec.Executor.setExitValue(I)V,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,spurious-spec
+org.apache.commons.exec.Executor.setExitValue(I)V,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,spurious-spec
+org.apache.commons.exec.Executor.setExitValue(I)V,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.Executor.setExitValue(I)V,org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,spurious-spec
+org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,spurious-spec
+org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;,spurious-spec
+org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,sometimes-true-spec
+org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,sometimes-true-spec
+org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,spurious-spec
+org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;,spurious-spec
+org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,spurious-spec
+org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,sometimes-true-spec
+org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.setExitValues([I)V,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.Executor.setExitValue(I)V,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.Executor.setWorkingDirectory(Ljava/io/File;)V,spurious-spec
+org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;,spurious-spec
+org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,sometimes-true-spec
+org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Lorg/apache/commons/exec/ExecuteResultHandler;)V,sometimes-true-spec
+org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,spurious-spec
+org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;,spurious-spec
+org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,sometimes-true-spec
+org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,sometimes-true-spec
+org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Lorg/apache/commons/exec/ExecuteResultHandler;)V,sometimes-true-spec
+org.apache.commons.exec.Executor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.Executor.setProcessDestroyer(Lorg/apache/commons/exec/ProcessDestroyer;)V,spurious-spec
+org.apache.commons.exec.Executor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,spurious-spec
+org.apache.commons.exec.Executor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,spurious-spec
+org.apache.commons.exec.Executor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,spurious-spec
+org.apache.commons.exec.Executor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.Executor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,spurious-spec
+org.apache.commons.exec.Executor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.PumpStreamHandler.createProcessOutputPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.setProcessErrorStream(Ljava/io/InputStream;)V,spurious-spec
+org.apache.commons.exec.PumpStreamHandler.createProcessOutputPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,org.apache.commons.exec.PumpStreamHandler.createProcessErrorPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,spurious-spec
+org.apache.commons.exec.PumpStreamHandler.createSystemInPump(Ljava/io/InputStream;Ljava/io/OutputStream;)Ljava/lang/Thread;,org.apache.commons.exec.ExecuteStreamHandler.setProcessErrorStream(Ljava/io/InputStream;)V,spurious-spec
+org.apache.commons.exec.PumpStreamHandler.createSystemInPump(Ljava/io/InputStream;Ljava/io/OutputStream;)Ljava/lang/Thread;,org.apache.commons.exec.ExecuteStreamHandler.setProcessOutputStream(Ljava/io/InputStream;)V,spurious-spec
+org.apache.commons.exec.PumpStreamHandler.createSystemInPump(Ljava/io/InputStream;Ljava/io/OutputStream;)Ljava/lang/Thread;,org.apache.commons.exec.ExecuteStreamHandler.start()V,spurious-spec
+org.apache.commons.exec.PumpStreamHandler.createSystemInPump(Ljava/io/InputStream;Ljava/io/OutputStream;)Ljava/lang/Thread;,org.apache.commons.exec.ExecuteStreamHandler.stop()V,spurious-spec
+org.apache.commons.exec.PumpStreamHandler.createSystemInPump(Ljava/io/InputStream;Ljava/io/OutputStream;)Ljava/lang/Thread;,org.apache.commons.exec.PumpStreamHandler.createProcessErrorPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,spurious-spec
+org.apache.commons.exec.PumpStreamHandler.createSystemInPump(Ljava/io/InputStream;Ljava/io/OutputStream;)Ljava/lang/Thread;,org.apache.commons.exec.PumpStreamHandler.createProcessOutputPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,spurious-spec
+org.apache.commons.exec.ShutdownHookProcessDestroyer$ProcessDestroyerImpl.start()V,org.apache.commons.exec.ShutdownHookProcessDestroyer$ProcessDestroyerImpl.join(J)V,true-spec
+org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;,true-spec
+org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;,spurious-spec
+org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;,true-spec
+org.apache.commons.exec.CommandLine$Argument.getValue()Ljava/lang/String;,org.apache.commons.exec.CommandLine$Argument.isHandleQuoting()Z,spurious-spec
+org.apache.commons.exec.CommandLine.expandArgument(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;,spurious-spec
+org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;,org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;,spurious-spec
+org.apache.commons.exec.CommandLine.setSubstitutionMap(Ljava/util/Map;)V,org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;,true-spec
+org.apache.commons.exec.CommandLine.setSubstitutionMap(Ljava/util/Map;)V,org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;,true-spec
+org.apache.commons.exec.CommandLine.toCleanExecutable(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;)Lorg/apache/commons/exec/CommandLine;,spurious-spec
+org.apache.commons.exec.CommandLine.toCleanExecutable(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.addArgument(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,spurious-spec
+org.apache.commons.exec.CommandLine.toCleanExecutable(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.expandArgument(Ljava/lang/String;)Ljava/lang/String;,spurious-spec
+org.apache.commons.exec.CommandLine.toCleanExecutable(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;,spurious-spec
+org.apache.commons.exec.CommandLine.toCleanExecutable(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;,true-spec
+org.apache.commons.exec.CommandLine.toCleanExecutable(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.getSubstitutionMap()Ljava/util/Map;,spurious-spec
+org.apache.commons.exec.CommandLine.toCleanExecutable(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.setSubstitutionMap(Ljava/util/Map;)V,spurious-spec
+org.apache.commons.exec.CommandLine.toCleanExecutable(Ljava/lang/String;)Ljava/lang/String;,org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;,true-spec
+org.apache.commons.exec.DefaultExecutor.setExitValues([I)V,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,sometimes-true-spec
+org.apache.commons.exec.DefaultExecutor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;)I,sometimes-true-spec
+org.apache.commons.exec.DefaultExecutor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,sometimes-true-spec
+org.apache.commons.exec.DefaultExecutor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setWatchdog(Lorg/apache/commons/exec/ExecuteWatchdog;)V,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,spurious-spec
+org.apache.commons.exec.ExecuteStreamHandler.setProcessErrorStream(Ljava/io/InputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.start()V,true-spec
+org.apache.commons.exec.ExecuteStreamHandler.setProcessErrorStream(Ljava/io/InputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.stop()V,spurious-spec
+org.apache.commons.exec.ExecuteStreamHandler.setProcessInputStream(Ljava/io/OutputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.start()V,true-spec
+org.apache.commons.exec.ExecuteStreamHandler.setProcessOutputStream(Ljava/io/InputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.start()V,true-spec
+org.apache.commons.exec.ExecuteStreamHandler.setProcessOutputStream(Ljava/io/InputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.stop()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.start(Ljava/lang/Process;)V,org.apache.commons.exec.ExecuteWatchdog.checkException()V,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.start(Ljava/lang/Process;)V,org.apache.commons.exec.ExecuteWatchdog.stop()V,true-spec
+org.apache.commons.exec.Executor.setExitValue(I)V,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.closeProcessStreams(Ljava/lang/Process;)V,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.getExceptionCaught()Ljava/io/IOException;,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,spurious-spec
+org.apache.commons.exec.Executor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,spurious-spec
+org.apache.commons.exec.Executor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,spurious-spec
+org.apache.commons.exec.PumpStreamHandler.createProcessErrorPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.start()V,sometimes-true-spec
+org.apache.commons.exec.PumpStreamHandler.createProcessErrorPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.stop()V,spurious-spec
+org.apache.commons.exec.PumpStreamHandler.createProcessOutputPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.start()V,sometimes-true-spec
+org.apache.commons.exec.PumpStreamHandler.createProcessOutputPump(Ljava/io/InputStream;Ljava/io/OutputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.stop()V,spurious-spec
+org.apache.commons.exec.ShutdownHookProcessDestroyer$ProcessDestroyerImpl.setShouldDestroy(Z)V,org.apache.commons.exec.ShutdownHookProcessDestroyer$ProcessDestroyerImpl.join(J)V,sometimes-true-spec
+org.apache.commons.exec.ShutdownHookProcessDestroyer$ProcessDestroyerImpl.setShouldDestroy(Z)V,org.apache.commons.exec.ShutdownHookProcessDestroyer$ProcessDestroyerImpl.start()V,true-spec
+org.apache.commons.exec.Watchdog.addTimeoutObserver(Lorg/apache/commons/exec/TimeoutObserver;)V,org.apache.commons.exec.Watchdog.stop()V,spurious-spec
+org.apache.commons.exec.Watchdog.start()V,org.apache.commons.exec.Watchdog.stop()V,true-spec
+org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;,true-spec
+org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.getArguments()[Ljava/lang/String;,true-spec
+org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;,spurious-spec
+org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.getExecutable()Ljava/lang/String;,spurious-spec
+org.apache.commons.exec.CommandLine.addArguments([Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;,true-spec
+org.apache.commons.exec.CommandLine.addArguments(Ljava/lang/String;Z)Lorg/apache/commons/exec/CommandLine;,org.apache.commons.exec.CommandLine.toStrings()[Ljava/lang/String;,true-spec
+org.apache.commons.exec.DefaultExecutor.createThread(Ljava/lang/Runnable;Ljava/lang/String;)Ljava/lang/Thread;,org.apache.commons.exec.DefaultExecutor.getExecutorThread()Ljava/lang/Thread;,true-spec
+org.apache.commons.exec.DefaultExecutor.setExitValues([I)V,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setExitValues([I)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,spurious-spec
+org.apache.commons.exec.DefaultExecutor.setExitValues([I)V,org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.destroyProcess()V,org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z,spurious-spec
+org.apache.commons.exec.ExecuteWatchdog.timeoutOccured(Lorg/apache/commons/exec/Watchdog;)V,org.apache.commons.exec.ExecuteWatchdog.killedProcess()Z,spurious-spec
+org.apache.commons.exec.Executor.setExitValue(I)V,org.apache.commons.exec.DefaultExecutor.executeInternal(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;Lorg/apache/commons/exec/ExecuteStreamHandler;)I,spurious-spec
+org.apache.commons.exec.Executor.setExitValue(I)V,org.apache.commons.exec.DefaultExecutor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,spurious-spec
+org.apache.commons.exec.Executor.setExitValue(I)V,org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;)I,spurious-spec
+org.apache.commons.exec.Executor.setStreamHandler(Lorg/apache/commons/exec/ExecuteStreamHandler;)V,org.apache.commons.exec.Executor.execute(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;)I,spurious-spec
+org.apache.commons.exec.Executor.setWorkingDirectory(Ljava/io/File;)V,org.apache.commons.exec.Executor.getWorkingDirectory()Ljava/io/File;,spurious-spec
+org.apache.commons.exec.DefaultExecutor.isFailure(I)Z,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.DefaultExecutor.launch(Lorg/apache/commons/exec/CommandLine;Ljava/util/Map;Ljava/io/File;)Ljava/lang/Process;,org.apache.commons.exec.Executor.isFailure(I)Z,spurious-spec
+org.apache.commons.exec.ExecuteStreamHandler.setProcessInputStream(Ljava/io/OutputStream;)V,org.apache.commons.exec.ExecuteStreamHandler.stop()V,spurious-spec

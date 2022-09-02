@@ -1,0 +1,9 @@
+00059 org.apache.commons.codec.binary.Base16InputStream.skip(J)J org.apache.commons.codec.binary.Base16InputStream.read([BII)I == TP
+00056 org.apache.commons.codec.binary.Base16InputStream.read([BII)I org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I == TP
+00060 org.apache.commons.codec.binary.Base16InputStream.skip(J)J org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I == TP
+00100 org.apache.commons.codec.binary.Base32InputStream.skip(J)J org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I == TP
+00099 org.apache.commons.codec.binary.Base32InputStream.skip(J)J org.apache.commons.codec.binary.Base32InputStream.read([BII)I == TP
+00096 org.apache.commons.codec.binary.Base32InputStream.read([BII)I org.apache.commons.codec.binary.BaseNCodecInputStream.read([BII)I == TP
+00067 org.apache.commons.codec.binary.Base16OutputStream.write([BII)V org.apache.commons.codec.binary.BaseNCodecOutputStream.flush(Z)V == TP
+00165 org.apache.commons.codec.binary.BaseNCodec.isStrictDecoding()Z org.apache.commons.codec.binary.Base32.isStrictDecoding()Z == FP
+00111 org.apache.commons.codec.binary.Base32OutputStream.write([BII)V org.apache.commons.codec.binary.BaseNCodecOutputStream.flush(Z)V == TP

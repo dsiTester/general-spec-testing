@@ -1,0 +1,29 @@
+digraph graphname {
+        start -> S0 [ label = EPSILON, fontcolor="#ff0000"];
+        // edges out of S0
+        S0 -> S1 [ label = STN, fontcolor="#ff0000"];
+        S0 -> S2 [ label = STN, fontcolor="#ff0000"];
+        // edges out of S1
+        S1 -> S1 [ label = NT, fontcolor="#ff0000"];
+        S1 -> S2 [ label = NT, fontcolor="#ff0000"];
+        S1 -> S3 [ label = HMTT, fontcolor="#ff0000"];
+        S1 -> S8 [ label = HMTT, fontcolor="#ff0000"];
+        S1 -> S15 [ label = HMTT, fontcolor="#ff0000"];
+        // edges out of S2
+        S2 -> S5 [ label = HMTF, fontcolor="#ff0000"];
+        S2 -> S17 [ label = HMTF, fontcolor="#ff0000"];
+        // edges out of S3
+        S3 -> S1 [ label = NT, fontcolor="#ff0000"];
+        S3 -> S2 [ label = NT, fontcolor="#ff0000"];
+        // edges out of S5
+        S5 -> S5 [ label = HMTF, fontcolor="#ff0000"];
+        // edges out of S8
+        S8 -> S1 [ label = NT, fontcolor="#ff0000"];
+        S8 -> S2 [ label = NT, fontcolor="#ff0000"];
+        // edges out of S15
+        S15 -> S1 [ label = NT, fontcolor="#ff0000"];
+        S15 -> S2 [ label = NT, fontcolor="#ff0000"];
+        // edges out of S17
+        S17 -> end [ label = EPSILON, fontcolor="#ff0000"];
+}
+

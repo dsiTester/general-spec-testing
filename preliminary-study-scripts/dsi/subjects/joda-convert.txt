@@ -1,0 +1,1 @@
+https://github.com/JodaOrg/joda-convert.git 8f8bfd9fe6da5950f77b0ff5eb28e77492dbcd4c joda-convert

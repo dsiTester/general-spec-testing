@@ -1,0 +1,12 @@
+all-tests
+jnr.posix.NlLanginfoTest
+jnr.posix.ProcessTest
+jnr.posix.NlLanginfoTest#testNlLanginfo
+jnr.posix.ProcessTest#getcwd
+jnr.posix.ProcessTest#testGetRLimit
+jnr.posix.ProcessTest#testGetRLimitPointer
+jnr.posix.ProcessTest#testGetRLimitPreallocatedRlimit
+jnr.posix.ProcessTest#testSetRlimitLinux
+jnr.posix.ProcessTest#testSetRlimitPointerLinux
+jnr.posix.ProcessTest#testSetRlimitPreallocatedLinux
+jnr.posix.ProcessTest#times

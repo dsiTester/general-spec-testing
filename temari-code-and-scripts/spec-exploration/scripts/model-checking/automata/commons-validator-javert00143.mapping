@@ -1,0 +1,10 @@
+transition-id,method-sig
+InetAddressValidatorisValidInet4Address,org.apache.commons.validator.routines.InetAddressValidator.isValidInet4Address(Ljava/lang/String;)Z
+InetAddressValidatorisValid,org.apache.commons.validator.routines.InetAddressValidator.isValid(Ljava/lang/String;)Z
+RegexValidatormatch,org.apache.commons.validator.routines.RegexValidator.match(Ljava/lang/String;)[Ljava/lang/String;
+UrlValidatorcountToken,org.apache.commons.validator.UrlValidator.countToken(Ljava/lang/String;Ljava/lang/String;)I
+UrlValidatorisValidAuthority,org.apache.commons.validator.UrlValidator.isValidAuthority(Ljava/lang/String;)Z
+UrlValidatorisValidFragment,org.apache.commons.validator.UrlValidator.isValidFragment(Ljava/lang/String;)Z
+UrlValidatorisValid,org.apache.commons.validator.UrlValidator.isValid(Ljava/lang/String;)Z
+UrlValidatorisValidPath,org.apache.commons.validator.UrlValidator.isValidPath(Ljava/lang/String;)Z
+UrlValidatorisValidQuery,org.apache.commons.validator.UrlValidator.isValidQuery(Ljava/lang/String;)Z

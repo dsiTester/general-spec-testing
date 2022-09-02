@@ -1,0 +1,2528 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2021-12-10-13-37",
+        "project": "commons-fileupload",
+        "spec-id": "00002",
+        "method-a": "org.apache.commons.fileupload2.DefaultFileItem.getStoreLocation()Ljava/io/File;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "java.io.File",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 2,
+        "U-verdict-count": 1,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00002.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:195",
+                        "method-b-site": "DiskFileItem.java:433",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT: Replacing the return value of a with null will cause an assertion failure, since the next line is an assertNotNull() on the return value of a.",
+                "notes": "ORDER_OF_ASSERTIONS - since the assertions checking the return value of method-a were between method-a and method-b, the DSI experiment resulted in a stage-0-failure. However, if the assertions were moved after the call to the caller of method-b, they will fail because of the state changes that the caller of method-b makes."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "NA",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "STATE_POLLUTION_BY_DSI: effects of spec 00001 being stage-0-failure is polluting the state; all subsequent specs fail on sanity check bc delete() returns false because the directory has a file in it (because item.delete() was never called in the 00001 case - meaning that the dir always has a file inside of it?). Separately, method-a and method-b are actually **the same** method, it's just that method-a is called by a class that extends DiskFileItem (that doesn't override the definition). There is no relation between method-a and method-b besides that they are the same method. DYNAMIC_DISPATCH_SAME_METHOD",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-10-14-17",
+        "inspection-time-in-minutes": 40
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2021-12-11-14-16",
+        "project": "commons-fileupload",
+        "spec-id": "00028",
+        "method-a": "org.apache.commons.fileupload2.FileItem.delete()V",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 4,
+        "test-methods-mine-count": 9,
+        "U-verdict-count": 11,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00028.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:204",
+                        "method-b-site": "DiskFileItem.java:433",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void, so there is no return value at play. However, method-a modifies the state, since it deletes an existing file.",
+                "notes": "The test passed, but DSI only got up to stage-0 because delaying method-a meant that method-b was not called (because it was a no-break-pass case)."
+            },
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testValidRepository",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItemSerializeTest.java:86",
+                        "method-b-site": "DiskFileItem.java:433",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "STATE_POLLUTION_BY_DSI"
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testValidRepository",
+        "notes": "Refer to 00002 about error spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-11-12-58",
+        "inspection-time-in-minutes": 42
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2021-12-12-17-50",
+        "project": "commons-fileupload",
+        "spec-id": "00038",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getContentType()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileItem.getName()Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 2,
+        "U-verdict-count": 2,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/u-e/00038.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testFileFieldConstruction",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:99",
+                        "method-b-site": "DefaultFileItemTest.java:101",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR + REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with a different string value than what was expected.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testFileFieldConstruction",
+        "notes": "UNRELATED_STATELESS_METHODS. (Both method-a and method-b are getters)",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-12-18-06",
+        "inspection-time-in-minutes": 16
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2021-12-14-15-17",
+        "project": "commons-fileupload",
+        "spec-id": "00039",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getContentType()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.FileItem.isFormField()Z",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 2,
+        "U-verdict-count": 3,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/u-e/00039.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testTextFieldConstruction",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:77",
+                        "method-b-site": "DefaultFileItemTest.java:78",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced method-a's return value with the nearest defined String value, which was not equal to the expected value. Hence, the assertion failed, and the experiment was a stage-0-failure.",
+                "notes": "ORDER_OF_ASSERTIONS."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testTextFieldConstruction",
+        "notes": "UNRELATED_STATELESS_METHODS. Check comment-on-return-values. Additionally, there is no relationship btwn the two methods are they are 1-line getters that don't change state.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-14-15-29",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2021-12-14-15-30",
+        "project": "commons-fileupload",
+        "spec-id": "00045",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getOutputStream()Ljava/io/OutputStream;",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "java.io.OutputStream",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "U-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/u-e/00045.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:182",
+                        "method-b-site": "DefaultFileItemTest.java:195",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION: DSI replaces the return value of method-a with null, causing a NullPointerException on the subsequent instruction.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "",
+        "notes": "In some sense, method-b does depend on method-a because if dfos is null and method-a is not called, then the return value of method-b would be null, and if dfos is null and method-a is called, then the return value of method-b would not be null. Not sure where to place this, since technically you can call method-b without calling method-a, but there seems to be a precondition relationship if you cared about the correct return value of method-b (there is an a-until-b situation here). Refer to code snippet - DefaultFileItemTest.modifiedDoTestAboveThreshold(). DECISION: Since method-a and method-b are both public methods that technically can be called at any point, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-14-15-46",
+        "inspection-time-in-minutes": 16
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2021-12-15-18-23",
+        "project": "commons-fileupload",
+        "spec-id": "00049",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getOutputStream()Ljava/io/OutputStream;",
+        "method-b": "org.apache.commons.fileupload2.FileItem.getSize()J",
+        "method-a-return-type": "java.io.OutputStream",
+        "method-b-return-type": "long",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 7,
+        "U-verdict-count": 6,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00049.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testAboveThreshold",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "ASM_ERROR. Manually checked that all other unknown cases are due to the asm error as well."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "Refer to code-snippet - ModifiedDiskFileItemSerializeTest.",
+        "notes": "Not really sure about this one, especially given that all of the DSI runs ended in sanity-check-failure. However, upon inspection of the implementations of method-a and method-b, there is a scenario in which one would have to call method-a before method-b (refer to code-snippets), so I think this is a true-spec. That being said, given how the set of unknown tests acted for spec 00047, I think it's likely that even without the asm error, this set of tests would have concluded unknown for this spec with stage-0-failures instead.",
+        "findings": "Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2021-12-15-18-41",
+        "inspection-time-in-minutes": 18
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2021-12-15-18-41",
+        "project": "commons-fileupload",
+        "spec-id": "00050",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getOutputStream()Ljava/io/OutputStream;",
+        "method-b": "org.apache.commons.fileupload2.FileItem.getString()Ljava/lang/String;",
+        "method-a-return-type": "java.io.OutputStream",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "U-verdict-count": 2,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00050.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:124",
+                        "method-b-site": "DefaultFileItemTest.java:133",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. Since there was no OutputStream value that DSI could replace the return value of method-a with, the return value got replaced with null. The next instruction needed to use write() on the return value, but the return value was null. Hence, a NullPointerException happened.",
+                "notes": "Manually confirmed that the same case occured with org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold, replacing the return value of method-a with new ByteArrayOutputStream(), plus without the isInMemory() check at line 131.",
+        "notes": "Indirectly a true spec, since the dependency comes from the fact that method-b transitively calls DiskFileItem.isInMemory(), and method-a is needed for DiskFileItem.isInMemory().",
+        "findings": "Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2021-12-15-19-01",
+        "inspection-time-in-minutes": 20
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2021-12-15-19-03",
+        "project": "commons-fileupload",
+        "spec-id": "00051",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getOutputStream()Ljava/io/OutputStream;",
+        "method-b": "org.apache.commons.fileupload2.FileItem.isInMemory()Z",
+        "method-a-return-type": "java.io.OutputStream",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 7,
+        "U-verdict-count": 6,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00051.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:124",
+                        "method-b-site": "DefaultFileItemTest.java:130",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. Since there was no OutputStream value that DSI could replace the return value of method-a with, the return value got replaced with null. The next instruction needed to use write() on the return value, but the return value was null. Hence, a NullPointerException happened.",
+                "notes": "Manually checked that all other cases are based off of the same cause."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold, replacing the return value of method-a with new ByteArrayOutputStream(), plus without the isInMemory() check at line 131.",
+        "notes": "Most likely a bigger spec with 00050.",
+        "findings": "Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2021-12-15-19-20",
+        "inspection-time-in-minutes": 17
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2021-12-15-19-53",
+        "project": "commons-fileupload",
+        "spec-id": "00053",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getOutputStream()Ljava/io/OutputStream;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.get()[B",
+        "method-a-return-type": "java.io.OutputStream",
+        "method-b-return-type": "byte[]",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "U-verdict-count": 2,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00053.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:124",
+                        "method-b-site": "DiskFileItem.java:352",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "LUCKY_REPLACEMENT_CHECK. DSI replaced the return value of method-a with null, which caused a NullPointerException in the next line where a method was about to be invoked from that return value itself.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold and replacing the return value with new ByteArrayOutputStream().",
+        "notes": "Similar to 00047, but the method-b here is the implementation of 00047's method-b - method-a is needed to initialize the internal variable dfos, otherwise the check for DiskFileItem.isInMemory() would result in a NullPointerException. How would we put together the implementation of a method with a method in a larger spec?",
+        "findings": "Type-c: method-b is always preceded by method-a",
+        "part-of-bigger-spec": "yes",
+        "inspection-end-time": "2021-12-15-18-14",
+        "inspection-time-in-minutes": 17
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2021-12-16-12-55",
+        "project": "commons-fileupload",
+        "spec-id": "00054",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getOutputStream()Ljava/io/OutputStream;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getCharSet()Ljava/lang/String;",
+        "method-a-return-type": "java.io.OutputStream",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "U-verdict-count": 2,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00054.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:124",
+                        "method-b-site": "DiskFileItem.java:353",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION: DSI replaced the return value of method-a with null, which caused a NullPointerException in the next line where a method was about to be invoked from that return value itself.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "Refer to DefaultFileItemTest.modifiedTestBelowThreshold() in the code-snippet.",
+        "notes": "While the outcome is very similar as 00053, there is no actual dependency on method-b to have method-a be called first - therefore, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-13-04",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2021-12-16-13-04",
+        "project": "commons-fileupload",
+        "spec-id": "00055",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getOutputStream()Ljava/io/OutputStream;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getContentType()Ljava/lang/String;",
+        "method-a-return-type": "java.io.OutputStream",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "U-verdict-count": 2,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00055.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:124",
+                        "method-b-site": "DiskFileItem.java:238",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION: DSI replaced the return value of method-a with null, which caused a NullPointerException in the next line where a method was about to be invoked from that return value itself.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold and replacing the return value with new ByteArrayOutputStream().",
+        "notes": "Similar situation as 00054 - the method-b of 00054 calls method-b from this spec, and since the method-b from this spec is a simple getter (ONE_STATELESS_METHOD) , there is no relationship between method-a and method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-13-16",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2021-12-16-14-42",
+        "project": "commons-fileupload",
+        "spec-id": "00058",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getOutputStream()Ljava/io/OutputStream;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getTempFile()Ljava/io/File;",
+        "method-a-return-type": "java.io.OutputStream",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 5,
+        "test-methods-mine-count": 17,
+        "U-verdict-count": 21,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00058.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testAboveThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItemSerializeTest.java:212",
+                        "method-b-site": "DiskFileItem.java:509",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION: DSI replaced the return value of method-a with null, which caused a NullPointerException in the next line where a method was about to be invoked from that return value itself.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testAboveThreshold",
+        "notes": "I'm unsure whether this is actually direct, since method-a is the interface method, where the (only) implementation of method-a calls method-b. In any case, this is a no-break-pass as evident from the snippets (there are cases in which method-b is not called).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-14-51",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2021-12-16-14-55",
+        "project": "commons-fileupload",
+        "spec-id": "00061",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getSize()J",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "long",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "U-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/u-e/00061.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "ASM_ERROR."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "Not too much evidence because of asm error. However, looking at the implementation of both methods (as evident in snippets), neither method-a and method-b modify any field variables. Hence, the spec is most likely spurious.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-15-14",
+        "inspection-time-in-minutes": 19
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2021-12-16-15-15",
+        "project": "commons-fileupload",
+        "spec-id": "00062",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getSize()J",
+        "method-b": "org.apache.commons.fileupload2.FileItem.delete()V",
+        "method-a-return-type": "long",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 6,
+        "U-verdict-count": 6,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/u-e/00062.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testAboveThreshold",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "ASM_ERROR. Manually checked that all other unknown cases are due to the asm error as well."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testAboveThreshold shows the connection between the two methods",
+        "notes": "The DSI experiment files aren't too useful here because they all end in sanity-check-failure. However, manually switching the order of method-a and method-b in org.apache.commons.fileupload2.DiskFileItemSerializeTest#testAboveThreshold causes the test to fail because method-b causes a change in state (it doesn't cause method-a to crash, but it does change the result of calling method-a). Method-a doesn't necessarily need to be called before method-b, and calling method-a after method-b won't result in an exception, but method-b will change the state in such a way that method-a's return value **will change** (so there may be an a-until-b relation here). DECISION: method-a and method-b are public methods that can be called at any point, so this seems like a CONNECTION_DOES_NOT_NECESSITATE_ORDERING case.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-15-30",
+        "inspection-time-in-minutes": 15
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2021-12-16-15-31",
+        "project": "commons-fileupload",
+        "spec-id": "00063",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getSize()J",
+        "method-b": "org.apache.commons.fileupload2.FileItem.get()[B",
+        "method-a-return-type": "long",
+        "method-b-return-type": "byte[]",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 7,
+        "U-verdict-count": 7,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00063.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testAboveThreshold",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "ASM_ERROR. Manually checked that all other unknown cases are due to the asm error as well."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testAboveThreshold",
+        "notes": "While all DSI runs have ended in sanity-check-failures due to asm error/state pollution, it is evident from the snippets that the two methods are not related (method-a is not statefully impacting method-b, and none of the operations that method-b is doing relates to method-a). Manually checked by physically switching the lines on which method-a and method-b were called and checking the intermediate values (dfos) after a call to method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-15-40",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 16,
+        "inspection-start-time": "2021-12-16-15-41",
+        "project": "commons-fileupload",
+        "spec-id": "00064",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getSize()J",
+        "method-b": "org.apache.commons.fileupload2.FileItem.getString()Ljava/lang/String;",
+        "method-a-return-type": "long",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "U-verdict-count": 2,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00064.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "ASM_ERROR. Manually checked that all other unknown cases are due to the asm error as well."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+        "notes": "While all DSI runs have ended in sanity-check-failures due to asm error/state pollution, it is evident from the snippets that the two methods are not related (method-a is not statefully impacting method-b, and none of the operations that method-b is doing relates to method-a). Manually checked by physically switching the lines on which method-a and method-b were called and checking the intermediate values (dfos) after a call to method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-15-47",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 17,
+        "inspection-start-time": "2021-12-16-15-47",
+        "project": "commons-fileupload",
+        "spec-id": "00065",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getSize()J",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.get()[B",
+        "method-a-return-type": "long",
+        "method-b-return-type": "byte[]",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "U-verdict-count": 2,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00065.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "ASM_ERROR. Manually checked that all other unknown cases are due to the asm error as well."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+        "notes": "Similar case as 00063, except that method-b here is the implementation of the method-b from 00063. While all DSI runs have ended in sanity-check-failures due to asm error/state pollution, it is evident from the snippets that the two methods are not related (method-a is not statefully impacting method-b, and none of the operations that method-b is doing relates to method-a). Manually checked by physically switching the lines on which method-a and method-b were called and checking the intermediate values (dfos) after a call to method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-15-50",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 18,
+        "inspection-start-time": "2021-12-16-15-50",
+        "project": "commons-fileupload",
+        "spec-id": "00066",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getSize()J",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getCharSet()Ljava/lang/String;",
+        "method-a-return-type": "long",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "U-verdict-count": 2,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00066.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "ASM_ERROR. Manually checked that all other unknown cases are due to the asm error as well."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+        "notes": "While all DSI runs have ended in sanity-check-failures due to asm error/state pollution, it is evident from the snippets that the two methods are not related (method-a is not statefully impacting method-b, and none of the operations that method-b is doing relates to method-a). Manually checked by invoking method-b directly after method-a (method-b returns null in both the expected call and this modified call, and the test still passes).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-15-57",
+        "inspection-time-in-minutes": 7
+    },
+    {
+        "iid": 19,
+        "inspection-start-time": "2021-12-16-15-59",
+        "project": "commons-fileupload",
+        "spec-id": "00067",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getSize()J",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getContentType()Ljava/lang/String;",
+        "method-a-return-type": "long",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "U-verdict-count": 2,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00067.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "ASM_ERROR. Manually checked that all other unknown cases are due to the asm error as well."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+        "notes": "While all DSI runs have ended in sanity-check-failures due to asm error/state pollution, it is evident from the snippets that the two methods are not related (method-a is not statefully impacting method-b, and method-b is a 1-line naive getter to the field variable DiskFileItem.contentType - ONE_STATELESS_METHOD).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-16-03",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 20,
+        "inspection-start-time": "2021-12-16-17-51",
+        "project": "commons-fileupload",
+        "spec-id": "00069",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getSize()J",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "long",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 6,
+        "U-verdict-count": 6,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/u-e/00069.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "ASM_ERROR. Manually checked that all other unknown cases are due to the asm error as well."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "While all DSI runs have ended in sanity-check-failures due to asm error/state pollution, it is evident from the snippets that the two methods are not related (method-a is not statefully impacting method-b, and none of the operations that method-b is doing relates to method-a). Also manually put a call to method-a after the invocation of method-b, and the test passed.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-18-05",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 21,
+        "inspection-start-time": "2021-12-16-18-34",
+        "project": "commons-fileupload",
+        "spec-id": "00072",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getString()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.get()[B",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "byte[]",
+        "same-class": "inheritance",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "U-verdict-count": 3,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00072.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:191",
+                        "method-b-site": "DiskFileItem.java:352",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. The return value of method-a was replaced with the nearest declared String variable, which is the value against which the return value of method-a would be compared against.",
+                "notes": "Test passed but DSI's conclusion was stage-0-failure because the spec was a no-break-pass"
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "DYNAMIC_DISPATCH",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-18-45",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 22,
+        "inspection-start-time": "2021-12-16-18-45",
+        "project": "commons-fileupload",
+        "spec-id": "00073",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getString()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getCharSet()Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "U-verdict-count": 3,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00073.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:191",
+                        "method-b-site": "DiskFileItem.java:353",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. The return value of method-a was replaced with the nearest declared String variable, which is the value against which the return value of method-a would be compared against.",
+                "notes": "Test passed but DSI's conclusion was stage-0-failure because the spec was a no-break-pass"
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "DYNAMIC_DISPATCH",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-19-09",
+        "inspection-time-in-minutes": 24
+    },
+    {
+        "iid": 23,
+        "inspection-start-time": "2021-12-16-20-44",
+        "project": "commons-fileupload",
+        "spec-id": "00074",
+        "method-a": "org.apache.commons.fileupload2.FileItem.getString()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getContentType()Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "inheritance",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "U-verdict-count": 3,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00074.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:191",
+                        "method-b-site": "DiskFileItem.java:238",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT. The return value of method-a was replaced with the nearest declared String variable, which is the value against which the return value of method-a would be compared against.",
+                "notes": "Test passed but DSI's conclusion was stage-0-failure because the spec was a no-break-pass"
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+        "notes": "DYNAMIC_DISPATCH (the method-b here is called from the method-b from 00073, so this is an indirect no-break-pass.)",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-16-20-49",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 24,
+        "inspection-start-time": "2021-12-17-03-17",
+        "project": "commons-fileupload",
+        "spec-id": "00080",
+        "method-a": "org.apache.commons.fileupload2.FileItem.isInMemory()Z",
+        "method-b": "org.apache.commons.fileupload2.FileItem.getSize()J",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "long",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 7,
+        "U-verdict-count": 8,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00080.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "ASM_ERROR. Manually checked that all other unknown cases are due to the asm error as well."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository with lines 188 and 189 swapped",
+        "notes": "Because the results ended with sanity-check-failure, there isn't definitive evidence. However, the implementations of the methods don't impact each other, and manually shifting the order had no effect. (It would be interesting to check whether the implementation of method-b and the implementation of method-a were a spec in the opposite way (a no-break-pass, as evident by the code-snippets).",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-17-03-26",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 25,
+        "inspection-start-time": "2021-12-18-18-23",
+        "project": "commons-fileupload",
+        "spec-id": "00092",
+        "method-a": "org.apache.commons.fileupload2.FileItemFactory.createItem(Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;)Lorg/apache/commons/fileupload2/FileItem;",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItemFactory.getRepository()Ljava/io/File;",
+        "method-a-return-type": "org.apache.commons.fileupload2.FileItem",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 6,
+        "U-verdict-count": 6,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00092.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:115",
+                        "method-b-site": "DefaultFileItemFactory.java:102",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with null, which immediately failed on the next line, which checked the return value of method-a with an assertNotNull(). DSI replaces with null on each test - org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile and org.apache.commons.fileupload2.DiskFileUploadTest result in a NullPointerException, and all others fail on an assertNotNull().",
+                "notes": "(This is not order of assertions because the assertion technically takes place after the calls of method-a and method-b)"
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+        "notes": "snippets make it clear that this case was a no-break-pass, as the implementation of method-a that was used calls method-b. ONE_STATELESS_METHOD - method-b is a 1-line naive getter to the field variable DiskFileItemFactory.repository.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-18-18-35",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 26,
+        "inspection-start-time": "2021-12-18-18-36",
+        "project": "commons-fileupload",
+        "spec-id": "00093",
+        "method-a": "org.apache.commons.fileupload2.FileItemFactory.createItem(Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;)Lorg/apache/commons/fileupload2/FileItem;",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItemFactory.getSizeThreshold()I",
+        "method-a-return-type": "org.apache.commons.fileupload2.FileItem",
+        "method-b-return-type": "int",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 6,
+        "U-verdict-count": 6,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00093.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DefaultFileItemTest.java:115",
+                        "method-b-site": "DefaultFileItemFactory.java:102",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT. DSI replaced the return value of method-a with null, which immediately failed on the next line, which checked the return value of method-a with an assertNotNull(). DSI replaces with null on each test - org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile and org.apache.commons.fileupload2.DiskFileUploadTest result in a NullPointerException, and all others fail on an assertNotNull().",
+                "notes": "(This is not order of assertions because the assertion technically takes place after the calls of method-a and method-b)"
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+        "notes": "snippets make it clear that this case was a no-break-pass, as the implementation of method-a that was used calls method-b. ONE_STATELESS_METHOD - method-b is a 1-line naive getter to the field variable DiskFileItemFactory.sizeThreshold.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2021-12-18-18-39",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 27,
+        "inspection-start-time": "2022-01-05-15-20",
+        "project": "commons-fileupload",
+        "spec-id": "00217",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.parse(Ljava/lang/String;C)Ljava/util/Map;",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.getToken(Z)Ljava/lang/String;",
+        "method-a-return-type": "java.util.Map",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "U-verdict-count": 3,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00217.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:238",
+                        "method-b-site": "ParameterParser.java:160",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DiskFileItem.java:239",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "as evident from snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-05-15-32",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 28,
+        "inspection-start-time": "2022-01-05-15-32",
+        "project": "commons-fileupload",
+        "spec-id": "00218",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.parse(Ljava/lang/String;C)Ljava/util/Map;",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.parse([CC)Ljava/util/Map;",
+        "method-a-return-type": "java.util.Map",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 5,
+        "test-methods-mine-count": 17,
+        "U-verdict-count": 20,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00218.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:238",
+                        "method-b-site": "ParameterParser.java:260",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DiskFileItem.java:239",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "as evident from snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-05-15-38",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 29,
+        "inspection-start-time": "2022-01-05-15-38",
+        "project": "commons-fileupload",
+        "spec-id": "00219",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.parse(Ljava/lang/String;C)Ljava/util/Map;",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.parse([CIIC)Ljava/util/Map;",
+        "method-a-return-type": "java.util.Map",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 5,
+        "test-methods-mine-count": 17,
+        "U-verdict-count": 20,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00219.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:238",
+                        "method-b-site": "ParameterParser.java:277",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DiskFileItem.java:239",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "as evident from snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-05-15-41",
+        "inspection-time-in-minutes": 3
+    },
+    {
+        "iid": 30,
+        "inspection-start-time": "2022-01-05-15-51",
+        "project": "commons-fileupload",
+        "spec-id": "00221",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.parse(Ljava/lang/String;C)Ljava/util/Map;",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.parseToken([C)Ljava/lang/String;",
+        "method-a-return-type": "java.util.Map",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "U-verdict-count": 3,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00221.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:238",
+                        "method-b-site": "ParameterParser.java:309",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DiskFileItem.java:239.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "as evident from snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-05-15-55",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 31,
+        "inspection-start-time": "2022-01-05-18-35",
+        "project": "commons-fileupload",
+        "spec-id": "00228",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.parse([CC)Ljava/util/Map;",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.getToken(Z)Ljava/lang/String;",
+        "method-a-return-type": "java.util.Map",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "U-verdict-count": 3,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00228.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ParameterParser.java:260",
+                        "method-b-site": "ParameterParser.java:160",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DiskFileItem.java:239.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "as evident from snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-05-18-46",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 32,
+        "inspection-start-time": "2022-01-05-18-47",
+        "project": "commons-fileupload",
+        "spec-id": "00229",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.parse([CC)Ljava/util/Map;",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.parse([CIIC)Ljava/util/Map;",
+        "method-a-return-type": "java.util.Map",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 5,
+        "test-methods-mine-count": 17,
+        "U-verdict-count": 20,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00229.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ParameterParser.java:260",
+                        "method-b-site": "ParameterParser.java:277",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DiskFileItem.java:239.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "as evident from snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-05-18-51",
+        "inspection-time-in-minutes": 4
+    },
+    {
+        "iid": 33,
+        "inspection-start-time": "2022-01-05-19-03",
+        "project": "commons-fileupload",
+        "spec-id": "00231",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.parse([CC)Ljava/util/Map;",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.parseToken([C)Ljava/lang/String;",
+        "method-a-return-type": "java.util.Map",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "U-verdict-count": 3,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00231.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ParameterParser.java:260",
+                        "method-b-site": "ParameterParser.java:309",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DiskFileItem.java:239.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "as evident from snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-05-19-15",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 34,
+        "inspection-start-time": "2022-01-05-19-15",
+        "project": "commons-fileupload",
+        "spec-id": "00232",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.parse([CIIC)Ljava/util/Map;",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.getToken(Z)Ljava/lang/String;",
+        "method-a-return-type": "java.util.Map",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "U-verdict-count": 3,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00232.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ParameterParser.java:277",
+                        "method-b-site": "ParameterParser.java:160",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DiskFileItem.java:239.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-05-19-20",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 35,
+        "inspection-start-time": "2022-01-05-19-20",
+        "project": "commons-fileupload",
+        "spec-id": "00234",
+        "method-a": "org.apache.commons.fileupload2.ParameterParser.parse([CIIC)Ljava/util/Map;",
+        "method-b": "org.apache.commons.fileupload2.ParameterParser.parseToken([C)Ljava/lang/String;",
+        "method-a-return-type": "java.util.Map",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 4,
+        "U-verdict-count": 3,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00234.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testBelowThreshold",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "ParameterParser.java:277",
+                        "method-b-site": "ParameterParser.java:309",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DiskFileItem.java:239.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-15-19-25",
+        "inspection-time-in-minutes": 5
+    },
+    {
+        "iid": 36,
+        "inspection-start-time": "2022-01-06-12-13",
+        "project": "commons-fileupload",
+        "spec-id": "00253",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.get()[B",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "U-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/u-e/00253.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:352",
+                        "method-b-site": "DefaultFileItemTest.java:195",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DiskFileItem.java:358.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository with replacement with \"01234567890123456789\".getBytes().",
+        "notes": "method-a accesses the field variables DiskFileItem.dfos, DiskFileItem.cachedContent, and DiskFileItem.size, potentially modifies DiskFileItem.cachedContent, and returns either DiskFileItem.cachedContent or the data stored in the File corresponding to DiskFileItem.dfos. CONNECTION_DOES_NOT_NECESSITATE_ORDERING because there is a slight connection due to both methods accessing DiskFileItem.dfos and its corresponding file. DYNAMIC_DISPATCH?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-06-12-34",
+        "inspection-time-in-minutes": 21
+    },
+    {
+        "iid": 37,
+        "inspection-start-time": "2022-01-06-12-34",
+        "project": "commons-fileupload",
+        "spec-id": "00254",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.get()[B",
+        "method-b": "org.apache.commons.fileupload2.FileItem.delete()V",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "void",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "U-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/u-e/00254.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:352",
+                        "method-b-site": "DefaultFileItemTest.java:204",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DiskFileItem.java:358.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "true-spec",
+        "spec-type": "a-until-b",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository with changes proposed in snippet.",
+        "notes": "method-a accesses the field variables DiskFileItem.dfos, DiskFileItem.cachedContent, and DiskFileItem.size, potentially modifies DiskFileItem.cachedContent, and returns either DiskFileItem.cachedContent or the data stored in the File corresponding to DiskFileItem.dfos. The used implementation of method-b modifies the field variable DiskFileItem.cachedContent, and deletes the File associated with the field variable DiskFileItem.dfos. The return value of method-a will be null if method-a is called after method-b.",
+        "findings": "Type-b: method-b is never followed by method-a",
+        "part-of-bigger-spec": "tbd",
+        "inspection-end-time": "2022-01-06-12-46",
+        "inspection-time-in-minutes": 12
+    },
+    {
+        "iid": 38,
+        "inspection-start-time": "2022-01-06-13-56",
+        "project": "commons-fileupload",
+        "spec-id": "00257",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.get()[B",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "byte[]",
+        "method-b-return-type": "java.io.File",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "U-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/u-e/00257.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:352",
+                        "method-b-site": "DiskFileItem.java:433",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DiskFileItem.java:358.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository with proposal from snippet",
+        "notes": "method-a accesses the field variables DiskFileItem.dfos, DiskFileItem.cachedContent, and DiskFileItem.size, potentially modifies DiskFileItem.cachedContent, and returns either DiskFileItem.cachedContent or the data stored in the File corresponding to DiskFileItem.dfos. method-b returns either null or the File object associated with DiskFileItem.dfos. CONNECTION_DOES_NOT_NECESSITATE_ORDERING here because both methods access the field variable DiskFileItem.dfos. TRUE_SPEC_WITH_CALLER: There is a true-spec between method-a and the caller of method-b in this case, but method-b itself does not have any relationship with method-a.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-06-14-10",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 39,
+        "inspection-start-time": "2022-01-06-14-27",
+        "project": "commons-fileupload",
+        "spec-id": "00260",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.getCharSet()Ljava/lang/String;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getContentType()Ljava/lang/String;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "U-verdict-count": 2,
+        "E-verdict-count": 3,
+        "code-snippets-file": "snippets/u-e/00260.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:353",
+                        "method-b-site": "DiskFileItem.java:238",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with null, but the catch here is that null was the original return value of method-a. So the replacement made no difference.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-06-14-38",
+        "inspection-time-in-minutes": 11
+    },
+    {
+        "iid": 40,
+        "inspection-start-time": "2022-01-06-15-46",
+        "project": "commons-fileupload",
+        "spec-id": "00267",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.getTempFile()Ljava/io/File;",
+        "method-b": "org.apache.commons.fileupload2.DefaultFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "java.io.File",
+        "method-b-return-type": "java.io.File",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 2,
+        "U-verdict-count": 1,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/u-e/00267.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:509",
+                        "method-b-site": "DefaultFileItemTest.java:195",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DefaultFileItemTest.java:183.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "reasoning with snippet",
+        "notes": "method-a accesses and potentially modifies the field variables DiskFileItem.tempFile, DiskFileItem.tempDir, and returns the field variable DiskFileItem.tempFile. The return value of method-a is used by the caller to construct a DeferredFileOutputStream object to set the field variable DiskFileItem.dfos to. method-b returns either null or the File object associated with DiskFileItem.dfos. TRUE_SPEC_WITH_CALLER: There is a relationship between DiskFileItem.getOutputStream(), which is the caller of method-a, and method-b because the variable dfos is set only in getOutputStream(). However, method-a itself and method-b itself are not related. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-06-16-00",
+        "inspection-time-in-minutes": 14
+    },
+    {
+        "iid": 41,
+        "inspection-start-time": "2021-01-06-17-00",
+        "project": "commons-fileupload",
+        "spec-id": "00271",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.getTempFile()Ljava/io/File;",
+        "method-b": "org.apache.commons.fileupload2.FileItem.getSize()J",
+        "method-a-return-type": "java.io.File",
+        "method-b-return-type": "long",
+        "same-class": "inheritance",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 7,
+        "U-verdict-count": 6,
+        "E-verdict-count": 2,
+        "code-snippets-file": "snippets/u-e/00271.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "?",
+                "notes": "ASM_ERROR. Manually checked that all other unknown cases are due to the asm error as well."
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdSpecifiedRepository",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "spec-type": "NA",
+        "validating-test-file": "snippet",
+        "notes": "Because of the ASM error, I'm not absolutely sure of where method-a and method-b are being called. TRUE_SPEC_WITH_CALLER: However, it seems that while the caller of method-a is a precondition to calling method-b (due to variable dfos only being set in method-a's caller), method-a itself does not have a bearing of method-b, and method-b is a getter that doesn't bear any postcondition on method-a. method-a accesses and potentially modifies the field variables DiskFileItem.tempFile, DiskFileItem.tempDir, and returns the field variable DiskFileItem.tempFile. The return value of method-a is used by the caller to construct a DeferredFileOutputStream object to set the field variable DiskFileItem.dfos to. The used implementation of method-b accesses the field variables DiskFileItem.size, DiskFileItem.cachedContent, and DiskFileItem.dfos to return the size of the data that is being dealt with. UNRELATED_STATEFUL_METHODS",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-06-17-10",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 42,
+        "inspection-start-time": "2022-01-07-15-55",
+        "project": "commons-fileupload",
+        "spec-id": "00294",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.getItemIterator(Ljavax/servlet/http/HttpServletRequest;)Lorg/apache/commons/fileupload2/FileItemIterator;",
+        "method-b": "org.apache.commons.fileupload2.FileUpload.getItemIterator(Lorg/apache/commons/fileupload2/RequestContext;)Lorg/apache/commons/fileupload2/FileItemIterator;",
+        "method-a-return-type": "org.apache.commons.fileupload2.FileItemIterator",
+        "method-b-return-type": "org.apache.commons.fileupload2.FileItemIterator",
+        "same-class": "inheritance",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 2,
+        "U-verdict-count": 4,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/u-e/00294.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testMaxSizeLimitUnknownContentLength",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:257",
+                        "method-b-site": "ServletFileUpload.java:152",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at SizesTest.java:258.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "all-tests",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-07-16-05",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 43,
+        "inspection-start-time": "2022-01-07-19-37",
+        "project": "commons-fileupload",
+        "spec-id": "00305",
+        "method-a": "org.apache.commons.fileupload2.servlet.ServletFileUpload.parseRequest(Ljavax/servlet/http/HttpServletRequest;)Ljava/util/List;",
+        "method-b": "org.apache.commons.fileupload2.servlet.ServletFileUpload.parseRequest(Lorg/apache/commons/fileupload2/RequestContext;)Ljava/util/List;",
+        "method-a-return-type": "java.util.List",
+        "method-b-return-type": "java.util.List",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 3,
+        "U-verdict-count": 4,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/u-e/00305.java",
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.SizesTest#testFileSizeLimit",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "SizesTest.java:111",
+                        "method-b-site": "ServletFileUpload.java:113",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:119",
+                        "method-b-site": "ServletFileUpload.java:113",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "SizesTest.java:128",
+                        "method-b-site": "ServletFileUpload.java:113",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 3,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at SizesTest.java:112.",
+                "notes": "While there are 3 perturbations, only one perturbation was actually performed because a NullPointerException occurred right after the first perturbation. Technically EXPECTED_EXCEPTION, but a NullPointerException was thrown before the control flow got to the expected exception itself. "
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "all-tests",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI/(RESIDUAL_POLLUTION) - refer to 00002."
+            }
+        ],
+        "verdict": "no-break-pass (direct)",
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-07-19-45",
+        "inspection-time-in-minutes": 8
+    }
+
+]
+

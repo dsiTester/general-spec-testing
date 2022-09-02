@@ -1,0 +1,107 @@
+public class DefaultExecutor implements Executor {
+    @Override
+    public int execute(final CommandLine command) throws ExecuteException,
+            IOException {       // called from test
+        return execute(command, (Map<String, String>) null); // call to a
+    }
+
+    /**
+     * @see org.apache.commons.exec.Executor#execute(CommandLine, java.util.Map)
+     */
+    @Override
+    public int execute(final CommandLine command, final Map<String, String> environment)
+            throws ExecuteException, IOException { // definition of a
+
+        if (workingDirectory != null && !workingDirectory.exists()) {
+            throw new IOException(workingDirectory + " doesn't exist.");
+        }
+
+        return executeInternal(command, environment, workingDirectory, streamHandler); // calls b
+
+    }
+
+    private int executeInternal(final CommandLine command, final Map<String, String> environment,
+            final File dir, final ExecuteStreamHandler streams) throws IOException { // called from above
+
+        ...
+        try {
+            process = this.launch(command, environment, dir);
+        }
+        ...
+
+        streams.start();
+
+        try {
+
+            ...
+
+            int exitValue = Executor.INVALID_EXITVALUE;
+            ...
+            closeProcessStreams(process); // call to b
+
+            if (getExceptionCaught() != null) {
+                throw getExceptionCaught();
+            }
+            ...
+            if (this.isFailure(exitValue)) {
+                throw new ExecuteException("Process exited with an error: " + exitValue, exitValue);
+            }
+
+            return exitValue;
+        } finally {
+            // remove the process to the list of those to destroy if the VM exits
+            if (this.getProcessDestroyer() != null) {
+              this.getProcessDestroyer().remove(process);
+            }
+        }
+    }
+
+    /**
+     * Close the streams belonging to the given Process.
+     *
+     * @param process the <CODE>Process</CODE>.
+     */
+    private void closeProcessStreams(final Process process) { // definition of b
+
+        try {
+            process.getInputStream().close();
+        }
+        catch (final IOException e) {
+            setExceptionCaught(e);
+        }
+
+        try {
+            process.getOutputStream().close();
+        }
+        catch (final IOException e) {
+            setExceptionCaught(e);
+        }
+
+        try {
+            process.getErrorStream().close();
+        }
+        catch (final IOException e) {
+            setExceptionCaught(e);
+        }
+    }
+
+}
+
+public class Exec57Test extends AbstractExecTest {
+    @Test(timeout = TEST_TIMEOUT)
+    public void testExecutionOfDetachedProcess() throws IOException {
+
+        if (!OS.isFamilyUnix()) {
+            testNotSupportedForCurrentOperatingSystem();
+            return;
+        }
+
+        final CommandLine cmdLine = new CommandLine("sh").addArgument("-c").addArgument("./src/test/scripts/issues/exec-57-detached.sh", false);
+        final DefaultExecutor executor = new DefaultExecutor();
+        final PumpStreamHandler pumpStreamHandler = new PumpStreamHandler(System.out, System.err);
+
+        executor.setStreamHandler(pumpStreamHandler);
+
+        executor.execute(cmdLine); // calls a
+    }
+}

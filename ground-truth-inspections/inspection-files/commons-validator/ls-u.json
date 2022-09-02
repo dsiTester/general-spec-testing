@@ -1,0 +1,909 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-20-00-34",
+        "project": "commons-validator",
+        "spec-id": "00003",
+        "method-a": "org.apache.commons.validator.Arg.setKey(Ljava/lang/String;)V",
+        "method-b": "org.apache.commons.validator.Arg.setPosition(I)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 8,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 8,
+        "code-snippets-file": "snippets/ls-u/00003.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.FieldTest#testDefaultUsingPositions",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FieldTest.java:254",
+                        "method-b-site": "FieldTest.java:263",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.FieldTest#testDefaultOnePosition",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FieldTest.java:254",
+                        "method-b-site": "Field.java:368",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "FieldTest.java:254",
+                        "method-b-site": "FieldTest.java:263",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "FieldTest.java:254",
+                        "method-b-site": "Field.java:391",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 3,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Note that the second perturbation ended at stage-3-complete, but the other two perturbations ended at stage-0-failure. The second invocation calls method-b from createArg(String, int), whereas the first and third invocations call method-b from Field.determineArgPosition(), which is called from Field.addArg(). The DSI experiment makes the conditional at the very beginning of Field.addArg() true (because delaying method-a means that Field.arg was never set); this causes Field.addArg() to immediately return before Field.determineArgPosition() was called. Since Field.determineArgPosition() was never called, the first and third DSI experiments couldn't call method-b, and resulted in stage-0-failures."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.FieldTest#testDefaultUsingPositions",
+        "notes": "UNRELATED_PURE_SETTERS - refer to snippet.",
+        "findings": "GOOD_EXAMPLE. Pretty interesting case of multiple perturbations and the different location of method-b leading to different results in the unknown test case. Refer to unknown-inspected-cases[notes], or snippet for more details.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-20-00-53",
+        "inspection-time-in-minutes": 19
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-20-00-53",
+        "project": "commons-validator",
+        "spec-id": "00004",
+        "method-a": "org.apache.commons.validator.Arg.setPosition(I)V",
+        "method-b": "org.apache.commons.validator.Arg.getName()Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 34,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 39,
+        "code-snippets-file": "snippets/ls-u/00004.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.FieldTest#testDefaultUsingPositions",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FieldTest.java:263",
+                        "method-b-site": "Field.java:346",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ExtensionTest#testOrder",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:368",
+                        "method-b-site": "Field.java:346",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "ArrayIndexOutOfBoundsException at Field.java:340 - most likely because Field.ensureArgsCapacity() was corrupted because arg.position() was still -1 because method-a was not called?"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.FieldTest#testDefaultUsingPositions",
+        "notes": "method-a is a pure setter to the field variable Arg.position, and method-b is a 1-line naive getter to the field variable Arg.name (ONE_STATELESS_METHOD). Since these two field variables are not directly related, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-20-01-26",
+        "inspection-time-in-minutes": 23
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-20-02-33",
+        "project": "commons-validator",
+        "spec-id": "00006",
+        "method-a": "org.apache.commons.validator.Field.determineArgPosition(Lorg/apache/commons/validator/Arg;)V",
+        "method-b": "org.apache.commons.validator.Field.getDepends()Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 4,
+        "test-methods-mine-count": 25,
+        "LS-verdict-count": 7,
+        "U-verdict-count": 22,
+        "code-snippets-file": "snippets/ls-u/00006.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.RequiredNameTest#testRequired",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Field.java:884",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: The test passes because the config file specified (for the first field) that Field.position = 0, but not for the second field in the config file. However, since DSI only perturbed the first instance, where position was not set to -1, there was no ArrayOutOfBoundsException."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.MultipleConfigFilesTest#testBothBlank",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Field.java:884",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "ArrayIndexOutOfBoundsException at Field.java:340 because method-a was supposed to set arg.position to a different value from -1, and subsequently Field.ensureArgsCapacity() was supposed to update Field.args.position to a value that is not -1. However, since method-a was delayed, Field.java:340 tried to access the -1th index in the array."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.RequiredNameTest#testRequired",
+        "notes": "As observed from the snippet, method-b is a 1-line naive getter that returns the value of Field.depends (ONE_STATELESS_METHOD). While Field.depends is initialized to null in the field variable declaration, the value can also be updated via the public method Field.setDepends(). Hence, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-20-02-54",
+        "inspection-time-in-minutes": 21
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-20-12-33",
+        "project": "commons-validator",
+        "spec-id": "00007",
+        "method-a": "org.apache.commons.validator.Field.determineArgPosition(Lorg/apache/commons/validator/Arg;)V",
+        "method-b": "org.apache.commons.validator.Field.getPage()I",
+        "method-a-return-type": "void",
+        "method-b-return-type": "int",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 4,
+        "test-methods-mine-count": 25,
+        "LS-verdict-count": 7,
+        "U-verdict-count": 22,
+        "code-snippets-file": "snippets/ls-u/00007.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.RequiredNameTest#testRequired",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Form.java:291",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: The test passes because the config file specified (for the first field) that Field.position = 0, but not for the second field in the config file. However, since DSI only perturbed the first instance, where position was not set to -1, there was no ArrayOutOfBoundsException."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.MultipleConfigFilesTest#testBothBlank",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Form.java:291",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "ArrayIndexOutOfBoundsException at Field.java:340 because method-a was supposed to set arg.position to a different value from -1, and subsequently Field.ensureArgsCapacity() was supposed to update Field.args.position to a value that is not -1. However, since method-a was delayed, Field.java:340 tried to access the -1th index in the array."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.RequiredNameTest#testRequired",
+        "notes": "As observed from the snippet, method-b is a 1-line naive getter that returns the value of Field.page (ONE_STATELESS_METHOD). Field.depends is initialized in its declaration as 0, and the value can be updated via the public method Field.setPage(). Hence, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-20-12-51",
+        "inspection-time-in-minutes": 18
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-01-20-12-52",
+        "project": "commons-validator",
+        "spec-id": "00008",
+        "method-a": "org.apache.commons.validator.Field.determineArgPosition(Lorg/apache/commons/validator/Arg;)V",
+        "method-b": "org.apache.commons.validator.Field.getProperty()Ljava/lang/String;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 14,
+        "LS-verdict-count": 7,
+        "U-verdict-count": 9,
+        "code-snippets-file": "snippets/ls-u/00008.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.RequiredNameTest#testRequired",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "GenericValidatorImpl.java:67",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: The test passes because the config file specified (for the first field) that Field.position = 0, but not for the second field in the config file. However, since DSI only perturbed the first instance, where position was not set to -1, there was no ArrayOutOfBoundsException."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.MultipleConfigFilesTest#testBothBlank",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "GenericValidatorImpl.java:67",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "ArrayIndexOutOfBoundsException at Field.java:340 because method-a was supposed to set arg.position to a different value from -1, and subsequently Field.ensureArgsCapacity() was supposed to update Field.args.position to a value that is not -1. However, since method-a was delayed, Field.java:340 tried to access the -1th index in the array."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.RequiredNameTest#testRequired",
+        "notes": "As observed from the snippet, method-b is a 1-line naive getter that returns the value of Field.property (ONE_STATELESS_METHOD). While Field.property is initialized to null in the field variable declaration, the value can be updated via the public method Field.setProperty(). Hence, this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-20-01-36",
+        "inspection-time-in-minutes": 44
+    },
+    {
+        "iid": 6,
+        "inspection-start-time": "2022-01-20-14-06",
+        "project": "commons-validator",
+        "spec-id": "00009",
+        "method-a": "org.apache.commons.validator.Field.determineArgPosition(Lorg/apache/commons/validator/Arg;)V",
+        "method-b": "org.apache.commons.validator.Field.getVarMap()Ljava/util/Map;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "java.util.Map",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 4,
+        "test-methods-mine-count": 21,
+        "LS-verdict-count": 7,
+        "U-verdict-count": 18,
+        "code-snippets-file": "snippets/ls-u/00009.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.RequiredNameTest#testRequired",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Field.java:595",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: The test passes because the config file specified (for the first field) that Field.position = 0, but not for the second field in the config file. However, since DSI only perturbed the first instance, where position was not set to -1, there was no ArrayOutOfBoundsException."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.ValidatorResultsTest#testAllValid",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Field.java:595",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: ArrayOutOfBoundsException because the configuration file did not set Field.position, so position was -1. ArrayIndexOutOfBoundsException at Field.java:340 because method-a was supposed to set arg.position to a different value from -1, and subsequently Field.ensureArgsCapacity() was supposed to update Field.args.position to a value that is not -1. However, since method-a was delayed, Field.java:340 tried to access the -1th index in the array."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.RequiredNameTest#testRequired",
+        "notes": "method-b is a protected method that retrieves the value Field.hVars (ONE_STATELESS_METHOD). However, since hVars is initialized in the field variable declaration to be a FastHashMap (via its constructor), and one can populate hVars via a call to Field.addVars(), one does not necessarily need to call method-a before calling method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-20-14-26",
+        "inspection-time-in-minutes": 20
+    },
+    {
+        "iid": 7,
+        "inspection-start-time": "2022-01-20-14-48",
+        "project": "commons-validator",
+        "spec-id": "00010",
+        "method-a": "org.apache.commons.validator.Field.determineArgPosition(Lorg/apache/commons/validator/Arg;)V",
+        "method-b": "org.apache.commons.validator.Field.process(Ljava/util/Map;Ljava/util/Map;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 5,
+        "test-methods-mine-count": 26,
+        "LS-verdict-count": 7,
+        "U-verdict-count": 24,
+        "code-snippets-file": "snippets/ls-u/00010.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.RequiredNameTest#testRequired",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Form.java:207",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: The test passes because the config file specified (for the first field) that Field.position = 0, but not for the second field in the config file. However, since DSI only perturbed the first instance, where position was not set to -1, there was no ArrayOutOfBoundsException."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.LocaleTest#testLocale1",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Form.java:207",
+                        "invocation-count": 9
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: ArrayOutOfBoundsException because the configuration file did not set Field.position, so position was -1. ArrayIndexOutOfBoundsException at Field.java:340 because method-a was supposed to set arg.position to a different value from -1, and subsequently Field.ensureArgsCapacity() was supposed to update Field.args.position to a value that is not -1. However, since method-a was delayed, Field.java:340 tried to access the -1th index in the array."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "precondition",
+        "validating-test-file": "org.apache.commons.validator.LocaleTest#testLocale1 with ValidatorResources.java:164 moved before ValidatorResources.java:155 should indirectly call method-b before calling method-a.",
+        "notes": "INSPECTION_TODO - fix if my understanding is wrong here. It seems like method-a is necessary for the digester to correctly parse the XML file for the unknown test? but also, calling the (indirect) caller of method-b (process) before the digester is initialized somehow makes the test pass. So, maybe this is a spurious spec?",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-20-15-45",
+        "inspection-time-in-minutes": 57
+    },
+    {
+        "iid": 8,
+        "inspection-start-time": "2022-01-20-16-02",
+        "project": "commons-validator",
+        "spec-id": "00011",
+        "method-a": "org.apache.commons.validator.Field.determineArgPosition(Lorg/apache/commons/validator/Arg;)V",
+        "method-b": "org.apache.commons.validator.Field.runDependentValidators(Lorg/apache/commons/validator/ValidatorAction;Lorg/apache/commons/validator/ValidatorResults;Ljava/util/Map;Ljava/util/Map;I)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 12,
+        "LS-verdict-count": 7,
+        "U-verdict-count": 7,
+        "code-snippets-file": "snippets/ls-u/00011.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.RequiredNameTest#testRequired",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Field.java:822",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: The test passes because the config file specified (for the first field) that Field.position = 0, but not for the second field in the config file. However, since DSI only perturbed the first instance, where position was not set to -1, there was no ArrayOutOfBoundsException."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.RequiredIfTest#testRequired",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Field.java:822",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: ArrayOutOfBoundsException because the configuration file did not set Field.position, so position was -1. ArrayIndexOutOfBoundsException at Field.java:340 because method-a was supposed to set arg.position to a different value from -1, and subsequently Field.ensureArgsCapacity() was supposed to update Field.args.position to a value that is not -1. However, since method-a was delayed, Field.java:340 tried to access the -1th index in the array."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.RequiredIfTest#testRequired",
+        "notes": "A Validator object needs to be set up before method-b is called. Out of the two ways one can do so, method-a is a part of setting up and using commons-digester to convert XMLs to the corresponding objects. In the case that one uses commons-digester, not calling method-a (manually or via DSI experiment) would result in an ArrayOutOfBoundsException before the information is read completely from the XML file. This means that the test would fail before even reaching method-b. method-b is a part of the validation process itself, so in some sense failing to call method-a would make method-b not run. However, there's no direct relationship between method-a and method-b (the relationship is moreso that method-a is necessary for the XML file reading will succeed, and the XML file reading ought to succeed for method-b to even be called. Additionally, since one can set up a Validator object without having to use an XML file, one does not necessarily always have to call method-a before method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-20-16-35",
+        "inspection-time-in-minutes": 33
+    },
+    {
+        "iid": 9,
+        "inspection-start-time": "2022-01-20-19-29",
+        "project": "commons-validator",
+        "spec-id": "00012",
+        "method-a": "org.apache.commons.validator.Field.determineArgPosition(Lorg/apache/commons/validator/Arg;)V",
+        "method-b": "org.apache.commons.validator.Field.validate(Ljava/util/Map;Ljava/util/Map;)Lorg/apache/commons/validator/ValidatorResults;",
+        "method-a-return-type": "void",
+        "method-b-return-type": "org.apache.commons.validator.ValidatorResults",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 4,
+        "test-methods-mine-count": 25,
+        "LS-verdict-count": 7,
+        "U-verdict-count": 22,
+        "code-snippets-file": "snippets/ls-u/00012.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.RequiredNameTest#testRequired",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Form.java:292",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: The test passes because the config file specified (for the first field) that Field.position = 0, but not for the second field in the config file. However, since DSI only perturbed the first instance, where position was not set to -1, there was no ArrayOutOfBoundsException."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.RequiredIfTest#testRequired",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Form.java:292",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: ArrayOutOfBoundsException because the configuration file did not set Field.position, so position was -1. ArrayIndexOutOfBoundsException at Field.java:340 because method-a was supposed to set arg.position to a different value from -1, and subsequently Field.ensureArgsCapacity() was supposed to update Field.args.position to a value that is not -1. However, since method-a was delayed, Field.java:340 tried to access the -1th index in the array."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": true,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.RequiredIfTest#testRequired",
+        "notes": "A Validator object needs to be set up before method-b is called. Out of the two ways one can do so, method-a is a part of setting up and using commons-digester to convert XMLs to the corresponding objects. In the case that one uses commons-digester, not calling method-a (manually or via DSI experiment) would result in an ArrayOutOfBoundsException before the information is read completely from the XML file. This means that the test would fail before even reaching method-b. method-b is a part of the validation process itself, so in some sense failing to call method-a would make method-b not run. However, there's no direct relationship between method-a and method-b (the relationship is moreso that method-a is necessary for the XML file reading will succeed, and the XML file reading ought to succeed for method-b to even be called. Additionally, since one can set up a Validator object without having to use an XML file, one does not necessarily always have to call method-a before method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-21-00-00",
+        "inspection-time-in-minutes": 1
+    },
+    {
+        "iid": 10,
+        "inspection-start-time": "2022-01-21-12-34",
+        "project": "commons-validator",
+        "spec-id": "00013",
+        "method-a": "org.apache.commons.validator.Field.determineArgPosition(Lorg/apache/commons/validator/Arg;)V",
+        "method-b": "org.apache.commons.validator.Field.validateForRule(Lorg/apache/commons/validator/ValidatorAction;Lorg/apache/commons/validator/ValidatorResults;Ljava/util/Map;Ljava/util/Map;I)Z",
+        "method-a-return-type": "void",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 12,
+        "LS-verdict-count": 7,
+        "U-verdict-count": 7,
+        "code-snippets-file": "snippets/ls-u/00013.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.RequiredNameTest#testRequired",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Field.java:908",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: The test passes because the config file specified (for the first field) that Field.position = 0, but not for the second field in the config file. However, since DSI only perturbed the first instance, where position was not set to -1, there was no ArrayOutOfBoundsException."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.RequiredIfTest#testRequired",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "Field.java:337",
+                        "method-b-site": "Field.java:908",
+                        "invocation-count": 2
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "CONFIGURATION: ArrayOutOfBoundsException because the configuration file did not set Field.position, so position was -1. ArrayIndexOutOfBoundsException at Field.java:340 because method-a was supposed to set arg.position to a different value from -1, and subsequently Field.ensureArgsCapacity() was supposed to update Field.args.position to a value that is not -1. However, since method-a was delayed, Field.java:340 tried to access the -1th index in the array."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.RequiredNameTest#testRequired",
+        "notes": "A Validator object needs to be set up before method-b is called. Out of the two ways one can do so, method-a is a part of setting up and using commons-digester to convert XMLs to the corresponding objects. In the general sense, method-a is necessary for successful reading from XML files, one does not necessarily need to call method-a in order to call method-b. For example, the use case in ValidatorTest creates a Validator object without having to use digester, and therefore, doesn't call method-a (but it calls method-b). Hence, I believe this is a spurious spec.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-21-12-58",
+        "inspection-time-in-minutes": 24
+    },
+    {
+        "iid": 11,
+        "inspection-start-time": "2022-01-25-21-24",
+        "project": "commons-validator",
+        "spec-id": "00148",
+        "method-a": "org.apache.commons.validator.FormSet.setCountry(Ljava/lang/String;)V",
+        "method-b": "org.apache.commons.validator.FormSet.process(Ljava/util/Map;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 21,
+        "test-methods-mine-count": 107,
+        "LS-verdict-count": 122,
+        "U-verdict-count": 6,
+        "code-snippets-file": "snippets/ls-u/00148.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.DateTest#testValidDate",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FormSetFactory.java:84",
+                        "method-b-site": "ValidatorResources.java:535",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Note that this test doesn't go into the for loop in ValidatorResources.java:537-540 (where the NullPointerException is thrown in the unknown test) because the configuration file for this test (DateTest-config.xml) only contains one FormSet."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.LocaleTest#testLocale1",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FormSetFactory.java:84",
+                        "method-b-site": "ValidatorResources.java:535",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "FormSetFactory.java:84",
+                        "method-b-site": "ValidatorResources.java:545",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Note that the first perturbation ended at stage-3-complete; the second perturabation resulted in stage-0-failure. The unknown test threw an exception because ValidatorResources.getType() threw a NullPointerException due to method-a not being called by that point, which reveals that the critical point at which method-a ought to be called is ValidatorResources.java:539."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.DateTest#testValidDate",
+        "notes": "ONE_PURE_SETTER: method-a is a pure setter for the field variable FormSet.country (note that method-a is the only place where FormSet.country is set), and method-b is stateful but doesn't access or modify Form.country. Hence, this is a spurious spec. The unknown test reveals that one critical point at which method-a ought to be called by is ValidatorResources.java:539, which callees throw a NullPointerException if method-a is not called (note that ValidatorResources.java:539 may not always be called). CONFIGURATION",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-25-21-57",
+        "inspection-time-in-minutes": 34
+    },
+    {
+        "iid": 12,
+        "inspection-start-time": "2022-01-26-00-30",
+        "project": "commons-validator",
+        "spec-id": "00155",
+        "method-a": "org.apache.commons.validator.FormSet.setLanguage(Ljava/lang/String;)V",
+        "method-b": "org.apache.commons.validator.FormSet.process(Ljava/util/Map;)V",
+        "method-a-return-type": "void",
+        "method-b-return-type": "void",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 21,
+        "test-methods-mine-count": 107,
+        "LS-verdict-count": 110,
+        "U-verdict-count": 18,
+        "code-snippets-file": "snippets/ls-u/00155.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.DateTest#testValidDate",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FormSetFactory.java:83",
+                        "method-b-site": "ValidatorResources.java:535",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Note that this test doesn't go into the for loop in ValidatorResources.java:537-540 (where the NullPointerException is thrown in the unknown test) because the configuration file for this test (DateTest-config.xml) only contains one FormSet."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.LocaleTest#testLocale1",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "FormSetFactory.java:83",
+                        "method-b-site": "ValidatorResources.java:535",
+                        "invocation-count": 1
+                    },
+                    {
+                        "method-a-site": "FormSetFactory.java:83",
+                        "method-b-site": "ValidatorResources.java:545",
+                        "invocation-count": 3
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "method-a returns void.",
+                "notes": "Note that the first perturbation ended at stage-3-complete; the second perturabation resulted in stage-0-failure. The unknown test threw an exception because ValidatorResources.getType() threw a NullPointerException due to method-a not being called by that point, which reveals that the critical point at which method-a ought to be called is ValidatorResources.java:539."
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.validator.DateTest#testValidDate",
+        "notes": "ONE_PURE_SETTER: method-a is a pure setter for the field variable FormSet.language (note that method-a is the only place where FormSet.language is set), and method-b is stateful but doesn't access or modify Form.language. Hence, this is a spurious spec. The unknown test reveals that one critical point at which method-a ought to be called by is ValidatorResources.java:539, which callees throw a NullPointerException if method-a is not called (note that ValidatorResources.java:539 may not always be called). CONFIGURATION",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-26-00-39",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 13,
+        "inspection-start-time": "2022-02-01-13-34",
+        "project": "commons-validator",
+        "spec-id": "00569",
+        "method-a": "org.apache.commons.validator.routines.DomainValidator.isValid(Ljava/lang/String;)Z",
+        "method-b": "org.apache.commons.validator.routines.DomainValidator.isValidGenericTld(Ljava/lang/String;)Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 16,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 15,
+        "code-snippets-file": "snippets/ls-u/00569.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.routines.EmailValidatorTest#testEmailAtTLD",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "EmailValidator.java:215",
+                        "method-b-site": "DomainValidator.java:326",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - method-a returns false on test execution, and DSI replaced the return value of method-a with the default boolean value false.",
+                "notes": "The reason why DSI was able to get to a stage-3-complete here was because of EmailValidator.java:215. The line contains both a call to method-a and a call to DomainValidator.isValidTld() (which also happens to be a method called from method-a) in an OR. Since DomainValidator.isValidTld() calls method-b as well, DSI is able to call method-a after method-b. Note that the execution of method-a in this test most likely doesn't call method-b (otherwise the spec wouldn't have been mined)."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.routines.DomainValidatorTest#testIDN",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DomainValidatorTest.java:138",
+                        "method-b-site": "DomainValidator.java:326",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT - the return value of method-a was immediately checked in an assertTrue(), but DSI replaced the return value of method-a with the replacement value false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "The reason why DSI was able to get to a stage-3-complete in the invalidated test was because of EmailValidator.java:215. The line contains both a call to method-a and a call to DomainValidator.isValidTld() (which also happens to be a method called from method-a) in an OR. Since DomainValidator.isValidTld() calls method-b as well, DSI is able to call method-a after method-b. Note that the execution of method-a in this test most likely doesn't call method-b (otherwise the spec wouldn't have been mined). GOOD_EXAMPLE: This is an interesting case of an unintended consequence of return value replacement.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-01-14-12",
+        "inspection-time-in-minutes": 38
+    },
+    {
+        "iid": 14,
+        "inspection-start-time": "2022-02-01-14-13",
+        "project": "commons-validator",
+        "spec-id": "00570",
+        "method-a": "org.apache.commons.validator.routines.DomainValidator.isValid(Ljava/lang/String;)Z",
+        "method-b": "org.apache.commons.validator.routines.DomainValidator.isValidInfrastructureTld(Ljava/lang/String;)Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 16,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 15,
+        "code-snippets-file": "snippets/ls-u/00570.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.routines.EmailValidatorTest#testEmailAtTLD",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "EmailValidator.java:215",
+                        "method-b-site": "DomainValidator.java:325",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "DEFAULT_VALUE_SAME_AS_RETURN/REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - method-a returns false on test execution, and DSI replaced the return value of method-a with the default boolean value false.",
+                "notes": "While in general method-a contains a call to DomainValidator.isValidTld(), which calls method-b, the execution of method-a in this test doesn't invoke method-b because the conditional guarding method-b evaluates to false in this particular use case. The reason why method-b was even called was because of EmailValidator.java:215. The line contains both a call to method-a and a call to DomainValidator.isValidTld() (which also happens to be a method called from method-a) in a short circuit OR. Since DomainValidator.isValidTld() calls method-b as well, the miner mined this spec from this test, and DSI was able to call method-a after method-b."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.routines.DomainValidatorTest#testIDN",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DomainValidatorTest.java:138",
+                        "method-b-site": "DomainValidator.java:325",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT - the return value of method-a was checked in an assertTrue(), but DSI replaced the return value of method-a with the replacement value false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "While in general method-a contains a call to DomainValidator.isValidTld(), which calls method-b, the execution of method-a in the invalidated test doesn't invoke method-b because the conditional guarding method-b evaluates to false in this particular use case. The reason why method-b was even called was because of EmailValidator.java:215. The line contains both a call to method-a and a call to DomainValidator.isValidTld() (which also happens to be a method called from method-a) in a short circuit OR. Since DomainValidator.isValidTld() calls method-b as well, the miner mined this spec from this test, and DSI was able to call method-a after method-b.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-01-14-15",
+        "inspection-time-in-minutes": 2
+    },
+    {
+        "iid": 15,
+        "inspection-start-time": "2022-02-01-14-15",
+        "project": "commons-validator",
+        "spec-id": "00571",
+        "method-a": "org.apache.commons.validator.routines.DomainValidator.isValid(Ljava/lang/String;)Z",
+        "method-b": "org.apache.commons.validator.routines.DomainValidator.isValidTld(Ljava/lang/String;)Z",
+        "method-a-return-type": "boolean",
+        "method-b-return-type": "boolean",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 16,
+        "LS-verdict-count": 1,
+        "U-verdict-count": 15,
+        "code-snippets-file": "snippets/ls-u/00571.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.routines.EmailValidatorTest#testEmailAtTLD",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "EmailValidator.java:215",
+                        "method-b-site": "EmailValidator.java:215",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_CORRECT_VALUE_NONASSERTION - method-a returns false on test execution, and DSI replaced the return value of method-a with the default boolean value false.",
+                "notes": "The reason why DSI was able to get to a stage-3-complete here even though the spec is a nbp is because method-b was called separately (although connected with a short circuit OR with the call to method-a) from method-a in EmailValidator.java:215. Moreover, method-a does not call method-b in this particular use case because it didn't satisfy the conditional guard."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.validator.routines.DomainValidatorTest#testIDN",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DomainValidatorTest.java:138",
+                        "method-b-site": "DomainValidator.java:325",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT - the return value of method-a was immediately checked in an assertTrue(), but DSI replaced the return value of method-a with the replacement value false.",
+                "notes": ""
+            }
+        ],
+        "verdict": "no-break-pass (indirect)",
+        "is-oracle-weak": false,
+        "spec-type": "precondition",
+        "validating-test-file": "snippet",
+        "notes": "The reason why DSI was able to get to a stage-3-complete in the invalidated test even though the spec is a nbp is because method-b was called separately (although connected with a short circuit OR with the call to method-a) from method-a in EmailValidator.java:215. Moreover, method-a does not call method-b in this particular use case because it didn't satisfy the conditional guard.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-02-01-14-28",
+        "inspection-time-in-minutes": 13
+    }
+
+]

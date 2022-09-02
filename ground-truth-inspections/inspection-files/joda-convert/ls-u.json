@@ -1,0 +1,297 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-25-20-54",
+        "project": "joda-convert",
+        "spec-id": "00020",
+        "method-a": "org.joda.convert.JDKStringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.JDKStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 22,
+        "LS-verdict-count": 16,
+        "U-verdict-count": 6,
+        "code-snippets-file": "snippets/ls-u/00020.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_UUID",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestJDKStringConverters.java:492",
+                        "method-b-site": "TestJDKStringConverters.java:493",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR REPLACE_RETURN_WITH_EXPECTED_OUTPUT",
+                "notes": "The test had a declared variable in the assertion which presumably allowed dsi to replace the return value of method-a with the value being checked against in the assertion (the test passes when the return value of method-a is replaced by the correct value). ORDER_OF_ASSERTIONS - we just got lucky here with the return value replacement."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_AtomicBoolean_false",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestJDKStringConverters.java:239",
+                        "method-b-site": "TestJDKStringConverters.java:240",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT",
+                "notes": "In this case, there was a literal in the assertion with method-a, so we replaced the value with the empty string and an assertion failed before we could get to method-b, which was in another assertion. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestJDKStringConverters#test_UUID",
+        "notes": "UNRELATED_STATELESS_METHODS Method-a and method-b are pure getters in this case that just get the object's toString() or constructor respectively.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-25-21-00",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 2,
+        "inspection-start-time": "2022-01-25-21-32",
+        "project": "joda-convert",
+        "spec-id": "00021",
+        "method-a": "org.joda.convert.JDKStringConverter.getType()Ljava/lang/Class;",
+        "method-b": "org.joda.convert.JDKStringConverter.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "java.lang.Class",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 22,
+        "LS-verdict-count": 11,
+        "U-verdict-count": 11,
+        "code-snippets-file": "snippets/ls-u/00021.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_UUID",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestJDKStringConverters.java:491",
+                        "method-b-site": "TestJDKStringConverters.java:493",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT",
+                "notes": "The test had a declared variable in the assertion which presumably allowed dsi to replace the return value of method-a (the test passes when the return value of method-a is replaced by the correct value). ORDER_OF_ASSERTIONS - we just get lucky with the return value."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_AtomicBoolean_false",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestJDKStringConverters.java:238",
+                        "method-b-site": "TestJDKStringConverters.java:240",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT",
+                "notes": "In this case, there was a literal in the assertion with method-a, so we replaced the value with null and an assertion failed before we could get to method-b, which was in another assertion. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestJDKStringConverters#test_UUID",
+        "notes": "UNRELATED_STATELESS_METHODS method-b gets an objects constructor and method-a just returns the type of the class that the converter is converting. They are both pure getters.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time":"2022-01-25-21-41",
+        "inspection-time-in-minutes": 9
+    },
+    {
+        "iid": 3,
+        "inspection-start-time": "2022-01-25-21-41",
+        "project": "joda-convert",
+        "spec-id": "00022",
+        "method-a": "org.joda.convert.JDKStringConverter.getType()Ljava/lang/Class;",
+        "method-b": "org.joda.convert.JDKStringConverter.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-a-return-type": "java.lang.Class",
+        "method-b-return-type": "java.lang.String",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 22,
+        "LS-verdict-count": 11,
+        "U-verdict-count": 11,
+        "code-snippets-file": "snippets/ls-u/00022.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_UUID",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestJDKStringConverters.java:491",
+                        "method-b-site": "TestJDKStringConverters.java:492",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR REPLACE_RETURN_WITH_EXPECTED_OUTPUT",
+                "notes": "The test had a declared variable in the assertion which presumably allowed dsi to replace the return value of method-a (the test passes when the return value of method-a is replaced by the correct value). ORDER_OF_ASSERTIONS - we just get lucky with the return value."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestJDKStringConverters#test_AtomicBoolean_false",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestJDKStringConverters.java:238",
+                        "method-b-site": "TestJDKStringConverters.java:239",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACEMENT_VALUE_UNCLEAR REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT",
+                "notes": "In this case, there was a literal in the assertion with method-a, so we replaced the value with null and an assertion failed before we could get to method-b, which was in another assertion. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestJDKStringConverters#test_UUID",
+        "notes": "UNRELATED_STATELESS_METHODS method-b gets an objects toString() and method-a just returns the type of the class that the converter is converting. They are both pure getters.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time":"2022-01-25-21-47",
+        "inspection-time-in-minutes": 6
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "2022-01-28-20-19",
+        "project": "joda-convert",
+        "spec-id": "00048",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.convertFromString(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "java.lang.Object",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 33,
+        "LS-verdict-count": 20,
+        "U-verdict-count": 19,
+        "code-snippets-file": "snippets/ls-u/00048.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestCharObjectArrayStringConverterFactory#test_doubleArray",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestNumericArrayStringConverterFactory.java:89",
+                        "method-b-site": "TestNumericArrayStringConverterFactory.java:91",
+                        "invocation-count": 6
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT, the return values of method-a are asserted against declared variables, and are replaced with the expected output",
+                "notes": "method-a and method-b are unrelated and called in separate assertions, and the correct replacement caused the assertion with method-a to to pass. ORDER_OF_ASSERTIONS - we just get lucky with the return value."
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_register_FunctionalInterfaces",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:585",
+                        "method-b-site": "TestStringConvert.java:586",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was checked against a string literal and DSI replaced the return with the empty string",
+                "notes": "method-a and method-b are unrelated and are called in two separate assertions, and the one containing method-a failed before method-b could be called, causing the unknown classification. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestNumericArrayStringConverterFactory#test_doubleArray",
+        "notes": "UNRELATED_STATEFUL_METHODS, method-a converts a given object to a string and method-b converts a string to a given object, they do not rely on each other. The spec was mined because of the testing pattern: convert an object to a string -> convert that string back into the object.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-28-20-29",
+        "inspection-time-in-minutes": 10
+    },
+    {
+        "iid": 5,
+        "inspection-start-time": "2022-01-29-19-39",
+        "project": "joda-convert",
+        "spec-id": "00050",
+        "method-a": "org.joda.convert.StringConvert.convertToString(Ljava/lang/Object;)Ljava/lang/String;",
+        "method-b": "org.joda.convert.StringConvert.findAnyConverter(Ljava/lang/Class;)Lorg/joda/convert/TypedStringConverter;",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "org.joda.convert.TypedStringConverter",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 6,
+        "test-methods-mine-count": 28,
+        "LS-verdict-count": 20,
+        "U-verdict-count": 14,
+        "code-snippets-file": "snippets/ls-u/00050.java",
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestNumericObjectArrayStringConverterFactory.java:74",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 4
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_EXPECTED_OUTPUT, the return value of method-a is checked against a declared variable, and DSI replaces the return value with the other side of the assertion.",
+                "notes": "method-a and method-b are unrelated and called in separate assertions, and the correct replacement caused the assertion with method-a to to pass. ORDER_OF_ASSERTIONS - we just got lucky with the return value here"
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.joda.convert.TestStringConvert#test_convert_annotation_ToStringOnInterface",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "TestStringConvert.java:388",
+                        "method-b-site": "StringConvert.java:597",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "REPLACE_RETURN_WITH_UNEXPECTED_OUTPUT, the return value of method-a was replaced with the empty string and the other side of the assertion was a string literal",
+                "notes": "The return value of method-a being replaced with the empty string caused an assertion to fail, which prevented reaching method-b, which would have been called during a following assertion in the test. ORDER_OF_ASSERTIONS"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.joda.convert.TestNumericObjectArrayStringConverterFactory#test_ShortArray",
+        "notes": "UNRELATED_STATEFUL_METHODS, method-a converts an object to a string, and method-b is called to find a converter from an object from a string, they are unrelated. The spec was mined because of the testing pattern: convert an object to a string -> convert that string back into the object.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-29-19-50",
+        "inspection-time-in-minutes": 11
+    }
+]

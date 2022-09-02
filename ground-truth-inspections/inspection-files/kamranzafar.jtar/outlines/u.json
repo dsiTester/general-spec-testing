@@ -1,0 +1,80 @@
+[
+    {
+        "iid": 3,
+        "inspection-start-time": "",
+        "project": "kamranzafar.jtar",
+        "spec-id": "00005",
+        "method-a": "org.kamranzafar.jtar.TarEntry.getName()Ljava/lang/String;",
+        "method-b": "org.kamranzafar.jtar.TarEntry.computeCheckSum([B)J",
+        "method-a-return-type": "java.lang.String",
+        "method-b-return-type": "long",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 0,
+        "test-methods-mine-count": 1,
+        "code-snippets-file": "snippets/u/00005.java",
+        "inspected-cases": [
+            {
+                "test": "",
+                "stage": "",
+                "exception-or-assertion": "",
+                "invocation-info": [
+                    {
+                        "method-a-site": "",
+                        "method-b-site": "",
+                        "invocation-count": -1
+                    }
+                ],
+                "perturbation-count": -1,
+                "comment-on-return-values": "",
+                "notes": ""
+            }
+        ],
+        "verdict": "",
+        "spec-type": "",
+        "validating-test-file": "",
+        "notes": "",
+        "part-of-bigger-spec": "",
+        "inspection-end-time": "",
+        "inspection-time-in-minutes": -1
+    },
+    {
+        "iid": 4,
+        "inspection-start-time": "",
+        "project": "kamranzafar.jtar",
+        "spec-id": "00009",
+        "method-a": "org.kamranzafar.jtar.TarEntry.writeEntryHeader([B)V",
+        "method-b": "org.kamranzafar.jtar.TarEntry.computeCheckSum([B)J",
+        "method-a-return-type": "void",
+        "method-b-return-type": "long",
+        "same-class": "yes",
+        "all-tests-mined": true,
+        "test-classes-mine-count": 2,
+        "test-methods-mine-count": 4,
+        "code-snippets-file": "snippets/u/00009.java",
+        "inspected-cases": [
+            {
+                "test": "",
+                "stage": "",
+                "exception-or-assertion": "",
+                "invocation-info": [
+                    {
+                        "method-a-site": "",
+                        "method-b-site": "",
+                        "invocation-count": -1
+                    }
+                ],
+                "perturbation-count": -1,
+                "comment-on-return-values": "",
+                "notes": ""
+            }
+        ],
+        "verdict": "",
+        "spec-type": "",
+        "validating-test-file": "",
+        "notes": "",
+        "part-of-bigger-spec": "",
+        "inspection-end-time": "",
+        "inspection-time-in-minutes": -1
+    }
+]

@@ -1,0 +1,279 @@
+all-tests
+org.osiam.client.AuthServiceTest
+org.osiam.client.OsiamConnectorTest
+org.osiam.client.OsiamGroupServiceTest
+org.osiam.client.OsiamUserEditTest
+org.osiam.client.OsiamUserMeTest
+org.osiam.client.OsiamUserServiceTest
+org.osiam.client.oauth.AccessTokenTest
+org.osiam.client.oauth.GrantTypeTest
+org.osiam.client.query.QueryBuilderTest
+org.osiam.client.query.QueryTest
+org.osiam.resources.data.DataUriSpec
+org.osiam.resources.helper.ExtensionSerializerSpec
+org.osiam.resources.helper.JsonDateSerializerSpec
+org.osiam.resources.helper.UserDeserializerSpec
+org.osiam.resources.scim.AddressSpec
+org.osiam.resources.scim.EmailSpec
+org.osiam.resources.scim.EnterpriseSpec
+org.osiam.resources.scim.ExtensionFieldTypeSpec
+org.osiam.resources.scim.ExtensionSpec
+org.osiam.resources.scim.GroupSpec
+org.osiam.resources.scim.GroupUpdateSpec
+org.osiam.resources.scim.ManagerSpec
+org.osiam.resources.scim.MemberRefSpec
+org.osiam.resources.scim.MultiValuedAttributeTypeSpec
+org.osiam.resources.scim.NameJsonSpec
+org.osiam.resources.scim.NameSpec
+org.osiam.resources.scim.SCIMSearchResultSpec
+org.osiam.resources.scim.SchemaRegressionSpec
+org.osiam.resources.scim.UpdateUserSpec
+org.osiam.resources.scim.UserJsonSpec
+org.osiam.resources.scim.UserSpec
+org.osiam.resources.scim.UserUpdateSpec
+org.osiam.client.AuthServiceTest#double_slash_is_removed_from_path
+org.osiam.client.AuthServiceTest#service_returns_valid_redirect_Uri
+org.osiam.client.OsiamConnectorTest#throws_illegal_state_exception_when_no_auth_server_is_configured_and_access_token_is_retrieved
+org.osiam.client.OsiamConnectorTest#throws_illegal_state_exception_when_no_resource_server_is_configured_and_group_is_retrieved
+org.osiam.client.OsiamConnectorTest#throws_illegal_state_exception_when_no_resource_server_is_configured_and_user_is_retrieved
+org.osiam.client.OsiamGroupServiceTest#accessToken_is_null_by_getting_all_group_raises_exception
+org.osiam.client.OsiamGroupServiceTest#accessToken_is_null_by_getting_single_group_raises_exception
+org.osiam.client.OsiamGroupServiceTest#create_group_with_null_accestoken_raises_exception
+org.osiam.client.OsiamGroupServiceTest#create_null_group_raises_exception
+org.osiam.client.OsiamGroupServiceTest#delete_group_with_null_accestoken_raises_exception
+org.osiam.client.OsiamGroupServiceTest#delete_null_group_raises_exception
+org.osiam.client.OsiamGroupServiceTest#id_is_null_by_getting_single_user_raises_exception
+org.osiam.client.OsiamGroupServiceTest#invalid_filter_generates_bad_request
+org.osiam.client.OsiamGroupServiceTest#passing_attributes_for_single_group_creates_the_correct_request
+org.osiam.client.OsiamGroupServiceTest#passing_attributes_to_a_request_for_all_groups_generates_the_correct_request
+org.osiam.client.OsiamUserEditTest#id_is_null_by_updating_single_user_raises_exception
+org.osiam.client.OsiamUserEditTest#null_UpdateUser_rases_exception
+org.osiam.client.OsiamUserEditTest#null_access_token__by_updating_user_rases_exception
+org.osiam.client.OsiamUserEditTest#user_is_null_by_getting_single_user_raises_exception
+org.osiam.client.OsiamUserMeTest#accessToken_is_null_by_getting_me_user_raises_exception
+org.osiam.client.OsiamUserServiceTest#access_token_is_null_by_getting_all_group_raises_exception
+org.osiam.client.OsiamUserServiceTest#access_token_is_null_by_getting_single_user_raises_exception
+org.osiam.client.OsiamUserServiceTest#create_null_user_raises_exception
+org.osiam.client.OsiamUserServiceTest#create_user_with_null_access_token_raises_exception
+org.osiam.client.OsiamUserServiceTest#delete_null_user_raises_exception
+org.osiam.client.OsiamUserServiceTest#delete_user_with_null_access_token_raises_exception
+org.osiam.client.OsiamUserServiceTest#id_is_null_by_getting_single_user_raises_exception
+org.osiam.client.OsiamUserServiceTest#invalid_filter_generates_bad_request
+org.osiam.client.OsiamUserServiceTest#passing_attributes_for_single_user_creates_the_correct_request
+org.osiam.client.OsiamUserServiceTest#passing_attributes_to_a_request_for_all_users_generates_the_correct_request
+org.osiam.client.oauth.AccessTokenTest#access_token_is_deserialized_without_errors
+org.osiam.client.oauth.AccessTokenTest#equalsContract
+org.osiam.client.oauth.AccessTokenTest#expired_access_token_is_recognized_correctly
+org.osiam.client.oauth.GrantTypeTest#grant_type_returns_matching_urlparam[0]
+org.osiam.client.query.QueryBuilderTest#build_empty_query
+org.osiam.client.query.QueryBuilderTest#count_cannot_be_less_than_one
+org.osiam.client.query.QueryBuilderTest#setting_all_values_of_the_query_works
+org.osiam.client.query.QueryBuilderTest#sorting_ascending_works
+org.osiam.client.query.QueryBuilderTest#sorting_descending_works
+org.osiam.client.query.QueryBuilderTest#start_index_cannot_be_less_than_one
+org.osiam.client.query.QueryBuilderTest#using_the_copy_of_constructor_works
+org.osiam.client.query.QueryTest#nextPage_increases_startIndex_by_count_and_returns_new_instance
+org.osiam.client.query.QueryTest#previousPage_decreases_startIndex_by_count_and_returns_new_instance
+org.osiam.client.query.QueryTest#previousPage_raises_exception_if_on_first_page
+org.osiam.resources.data.DataUriSpec#A String can be transformed into an DataURI
+org.osiam.resources.data.DataUriSpec#A String can be transformed into an ImageDataURI
+org.osiam.resources.data.DataUriSpec#A URI can be transformed into an DataURI
+org.osiam.resources.data.DataUriSpec#A URI can be transformed into an ImageDataURI
+org.osiam.resources.data.DataUriSpec#A inputStream can be transformed into an DataURI
+org.osiam.resources.data.DataUriSpec#A inputStream can be transformed into an ImageDataURI
+org.osiam.resources.data.DataUriSpec#A invalid String raises exception while creating an DataURI
+org.osiam.resources.data.DataUriSpec#A invalid String raises exception while creating an ImageDataURI
+org.osiam.resources.data.DataUriSpec#A invalid URI raises exception while creating an DataURI
+org.osiam.resources.data.DataUriSpec#A invalid URI raises exception while creating an ImageDataURI
+org.osiam.resources.data.DataUriSpec#A invalid inputStream raises exception while creating an ImageDataURI
+org.osiam.resources.data.DataUriSpec#A mime type IMAGE_DATA_URI can be reconized correctly from the Photo
+org.osiam.resources.data.DataUriSpec#A mime type URI can be reconized correctly from the Photo
+org.osiam.resources.data.DataUriSpec#given inputstream is correctly returned
+org.osiam.resources.data.DataUriSpec#the mimetype is returned in the correct way
+org.osiam.resources.helper.ExtensionSerializerSpec#serializing an empty extension works
+org.osiam.resources.helper.ExtensionSerializerSpec#serializing an extension with BINARY type works
+org.osiam.resources.helper.ExtensionSerializerSpec#serializing an extension with BOOLEAN type works
+org.osiam.resources.helper.ExtensionSerializerSpec#serializing an extension with DATE_TIME type works
+org.osiam.resources.helper.ExtensionSerializerSpec#serializing an extension with DECIMAL type works
+org.osiam.resources.helper.ExtensionSerializerSpec#serializing an extension with INTEGER type works
+org.osiam.resources.helper.ExtensionSerializerSpec#serializing an extension with REFERENCE type works
+org.osiam.resources.helper.ExtensionSerializerSpec#serializing an extension with STRING type works
+org.osiam.resources.helper.JsonDateSerializerSpec#should serialize dates to ISO value
+org.osiam.resources.helper.UserDeserializerSpec#A valid basic user is returned
+org.osiam.resources.helper.UserDeserializerSpec#Deserializing a simple basic user sets addresses field not to null
+org.osiam.resources.helper.UserDeserializerSpec#Deserializing a simple basic user sets emails field not to null
+org.osiam.resources.helper.UserDeserializerSpec#Deserializing a simple basic user sets entitlements field not to null
+org.osiam.resources.helper.UserDeserializerSpec#Deserializing a simple basic user sets extensions field not to null
+org.osiam.resources.helper.UserDeserializerSpec#Deserializing a simple basic user sets groups field not to null
+org.osiam.resources.helper.UserDeserializerSpec#Deserializing a simple basic user sets ims field not to null
+org.osiam.resources.helper.UserDeserializerSpec#Deserializing a simple basic user sets phoneNumbers field not to null
+org.osiam.resources.helper.UserDeserializerSpec#Deserializing a simple basic user sets photos field not to null
+org.osiam.resources.helper.UserDeserializerSpec#Deserializing a simple basic user sets roles field not to null
+org.osiam.resources.helper.UserDeserializerSpec#Deserializing a simple basic user sets x509Certificates field not to null
+org.osiam.resources.helper.UserDeserializerSpec#Extension can be declared in schemas without having any data
+org.osiam.resources.helper.UserDeserializerSpec#Extension gets deserialized correctly
+org.osiam.resources.helper.UserDeserializerSpec#Extension of wrong JSON type raises exception
+org.osiam.resources.helper.UserDeserializerSpec#Return a User Instance
+org.osiam.resources.helper.UserDeserializerSpec#Value keyBinary is deserialized correctly
+org.osiam.resources.helper.UserDeserializerSpec#Value keyBoolean is deserialized correctly
+org.osiam.resources.helper.UserDeserializerSpec#Value keyDateTime is deserialized correctly
+org.osiam.resources.helper.UserDeserializerSpec#Value keyDecimal is deserialized correctly
+org.osiam.resources.helper.UserDeserializerSpec#Value keyInteger is deserialized correctly
+org.osiam.resources.helper.UserDeserializerSpec#Value keyReference is deserialized correctly
+org.osiam.resources.helper.UserDeserializerSpec#Value keyString is deserialized correctly
+org.osiam.resources.scim.AddressSpec#should generate an address from builder
+org.osiam.resources.scim.EmailSpec#USER@EXAMPLE.COM is considered a valid email address
+org.osiam.resources.scim.EmailSpec#a valid email can be put into an Email
+org.osiam.resources.scim.EmailSpec#an invalid email can be put into an Email
+org.osiam.resources.scim.EmailSpec#user@example.com is considered a valid email address
+org.osiam.resources.scim.EmailSpec#user@localhost is considered a valid email address
+org.osiam.resources.scim.EnterpriseSpec#should contain employeeNumber, costCenter, organization, division, department as well as a manager
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.BINARY returns the correctly typed value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.BINARY with illegal value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.BINARY with null value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.BOOLEAN returns the correctly typed value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.BOOLEAN with null value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.DATE_TIME returns the correctly typed value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.DATE_TIME with illegal value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.DATE_TIME with null value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.DECIMAL returns the correctly typed value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.DECIMAL with illegal value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.DECIMAL with null value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.INTEGER returns the correctly typed value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.INTEGER with illegal value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.INTEGER with null value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.REFERENCE returns the correctly typed value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.REFERENCE with illegal value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.REFERENCE with null value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.STRING returns the correctly typed value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#fromString on FieldType.STRING with null value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#getName on FieldType.BINARY returns BINARY
+org.osiam.resources.scim.ExtensionFieldTypeSpec#getName on FieldType.BOOLEAN returns BOOLEAN
+org.osiam.resources.scim.ExtensionFieldTypeSpec#getName on FieldType.DATE_TIME returns DATE_TIME
+org.osiam.resources.scim.ExtensionFieldTypeSpec#getName on FieldType.DECIMAL returns DECIMAL
+org.osiam.resources.scim.ExtensionFieldTypeSpec#getName on FieldType.INTEGER returns INTEGER
+org.osiam.resources.scim.ExtensionFieldTypeSpec#getName on FieldType.REFERENCE returns REFERENCE
+org.osiam.resources.scim.ExtensionFieldTypeSpec#getName on FieldType.STRING returns STRING
+org.osiam.resources.scim.ExtensionFieldTypeSpec#retrieving FieldType instance via static valueOf with "BINARY" returns FieldType.BINARY
+org.osiam.resources.scim.ExtensionFieldTypeSpec#retrieving FieldType instance via static valueOf with "BOOLEAN" returns FieldType.BOOLEAN
+org.osiam.resources.scim.ExtensionFieldTypeSpec#retrieving FieldType instance via static valueOf with "DATE_TIME" returns FieldType.DATE_TIME
+org.osiam.resources.scim.ExtensionFieldTypeSpec#retrieving FieldType instance via static valueOf with "DECIMAL" returns FieldType.DECIMAL
+org.osiam.resources.scim.ExtensionFieldTypeSpec#retrieving FieldType instance via static valueOf with "INTEGER" returns FieldType.INTEGER
+org.osiam.resources.scim.ExtensionFieldTypeSpec#retrieving FieldType instance via static valueOf with "REFERENCE" returns FieldType.REFERENCE
+org.osiam.resources.scim.ExtensionFieldTypeSpec#retrieving FieldType instance via static valueOf with "STRING" returns FieldType.STRING
+org.osiam.resources.scim.ExtensionFieldTypeSpec#retrieving FieldType instance via static valueOf with unknown type name raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.BINARY returns the correct String value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.BINARY with null value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.BOOLEAN returns the correct String value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.BOOLEAN with null value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.DATE_TIME returns the correct String value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.DATE_TIME with null value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.DECIMAL returns the correct String value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.DECIMAL with null value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.INTEGER returns the correct String value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.INTEGER with null value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.REFERENCE returns the correct String value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.REFERENCE with null value raises exception
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.STRING returns the correct String value
+org.osiam.resources.scim.ExtensionFieldTypeSpec#toString on FieldType.STRING with null value raises exception
+org.osiam.resources.scim.ExtensionSpec#Adding field with type BINARY adds field to extension
+org.osiam.resources.scim.ExtensionSpec#Adding field with type BOOLEAN adds field to extension
+org.osiam.resources.scim.ExtensionSpec#Adding field with type DATE_TIME adds field to extension
+org.osiam.resources.scim.ExtensionSpec#Adding field with type DECIMAL adds field to extension
+org.osiam.resources.scim.ExtensionSpec#Adding field with type INTEGER adds field to extension
+org.osiam.resources.scim.ExtensionSpec#Adding field with type REFERENCE adds field to extension
+org.osiam.resources.scim.ExtensionSpec#Adding field with type STRING adds field to extension
+org.osiam.resources.scim.ExtensionSpec#Adding/Updating a field with a empty name raises exception
+org.osiam.resources.scim.ExtensionSpec#Adding/Updating a field with a null name raises exception
+org.osiam.resources.scim.ExtensionSpec#Adding/Updating a field with null value raises exception
+org.osiam.resources.scim.ExtensionSpec#Query for a field with name empty raises exception
+org.osiam.resources.scim.ExtensionSpec#Query for a field with name nonexistant raises exception
+org.osiam.resources.scim.ExtensionSpec#Query for a field with name null raises exception
+org.osiam.resources.scim.ExtensionSpec#Query for existing field returns value
+org.osiam.resources.scim.ExtensionSpec#Query with null field type raises exception
+org.osiam.resources.scim.ExtensionSpec#Updating field with type BINARY updates field in extension
+org.osiam.resources.scim.ExtensionSpec#Updating field with type BOOLEAN updates field in extension
+org.osiam.resources.scim.ExtensionSpec#Updating field with type DATE_TIME updates field in extension
+org.osiam.resources.scim.ExtensionSpec#Updating field with type DECIMAL updates field in extension
+org.osiam.resources.scim.ExtensionSpec#Updating field with type INTEGER updates field in extension
+org.osiam.resources.scim.ExtensionSpec#Updating field with type REFERENCE updates field in extension
+org.osiam.resources.scim.ExtensionSpec#Updating field with type STRING updates field in extension
+org.osiam.resources.scim.ExtensionSpec#getAllFields returns a map of all the fields including their type
+org.osiam.resources.scim.ExtensionSpec#getAllFields returns an immutable map
+org.osiam.resources.scim.ExtensionSpec#isFieldPresent should return false when field is not present
+org.osiam.resources.scim.ExtensionSpec#isFieldPresent should return true when field is present
+org.osiam.resources.scim.GroupSpec#group can be serialized and deserialized
+org.osiam.resources.scim.GroupSpec#pre-set display name with constructor
+org.osiam.resources.scim.GroupSpec#should be able to add member to group
+org.osiam.resources.scim.GroupSpec#should be able to clone a group
+org.osiam.resources.scim.GroupSpec#should be able to generate a group
+org.osiam.resources.scim.GroupSpec#the copied group should have the given display name
+org.osiam.resources.scim.GroupSpec#using the copy-of builder with null as parameter raises exception
+org.osiam.resources.scim.GroupUpdateSpec#can update members
+org.osiam.resources.scim.GroupUpdateSpec#can update simple, singular attributes
+org.osiam.resources.scim.ManagerSpec#should contain an id and a display name
+org.osiam.resources.scim.MemberRefSpec#deserializing member ref results in correct MemberRef object
+org.osiam.resources.scim.MemberRefSpec#serializing member ref results in correct json
+org.osiam.resources.scim.MultiValuedAttributeTypeSpec#creating an instance with empty string as value raises exception
+org.osiam.resources.scim.MultiValuedAttributeTypeSpec#creating an instance with null as value raises exception
+org.osiam.resources.scim.MultiValuedAttributeTypeSpec#obeys equals contract
+org.osiam.resources.scim.NameJsonSpec#isEmpty method should not be serialized to a field called empty
+org.osiam.resources.scim.NameSpec#should contain a bunch of values
+org.osiam.resources.scim.SCIMSearchResultSpec#Mapping a SCIMSearchResult from JSON works
+org.osiam.resources.scim.SchemaRegressionSpec#REG-BT-13
+org.osiam.resources.scim.UpdateUserSpec#building a update User for add works as aspected
+org.osiam.resources.scim.UpdateUserSpec#building a update User for deleting works as aspected
+org.osiam.resources.scim.UpdateUserSpec#building a update User for update works as aspected
+org.osiam.resources.scim.UserJsonSpec#A User is correctly serialized
+org.osiam.resources.scim.UserSpec#an added extension can be retrieved
+org.osiam.resources.scim.UserSpec#builder should add a schema to the schema Set for each added extension
+org.osiam.resources.scim.UserSpec#creating a user with copy builder copies addresses field if present
+org.osiam.resources.scim.UserSpec#creating a user with copy builder copies emails field if present
+org.osiam.resources.scim.UserSpec#creating a user with copy builder copies entitlements field if present
+org.osiam.resources.scim.UserSpec#creating a user with copy builder copies extensions field if present
+org.osiam.resources.scim.UserSpec#creating a user with copy builder copies groups field if present
+org.osiam.resources.scim.UserSpec#creating a user with copy builder copies ims field if present
+org.osiam.resources.scim.UserSpec#creating a user with copy builder copies phoneNumbers field if present
+org.osiam.resources.scim.UserSpec#creating a user with copy builder copies photos field if present
+org.osiam.resources.scim.UserSpec#creating a user with copy builder copies roles field if present
+org.osiam.resources.scim.UserSpec#creating a user with copy builder copies x509Certificates field if present
+org.osiam.resources.scim.UserSpec#creating a user with copy builder initializes addresses empty if missing in original
+org.osiam.resources.scim.UserSpec#creating a user with copy builder initializes emails empty if missing in original
+org.osiam.resources.scim.UserSpec#creating a user with copy builder initializes entitlements empty if missing in original
+org.osiam.resources.scim.UserSpec#creating a user with copy builder initializes extensions empty if missing in original
+org.osiam.resources.scim.UserSpec#creating a user with copy builder initializes groups empty if missing in original
+org.osiam.resources.scim.UserSpec#creating a user with copy builder initializes ims empty if missing in original
+org.osiam.resources.scim.UserSpec#creating a user with copy builder initializes phoneNumbers empty if missing in original
+org.osiam.resources.scim.UserSpec#creating a user with copy builder initializes photos empty if missing in original
+org.osiam.resources.scim.UserSpec#creating a user with copy builder initializes roles empty if missing in original
+org.osiam.resources.scim.UserSpec#creating a user with copy builder initializes x509Certificates empty if missing in original
+org.osiam.resources.scim.UserSpec#enriching extension using the getter raises exception
+org.osiam.resources.scim.UserSpec#extensions can be added in bulk
+org.osiam.resources.scim.UserSpec#no email is returned if the user doesn't have one
+org.osiam.resources.scim.UserSpec#pre-set user name with constructor
+org.osiam.resources.scim.UserSpec#retrieving extension with empty urn raises exception
+org.osiam.resources.scim.UserSpec#retrieving extension with invalid urn raises exception
+org.osiam.resources.scim.UserSpec#retrieving extension with null urn raises exception
+org.osiam.resources.scim.UserSpec#scim core schema must always be present in schema set when adding extensions
+org.osiam.resources.scim.UserSpec#should be able to contain schemas
+org.osiam.resources.scim.UserSpec#should be possible to create an user without name for PATCH
+org.osiam.resources.scim.UserSpec#should contain core schemas as default
+org.osiam.resources.scim.UserSpec#should generate a user based on builder
+org.osiam.resources.scim.UserSpec#the copied user should have the given username
+org.osiam.resources.scim.UserSpec#the first nonprimary email is returned
+org.osiam.resources.scim.UserSpec#the primary email is returned
+org.osiam.resources.scim.UserSpec#user can be serialized and deserialized
+org.osiam.resources.scim.UserSpec#using  for userName raises exception
+org.osiam.resources.scim.UserSpec#using null for userName raises exception
+org.osiam.resources.scim.UserSpec#using the copy-of builder with null as parameter raises exception
+org.osiam.resources.scim.UserUpdateSpec#can update IMs
+org.osiam.resources.scim.UserUpdateSpec#can update addresses
+org.osiam.resources.scim.UserUpdateSpec#can update emails
+org.osiam.resources.scim.UserUpdateSpec#can update entitlements
+org.osiam.resources.scim.UserUpdateSpec#can update extensions
+org.osiam.resources.scim.UserUpdateSpec#can update name attribute
+org.osiam.resources.scim.UserUpdateSpec#can update phone numbers
+org.osiam.resources.scim.UserUpdateSpec#can update photos
+org.osiam.resources.scim.UserUpdateSpec#can update roles
+org.osiam.resources.scim.UserUpdateSpec#can update simple, singular attributes
+org.osiam.resources.scim.UserUpdateSpec#can update x509Certificates

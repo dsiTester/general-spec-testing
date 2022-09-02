@@ -1,0 +1,97 @@
+[
+    {
+        "iid": 1,
+        "inspection-start-time": "2022-01-07-12-10",
+        "project": "commons-fileupload",
+        "spec-id": "00279",
+        "method-a": "org.apache.commons.fileupload2.disk.DiskFileItem.getTempFile()Ljava/io/File;",
+        "method-b": "org.apache.commons.fileupload2.disk.DiskFileItem.getStoreLocation()Ljava/io/File;",
+        "method-a-return-type": "java.io.File",
+        "method-b-return-type": "java.io.File",
+        "same-class": "yes",
+        "all-tests-mined": false,
+        "test-classes-mine-count": 1,
+        "test-methods-mine-count": 8,
+        "LV-verdict-count": 2,
+        "LS-verdict-count": 4,
+        "U-verdict-count": 2,
+        "E-verdict-count": 1,
+        "code-snippets-file": "snippets/lv-ls-u-e/00279.java",
+        "validated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileUploadTest#testMoveFile",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:509",
+                        "method-b-site": "DiskFileItem.java:396",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at FileUploadBase.java:347.",
+                "notes": "GOOD_EXAMPLE: The DSI experiment results in stage-3-complete even though a NullPointerException was thrown before the point at which method-b was called because of the finally block in FileUploadBase.parseRequest(). The finally block calls FileItem.delete(), which used implementation calls method-b, on each FileItem object stored in the variable items only if the try block was not able to run to completion (signified by the boolean variable successful). So, in a normal execution of the test method-b is not called from the finally block, but since the DSI experimentation caused a NullPointerException, method-b was called from the finally block. INSPECTION_TODO: revise...there is some grammar problem that makes this text incomprehensible."
+            }
+        ],
+        "invalidated-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testBelowThreshold",
+                "stage": "stage-3-complete",
+                "exception-or-assertion": "NA",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:509",
+                        "method-b-site": "DiskFileItem.java:433",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "Most likely replaced with null, but not sure why the subsequent call on DiskFileItemSerializeTest.java:213 doesn't throw a NullPointerException (goes into 3rd party methods so it's difficult to figure out).",
+                "notes": ""
+            }
+        ],
+        "unknown-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest#testAboveThresholdDefaultRepository",
+                "stage": "stage-0-failure",
+                "exception-or-assertion": "exception",
+                "invocation-info": [
+                    {
+                        "method-a-site": "DiskFileItem.java:509",
+                        "method-b-site": "DiskFileItem.java:433",
+                        "invocation-count": 1
+                    }
+                ],
+                "perturbation-count": 1,
+                "comment-on-return-values": "NULL_REPLACEMENT_CAUSED_NULLPOINTEREXCEPTION. NullPointerException at DefaultFileItemTest.java:183.",
+                "notes": ""
+            }
+        ],
+        "error-inspected-cases": [
+            {
+                "test": "org.apache.commons.fileupload2.DefaultFileItemTest",
+                "stage": "sanity-check-failure",
+                "exception-or-assertion": "assertion",
+                "invocation-info": [
+                    {
+                        "method-a-site": "?",
+                        "method-b-site": "?",
+                        "invocation-count": 0
+                    }
+                ],
+                "perturbation-count": 0,
+                "comment-on-return-values": "",
+                "notes": "STATE_POLLUTION_BY_DSI on testAboveThresholdSpecifiedRepository (Refer to 00002)"
+            }
+        ],
+        "verdict": "spurious-spec",
+        "is-oracle-weak": false,
+        "spec-type": "NA",
+        "validating-test-file": "org.apache.commons.fileupload2.DiskFileItemSerializeTest#testBelowThreshold",
+        "notes": "method-a accesses the field variables DiskFileItem.tempFile, and sets it to a constructed File object if it is not already set. The return value of method-a is used by the caller to construct a DeferredFileOutputStream object to set the field variable DiskFileItem.dfos to. method-b either returns null or the File object associated with DiskFileItem.dfos. TRUE_SPEC_WITH_CALLER: While the caller of method-a (getOutputStream()) is a precondition to method-b, method-a itself has no relationship with method-b. Manually called method-a after method-b within the code (as specified in the snippets), and the test passed.",
+        "part-of-bigger-spec": "no",
+        "inspection-end-time": "2022-01-07-12-43",
+        "inspection-time-in-minutes": 33
+    }
+]

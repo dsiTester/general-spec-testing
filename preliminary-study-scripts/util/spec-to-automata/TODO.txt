@@ -1,0 +1,11 @@
+- Write script to automate process of running that shows the automata picture
+- Improve to take in a formatted automata table as well
+- Make it take in two files instead of std in
+- Run w checkstyle and make code neat --> probably need to work through a bit more
+- Filter out unnecessary stdout and log
+- Clear out classes and methods that I don't actually use
+- Formattting
+- (FUTURE): hopefully be able to do this for other kinds of formalisms? (that reduce down to FSMs)
++ Connect w dkbrics Automata
++ Probably want to output dot file of automaton at the end?
++ Dot file contains time in file name
